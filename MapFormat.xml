@@ -1,4 +1,4 @@
-<?xml version = "1.0"?>
+<?xml version = "1.0" encoding="UTF-8" ?>
 <!--
 Specifies the attributes of a map to the AntiTD.
 
@@ -18,42 +18,45 @@ The tiles not mentioned in this file is ment to be empty and buildable.
 		<width>30</width>
 	</meta>
 	<tiles>
-		<!--Path tile going from north to south in position 0,0
-			with a slowing effect-->
-		<tile type="path">
-			<position>
-				<x>0</x>
-				<y>0</y>
-			</position>
-			<connections>
-				<north/>
-				<south/>
-			</connections>
-			<landon>slow</landon>
-		</tile>
+		<path>
+			<!--Path tile going from north to south in position 0,0
+				with a "slowing effect"-->
+			<tile>
+				<position>
+					<x>0</x>
+					<y>0</y>
+				</position>
+				<connections>
+					<north/>
+					<south/>
+				</connections>
+				<landon>slow</landon>
+			</tile>
 
-		<!--Path tile going from north to south and east (T-crossing)
-			in position 0,1-->
-		<tile type="path">
-			<position>
-				<x>0</x>
-				<y>1</y>
-			</position>
-			<connections>
-				<north/>
-				<east/>
-				<south/>
-			</connections>
-			<landon></landon>
-		</tile>
-
+			<!--Path tile going from north to south and east (T-crossing)
+				in position 0,1-->
+			<tile>
+				<position>
+					<x>0</x>
+					<y>1</y>
+				</position>
+				<connections>
+					<north/>
+					<east/>
+					<south/>
+				</connections>
+				<landon></landon>
+			</tile>
+		</path>
+		<debree>
 		<!--Debree tile in position 1,0 of type rock.-->
-		<tile type="debris">
-			<position>
-				<x>1</x>
-				<y>0</y>
-			</position>
-			<type>rock</type>
-		</tile>
+			<tile>
+				<position>
+					<x>1</x>
+					<y>0</y>
+				</position>
+				<type>rock</type>
+			</tile>
+		</debree>
 	</tiles>
 </map>
