@@ -48,7 +48,7 @@ The tiles not mentioned in this file is ment to be empty and buildable.
 		</tile>
 
 		<!--Debree tile in position 1,0 of type rock.-->
-		<tile type="debree">
+		<tile type="debris">
 			<position>
 				<x>1</x>
 				<y>0</y>
