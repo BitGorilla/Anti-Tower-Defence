@@ -14,9 +14,9 @@ public class TowerTest {
         return false;
     }
 
-    @Test (expected = NullPointerException.class)
+    /*@Test (expected = NullPointerException.class)
     public void towerHandlesEmptyPath(){
         tower.calculatePositionsInRange(null);
-    }
+    }*/
 
 }
