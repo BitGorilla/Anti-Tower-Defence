@@ -10,7 +10,7 @@ public class Level {
 
     }
 
-    public void setCredits(int x){
+    public void setCredits(int x) {
 
     }
 

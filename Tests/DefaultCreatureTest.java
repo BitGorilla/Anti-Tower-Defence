@@ -49,7 +49,14 @@ public class DefaultCreatureTest {
     public void costCantBeLessThanZero() {
         int integer = -1;
         defaultCreature.setCost(integer);
-        Assert.assertTrue(defaultCreature.getCost);
+        Assert.assertFalse(defaultCreature.getCost() < 0);
+    }
+
+    @Test
+    public void currentHealthCantBeLessThanZero() {
+        int integer = -1;
+        defaultCreature.setCurrentHealth(integer);
+        Assert.assertFalse(defaultCreature.getCurrentHealth() < 0);
     }
 
     public void tearDown() {
