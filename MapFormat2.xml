@@ -1,0 +1,13 @@
+<map>
+	<meta>
+		<height>2</height>
+		<width>2</width>
+		<startcredit>400</startcredit>
+	</meta>
+	<tiles>
+		<tile road="west-east" type=""/>
+		<tile road="west-south" type="slow"/>
+		<tile road="" type="turret"/>
+		<tile road="north-south" type=""/>
+	</tiles>
+</map>
