@@ -12,14 +12,17 @@ public class AntiTowerDefence {
     public static void main( String[] args ) throws IOException {
 
         XMLReader reader = new XMLReader();
-        reader.setSource(new FileInputStream("test.xml"));
-        reader.next();
-        SwingUtilities.invokeLater(() -> {
+        reader.setSource(new FileInputStream("MapFormat2.xml"));
+        while (reader.hasNext()){
+            reader.next();
+        }
+
+        /*SwingUtilities.invokeLater(() -> {
             GUI gui = new GUI("Anti Tower Defence Game");
             gui.show();
 
             //new TestController(gui);
-        });
+        });*/
 
         //new TestController();
 

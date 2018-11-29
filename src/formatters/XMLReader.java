@@ -12,12 +12,18 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.ElementType;
+import java.util.ArrayList;
 
 public class XMLReader implements LevelReader, LevelXMLConstants{
-    private NodeList tileNodeList;
-    private NodeList towerNodeList;
-    private NodeList mapTypeNodeList;
-    private int i;
+    private NodeList nodeList;
+    private int i = 0;
+
+    private int height;
+    private int width;
+    private String name;
+    private int startCredit;
+    private ArrayList<String> tileList;
 
     private String getTagValue(String tag, Element element){
         NodeList nlList =
@@ -27,24 +33,67 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         return nValue.getNodeValue();
     }
 
+    private Node getNodeByTag(String tag, Node node){
+        return ((Element) node).getElementsByTagName(tag).item(0);
+    }
 
-    @Override
-    public boolean hasNext() throws IOException {
-        return tileNodeList.getLength()>i;
+    private String getValue(Node node){
+        return node.getChildNodes().item(0).getNodeValue();
+    }
+
+    private void setMapAttributes(Node metaNode, Node tilesNode){
+
+        height = Integer.parseInt(getValue(getNodeByTag(HEIGHT,metaNode)));
+        width = Integer.parseInt(getValue(getNodeByTag(WIDTH,metaNode)));
+        name = getValue(getNodeByTag(NAME,metaNode));
+        startCredit = Integer.parseInt(getValue(getNodeByTag(STARTCREDIT,
+                metaNode)));
+    }
+
+    private void readTileRoads(Node tilesNode) {
+        for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
+            Node tempNode = tilesNode.getChildNodes().item(j);
+
+            if (tempNode.getNodeType()==Node.ELEMENT_NODE){
+                System.out.println(tempNode.getAttributes().getNamedItem(
+                        ROAD).getNodeValue());
+            }
+        }
+    }
+
+    private void readTileTypes(Node tilesNode) {
+        for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
+            Node tempNode = tilesNode.getChildNodes().item(j);
+
+            if (tempNode.getNodeType()==Node.ELEMENT_NODE){
+                System.out.println(tempNode.getAttributes().getNamedItem(
+                        TYPE).getNodeValue());
+            }
+        }
     }
 
     @Override
-    public void next() throws IOException {
-        Node node = tileNodeList.item(0);
+    public boolean hasNext() {
+        return i<nodeList.getLength();
+    }
+
+    @Override
+    public void next() {
+        Node node = nodeList.item(i);
         i++;
 
         if (node.getNodeType() == Node.ELEMENT_NODE){
-            if (node.getNodeName().equals("tile")){
-                System.out.println(node.getNodeName());
-                System.out.println(node.getAttributes().getNamedItem("attr").getNodeValue());
-                System.out.println(getTagValue("pos", (Element) node));
-            }
 
+            Node metaNode = getNodeByTag(META, node);
+            Node tilesNode = getNodeByTag(TILES, node);
+
+            setMapAttributes(metaNode, tilesNode);
+
+            System.out.println(height+" "+width+" "+name+" "+startCredit);
+
+            readTileRoads(tilesNode);
+            readTileTypes(tilesNode);
+            System.out.println(" ");
         }
     }
 
@@ -59,7 +108,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             //Fixa så att tex inte flera textnoder finns efter varandra
             data.normalize();
 
-            tileNodeList = doc.getElementsByTagName("tile");
+            nodeList = doc.getElementsByTagName(MAP);
         } catch (ParserConfigurationException e) {
             throw new IOException("Unable to configure parser");
         } catch (SAXException e) {
