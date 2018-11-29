@@ -48,15 +48,5 @@ The tiles not mentioned in this file is ment to be empty and buildable.
 				<landon></landon>
 			</tile>
 		</path>
-		<debree>
-		<!--Debree tile in position 1,0 of type rock.-->
-			<tile>
-				<position>
-					<x>1</x>
-					<y>0</y>
-				</position>
-				<type>rock</type>
-			</tile>
-		</debree>
 	</tiles>
 </map>
