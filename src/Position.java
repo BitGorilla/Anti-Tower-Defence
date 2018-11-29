@@ -17,10 +17,17 @@ public class Position {
     }
 
     public void setX(int x) {
+        if(x < 0){
+            throw new IllegalArgumentException("X cord can't be negative");
+        }
         this.x = x;
+
     }
 
     public void setY(int y) {
+        if(y < 0){
+            throw new IllegalArgumentException("Y cord can't be negative");
+        }
         this.y = y;
     }
 }

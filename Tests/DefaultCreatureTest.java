@@ -1,9 +1,13 @@
+import junit.framework.TestCase;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class DefaultCreatureTest {
     DefaultCreature defaultCreature;
 
+    @Before
     public void setUp() {
         defaultCreature = new DefaultCreature();
     }
@@ -11,15 +15,8 @@ public class DefaultCreatureTest {
     @Test
     public void speedGetterGetsSetterValue() {
         int integer = 2341;
-        defaultCreature.setSpeed(integer);
-        Assert.assertEquals(integer,defaultCreature.getSpeed());
-    }
-
-    @Test
-    public void costGetterGetsSetterValue() {
-        int integer = 371954;
-        defaultCreature.setCost(integer);
-        Assert.assertEquals(integer,defaultCreature.getCost());
+        defaultCreature.setCurrentSpeed(integer);
+        Assert.assertEquals(integer,defaultCreature.getCurrentSpeed());
     }
 
     @Test
@@ -34,23 +31,10 @@ public class DefaultCreatureTest {
         int x = 4124;
         int y = 2136127;
         Position position = new Position(x,y);
-        defaultCreature.setPosition(position);
+        defaultCreature.moveTo(position);
         Assert.assertEquals(position,defaultCreature.getPosition());
     }
 
-    @Test
-    public void costCantBeLessThanZero() {
-        int integer = -1;
-        defaultCreature.setCost(integer);
-        Assert.assertTrue(defaultCreature.getCost);
-    }
-
-    @Test
-    public void costCantBeLessThanZero() {
-        int integer = -1;
-        defaultCreature.setCost(integer);
-        Assert.assertFalse(defaultCreature.getCost() < 0);
-    }
 
     @Test
     public void currentHealthCantBeLessThanZero() {
@@ -59,6 +43,7 @@ public class DefaultCreatureTest {
         Assert.assertFalse(defaultCreature.getCurrentHealth() < 0);
     }
 
+    @After
     public void tearDown() {
         defaultCreature = null;
     }
