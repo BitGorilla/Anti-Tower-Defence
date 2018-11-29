@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Level {
 
     private int credits;
-    private ArrayList<Tiles> tiles;
-    private ArrayList<Towers> towers;
+    private ArrayList<Tile> tiles;
+    private ArrayList<Tower> towers;
 
     public Level(){
 
