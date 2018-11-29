@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 public class PositionTest {
     private Position position;
 
-    public void tearDown(){position=null;}
+    public void tearDown() {position=null;}
 
     /*@Test (expected = NullPointerException.class)
     public void constructorHandlesNullAsParameter(){

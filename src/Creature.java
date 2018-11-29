@@ -1,14 +1,16 @@
 public interface Creature {
 
-    public Position getPosition();
+    Position getPosition();
 
-    public void setCurrentHealth(int newHealth);
-    public int getCurrentHealth();
+    int getCost();
 
-    public void setCurrentSpeed(int newSpeed);
-    public int getCurrentSpeed();
+    int getCurrentHealth();
 
-    public boolean isDead();
+    int getSpeed();
 
-    public void moveTo(Position position);
+    void reduceHealth();
+
+    boolean isDead();
+
+    void moveTo(Position position);
 }
