@@ -6,7 +6,7 @@ public class GameInstanceTest {
         gameInstance = new GameInstance();
     }
 
-    public void 
+    public void hej(){}
 
     public void tearDown() {
         gameInstance = null;

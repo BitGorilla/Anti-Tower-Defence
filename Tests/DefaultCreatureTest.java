@@ -1,4 +1,3 @@
-import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +8,7 @@ public class DefaultCreatureTest {
 
     @Before
     public void setUp() {
-        defaultCreature = new DefaultCreature();
+        defaultCreature = new DefaultCreature(null);
     }
 
     @Test

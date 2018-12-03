@@ -6,8 +6,9 @@ public class DefaultCreature implements Creature{
     private int currentHealth;
     private int currentSpeed;
 
-
-
+    public DefaultCreature(Position pos) {
+        this.pos = pos;
+    }
     @Override
     public Position getPosition() {
         return pos;
