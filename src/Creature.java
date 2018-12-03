@@ -2,13 +2,11 @@ public interface Creature {
 
     Position getPosition();
 
-    int getCost();
-
+    void setCurrentHealth(int newHealth);
     int getCurrentHealth();
 
-    int getSpeed();
-
-    void reduceHealth();
+    void setCurrentSpeed(int newSpeed);
+    int getCurrentSpeed();
 
     boolean isDead();
 
