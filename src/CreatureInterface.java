@@ -11,4 +11,8 @@ public interface CreatureInterface {
     boolean isDead();
 
     void moveTo(int index);
+
+    void setGoaled();
+
+    boolean inGoal();
 }

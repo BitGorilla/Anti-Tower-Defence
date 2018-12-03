@@ -5,6 +5,7 @@ public class Creature implements CreatureInterface {
     private int index;
     private int currentHealth;
     private int currentSpeed;
+    private boolean goaled;
 
     public Creature(int index) {
         this.index = index;
@@ -45,5 +46,15 @@ public class Creature implements CreatureInterface {
     @Override
     public void moveTo(int index) {
         this.index = index;
+    }
+
+    @Override
+    public void setGoaled() {
+        goaled = true;
+    }
+
+    @Override
+    public boolean inGoal() {
+        return goaled;
     }
 }
