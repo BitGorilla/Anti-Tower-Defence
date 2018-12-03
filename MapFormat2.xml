@@ -1,16 +1,34 @@
 <maps>
 	<map>
 		<meta>
-			<name>Standard Map</name>
 			<height>2</height>
 			<width>2</width>
 			<startcredit>400</startcredit>
+			<name>Map1</name>
 		</meta>
 		<tiles>
-			<tile road="west-east" type=""/>
+			<tile road="west-east" type="normal"/>
 			<tile road="west-south" type="slow"/>
-			<tile road="" type="turret"/>
-			<tile road="north-south" type=""/>
+			<tile road="empty" type="turret"/>
+			<tile road="north-south" type="normal"/>
 		</tiles>
 	</map>
+
+	<map>
+		<meta>
+			<height>3</height>
+			<width>3</width>
+			<startcredit>200</startcredit>
+			<name>Map2</name>
+		</meta>
+		<tiles>
+			<tile road="west-east" type="normal"/>
+			<tile road="west-south" type="slow"/>
+			<tile road="empty" type="turret"/>
+			<tile road="empty" type="turret"/>
+			<tile road="north-east" type="normal"/>
+			<tile road="west-south" type="normal"/>
+		</tiles>
+	</map>
+
 </maps>
