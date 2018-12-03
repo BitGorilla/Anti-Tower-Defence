@@ -18,7 +18,7 @@ public class AntiTowerDefence {
         }
 
         /*SwingUtilities.invokeLater(() -> {
-            GUI gui = new GUI("Anti Tower Defence Game");
+            GUI gui = new GUI("Anti  Defence Game");
             gui.show();
 
             //new TestController(gui);

@@ -1,4 +1,4 @@
-public class SpeedDemon extends DefaultCreature {
+public class SpeedDemon extends Creature {
 
     public static final int MAXHEALTH = 100;
     public static final int SPEED = 10;

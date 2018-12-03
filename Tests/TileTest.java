@@ -1,4 +1,3 @@
-import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -6,11 +5,11 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class DefaultTileTest {
-    DefaultTile tile;
+public class TileTest {
+    Tile tile;
     @Before
     public void setUp() {
-        tile = new DefaultTile(null);
+        tile = new Tile(null);
     }
 
     @After
@@ -25,7 +24,7 @@ public class DefaultTileTest {
         int y = 24124;
         Position pos = new Position(x,y);
         positions.add(pos);
-        tile = new DefaultTile(positions);
+        tile = new Tile(positions);
         Assert.assertEquals(pos,tile.getArea().get(0));
     }
 }

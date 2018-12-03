@@ -3,8 +3,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DefaultTowerTest {
-    private DefaultTower defaultTower;
+public class TowerTest {
+    private Tower tower;
     private Position pos = new Position(1,1);
     private int range = 20;
     private int damage = 40;
@@ -12,46 +12,46 @@ public class DefaultTowerTest {
 
     @Before
     public void setUp() {
-        defaultTower = new DefaultTower(pos, range, damage, rateOfFire);
+        tower = new Tower(pos, range, damage, rateOfFire);
     }
 
     @After
-    public void tearDown(){ defaultTower = null; }
+    public void tearDown(){ tower = null; }
 
     @Test
     public void positionInRangeToBeTrue_PositionOnYEdge() {
-        Position testPosition = new Position(1,1+defaultTower.getRange());
-        Assert.assertTrue(defaultTower.positionInRange(testPosition));
+        Position testPosition = new Position(1,1+ tower.getRange());
+        Assert.assertTrue(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeTrue_PositionOnXEdge() {
-        Position testPosition = new Position(1+defaultTower.getRange(),1);
-        Assert.assertTrue(defaultTower.positionInRange(testPosition));
+        Position testPosition = new Position(1+ tower.getRange(),1);
+        Assert.assertTrue(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeTrue_PositionInRange() {
         Position testPosition = new Position(2,2);
-        Assert.assertTrue(defaultTower.positionInRange(testPosition));
+        Assert.assertTrue(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeFalse_PositionOutsideYEdge() {
-        Position testPosition = new Position(1,2+defaultTower.getRange());
-        Assert.assertFalse(defaultTower.positionInRange(testPosition));
+        Position testPosition = new Position(1,2+ tower.getRange());
+        Assert.assertFalse(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeFalse_PositionOutsideXEdge() {
-        Position testPosition = new Position(2+defaultTower.getRange(),1);
-        Assert.assertFalse(defaultTower.positionInRange(testPosition));
+        Position testPosition = new Position(2+ tower.getRange(),1);
+        Assert.assertFalse(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeFalse_PositionOutsideDiagonalEdge() {
         Position testPosition = new Position((int) (2+range/Math.sqrt(2)), (int) (2+range/Math.sqrt(2)));
-        Assert.assertFalse(defaultTower.positionInRange(testPosition));
+        Assert.assertFalse(tower.positionInRange(testPosition));
     }
 
     @Test
@@ -59,41 +59,41 @@ public class DefaultTowerTest {
         System.out.println(range/Math.sqrt(2));
         System.out.println((int) (range/Math.sqrt(2)));
         Position testPosition = new Position((int) (1+range/Math.sqrt(2)), (int) (1+range/Math.sqrt(2)));
-        Assert.assertTrue(defaultTower.positionInRange(testPosition));
+        Assert.assertTrue(tower.positionInRange(testPosition));
     }
 
     @Test
     public void damageGetterToGetValueSetInConstructor() {
-        Assert.assertEquals(damage,defaultTower.shoot());
+        Assert.assertEquals(damage, tower.shoot());
     }
 
     @Test
     public void shootToSetCooldownToRateOfFire() {
-        defaultTower.shoot();
-        Assert.assertEquals(rateOfFire,defaultTower.getCooldown());
+        tower.shoot();
+        Assert.assertEquals(rateOfFire, tower.getCooldown());
     }
 
     @Test
     public void reduceCooldownToReduceCooldownByOne() {
-        defaultTower.shoot();
-        defaultTower.reduceCooldown();
-        Assert.assertEquals(rateOfFire-1,defaultTower.getCooldown());
+        tower.shoot();
+        tower.reduceCooldown();
+        Assert.assertEquals(rateOfFire-1, tower.getCooldown());
     }
 
     @Test
     public void reduceCooldownSameTimesAsRateOfFireToReduceCooldownToZero() {
-        defaultTower.shoot();
+        tower.shoot();
         for (int i = 0; i < rateOfFire; i++)
-            defaultTower.reduceCooldown();
-        Assert.assertEquals(0,defaultTower.getCooldown());
+            tower.reduceCooldown();
+        Assert.assertEquals(0, tower.getCooldown());
     }
 
     @Test
     public void reduceCooldownMoreTimesThanRateOfFireToReduceCooldownToZero() {
-        defaultTower.shoot();
+        tower.shoot();
         for (int i = 0; i < rateOfFire*10; i++)
-            defaultTower.reduceCooldown();
-        Assert.assertEquals(0,defaultTower.getCooldown());
+            tower.reduceCooldown();
+        Assert.assertEquals(0, tower.getCooldown());
     }
 
 }

@@ -1,14 +1,49 @@
-public interface Creature {
+/**
+ * Created by jontor on 2018-11-29.
+ */
+public class Creature implements CreatureInterface {
+    private int index;
+    private int currentHealth;
+    private int currentSpeed;
 
-    Position getPosition();
+    public Creature(int index) {
+        this.index = index;
+    }
+    @Override
+    public int getPosition() {
+        return index;
+    }
 
-    void setCurrentHealth(int newHealth);
-    int getCurrentHealth();
+    @Override
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
 
-    void setCurrentSpeed(int newSpeed);
-    int getCurrentSpeed();
+    @Override
+    public void setCurrentSpeed(int newSpeed) {
+        currentSpeed = newSpeed;
+    }
 
-    boolean isDead();
 
-    void moveTo(Position position);
+    @Override
+    public int getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    @Override
+    public void setCurrentHealth(int newHealth) {
+        currentHealth = newHealth;
+        if(currentHealth < 0)
+            currentHealth = 0;
+    }
+
+    @Override
+    public boolean isDead() {
+        return currentHealth == 0;
+    }
+
+    @Override
+    public void moveTo(int index) {
+        this.index = index;
+    }
 }

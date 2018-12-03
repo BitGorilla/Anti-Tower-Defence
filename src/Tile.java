@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-public class DefaultTile{
+public class Tile {
     ArrayList<Position> area;
 
-    public DefaultTile(ArrayList<Position> positions) {
+    public Tile(ArrayList<Position> positions) {
         area = positions;
     }
 
