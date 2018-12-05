@@ -47,15 +47,16 @@ public class GameInstance {
 
     private void moveCreatures() {
         for (Creature creature: creatures) {
-            creature.moveTo(creature.getPosition()+creature.getCurrentSpeed());
+            for (int i = 0; i < creature.getCurrentSpeed(); i++) {
+                creature.move();
+            }
         }
     }
 
     private void affectCreatureOnTile() {
         for (Creature creature: creatures) {
             for (Tile tile: tiles) {
-                for (Position position: tile.getArea()) {
-                    if(path.get(creature.getPosition()).equals(position)) {
+                if (tile.positionOnTile(creature.getPosition())) {
                         try {
                             tile.getClass().getMethod("landOn").invoke(creature);
                         } catch (IllegalAccessException e) {
