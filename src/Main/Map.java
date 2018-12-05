@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Map {
     private int startCredit;
-    private int width;
+    private String name;
     private ArrayList<Tile> tiles;
 
-    public Map(int startCredit, int width, ArrayList<Tile> tiles) {
+    public Map(String name, int startCredit, ArrayList<Tile> tiles) {
         this.startCredit = startCredit;
-        this.width = width;
+        this.name = name;
         this.tiles = tiles;
     }
 
@@ -17,8 +17,8 @@ public class Map {
         return startCredit;
     }
 
-    public int getWidth() {
-        return width;
+    public String getName() {
+        return name;
     }
 
     public ArrayList<Tile> getTiles() {

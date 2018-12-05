@@ -10,8 +10,9 @@ public class Creature implements CreatureInterface {
     private int currentSpeed;
     private boolean goaled;
 
-    public Creature(Position position) {
+    public Creature(Position position, Direction direction) {
         this.position = position;
+        this.direction = direction;
     }
     @Override
     public Position getPosition() {

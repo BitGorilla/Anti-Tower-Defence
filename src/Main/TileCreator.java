@@ -4,9 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class TileCreator {
+public final class TileCreator {
 
-    static Tile createTile(String type,
+    public static Tile createTile(String type,
                            Direction direction,
                            Position centerPos,
                            Position upperLeft,
@@ -15,7 +15,8 @@ public class TileCreator {
             IllegalAccessException,
             InvocationTargetException,
             InstantiationException {
-        Class<?> tileClass = Class.forName(type);
+        System.out.println(type);
+        Class<?> tileClass = Class.forName("Main." + type);
         Method landOn;
         if (!TileInterface.class.isAssignableFrom(tileClass) ||
                 !Tile.class.isAssignableFrom(tileClass)) {
@@ -34,7 +35,7 @@ public class TileCreator {
                 parameters[3] != Position.class) {
             throw new ClassNotFoundException();
         }
-        landOn = tileClass.getMethod("landOn");
+        landOn = tileClass.getMethod("landOn", Creature.class);
         if(landOn.getParameterCount() != 1 ||
                 landOn.getParameterTypes()[0] != Creature.class) {
             throw new ClassNotFoundException();

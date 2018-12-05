@@ -9,13 +9,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameInstance {
 
-    private ArrayList<Position> path;
     private ArrayList<Tower> towers = new ArrayList<>();
     private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
-    private ArrayList<Tile> tiles = new ArrayList<>();
+    private ArrayList<Tile> tiles;
+    private Position startPosition = null;
+    private Direction startDirection;
 
-    public GameInstance(ArrayList<Position> path) {
-        this.path = path;
+    public GameInstance(ArrayList<Tile> tiles) {
+        this.tiles = tiles;
+        for (Tile tile: tiles) {
+            if(tile.getClass() == StartTile.class) {
+                startDirection = tile.getDirection();
+                startPosition = tile.getCenterPos();
+            }
+        }
     }
 
     public void update() {
@@ -38,10 +45,10 @@ public class GameInstance {
     public void addCreature(int creatureType) {
         switch (creatureType) {
             case 1:
-                creatures.add(new SpeedDemon( new Position(0,0)));
+                creatures.add(new SpeedDemon(startPosition, startDirection));
                 break;
             case 2:
-                creatures.add(new Grunt( new Position(0,0)));
+                creatures.add(new Grunt(startPosition, startDirection));
                 break;
             default:
                 System.err.println("No creature type of that int (addCreature)");
@@ -52,7 +59,16 @@ public class GameInstance {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
                 creature.move();
+                //WARNING ORDO WARNING jontor
+                changeDirectionIfNeeded(creature);
             }
+        }
+    }
+
+    private void changeDirectionIfNeeded(Creature creature) {
+        for (Tile tile: tiles) {
+            if (creature.getPosition().equals(tile.getCenterPos()))
+                creature.setDirection(tile.getDirection());
         }
     }
 
@@ -61,7 +77,7 @@ public class GameInstance {
             for (Tile tile : tiles) {
                 if (tile.positionOnTile(creature.getPosition())) {
                     try {
-                        tile.getClass().getMethod("landOn").invoke(creature);
+
                     } catch (IllegalAccessException e) {
                         System.err.println("Cant access landOn method!");
                     } catch (InvocationTargetException e) {
@@ -112,9 +128,12 @@ public class GameInstance {
     }
 
     public static void main(String[] args) throws IOException {
-        XMLReader reader = new XMLReader();
+        XMLReader reader = new XMLReader(800);
         File file = new File("XMLBuilder/map2.xml");
         reader.setSource(new FileInputStream(file));
-        reader.next();
+        Map map = reader.buildMap();
+        GameInstance GI = new GameInstance(map.getTiles());
+        GI.addCreature(1);
+        GI.update();
     }
 }

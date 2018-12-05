@@ -7,31 +7,34 @@
 			<startcredit>1000</startcredit>
 		</meta>
         <tiles>
-            <tile road="" type= ""/>
-            <tile road="north-south" type= "start"/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="north-south" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="north-south" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="north-east" type= ""/>
-            <tile road="east-west" type= ""/>
-            <tile road="east-west" type= ""/>
-            <tile road="east-west" type= "goal"/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
-            <tile road="" type= ""/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="SOUTH" type="StartTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="SOUTH" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="SOUTH" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="WEST" type="SlowTile"/>
+            <tile road="WEST" type="BlankTile"/>
+            <tile road="WEST" type="BlankTile"/>
+            <tile road="WEST" type="GoalTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="BlankTile"/>
         </tiles>
     </map>
 </maps>

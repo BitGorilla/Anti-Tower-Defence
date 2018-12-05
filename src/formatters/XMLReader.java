@@ -1,6 +1,6 @@
 package formatters;
 
-import Main.Map;
+import Main.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class XMLReader implements LevelReader, LevelXMLConstants{
@@ -22,8 +23,12 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     private int width;
     private String name;
     private int startCredit;
-    private ArrayList<String> tileList;
     private ArrayList<Map> maps;
+    private int gameWindowWidth;
+
+    public XMLReader(int gameWindowWidth) {
+        this.gameWindowWidth = gameWindowWidth;
+    }
 
     private String getTagValue(String tag, Element element){
         NodeList nlList =
@@ -54,11 +59,47 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
             Node tempNode = tilesNode.getChildNodes().item(j);
 
-            if (tempNode.getNodeType()==Node.ELEMENT_NODE){
-                System.out.println(tempNode.getAttributes().getNamedItem(
-                        ROAD).getNodeValue());
+            if (tempNode.getNodeType()==Node.ELEMENT_NODE) {
+                if(tempNode.getAttributes().getNamedItem(
+                        ROAD).getNodeValue() != "") {
+                    System.out.println(tempNode.getAttributes().getNamedItem(
+                            ROAD).getNodeValue());
+                }
             }
         }
+    }
+
+    private ArrayList<Tile> buildTiles(Node parentTileNode){
+        ArrayList<Tile> tiles = new ArrayList<>();
+        CenterPositionCalculator CRC;
+        NodeList tileNodes = parentTileNode.getChildNodes();
+        for (int j=0; j<parentTileNode.getChildNodes().getLength();j++) {
+            Node tileNode = tileNodes.item(j);
+            if (tileNode.getNodeType()==Node.ELEMENT_NODE) {
+                String type =
+                        tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
+                Direction dir =
+                        Direction.valueOf(tileNode.getAttributes().getNamedItem(ROAD).getNodeValue());
+                CRC = new CenterPositionCalculator(gameWindowWidth, width, j + 1);
+                Position upperLeft = new Position(CRC.getxMinValue(),
+                        CRC.getyMinValue());
+                Position lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
+
+                try {
+                    tiles.add(TileCreator.createTile(type, dir, CRC.getCenterPosition(),
+                            upperLeft
+                            , lowerRight));
+                } catch (ClassNotFoundException | InstantiationException |
+                        InvocationTargetException | IllegalAccessException |
+                        NoSuchMethodException e) {
+                    e.printStackTrace();
+                    System.err.println("No/bad tile type: " + type);
+                    tiles.add(new BlankTile(dir, CRC.getCenterPosition(), upperLeft
+                            , lowerRight));
+                }
+            }
+        }
+        return tiles;
     }
 
     private void readTileTypes(Node tilesNode) {
@@ -66,8 +107,11 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             Node tempNode = tilesNode.getChildNodes().item(j);
 
             if (tempNode.getNodeType()==Node.ELEMENT_NODE){
-                System.out.println(tempNode.getAttributes().getNamedItem(
-                        TYPE).getNodeValue());
+                if(tempNode.getAttributes().getNamedItem(
+                        TYPE).getNodeValue() != "") {
+                    System.out.println(tempNode.getAttributes().getNamedItem(
+                            TYPE).getNodeValue());
+                }
             }
         }
     }
@@ -78,7 +122,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     }
 
     @Override
-    public void next() {
+    public Map buildMap() {
         Node node = nodeList.item(i);
         i++;
 
@@ -86,15 +130,17 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
 
             Node metaNode = getNodeByTag(META, node);
             Node tilesNode = getNodeByTag(TILES, node);
-
+            Map map;
             setMapAttributes(metaNode, tilesNode);
+            map = new Map(name, startCredit, buildTiles(tilesNode));
+            return map;
+            //System.out.println(height+" "+width+" "+name+" "+startCredit);
 
-            System.out.println(height+" "+width+" "+name+" "+startCredit);
-
-            readTileRoads(tilesNode);
-            readTileTypes(tilesNode);
-            System.out.println(" ");
+            //readTileRoads(tilesNode);
+            //readTileTypes(tilesNode);
+            //System.out.println(" ");
         }
+        return null;
     }
 
     @Override
