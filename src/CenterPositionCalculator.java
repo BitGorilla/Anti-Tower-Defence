@@ -2,14 +2,19 @@ public class CenterPositionCalculator {
     private double tileDimension;
     private double tileWidth;
     private Position centerPosition;
-    private int i;
+    private double i;
     private int xMinValue, xMaxValue, yMinValue, yMaxValue;
 
+    /**
+     *
+     * @param windowDimension The size of the game field window.
+     * @param tileDimension The number of tiles vertically and horizontally.
+     * @param tileNumber the list order of the tile. Start with 1.
+     */
     public CenterPositionCalculator(double windowDimension,
-                                    double tileDimension,
-                              int tileNumber){
+                                    double tileDimension, int tileNumber){
         /*TODO add 1 to tileNumber?*/
-        i = tileNumber;
+        i = (double)tileNumber;
         this.tileDimension = tileDimension;
 
         tileWidth = Math.floor(windowDimension/ tileDimension);
@@ -23,12 +28,13 @@ public class CenterPositionCalculator {
         x = y = (int)Math.ceil(tileWidth/2);
 
         if(i%tileDimension == 0){
-            x *= (int)(tileWidth*(tileDimension));
+            x = x + (int)(tileDimension*tileWidth);
         }
         else {
-            x *= (int)(tileWidth*(i%tileDimension));
+            x = x + (int)(tileWidth*((i%tileDimension)-1));
         }
-        y *= (int)(Math.ceil(i/tileDimension));
+
+        y = y + (int)(tileWidth*(Math.ceil(i/tileDimension)-1));
 
         return new Position(x,y);
     }
@@ -39,15 +45,15 @@ public class CenterPositionCalculator {
         xMaxValue = yMaxValue = (int)tileWidth;
 
         if(i%tileDimension == 0){
-            xMinValue *= (int)(tileWidth*(tileDimension));
-            xMaxValue *= (int)(tileWidth*(tileDimension));
+            xMinValue = xMinValue + (int)(tileWidth*tileDimension-1);
+            xMaxValue = xMaxValue + (int)(tileWidth*tileDimension-1);
         }
         else {
-            xMinValue *= (int)(tileWidth*(i%tileDimension));
-            xMaxValue *= (int)(tileWidth*(i%tileDimension));
+            xMinValue = xMinValue + (int)(tileWidth*((i%tileDimension)-1));
+            xMaxValue = xMaxValue + (int)(tileWidth*((i%tileDimension)-1));
         }
-        yMinValue *= (int)(Math.ceil(i/tileDimension));
-        yMaxValue *= (int)(Math.ceil(i/tileDimension));
+        yMinValue = yMinValue + (int)(tileWidth*(Math.ceil(i/tileDimension)-1));
+        yMaxValue = yMaxValue + (int)(tileWidth*(Math.ceil(i/tileDimension)-1));
     }
 
     public Position getCenterPosition() {

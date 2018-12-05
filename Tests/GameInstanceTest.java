@@ -1,14 +1,12 @@
 public class GameInstanceTest {
 
-    GameInstance gameInstance;
+    //GameInstance gameInstance;
 
     public void setUp() {
-        gameInstance = new GameInstance();
+       // gameInstance = new GameInstance();
     }
 
-    public void 
-
     public void tearDown() {
-        gameInstance = null;
+        //gameInstance = null;
     }
 }
