@@ -10,6 +10,7 @@ public class Grunt extends Creature {
         super(pos);
         super.setCurrentHealth(MAXHEALTH);
         resetStats();
+
     }
 
     public void resetStats() {

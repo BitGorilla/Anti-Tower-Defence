@@ -18,6 +18,7 @@ public class GameInstanceTest {
     public void addCreatureShouldAddACreature() {
         gameInstance.addCreature("SpeedDemon");
         Assert.assertEquals(1,gameInstance.getCreatureList.length());
+
     }
 
     public void addCreatureShouldAddManyCreatures() {
