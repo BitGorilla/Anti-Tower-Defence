@@ -1,14 +1,15 @@
+package excluded;
+
 import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import Main.*;
+
 import java.util.ArrayList;
 
 public class GameInstanceTest {
 
     GameInstance gameInstance;
-    /*
 
     @Before
     public void setUp() {
@@ -16,7 +17,7 @@ public class GameInstanceTest {
     }
 
     public void addCreatureShouldAddACreature() {
-        gameInstance.addCreature("SpeedDemon");
+        gameInstance.addCreature(1);
         Assert.assertEquals(1,gameInstance.getCreatureList.length());
     }
 
@@ -89,5 +90,4 @@ public class GameInstanceTest {
     public void tearDown() {
         gameInstance = null;
     }
-    */
 }

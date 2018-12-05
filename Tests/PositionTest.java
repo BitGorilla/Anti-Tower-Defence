@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import Main.*;
 
 public class PositionTest {
     private Position position;
