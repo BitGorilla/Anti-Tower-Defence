@@ -1,7 +1,17 @@
+import com.sun.javaws.jnl.XMLFormat;
+import formatters.XMLReader;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  * Created by Linnea on 2018-11-27.
@@ -17,23 +27,34 @@ public class GUI {
     private JPanel upperPanel;
     private JPanel gamePanel;
     private JPanel userPanel;
+    private int rows;
+    private int cols;
+    private int nr;
+    private JButton switchButton;
+    private JButton gruntButton;
+    private JButton speedDemonButton;
 
 
-    public GUI(String title){
+    public GUI(int nr, String title){
 
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1500, 1000));
 
+        this.nr = nr;
+
         // Build panels
         JPanel upperPanel = buildMenu();
-        JPanel gamePanel = buildGamePanel();
+        JPanel gamePanel = buildGamePanel(nr);
         JPanel userPanel = buildUserPanel();
 
         //Add panels to the frame
         frame.add(upperPanel);
         frame.add(gamePanel, BorderLayout.CENTER);
-        frame.add(userPanel, BorderLayout.EAST);
+        frame.add(userPanel, BorderLayout.WEST);
+
+        showWinningDialog();
+
 
         frame.pack();
 
@@ -141,11 +162,42 @@ public class GUI {
      *      - Game panel
      * @return JPanel
      */
-    private JPanel buildGamePanel() {
+    private JPanel buildGamePanel(int nr) {
 
         JPanel gamePanel = new JPanel();
 
-        //Put every image from xml in a table in background?
+        this.rows = nr;
+        this.cols = nr;
+
+
+        JTable gameTable = new JTable(rows, cols);
+        //JTable gameTable = new JTable();
+        //gameTable.setRowHeight(nr);
+
+        BufferedImage img;
+        try {
+            img = ImageIO.read(getClass().getResourceAsStream
+                    ("./images/StarCreature.png"));
+            ImageIcon icon = new ImageIcon(img);
+            JLabel label = new JLabel(icon);
+            gamePanel.add(label);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        DefaultTableModel dtm = (DefaultTableModel) gameTable.getModel();
+
+        String img2 = "./images/StarCreature.png";
+
+        //adding data into new row of table
+        //dtm.addRow(img2, img2, img2);
+
+        //using custom renderer in column 1 (column where image should be put)
+        gameTable.getColumnModel().getColumn(1).setCellRenderer(new
+                ImageRenderer());
+
+        gamePanel.add(gameTable);
 
         return gamePanel;
     }
@@ -159,11 +211,49 @@ public class GUI {
 
         JPanel userPanel = new JPanel();
 
-        //Put every image from xml in a table in background?
+        switchButton = new JButton("Switch path");
+        userPanel.add(switchButton);
+
+        gruntButton = new JButton("Add more grant trupps");
+        userPanel.add(gruntButton);
+
+        speedDemonButton = new JButton("Add more grant trupps");
+        userPanel.add(speedDemonButton);
 
         return userPanel;
     }
 
+
+    public void addActionListenerSwitch(ActionListener actionListSwitchPath){
+        switchButton.addActionListener(actionListSwitchPath);
+    }
+
+    public void addActionListenerGrant(ActionListener actionListAddGrant){
+        gruntButton.addActionListener(actionListAddGrant);
+    }
+
+    public void addActionListenerSpeed(ActionListener actionListAddSpeedDemon){
+        speedDemonButton.addActionListener(actionListAddSpeedDemon);
+    }
+
+
+    // You won dialog window
+
+    public void showWinningDialog() {
+
+        Object[] options = {"Play this level again",
+                "Continue to next level"};
+        int n = JOptionPane.showOptionDialog(frame,
+                "You won against the towers!",
+                "Congratzzzzz",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[0]); //default button title
+
+
+    }
 
 }
 

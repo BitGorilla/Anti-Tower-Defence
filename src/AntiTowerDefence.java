@@ -7,6 +7,12 @@ import java.io.IOException;
 /**
  * Created by Linnea on 2018-11-27.
  */
+
+
+
+//Ska byta namn till AntiTD när vi gör Jar-filen
+
+
 public class AntiTowerDefence {
 
     public static void main( String[] args ) throws IOException {
@@ -17,14 +23,12 @@ public class AntiTowerDefence {
             reader.next();
         }
 
-        /*SwingUtilities.invokeLater(() -> {
-            GUI gui = new GUI("Anti  Defence Game");
+        SwingUtilities.invokeLater(() -> {
+            GUI gui = new GUI(reader.getHeightAndWidth(),"Anti Tower Defence Game");
             gui.show();
 
-            //new TestController(gui);
-        });*/
-
-        //new TestController();
+            new Controller(gui);
+        });
 
     }
 

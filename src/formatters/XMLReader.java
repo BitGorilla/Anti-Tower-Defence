@@ -19,7 +19,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     private NodeList nodeList;
     private int i = 0;
 
-    private int height;
+    public int height;
     private int width;
     private String name;
     private int startCredit;
@@ -97,6 +97,10 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
+    //Ges ett argument vid körning ska detta tolkas som ett filnamn och
+// läsas in istället för levels.xml och på så vis kan fler banor
+// göras och köras utan att modifiera i spelets katalog.
+
     @Override
     public void setSource(InputStream inStream) throws IOException {
         //Sets the source and parses the XML data to a DOM tree.
@@ -115,4 +119,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             throw new IOException("Not correct format");
         }
     }
+
+
+
 }
