@@ -25,7 +25,7 @@ public class CenterPositionCalculator {
 
     private Position calcCenter(){
         int x,y;
-        x = y = (int)Math.ceil(tileWidth/2);
+        x = y = (int)Math.ceil(tileWidth/2)-1;
 
         if(i%tileDimension == 0){
             x = x + (int)(tileDimension*tileWidth);
@@ -41,8 +41,8 @@ public class CenterPositionCalculator {
 
     private void calcLimitValues(){
 
-        xMinValue=yMinValue = 1;
-        xMaxValue = yMaxValue = (int)tileWidth;
+        xMinValue=yMinValue = 0;
+        xMaxValue = yMaxValue = (int)tileWidth-1;
 
         if(i%tileDimension == 0){
             xMinValue = xMinValue + (int)(tileWidth*tileDimension-1);

@@ -17,7 +17,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddXCenterCoordinateOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile1);
-        int correctX = 10;
+        int correctX = 9;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctX, calcPosition.getX());
     }
@@ -26,7 +26,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddYCenterCoordinateOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile1);
-        int correctY = 10;
+        int correctY = 9;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctY, calcPosition.getY());
     }
@@ -35,7 +35,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenXCenterCoordinateOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile1);
-        int correctX = 13;
+        int correctX = 12;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctX, calcPosition.getX());
     }
@@ -44,7 +44,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenYCenterCoordinateOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile1);
-        int correctY = 13;
+        int correctY = 12;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctY, calcPosition.getY());
     }
@@ -53,7 +53,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddXCenterCoordinateOn13TileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile13);
-        int correctX = 50;
+        int correctX = 49;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctX, calcPosition.getX());
     }
@@ -62,7 +62,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddYCenterCoordinateOnFirst13Test(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile13);
-        int correctY = 50;
+        int correctY = 49;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctY, calcPosition.getY());
     }
@@ -71,7 +71,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenXCenterCoordinateOn13TileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile13);
-        int correctX = 13;
+        int correctX = 12;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctX, calcPosition.getX());
     }
@@ -80,7 +80,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenYCenterCoordinateOn13TileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile13);
-        int correctY = 88;
+        int correctY = 87;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctY, calcPosition.getY());
     }
@@ -90,7 +90,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenXMinValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile1);
-        int correctMinValue=1;
+        int correctMinValue=0;
         Assert.assertEquals(correctMinValue, calculator.getxMinValue());
     }
 
@@ -98,7 +98,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenXMaxValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile1);
-        int correctMaxValue=25;
+        int correctMaxValue=24;
         Assert.assertEquals(correctMaxValue, calculator.getxMaxValue());
     }
 
@@ -106,7 +106,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenYMinValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile1);
-        int correctMinValue=1;
+        int correctMinValue=0;
         Assert.assertEquals(correctMinValue, calculator.getyMinValue());
     }
 
@@ -114,7 +114,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesEvenYMaxValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 evenTileDimension, tile1);
-        int correctMaxValue=25;
+        int correctMaxValue=24;
         Assert.assertEquals(correctMaxValue, calculator.getyMaxValue());
     }
 
@@ -122,7 +122,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddXMinValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile1);
-        int correctMinValue=1;
+        int correctMinValue=0;
         Assert.assertEquals(correctMinValue, calculator.getxMinValue());
     }
 
@@ -130,7 +130,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddXMaxValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile1);
-        int correctMaxValue=20;
+        int correctMaxValue=19;
         Assert.assertEquals(correctMaxValue, calculator.getxMaxValue());
     }
 
@@ -138,7 +138,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddYMinValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile1);
-        int correctMinValue=1;
+        int correctMinValue=0;
         Assert.assertEquals(correctMinValue, calculator.getyMinValue());
     }
 
@@ -146,7 +146,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddYMaxValueOnFirstTileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile1);
-        int correctMaxValue=20;
+        int correctMaxValue=19;
         Assert.assertEquals(correctMaxValue, calculator.getyMaxValue());
     }
 
@@ -155,9 +155,7 @@ public class CenterPositionCalculatorTest {
     public void calculatesOddYMaxValueOn13TileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
                 oddTileDimension, tile13);
-        int correctMaxValue=60;
+        int correctMaxValue=59;
         Assert.assertEquals(correctMaxValue, calculator.getyMaxValue());
     }
-
-
 }
