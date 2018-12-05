@@ -35,10 +35,10 @@ public class GameInstance {
     public void addCreature(int creatureType) {
         switch (creatureType) {
             case 1:
-                creatures.add(new SpeedDemon(0));
+                creatures.add(new SpeedDemon( new Position(0,0)));
                 break;
             case 2:
-                creatures.add(new Grunt(0));
+                creatures.add(new Grunt( new Position(0,0)));
                 break;
             default:
                 System.err.println("No creature type of that int (addCreature)");
@@ -70,14 +70,13 @@ public class GameInstance {
                 }  // <-- parallelltrapets :D
             }
         }
-    }
 
     private void damageCreaturesIfPossible() {
         for (Tower tower: towers) {
             tower.reduceCooldown();
             if(tower.readyToShoot()) {
                 for (Creature creature : creatures) {
-                    if(tower.positionInRange(path.get(creature.getPosition()))) {
+                    if(tower.positionInRange(creature.getPosition())) {
                         System.out.println("FIREING AT CREATURE: " + creatures.indexOf(creature));
                         creature.setCurrentHealth(creature.getCurrentHealth() - tower.shoot());
                         deleteCreatureIfDead(creature);

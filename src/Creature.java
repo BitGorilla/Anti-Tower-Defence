@@ -33,8 +33,6 @@ public class Creature implements CreatureInterface {
         currentSpeed = newSpeed;
     }
 
-
-
     @Override
     public int getCurrentSpeed() {
         return currentSpeed;

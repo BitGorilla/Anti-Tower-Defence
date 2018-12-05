@@ -35,8 +35,8 @@ public class Position {
     }
 
     public void addVector(Position pos){
-        this.x =+ pos.getX();
-        this.y =+ pos.getY();
+        this.x += pos.getX();
+        this.y += pos.getY();
     }
 
     @Override

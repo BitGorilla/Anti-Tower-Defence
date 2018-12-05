@@ -50,6 +50,23 @@ public class PositionTest {
         position.setY(-1);
     }
 
+    @Test
+    public void addVectorAddsPositiveVectorCorrectly(){
+        position = new Position(1,1);
+        Position vector = new Position(3,3);
+        position.addVector(vector);
+        assertEquals(position, new Position(4,4));
+    }
+
+    @Test
+    public void addVectorAddsNegativeVectorCorrectly(){
+        position = new Position(5,5);
+        Position vector = new Position(-3,-3);
+        position.addVector(vector);
+        assertEquals(position, new Position(2,2));
+    }
+
+
     /*@Test (expected = NullPointerException.class)
     public void setXHandlesNullAsParameter(){
         position = new Position(1,1);

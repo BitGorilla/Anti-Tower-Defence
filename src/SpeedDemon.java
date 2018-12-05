@@ -4,8 +4,8 @@ public class SpeedDemon extends Creature {
     public static final int SPEED = 10;
     public static final int COST = 10;
 
-    public SpeedDemon(int index) {
-        super(index);
+    public SpeedDemon(Position pos) {
+        super(pos);
         super.setCurrentHealth(MAXHEALTH);
         resetStats();
     }

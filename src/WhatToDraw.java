@@ -9,9 +9,9 @@ public class WhatToDraw {
 
     }
 
-    public void setWhatToDraw(ArrayList<Creature> creatures, ArrayList<Tower> towers, ArrayList<Tile> tiles,) {
+    public void setWhatToDraw(ArrayList<Creature> creatures, ArrayList<Tower> towers, ArrayList<Tile> tiles) {
         for (Creature creature: creatures) {
-            coordinates.add(crea);
+            //coordinates.add(crea);
         }
     }
 }

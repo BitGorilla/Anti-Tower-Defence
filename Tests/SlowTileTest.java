@@ -8,7 +8,7 @@ public class SlowTileTest {
     SlowTile slowTile;
     @Before
     public void setUp() {
-        slowTile = new SlowTile(null);
+        slowTile = new SlowTile(null,null,null,null);
     }
 
     @After

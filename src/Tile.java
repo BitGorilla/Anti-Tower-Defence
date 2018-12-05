@@ -1,9 +1,9 @@
 
 public class Tile {
-    Direction direction;
-    Position centerPos;
-    Position upperLeft;
-    Position lowerRight;
+    private Direction direction;
+    private Position centerPos;
+    private Position upperLeft;
+    private Position lowerRight;
 
 
     public Tile(Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
@@ -16,5 +16,13 @@ public class Tile {
     public boolean positionOnTile(Position pos){
         return (pos.getX() >= upperLeft.getX() && pos.getX() <= lowerRight.getX())
                 && (pos.getY() >= upperLeft.getY() && pos.getY() <= lowerRight.getY());
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public Position getCenterPos() {
+        return centerPos;
     }
 }
