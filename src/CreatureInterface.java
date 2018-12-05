@@ -1,6 +1,8 @@
 public interface CreatureInterface {
 
-    int getPosition();
+    Position getPosition();
+    void setDirection(Direction direction);
+
 
     void setCurrentHealth(int newHealth);
     int getCurrentHealth();
@@ -10,7 +12,7 @@ public interface CreatureInterface {
 
     boolean isDead();
 
-    void moveTo(int index);
+    void move();
 
     void setGoaled();
 

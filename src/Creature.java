@@ -1,18 +1,26 @@
+import javafx.geometry.Pos;
+
 /**
  * Created by jontor on 2018-11-29.
  */
 public class Creature implements CreatureInterface {
-    private int index;
+    private Position position;
+    private Direction direction;
     private int currentHealth;
     private int currentSpeed;
     private boolean goaled;
 
-    public Creature(int index) {
-        this.index = index;
+    public Creature(Position position) {
+        this.position = position;
     }
     @Override
-    public int getPosition() {
-        return index;
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setDirection(Direction direction){
+        this.direction = direction;
     }
 
     @Override
@@ -24,6 +32,7 @@ public class Creature implements CreatureInterface {
     public void setCurrentSpeed(int newSpeed) {
         currentSpeed = newSpeed;
     }
+
 
 
     @Override
@@ -44,8 +53,8 @@ public class Creature implements CreatureInterface {
     }
 
     @Override
-    public void moveTo(int index) {
-        this.index = index;
+    public void move() {
+        position.addVector(direction.asVector());
     }
 
     @Override

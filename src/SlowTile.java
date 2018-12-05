@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class SlowTile extends Tile implements TileInterface {
 
-    public SlowTile(ArrayList<Position> area) {
-        super(area);
+    public SlowTile(Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
+        super(direction, centerPos, upperLeft, lowerRight);
     }
 
     @Override

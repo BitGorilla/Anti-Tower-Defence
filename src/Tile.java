@@ -1,13 +1,20 @@
-import java.util.ArrayList;
 
 public class Tile {
-    ArrayList<Position> area;
+    Direction direction;
+    Position centerPos;
+    Position upperLeft;
+    Position lowerRight;
 
-    public Tile(ArrayList<Position> positions) {
-        area = positions;
+
+    public Tile(Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
+        this.direction = direction;
+        this.centerPos = centerPos;
+        this.upperLeft = upperLeft;
+        this.lowerRight = lowerRight;
     }
 
-    public ArrayList<Position> getArea() {
-        return area;
+    public boolean positionOnTile(Position pos){
+        return (pos.getX() >= upperLeft.getX() && pos.getX() <= lowerRight.getX())
+                && (pos.getY() >= upperLeft.getY() && pos.getY() <= lowerRight.getY());
     }
 }

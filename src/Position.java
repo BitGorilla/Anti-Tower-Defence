@@ -26,11 +26,17 @@ public class Position {
 
     }
 
+
     public void setY(int y) {
         if(y < 0){
             throw new IllegalArgumentException("Y cord can't be negative");
         }
         this.y = y;
+    }
+
+    public void addVector(Position pos){
+        this.x =+ pos.getX();
+        this.y =+ pos.getY();
     }
 
     @Override
