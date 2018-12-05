@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CenterPositionCalculatorTest {
-    CenterPositionCalculator calculator;
+    private CenterPositionCalculator calculator;
     private double windowDimension = 100;
     private double oddTileDimension = 5;
     private double evenTileDimension = 4;
@@ -52,7 +52,7 @@ public class CenterPositionCalculatorTest {
     @Test
     public void calculatesOddXCenterCoordinateOn13TileTest(){
         calculator = new CenterPositionCalculator(windowDimension,
-                oddTileDimension, tile3);
+                oddTileDimension, tile13);
         int correctX = 53;
         Position calcPosition = calculator.getCenterPosition();
         Assert.assertEquals(correctX, calcPosition.getX());
