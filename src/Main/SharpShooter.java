@@ -1,3 +1,5 @@
+package Main;
+
 public class SharpShooter extends Tower {
     public static final int RANGE = 30;
     public static final int DAMAGE = 10;

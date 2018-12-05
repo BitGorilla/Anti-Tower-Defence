@@ -1,4 +1,4 @@
-import javafx.geometry.Pos;
+package Main;
 
 /**
  * Created by jontor on 2018-11-29.
@@ -67,7 +67,7 @@ public class Creature implements CreatureInterface {
 
     public void printStats() {
         System.out.println(this.getClass());
-        System.out.println("Position: " + getPosition());
+        System.out.println("Main.Position: " + getPosition());
         System.out.println("HP: " + getCurrentHealth());
         System.out.println("Speed: " + getCurrentSpeed());
     }

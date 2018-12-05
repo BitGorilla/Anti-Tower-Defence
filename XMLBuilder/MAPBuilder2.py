@@ -1,8 +1,8 @@
-template = open("template2.txt", "r")
+template = open("template3.txt", "r")
 f = open("map2.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
-f.write("            <name>")
+f.write("			<name>")
 f.write(template.readline().rstrip("\n"))
 f.write("</name>\n")
 f.write("			<height>")

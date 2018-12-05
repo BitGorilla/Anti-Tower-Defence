@@ -1,3 +1,5 @@
+package Main;
+
 import formatters.XMLReader;
 
 import javax.swing.*;
@@ -18,7 +20,7 @@ public class AntiTowerDefence {
         }
 
         /*SwingUtilities.invokeLater(() -> {
-            GUI gui = new GUI("Anti  Defence Game");
+            Main.GUI gui = new Main.GUI("Anti  Defence Game");
             gui.show();
 
             //new TestController(gui);

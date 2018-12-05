@@ -1,3 +1,5 @@
+package Main;
+
 public class SpeedDemon extends Creature {
 
     public static final int MAXHEALTH = 20;

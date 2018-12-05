@@ -1,3 +1,5 @@
+package Main;
+
 public class CenterPositionCalculator {
     private double tileDimension;
     private double tileWidth;
@@ -7,7 +9,7 @@ public class CenterPositionCalculator {
 
     public CenterPositionCalculator(double windowDimension,
                                     double tileDimension,
-                              int tileNumber){
+                              int tileNumber) {
         /*TODO add 1 to tileNumber?*/
         i = tileNumber;
         this.tileDimension = tileDimension;

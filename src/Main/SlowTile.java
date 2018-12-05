@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package Main;
 
 public class SlowTile extends Tile implements TileInterface {
 
@@ -7,7 +7,7 @@ public class SlowTile extends Tile implements TileInterface {
     }
 
     @Override
-    public void landOn(CreatureInterface creature) {
+    public void landOn(Creature creature) {
         creature.setCurrentSpeed(creature.getCurrentSpeed()/2);
     }
 }

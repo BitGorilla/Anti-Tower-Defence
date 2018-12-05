@@ -1,3 +1,5 @@
+package Main;
+
 public class Tower implements TowerInterface {
 
     private int cooldown = 0;

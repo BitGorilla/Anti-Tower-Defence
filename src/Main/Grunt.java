@@ -1,3 +1,5 @@
+package Main;
+
 public class Grunt extends Creature {
 
     public static final int MAXHEALTH = 1000;

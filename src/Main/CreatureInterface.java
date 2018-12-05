@@ -1,3 +1,5 @@
+package Main;
+
 public interface CreatureInterface {
 
     Position getPosition();

@@ -1,5 +1,8 @@
-import javafx.geometry.Pos;
+package Main;
 
+import formatters.XMLReader;
+
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -54,22 +57,22 @@ public class GameInstance {
     }
 
     private void affectCreatureOnTile() {
-        for (Creature creature: creatures) {
-            for (Tile tile: tiles) {
+        for (Creature creature : creatures) {
+            for (Tile tile : tiles) {
                 if (tile.positionOnTile(creature.getPosition())) {
-                        try {
-                            tile.getClass().getMethod("landOn").invoke(creature);
-                        } catch (IllegalAccessException e) {
-                            System.err.println("Cant access landOn method!");
-                        } catch (InvocationTargetException e) {
-                            System.err.println("landOn threw an exception!");
-                        } catch (NoSuchMethodException e) {
-                            System.out.println("No method with landOn name found!");
-                        }
+                    try {
+                        tile.getClass().getMethod("landOn").invoke(creature);
+                    } catch (IllegalAccessException e) {
+                        System.err.println("Cant access landOn method!");
+                    } catch (InvocationTargetException e) {
+                        System.err.println("landOn threw an exception!");
+                    } catch (NoSuchMethodException e) {
+                        System.out.println("No method with landOn name found!");
                     }
-                }  // <-- parallelltrapets :D
-            }
+                }
+            }  // <-- parallelltrapets :D
         }
+    }
 
     private void damageCreaturesIfPossible() {
         for (Tower tower: towers) {
@@ -108,26 +111,10 @@ public class GameInstance {
         }
     }
 
-    public static void main(String[] args) {
-        ArrayList<Position> path = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            path.add(new Position(i,0));
-        }
-        GameInstance GI = new GameInstance(path);
-        GI.addCreature(1);
-        GI.update();
-        GI.addCreature(1);
-        //GI.addCreature(2);
-        //GI.addCreature(1);
-
-        GI.addTower(1,new Position(1,8));
-
-        GI.printAll();
-        System.out.println("-----");
-        for (int i = 0; i < 6; i++) {
-            GI.update();
-            GI.printAll();
-            System.out.println("------");
-        }
+    public static void main(String[] args) throws IOException {
+        XMLReader reader = new XMLReader();
+        File file = new File("XMLBuilder/map2.xml");
+        reader.setSource(new FileInputStream(file));
+        reader.next();
     }
 }

@@ -1,3 +1,4 @@
+package Main;
 
 public class Tile {
     private Direction direction;
@@ -13,7 +14,7 @@ public class Tile {
         this.lowerRight = lowerRight;
     }
 
-    public boolean positionOnTile(Position pos){
+    public boolean positionOnTile(Position pos) {
         return (pos.getX() >= upperLeft.getX() && pos.getX() <= lowerRight.getX())
                 && (pos.getY() >= upperLeft.getY() && pos.getY() <= lowerRight.getY());
     }
