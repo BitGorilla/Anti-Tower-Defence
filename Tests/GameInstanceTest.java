@@ -81,7 +81,7 @@ public class GameInstanceTest {
             positionList.add(new Position(i,i));
         }
         SlowTile slowTile = new SlowTile(positionList);
-        gameInstance.creatureOnTile()
+        gameInstance.creatureOnTile();
     }
 
     @After

@@ -57,4 +57,11 @@ public class Creature implements CreatureInterface {
     public boolean inGoal() {
         return goaled;
     }
+
+    public void printStats() {
+        System.out.println(this.getClass());
+        System.out.println("Position: " + getPosition());
+        System.out.println("HP: " + getCurrentHealth());
+        System.out.println("Speed: " + getCurrentSpeed());
+    }
 }
