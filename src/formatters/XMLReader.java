@@ -76,7 +76,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     public boolean hasNext() {
         return i<nodeList.getLength();
     }
-
+/*
     @Override
     public void next() {
         Node node = nodeList.item(i);
@@ -96,6 +96,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             System.out.println(" ");
         }
     }
+    */ // TODO: 2018-11-29  
 
     @Override
     public void setSource(InputStream inStream) throws IOException {
