@@ -1,5 +1,7 @@
 package Main;
 
+import Tiles.Tile;
+
 import java.util.ArrayList;
 
 public class Map {

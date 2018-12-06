@@ -1,4 +1,4 @@
-import Main.Tower;
+import Towers.Tower;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,4 +1,7 @@
-package Main;
+package Creatures;
+
+import Main.Direction;
+import Main.Position;
 
 public interface CreatureInterface {
 

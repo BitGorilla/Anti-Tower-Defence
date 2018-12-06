@@ -1,4 +1,8 @@
-package Main;
+package Tiles;
+
+import Creatures.Creature;
+import Main.Direction;
+import Main.Position;
 
 public class SlowTile extends Tile implements TileInterface {
 

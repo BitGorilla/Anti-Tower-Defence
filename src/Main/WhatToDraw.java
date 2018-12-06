@@ -1,5 +1,9 @@
 package Main;
 
+import Creatures.Creature;
+import Tiles.Tile;
+import Towers.Tower;
+
 import java.util.ArrayList;
 
 public class WhatToDraw {

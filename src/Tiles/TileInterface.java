@@ -1,4 +1,6 @@
-package Main;
+package Tiles;
+
+import Creatures.Creature;
 
 public interface TileInterface {
 

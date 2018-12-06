@@ -1,4 +1,6 @@
-package Main;
+package Towers;
+
+import Main.Position;
 
 /**
  * Created by jontor on 2018-11-29.

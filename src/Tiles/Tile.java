@@ -1,4 +1,7 @@
-package Main;
+package Tiles;
+
+import Main.Direction;
+import Main.Position;
 
 public class Tile {
     private Direction direction;

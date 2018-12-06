@@ -1,4 +1,6 @@
-package Main;
+package Towers;
+
+import Main.Position;
 
 public class SharpShooter extends Tower {
     public static final int RANGE = 30;
