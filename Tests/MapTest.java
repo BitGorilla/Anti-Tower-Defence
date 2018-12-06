@@ -13,8 +13,6 @@ public class MapTest{
     private int credits = 100;
     private String name = "name";
     private ArrayList<Tile> tiles;
-    //String type, Direction direction, Position centerPos, Position upperLeft
-    //, Position lowerRight
 
     @Before
     public void setUp(){
