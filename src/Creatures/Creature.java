@@ -74,5 +74,6 @@ public class Creature implements CreatureInterface {
         System.out.println("Position: (" + getPosition().getX() + "," + getPosition().getY());
         System.out.println("HP: " + getCurrentHealth());
         System.out.println("Speed: " + getCurrentSpeed());
+        System.out.println("Direction: " + direction);
     }
 }

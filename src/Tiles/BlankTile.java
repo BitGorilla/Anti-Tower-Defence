@@ -13,6 +13,6 @@ public class BlankTile extends Tile implements TileInterface {
 
     @Override
     public void landOn(Creature creature) {
-        creature.setCurrentSpeed(creature.getCurrentSpeed()/2);
+        //creature.setCurrentSpeed(creature.getCurrentSpeed()/2);
     }
 }

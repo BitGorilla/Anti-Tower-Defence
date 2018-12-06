@@ -25,6 +25,7 @@ public class GameInstance {
     public GameInstance(ArrayList<Tile> tiles) {
         this.tiles = tiles;
         for (Tile tile: tiles) {
+            tile.getUpperLeft().print();
             if(tile.getClass() == StartTile.class) {
                 startDirection = tile.getDirection();
                 startPosition = tile.getCenterPos();
@@ -51,12 +52,13 @@ public class GameInstance {
     }
 
     public void addCreature(int creatureType) {
+        Position pos = new Position(startPosition.getX(), startPosition.getY());
         switch (creatureType) {
             case 1:
-                creatures.add(new SpeedDemon(startPosition, startDirection));
+                creatures.add(new SpeedDemon(pos, startDirection));
                 break;
             case 2:
-                creatures.add(new Grunt(startPosition, startDirection));
+                creatures.add(new Grunt(pos, startDirection));
                 break;
             default:
                 System.err.println("No creature type of that int (addCreature)");
@@ -67,6 +69,7 @@ public class GameInstance {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
                 creature.move();
+                //creature.getPosition().print();
                 //WARNING ORDO WARNING jontor
                 changeDirectionIfNeeded(creature);
             }
@@ -75,8 +78,12 @@ public class GameInstance {
 
     private void changeDirectionIfNeeded(Creature creature) {
         for (Tile tile: tiles) {
-            if (creature.getPosition().equals(tile.getCenterPos()))
+            if (creature.getPosition().equals(tile.getCenterPos())) {
+                creature.getPosition().print();
+                tile.getCenterPos().print();
+                System.out.println("--");
                 creature.setDirection(tile.getDirection());
+            }
         }
     }
 
@@ -121,6 +128,7 @@ public class GameInstance {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
                 //TODO add score
+                System.out.println("IN GOAL");
                 creatures.remove(creature);
             }
         }
@@ -139,17 +147,15 @@ public class GameInstance {
     }
 
     public static void main(String[] args) throws IOException {
-        XMLReader reader = new XMLReader(800);
-        File file = new File("XMLBuilder/map2.xml");
+        XMLReader reader = new XMLReader(1000);
+        File file = new File("XMLBuilder/Maps/testMap2.xml");
         reader.setSource(new FileInputStream(file));
         Map map = reader.buildMap();
         GameInstance GI = new GameInstance(map.getTiles());
         GI.addCreature(1);
-        GI.printAll();
-        Creature ourGuy = GI.creatures.get(0);
-        while(!ourGuy.inGoal()){
+        while(!GI.creatures.get(0).inGoal()) {
             GI.update();
-            ourGuy.printStats();
+            GI.printAll();
         }
     }
 }

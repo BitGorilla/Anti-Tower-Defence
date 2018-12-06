@@ -2,6 +2,7 @@ package Tiles;
 
 import Main.Direction;
 import Main.Position;
+import javafx.geometry.Pos;
 
 public class Tile {
     private Direction direction;
@@ -28,5 +29,13 @@ public class Tile {
 
     public Position getCenterPos() {
         return centerPos;
+    }
+
+    public Position getUpperLeft() {
+        return upperLeft;
+    }
+
+    public Position getLowerRight() {
+        return lowerRight;
     }
 }
