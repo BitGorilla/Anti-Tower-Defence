@@ -14,7 +14,6 @@ public class CenterPositionCalculator {
      */
     public CenterPositionCalculator(double windowDimension,
                                     double tileDimension, int tileNumber){
-        /*TODO add 1 to tileNumber?*/
         i = (double)tileNumber;
         this.tileDimension = tileDimension;
 
