@@ -63,8 +63,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             if (tempNode.getNodeType()==Node.ELEMENT_NODE) {
                 if(tempNode.getAttributes().getNamedItem(
                         ROAD).getNodeValue() != "") {
-                    //System.out.println(tempNode.getAttributes().getNamedItem(
-                            //ROAD).getNodeValue());
+                    System.out.println(tempNode.getAttributes().getNamedItem(
+                            ROAD).getNodeValue());
                 }
             }
         }
@@ -74,7 +74,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         ArrayList<Tile> tiles = new ArrayList<>();
         CenterPositionCalculator CRC;
         NodeList tileNodes = parentTileNode.getChildNodes();
-        int tileNumber = 1;
         for (int j=0; j<parentTileNode.getChildNodes().getLength();j++) {
             Node tileNode = tileNodes.item(j);
             if (tileNode.getNodeType()==Node.ELEMENT_NODE) {
@@ -82,9 +81,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
                 Direction dir =
                         Direction.valueOf(tileNode.getAttributes().getNamedItem(ROAD).getNodeValue());
-                CRC = new CenterPositionCalculator(gameWindowWidth, width,
-                        tileNumber);
-                tileNumber++;
+                CRC = new CenterPositionCalculator(gameWindowWidth, width, j + 1);
                 Position upperLeft = new Position(CRC.getxMinValue(),
                         CRC.getyMinValue());
                 Position lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
@@ -113,8 +110,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             if (tempNode.getNodeType()==Node.ELEMENT_NODE){
                 if(tempNode.getAttributes().getNamedItem(
                         TYPE).getNodeValue() != "") {
-                    //System.out.println(tempNode.getAttributes().getNamedItem(
-                      //      TYPE).getNodeValue());
+                    System.out.println(tempNode.getAttributes().getNamedItem(
+                            TYPE).getNodeValue());
                 }
             }
         }

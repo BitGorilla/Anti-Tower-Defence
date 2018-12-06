@@ -56,6 +56,8 @@ public class CenterPositionCalculator {
     /**
      * Calculates the maximum and minimum values för x and y for the tile in
      * relation to its position in the game field grid.
+     *
+     * Minimum Values: (0,0)
      */
     private void calcLimitValues(){
 
