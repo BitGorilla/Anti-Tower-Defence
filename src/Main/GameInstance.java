@@ -4,6 +4,7 @@ import formatters.XMLReader;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -31,6 +32,7 @@ public class GameInstance {
         handleCreaturesInGoal();
         damageCreaturesIfPossible();
     }
+
 
     public void addTower(int towerType, Position pos) {
         switch (towerType) {
@@ -74,16 +76,19 @@ public class GameInstance {
 
     private void affectCreatureOnTile() {
         for (Creature creature : creatures) {
+            creature.setCurrentSpeed(10);
             for (Tile tile : tiles) {
                 if (tile.positionOnTile(creature.getPosition())) {
                     try {
-
-                    } catch (IllegalAccessException e) {
-                        System.err.println("Cant access landOn method!");
-                    } catch (InvocationTargetException e) {
-                        System.err.println("landOn threw an exception!");
+                        Method landOn = tile.getClass().getMethod("landOn",
+                                Creature.class);
+                        landOn.invoke(tile,creature);
                     } catch (NoSuchMethodException e) {
                         System.out.println("No method with landOn name found!");
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
                     }
                 }
             }  // <-- parallelltrapets :D
@@ -134,6 +139,11 @@ public class GameInstance {
         Map map = reader.buildMap();
         GameInstance GI = new GameInstance(map.getTiles());
         GI.addCreature(1);
-        GI.update();
+        GI.printAll();
+        Creature ourGuy = GI.creatures.get(0);
+        while(!ourGuy.inGoal()){
+            GI.update();
+            ourGuy.printStats();
+        }
     }
 }
