@@ -10,7 +10,7 @@ public class CreatureTest {
 
     @Before
     public void setUp() {
-        creature = new Creature(null);
+        creature = new Creature(null, null);
     }
 
     @Test
@@ -40,8 +40,7 @@ public class CreatureTest {
     @Test
     public void creatureMoveSouthDirectionMovesOneStepSouth(){
         Position pos = new Position(0,0);
-        creature = new Creature(pos);
-        creature.setDirection(Direction.SOUTH);
+        creature = new Creature(pos, Direction.SOUTH);
         creature.move();
         Position southMovePos = new Position(0,1);
         Assert.assertEquals(creature.getPosition(),southMovePos);
@@ -50,8 +49,7 @@ public class CreatureTest {
     @Test
     public void creatureMoveWestDirectionMovesOneStepWest(){
         Position pos = new Position(5,5);
-        creature = new Creature(pos);
-        creature.setDirection(Direction.WEST);
+        creature = new Creature(pos, Direction.WEST);
         creature.move();
         Position westMovePos = new Position(4,5);
         Assert.assertEquals(creature.getPosition(),westMovePos);
@@ -60,8 +58,7 @@ public class CreatureTest {
     @Test
     public void creatureMoveEastDirectionMovesOneStepEast(){
         Position pos = new Position(5,5);
-        creature = new Creature(pos);
-        creature.setDirection(Direction.EAST);
+        creature = new Creature(pos, Direction.EAST);
         creature.move();
         Position eastMovePos = new Position(6,5);
         Assert.assertEquals(creature.getPosition(),eastMovePos);
@@ -70,20 +67,21 @@ public class CreatureTest {
     @Test
     public void creatureMoveNorthDirectionMovesOneStepNorth(){
         Position pos = new Position(5,5);
-        creature = new Creature(pos);
-        creature.setDirection(Direction.EAST);
+        creature = new Creature(pos, Direction.NORTH);
         creature.move();
-        Position NorthMovePos = new Position(6,5);
+        Position NorthMovePos = new Position(5,4);
         Assert.assertEquals(creature.getPosition(),NorthMovePos);
     }
 
     @Test
     public void creatureMovingAllDirectionsShouldbeBackAtSamePosition(){
         Position pos = new Position(5,5);
-        creature = new Creature(pos);
+        creature = new Creature(pos, Direction.NORTH);
         for (Direction dir  :Direction.values() ) {
-            creature.setDirection(dir);
-            creature.move();
+            if(dir != Direction.BLANK) {
+                creature.setDirection(dir);
+                creature.move();
+            }
         }
         Assert.assertEquals(pos,creature.getPosition());
     }
@@ -108,7 +106,7 @@ public class CreatureTest {
         int x = 4124;
         int y = 2136127;
         Position position = new Position(x,y);
-        creature = new Creature(position);
+        creature = new Creature(position, Direction.BLANK);
         Assert.assertEquals(position, creature.getPosition());
     }
 
