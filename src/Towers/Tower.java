@@ -1,4 +1,6 @@
-package Main;
+package Towers;
+
+import Main.Position;
 
 public class Tower implements TowerInterface {
 

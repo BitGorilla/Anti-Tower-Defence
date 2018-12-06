@@ -1,8 +1,12 @@
-package Main;
+package Tiles;
 
-public class BlankTile extends Tile implements TileInterface {
+import Creatures.Creature;
+import Main.Direction;
+import Main.Position;
 
-    public BlankTile(Direction direction, Position centerPos,
+public class StartTile extends Tile implements TileInterface {
+
+    public StartTile(Direction direction, Position centerPos,
                      Position upperLeft, Position lowerRight) {
         super(direction, centerPos, upperLeft, lowerRight);
     }

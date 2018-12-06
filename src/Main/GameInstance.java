@@ -1,5 +1,11 @@
 package Main;
 
+import Creatures.Creature;
+import Creatures.Grunt;
+import Creatures.SpeedDemon;
+import Tiles.*;
+import Towers.SharpShooter;
+import Towers.Tower;
 import formatters.XMLReader;
 
 import java.io.*;

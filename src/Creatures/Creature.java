@@ -1,4 +1,7 @@
-package Main;
+package Creatures;
+
+import Main.Direction;
+import Main.Position;
 
 /**
  * Created by jontor on 2018-11-29.

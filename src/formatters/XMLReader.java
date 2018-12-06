@@ -1,6 +1,7 @@
 package formatters;
 
 import Main.*;
+import Tiles.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -80,7 +81,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
                 Direction dir =
                         Direction.valueOf(tileNode.getAttributes().getNamedItem(ROAD).getNodeValue());
-                CRC = new CenterPositionCalculator(gameWindowWidth, width, j + 1);
+                CRC = new CenterPositionCalculator(gameWindowWidth, width, j + 1 );
+                System.out.println(CRC.getCenterPosition().getX() + ", " + CRC.getCenterPosition().getY());
                 Position upperLeft = new Position(CRC.getxMinValue(),
                         CRC.getyMinValue());
                 Position lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
