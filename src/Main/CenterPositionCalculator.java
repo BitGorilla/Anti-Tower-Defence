@@ -1,4 +1,11 @@
 package Main;
+
+/**
+ * Class with the purpose to calculate the center position of a
+ * game field tile. Also calculates the maximum and minimum  x and y values
+ * for the tile.
+ *
+ */
 public class CenterPositionCalculator {
     private double tileDimension;
     private double tileWidth;
@@ -7,10 +14,12 @@ public class CenterPositionCalculator {
     private int xMinValue, xMaxValue, yMinValue, yMaxValue;
 
     /**
+     *  Constructor of the class. Calculates the pixel(coordinate) width of the
+     *  tile.
      *
      * @param windowDimension The size of the game field window.
      * @param tileDimension The number of tiles vertically and horizontally.
-     * @param tileNumber the list order of the tile. Start with 1.
+     * @param tileNumber the list order of the tile. Starts with 1.
      */
     public CenterPositionCalculator(double windowDimension,
                                     double tileDimension, int tileNumber){
@@ -23,6 +32,12 @@ public class CenterPositionCalculator {
         calcLimitValues();
     }
 
+    /**
+     * Calculates the center position of the tile in ralation to its position
+     * in the game field grid.
+     *
+     * @return the center position as a Position class.
+     */
     private Position calcCenter(){
         int x,y;
         x = y = (int)Math.ceil(tileWidth/2)-1;
@@ -39,6 +54,10 @@ public class CenterPositionCalculator {
         return new Position(x,y);
     }
 
+    /**
+     * Calculates the maximum and minimum values för x and y for the tile in
+     * relation to its position in the game field grid.
+     */
     private void calcLimitValues(){
 
         xMinValue=yMinValue = 0;
@@ -56,22 +75,37 @@ public class CenterPositionCalculator {
         yMaxValue = yMaxValue + (int)(tileWidth*(Math.ceil(i/tileDimension)-1));
     }
 
+    /**
+     * @return The center position of the tile.
+     */
     public Position getCenterPosition() {
         return centerPosition;
     }
 
+    /**
+     * @return The minimum x value of the tile.
+     */
     public int getxMinValue() {
         return xMinValue;
     }
 
+    /**
+     * @return The maximum x value of the tile.
+     */
     public int getxMaxValue() {
         return xMaxValue;
     }
 
+    /**
+     * @return The minimum y value of the tile.
+     */
     public int getyMinValue() {
         return yMinValue;
     }
 
+    /**
+     * @return The maximum y value of the tile.
+     */
     public int getyMaxValue() {
         return yMaxValue;
     }
