@@ -1,3 +1,9 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.font.ImageGraphicAttribute;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
+
 public class Tower implements TowerInterface {
 
     private int cooldown = 0;
@@ -5,13 +11,20 @@ public class Tower implements TowerInterface {
     private int rateOfFire;
     private int range;
     private Position pos;
+    private ImageIcon img;
+    //public Graphics2d g2d;
 
     public Tower(Position pos, int range, int damage, int rateOfFire) {
         this.pos = pos;
         this.range = range;
         this.damage = damage;
         this.rateOfFire = rateOfFire;
+        this.img = new ImageIcon(getClass().getResource("./images/Tower.png"));
+        //Graphics2D g2d =(Graphics2D) g;
+        //this.g2d = Graphics
     }
+
+    //Draw image graphic
 
     @Override
     public boolean positionInRange(Position pos) {
@@ -48,4 +61,6 @@ public class Tower implements TowerInterface {
     public int getCooldown() {
         return cooldown;
     }
+
+
 }

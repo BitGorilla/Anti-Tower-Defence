@@ -120,6 +120,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
-
+    public int getHeightAndWidth(){
+        return height;
+    }
 
 }
