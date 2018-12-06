@@ -19,7 +19,7 @@ public class SlowTileTest {
 
     @Test
     public void landOnSlowsSpeedOfCreature() {
-        SpeedDemon umbridge = new SpeedDemon(null);
+        SpeedDemon umbridge = new SpeedDemon(null, null);
         slowTile.landOn(umbridge);
         Assert.assertEquals(SpeedDemon.SPEED/2, umbridge.getCurrentSpeed());
     }
