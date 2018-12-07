@@ -7,6 +7,7 @@ public class CenterPositionCalculatorTest {
     private double windowDimension = 100;
     private double oddTileDimension = 5;
     private double evenTileDimension = 4;
+    private double twoTileDimension = 2;
     private int tile1 = 1;
     private int tile13 = 13;
     private int tile16 = 16;
@@ -180,4 +181,33 @@ public class CenterPositionCalculatorTest {
         int correctMaxValue=99;
         Assert.assertEquals(correctMaxValue, calculator.getyMaxValue());
     }
+
+    /*20x20 tile*/
+    @Test
+    public void calculatesEvenXCenterValueOnLastTileTest(){
+        calculator = new CenterPositionCalculator(windowDimension,
+                oddTileDimension, 25);
+        int correctMaxValue=89;
+        Assert.assertEquals(correctMaxValue, calculator.getCenterPosition().
+                            getX());
+    }
+
+    /*20x20 tile*/
+    @Test
+    public void calculatesEvenXMaxValueOnLastTileTest(){
+        calculator = new CenterPositionCalculator(windowDimension,
+                oddTileDimension, 25);
+        int correctMaxValue=99;
+        Assert.assertEquals(correctMaxValue, calculator.getxMaxValue());
+    }
+
+    @Test
+    public void checkCenterPositionForTwoDimensionTest(){
+        calculator = new CenterPositionCalculator(windowDimension,
+                twoTileDimension, 2);
+        int correctValue = 74;
+        Assert.assertEquals(correctValue, calculator.getCenterPosition().getX());
+    }
+
+
 }
