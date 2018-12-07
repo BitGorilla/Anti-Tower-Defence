@@ -1,13 +1,13 @@
 package Main;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-/**
- * Created by Linnea on 2018-11-27.
- */
+
 public class GUI {
 
     private JFrame frame;
@@ -16,9 +16,10 @@ public class GUI {
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
-    private JPanel upperPanel;
-    private JPanel gamePanel;
-    private JPanel userPanel;
+    private String levelName;
+    private JButton gruntButton;
+    private JButton speedDemonButton;
+
 
 
     public GUI(String title){
@@ -26,14 +27,19 @@ public class GUI {
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1500, 1000));
+        //levelName = setLevelName();
+        levelName = "levelname";
 
         // Build panels
         JPanel upperPanel = buildMenu();
+        JPanel levelPanel = buildLevelPanel();
         JPanel gamePanel = buildGamePanel();
         JPanel userPanel = buildUserPanel();
 
+
         //Add panels to the frame
         frame.add(upperPanel);
+        frame.add(levelPanel, BorderLayout.NORTH);
         frame.add(gamePanel, BorderLayout.CENTER);
         frame.add(userPanel, BorderLayout.EAST);
 
@@ -139,32 +145,78 @@ public class GUI {
     }
 
     /**
-     * Components of the middle panel
+     * Components of the upper panel
      *      - Game panel
+     * @return JPanel
+     */
+    private JPanel buildLevelPanel() {
+
+        JPanel levelPanel = new JPanel();
+        JLabel jlabel = new JLabel(levelName);
+        jlabel.setFont(new Font("Verdana",1,20));
+        levelPanel.add(jlabel);
+
+        return levelPanel;
+    }
+
+    public void setLevelName(String name){
+        levelName = name;
+    }
+
+    /**
+     * Components of the middle panel
+     *      - Game panel, animator view
      * @return JPanel
      */
     private JPanel buildGamePanel() {
 
         JPanel gamePanel = new JPanel();
 
-        //Put every image from xml in a table in background?
+        //Put every image from xml in a table in background
+        //Animator
 
         return gamePanel;
     }
 
     /**
-     * Components of the lower panel
-     *      - User panel
+     * Components of the panel to the right of game panel
+     *      - User panel with buttons
      * @return JPanel
      */
     private JPanel buildUserPanel() {
 
         JPanel userPanel = new JPanel();
 
-        //Put every image from xml in a table in background?
+        JLabel userName = new JLabel("User Name");
+        userName.setFont(new Font("Verdana",1,20));
+        userPanel.add(userName);
+
+        JLabel credits = new JLabel(Integer.toString(setCredits(1000)));
+        credits.setFont(new Font("Verdana",1,20));
+        userPanel.add(credits);
+
+        gruntButton = new JButton("Add more grant trupps");
+        userPanel.add(gruntButton);
+
+        speedDemonButton = new JButton("Add more grant trupps");
+        userPanel.add(speedDemonButton);
+
 
         return userPanel;
     }
+
+    public int setCredits(int credits){
+        return credits;
+    }
+
+    public void addActionListenerGrant(ActionListener actionListAddGrant){
+        gruntButton.addActionListener(actionListAddGrant);
+    }
+
+    public void addActionListenerSpeed(ActionListener actionListAddSpeedDemon){
+        speedDemonButton.addActionListener(actionListAddSpeedDemon);
+    }
+
 
 
 }

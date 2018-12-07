@@ -10,13 +10,14 @@ public class ImageLoader {
     private HashMap<String, Image> imageStorage = new HashMap<>();
     private int scale;
 
-    public Image getImage(String s){
+    public Image getImage(String s) {
         if(imageStorage.containsKey(s)) {
             return imageStorage.get(s);
         }
         else {
             try {
-                Image i = ImageIO.read(this.getClass().getResourceAsStream(s));
+                Image i = ImageIO.read(this.getClass().getResourceAsStream(
+                                "/images/testImages/" + s));
                 i=i.getScaledInstance(scale, scale, Image.SCALE_SMOOTH);
                 imageStorage.put(s, i);
                 return i;
@@ -28,7 +29,6 @@ public class ImageLoader {
 
 
     private ImageLoader(){
-
     }
 
     public void setScale(int scale){
@@ -37,8 +37,8 @@ public class ImageLoader {
 
     public static synchronized ImageLoader getImageLoader(){
         if (loader != null){
-            return null;
-        }else{
+            return loader;
+        } else {
             return loader=new ImageLoader();
         }
     }
