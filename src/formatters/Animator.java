@@ -1,10 +1,11 @@
 package formatters;
+import Main.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Animator implements JComponent {
+public class Animator extends JComponent {
 
     private ArrayList<GameObject> drawables;
 
