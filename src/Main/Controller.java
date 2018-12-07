@@ -72,7 +72,7 @@ public class Controller {
         ActionListener actionListGrunt = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Grant button is pressed");
+                gameM.getCurrentGameInstance().addCreature(2);
 
                 // Add more grant trupps in game set up before start
             }
