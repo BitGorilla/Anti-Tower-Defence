@@ -23,9 +23,13 @@ public class GameInstance {
     private ArrayList<Tile> tiles;
     private Position startPosition = null;
     private Direction startDirection;
+    private String name;
+    private int credits;
 
-    public GameInstance(ArrayList<Tile> tiles) {
-        this.tiles = tiles;
+    public GameInstance(Map map) {
+        this.tiles = map.getTiles();
+        this.name = map.getName();
+        this.credits = map.getStartCredit();
         for (Tile tile: tiles) {
             tile.getCenterPos().print();
             if(tile.getClass() == StartTile.class) {
@@ -36,6 +40,7 @@ public class GameInstance {
     }
 
     public void update() {
+        creatures.get(0).getPosition().print();
         moveCreatures();
         affectCreatureOnTile();
         handleCreaturesInGoal();
@@ -145,27 +150,15 @@ public class GameInstance {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        XMLReader reader = new XMLReader(80);
-        File file = new File("XMLBuilder/Maps/newMap.xml");
-        reader.setSource(new FileInputStream(file));
-        Map map = reader.buildMap();
-        GameInstance GI = new GameInstance(map.getTiles());
-        GI.addCreature(1);
-        GI.update();
-        GI.addCreature(1);
-        GI.update();
-        GI.addCreature(1);
-        GI.update();
-        GI.addCreature(2);
-        GI.update();
-        GI.addCreature(1);
-        GI.update();
-        GI.addCreature(1);
+    public synchronized ArrayList<GameObject> getWhatToDraw() {
+        ArrayList<GameObject> objectsToDraw = new ArrayList<>();
+        objectsToDraw.addAll(tiles);
+        objectsToDraw.addAll(towers);
+        objectsToDraw.addAll(creatures);
+        return objectsToDraw;
+    }
 
-
-        while(!GI.creatures.isEmpty()) {
-            GI.update();
-        }
+    public synchronized int getCredits() {
+        return credits;
     }
 }
