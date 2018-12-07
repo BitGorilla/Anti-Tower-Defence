@@ -4,13 +4,14 @@ import Creatures.Creature;
 import Main.Direction;
 import Main.Position;
 
+import java.awt.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public final class TileCreator {
 
-    public static Tile createTile(String type,
+    public static Tile createTile(String type, Image image,
                            Direction direction,
                            Position centerPos,
                            Position upperLeft,
@@ -26,7 +27,8 @@ public final class TileCreator {
 
         checkLandOnMethod(tileClass.getMethod("landOn", Creature.class));
 
-        return (Tile) constructor.newInstance(direction, centerPos, upperLeft,
+        return (Tile) constructor.newInstance(image, direction, centerPos,
+                upperLeft,
                 lowerRight);
     }
 
@@ -37,7 +39,7 @@ public final class TileCreator {
             throw new ClassNotFoundException(type + "Not extending Tile or not implementing TileInterface");
         }
         if(tileClass.getConstructors().length != 1 ||
-                tileClass.getConstructors()[0].getParameterCount() != 4) {
+                tileClass.getConstructors()[0].getParameterCount() != 5) {
             throw new ClassNotFoundException(type + "Constructor not correct");
         }
         return tileClass;
@@ -47,10 +49,10 @@ public final class TileCreator {
         boolean correctConstructor = false;
         Class<?>[] parameters =
                 constructor.getParameterTypes();
-        if (parameters[0] != Direction.class ||
-                parameters[1] != Position.class ||
+        if (parameters[0] != Image.class || parameters[1] != Direction.class ||
                 parameters[2] != Position.class ||
-                parameters[3] != Position.class) {
+                parameters[3] != Position.class ||
+                parameters[4] != Position.class) {
 
             throw new ClassNotFoundException(constructor.getDeclaringClass().getName() +
                     " Wrong parameters in Constructor ");

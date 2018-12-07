@@ -1,18 +1,24 @@
 package Tiles;
 
 import Main.Direction;
+import Main.GameObject;
 import Main.Position;
+import javafx.geometry.Pos;
 
-public class Tile {
+import java.awt.*;
+
+public class Tile extends GameObject {
     private Direction direction;
-    private Position centerPos;
     private Position upperLeft;
     private Position lowerRight;
+    private Image image;
 
 
-    public Tile(Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
+    public Tile(Image image, Direction direction, Position centerPos,
+                Position upperLeft,
+                Position lowerRight) {
+        super(centerPos, image);
         this.direction = direction;
-        this.centerPos = centerPos;
         this.upperLeft = upperLeft;
         this.lowerRight = lowerRight;
     }
@@ -27,6 +33,14 @@ public class Tile {
     }
 
     public Position getCenterPos() {
-        return centerPos;
+        return getPosition();
+    }
+
+    public Position getUpperLeft() {
+        return upperLeft;
+    }
+
+    public Position getLowerRight() {
+        return lowerRight;
     }
 }

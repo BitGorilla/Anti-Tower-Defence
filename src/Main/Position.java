@@ -54,4 +54,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public void print() {
+        System.out.println("(" + x +"," + y + ")");
+    }
 }

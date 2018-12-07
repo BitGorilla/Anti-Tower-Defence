@@ -1,25 +1,23 @@
 package Creatures;
 
 import Main.Direction;
+import Main.GameObject;
 import Main.Position;
+
+import java.awt.*;
 
 /**
  * Created by jontor on 2018-11-29.
  */
-public class Creature implements CreatureInterface {
-    private Position position;
+public class Creature extends GameObject implements CreatureInterface {
     private Direction direction;
     private int currentHealth;
     private int currentSpeed;
     private boolean goaled;
 
-    public Creature(Position position, Direction direction) {
-        this.position = position;
+    public Creature(Position position, Image image, Direction direction) {
+        super(position, image);
         this.direction = direction;
-    }
-    @Override
-    public Position getPosition() {
-        return position;
     }
 
     @Override
@@ -56,7 +54,7 @@ public class Creature implements CreatureInterface {
 
     @Override
     public void move() {
-        position.addVector(direction.asVector());
+        getPosition().addVector(direction.asVector());
     }
 
     @Override
@@ -74,5 +72,6 @@ public class Creature implements CreatureInterface {
         System.out.println("Position: (" + getPosition().getX() + "," + getPosition().getY());
         System.out.println("HP: " + getCurrentHealth());
         System.out.println("Speed: " + getCurrentSpeed());
+        System.out.println("Direction: " + direction);
     }
 }

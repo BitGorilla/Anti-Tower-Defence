@@ -8,7 +8,7 @@ import Main.Position;
 public class IncorrectTile1 extends Tile implements TileInterface {
 
         public IncorrectTile1() {
-            super(null,null,null,null);
+            super(null,null,null,null, null);
         }
 
         @Override

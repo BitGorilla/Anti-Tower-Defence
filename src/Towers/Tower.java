@@ -1,17 +1,20 @@
 package Towers;
 
+import Main.GameObject;
 import Main.Position;
 
-public class Tower implements TowerInterface {
+import java.awt.*;
+
+public class Tower extends GameObject implements TowerInterface {
 
     private int cooldown = 0;
     private int damage;
     private int rateOfFire;
     private int range;
-    private Position pos;
 
-    public Tower(Position pos, int range, int damage, int rateOfFire) {
-        this.pos = pos;
+    public Tower(Position pos, Image image, int range, int damage,
+                 int rateOfFire) {
+        super(pos, image);
         this.range = range;
         this.damage = damage;
         this.rateOfFire = rateOfFire;
@@ -23,8 +26,8 @@ public class Tower implements TowerInterface {
     }
 
     private int distanceTo(Position pos) {
-        int dX = this.pos.getX()-pos.getX();
-        int dY = this.pos.getY()-pos.getY();
+        int dX = getPosition().getX()-pos.getX();
+        int dY = getPosition().getY()-pos.getY();
         return (int) Math.sqrt(dX*dX+dY*dY);
     }
 

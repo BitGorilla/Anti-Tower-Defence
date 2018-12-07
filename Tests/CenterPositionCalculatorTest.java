@@ -209,5 +209,10 @@ public class CenterPositionCalculatorTest {
         Assert.assertEquals(correctValue, calculator.getCenterPosition().getX());
     }
 
+    @Test
+    public void testTest() {
+        calculator = new CenterPositionCalculator(100,2,4);
+    }
+
 
 }

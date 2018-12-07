@@ -5,9 +5,7 @@ import Main.Position;
 
 public interface CreatureInterface {
 
-    Position getPosition();
     void setDirection(Direction direction);
-
 
     void setCurrentHealth(int newHealth);
     int getCurrentHealth();

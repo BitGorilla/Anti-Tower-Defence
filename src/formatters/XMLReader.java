@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -74,34 +75,59 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         ArrayList<Tile> tiles = new ArrayList<>();
         CenterPositionCalculator CRC;
         NodeList tileNodes = parentTileNode.getChildNodes();
-        for (int j=0; j<parentTileNode.getChildNodes().getLength();j++) {
-            Node tileNode = tileNodes.item(j);
+        Node tileNode;
+        String type;
+        String road;
+        Direction direction;
+        Position upperLeft;
+        Position lowerRight;
+        Image tileImage;
+        int counter = 1;
+        for (int j = 0; j < parentTileNode.getChildNodes().getLength(); j++) {
+            tileNode = tileNodes.item(j);
             if (tileNode.getNodeType()==Node.ELEMENT_NODE) {
-                String type =
-                        tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
-                Direction dir =
-                        Direction.valueOf(tileNode.getAttributes().getNamedItem(ROAD).getNodeValue());
-                CRC = new CenterPositionCalculator(gameWindowWidth, width, j + 1 );
-                System.out.println(CRC.getCenterPosition().getX() + ", " + CRC.getCenterPosition().getY());
-                Position upperLeft = new Position(CRC.getxMinValue(),
-                        CRC.getyMinValue());
-                Position lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
-
+                type = tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
+                road = tileNode.getAttributes().getNamedItem(ROAD).getNodeValue();
+                direction = getDirection(road);
+                CRC = new CenterPositionCalculator(gameWindowWidth, width, counter);
+                counter++;
+                upperLeft = new Position(CRC.getxMinValue(), CRC.getyMinValue());
+                lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
+                tileImage = getTileImage(road, type);
                 try {
-                    tiles.add(TileCreator.createTile(type, dir, CRC.getCenterPosition(),
-                            upperLeft
-                            , lowerRight));
+                    tiles.add(TileCreator.createTile(type, tileImage, direction, CRC.getCenterPosition(), upperLeft, lowerRight));
                 } catch (ClassNotFoundException | InstantiationException |
                         InvocationTargetException | IllegalAccessException |
                         NoSuchMethodException e) {
                     e.printStackTrace();
                     System.err.println("No/bad tile type: " + type);
-                    tiles.add(new BlankTile(dir, CRC.getCenterPosition(), upperLeft
+                    tiles.add(new BlankTile(tileImage, direction,
+                            CRC.getCenterPosition(),
+                            upperLeft
                             , lowerRight));
                 }
             }
         }
         return tiles;
+    }
+
+    private Image getTileImage(String road, String type) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(road);
+        sb.append(type);
+        //Filetype?
+        return null;//ImageLoader.getImageLoader().getImage("starCreature.png",
+        // 100);
+        //sb.toString(),1);
+    }
+
+    private Direction getDirection(String road) {
+        String[] strings = road.split("-");
+        try {
+            return Direction.valueOf(strings[strings.length - 1]);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
     private void readTileTypes(Node tilesNode) {
