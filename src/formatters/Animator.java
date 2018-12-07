@@ -13,6 +13,10 @@ public class Animator extends JComponent {
         drawables = objects;
     }
 
+    public void changeObjects(ArrayList<GameObject> objects){
+        drawables = objects;
+    }
+
     public void paintComponent(Graphics g){
         Graphics2D g2d=(Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
