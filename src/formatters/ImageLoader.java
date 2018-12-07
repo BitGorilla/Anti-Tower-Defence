@@ -8,8 +8,9 @@ import java.util.HashMap;
 public class ImageLoader {
     private static ImageLoader loader;
     private HashMap<String, Image> imageStorage = new HashMap<>();
+    private int scale;
 
-    public Image getImage(String s, int scale){
+    public Image getImage(String s){
         if(imageStorage.containsKey(s)) {
             return imageStorage.get(s);
         }
@@ -28,6 +29,10 @@ public class ImageLoader {
 
     private ImageLoader(){
 
+    }
+
+    public void setScale(int scale){
+        this.scale = scale;
     }
 
     public static synchronized ImageLoader getImageLoader(){
