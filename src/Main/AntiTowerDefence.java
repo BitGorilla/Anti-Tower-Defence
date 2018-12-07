@@ -7,7 +7,6 @@ public class AntiTowerDefence {
 
     public static void main( String[] args ) throws IOException {
 
-        new Controller();
     }
 
 }
