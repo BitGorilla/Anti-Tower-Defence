@@ -1,6 +1,8 @@
 package Main;
 
 
+import formatters.Animator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
