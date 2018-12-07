@@ -3,6 +3,7 @@ package Main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 /**
@@ -19,6 +20,9 @@ public class GUI {
     private JPanel upperPanel;
     private JPanel gamePanel;
     private JPanel userPanel;
+    private JButton gruntButton;
+    private JButton speedDemonButton;
+
 
 
     public GUI(String title){
@@ -161,10 +165,25 @@ public class GUI {
 
         JPanel userPanel = new JPanel();
 
-        //Put every image from xml in a table in background?
+        gruntButton = new JButton("Add more grant trupps");
+        userPanel.add(gruntButton);
+
+        speedDemonButton = new JButton("Add more grant trupps");
+        userPanel.add(speedDemonButton);
+
 
         return userPanel;
     }
+
+
+    public void addActionListenerGrant(ActionListener actionListAddGrant){
+        gruntButton.addActionListener(actionListAddGrant);
+    }
+
+    public void addActionListenerSpeed(ActionListener actionListAddSpeedDemon){
+        speedDemonButton.addActionListener(actionListAddSpeedDemon);
+    }
+
 
 
 }
