@@ -1,7 +1,11 @@
 package Main;
 
-/**
- * Created by Linnea on 2018-12-07.
- */
-public class WinnerPopup {
+import javax.swing.*;
+
+
+public class WinnerPopup{
+
+
+   
+
 }

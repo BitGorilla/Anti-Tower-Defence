@@ -16,17 +16,18 @@ public class Controller {
     private String levelName;
     private int windowWidth;
     private XMLReader reader;
-    private ArrayList<Map> map;
+    private ArrayList<Map> maps;
     private Animator animator;
 
     public Controller(){
         createGUI();
         this.reader = createXMLReader();
-        //this.map = map.add(reader.buildMap());
-        this.gameM = createGameManager(map);
+        //this.maps = reader.buildMaps();
+        this.gameM = createGameManager(maps);
         //addGrantActionList(gui);
         this.levelName = getLevelName();
-        this.windowWidth = 1000;
+        //this.windowWidth = reader.;
+        //this.animator = new Animator()
         //setLevelNameInGUI();
     }
 
@@ -35,7 +36,7 @@ public class Controller {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                gui = new GUI("Anti Tower Defence");
+                gui = new GUI("Anti Tower Defence", animator, windowWidth);
                 addSpeedDemonActionList();
                 addGrantActionList();
                 gui.show();

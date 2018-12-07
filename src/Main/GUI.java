@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 
 public class GUI {
 
-    private JFrame frame;
+    public JFrame frame;
     private JMenuBar menuBar;
     private JMenu menu1;
     private JMenu menu2;
@@ -20,16 +20,20 @@ public class GUI {
     private String levelName;
     private JButton gruntButton;
     private JButton speedDemonButton;
+    public Animator animator;
+    private int windowWidth;
 
 
 
-    public GUI(String title){
+    public GUI(String title, Animator animator, int windowWidth){
 
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1500, 1000));
         //levelName = setLevelName();
         levelName = "levelname";
+        this.animator = animator;
+        this.windowWidth = windowWidth;
 
         // Build panels
         JPanel upperPanel = buildMenu();
@@ -43,6 +47,8 @@ public class GUI {
         frame.add(levelPanel, BorderLayout.NORTH);
         frame.add(gamePanel, BorderLayout.CENTER);
         frame.add(userPanel, BorderLayout.EAST);
+
+        //showWinningDialog();
 
         frame.pack();
 
@@ -172,9 +178,8 @@ public class GUI {
     private JPanel buildGamePanel() {
 
         JPanel gamePanel = new JPanel();
-
-        //Put every image from xml in a table in background
-        //Animator
+        gamePanel.setPreferredSize(new Dimension(windowWidth,windowWidth));
+        gamePanel.add(animator);
 
         return gamePanel;
     }
@@ -218,6 +223,23 @@ public class GUI {
         speedDemonButton.addActionListener(actionListAddSpeedDemon);
     }
 
+
+    public void showWinningDialog() {
+
+        Object[] options = {"Play this level again",
+                "Continue to next level"};
+        int n = JOptionPane.showOptionDialog(frame,
+                "You won against the towers!",
+                "Congratzzzzz",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[0]); //default button title
+
+        UIManager.put("JOptionPane.minimumSize",new Dimension(500,500));
+
+    }
 
 
 }
