@@ -4,12 +4,13 @@ import Main.Map;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public interface LevelReader {
 
-    public boolean hasNext() throws IOException;
+    boolean hasNext() throws IOException;
 
-    public Map buildMap() throws IOException;
+    ArrayList<Map> getMaps();
 
-    public void setSource(InputStream inStream) throws IOException;
+    void setSource(InputStream inStream) throws IOException;
 }
