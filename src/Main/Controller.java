@@ -1,8 +1,11 @@
 package Main;
 
+import formatters.XMLReader;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Linnea on 2018-12-07.
@@ -11,11 +14,18 @@ public class Controller {
 
     private GUI gui;
     //private GameManager gameM;
+    private String levelName;
+    private int windowWidth;
+    private XMLReader reader;
 
     public Controller(){
         createGUI();
         createGameManager();
+        this.reader = createXMLReader();
         //addGrantActionList(gui);
+        this.levelName = getLevelName();
+        this.windowWidth = 1000;
+        //setLevelNameInGUI();
     }
 
     public void createGUI(){
@@ -32,8 +42,23 @@ public class Controller {
     }
 
     public void createGameManager(){
-
     }
+
+    public XMLReader createXMLReader(){
+        XMLReader reader = new XMLReader(windowWidth);
+        return reader;
+    }
+
+    private String getLevelName(){
+        String str = "Levelname";
+        //reader.
+        return str;
+        //return map.getName();
+    }
+
+    /*private void setLevelNameInGUI(){
+        gui.setLevelName(getLevelName());
+    }*/
 
     private void addGrantActionList() {
         ActionListener actionListGrunt = new ActionListener() {

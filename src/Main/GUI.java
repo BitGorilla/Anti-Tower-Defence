@@ -18,8 +18,10 @@ public class GUI {
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
     private JPanel upperPanel;
+    private JPanel levelPanel;
     private JPanel gamePanel;
     private JPanel userPanel;
+    private String levelName;
     private JButton gruntButton;
     private JButton speedDemonButton;
 
@@ -30,14 +32,19 @@ public class GUI {
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1500, 1000));
+        //levelName = setLevelName();
+        levelName = "levelname";
 
         // Build panels
         JPanel upperPanel = buildMenu();
+        JPanel levelPanel = buildLevelPanel();
         JPanel gamePanel = buildGamePanel();
         JPanel userPanel = buildUserPanel();
 
+
         //Add panels to the frame
         frame.add(upperPanel);
+        frame.add(levelPanel, BorderLayout.NORTH);
         frame.add(gamePanel, BorderLayout.CENTER);
         frame.add(userPanel, BorderLayout.EAST);
 
@@ -140,6 +147,25 @@ public class GUI {
         frame.setJMenuBar(menuBar);
 
         return upperPanel;
+    }
+
+    /**
+     * Components of the upper panel
+     *      - Game panel
+     * @return JPanel
+     */
+    private JPanel buildLevelPanel() {
+
+        JPanel levelPanel = new JPanel();
+        JLabel jlabel = new JLabel(levelName);
+        jlabel.setFont(new Font("Verdana",1,20));
+        levelPanel.add(jlabel);
+
+        return levelPanel;
+    }
+
+    public void setLevelName(String name){
+        levelName = name;
     }
 
     /**
