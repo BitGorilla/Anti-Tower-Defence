@@ -13,15 +13,7 @@ public class AntiTowerDefence {
 
     public static void main( String[] args ) throws IOException {
 
-
-        /*SwingUtilities.invokeLater(() -> {
-            Main.GUI gui = new Main.GUI("Anti  Defence Game");
-            gui.show();
-
-            //new TestController(gui);
-        });*/
-
-        //new TestController();
+        new Controller();
 
     }
 
