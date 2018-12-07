@@ -6,8 +6,10 @@ import Creatures.SpeedDemon;
 import Tiles.*;
 import Towers.SharpShooter;
 import Towers.Tower;
+import formatters.ImageLoader;
 import formatters.XMLReader;
 
+import java.awt.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,7 +27,7 @@ public class GameInstance {
     public GameInstance(ArrayList<Tile> tiles) {
         this.tiles = tiles;
         for (Tile tile: tiles) {
-            tile.getUpperLeft().print();
+            tile.getCenterPos().print();
             if(tile.getClass() == StartTile.class) {
                 startDirection = tile.getDirection();
                 startPosition = tile.getCenterPos();
@@ -79,9 +81,6 @@ public class GameInstance {
     private void changeDirectionIfNeeded(Creature creature) {
         for (Tile tile: tiles) {
             if (creature.getPosition().equals(tile.getCenterPos())) {
-                creature.getPosition().print();
-                tile.getCenterPos().print();
-                System.out.println("--");
                 creature.setDirection(tile.getDirection());
             }
         }
@@ -147,15 +146,26 @@ public class GameInstance {
     }
 
     public static void main(String[] args) throws IOException {
-        XMLReader reader = new XMLReader(1000);
-        File file = new File("XMLBuilder/Maps/testMap2.xml");
+        XMLReader reader = new XMLReader(80);
+        File file = new File("XMLBuilder/Maps/newMap.xml");
         reader.setSource(new FileInputStream(file));
         Map map = reader.buildMap();
         GameInstance GI = new GameInstance(map.getTiles());
         GI.addCreature(1);
-        while(!GI.creatures.get(0).inGoal()) {
+        GI.update();
+        GI.addCreature(1);
+        GI.update();
+        GI.addCreature(1);
+        GI.update();
+        GI.addCreature(2);
+        GI.update();
+        GI.addCreature(1);
+        GI.update();
+        GI.addCreature(1);
+
+
+        while(!GI.creatures.isEmpty()) {
             GI.update();
-            GI.printAll();
         }
     }
 }

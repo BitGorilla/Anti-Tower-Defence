@@ -4,11 +4,13 @@ import Creatures.Creature;
 import Main.Direction;
 import Main.Position;
 
+import java.awt.*;
+
 public class BlankTile extends Tile implements TileInterface {
 
-    public BlankTile(Direction direction, Position centerPos,
+    public BlankTile(Image image, Direction direction, Position centerPos,
                      Position upperLeft, Position lowerRight) {
-        super(direction, centerPos, upperLeft, lowerRight);
+        super(image, direction, centerPos, upperLeft, lowerRight);
     }
 
     @Override
