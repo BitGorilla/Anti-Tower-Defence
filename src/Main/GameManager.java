@@ -55,5 +55,15 @@ public class GameManager {
         maps.add(reader.buildMap());
         GameManager GM = new GameManager(maps);
         GM.startGame();
+        GM.currentGameInstance.addCreature(1);
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+               ArrayList<GameObject> objects = GM.getWhatToDraw();
+                objects.get(objects.size()-1).getPosition().print();
+                GM.currentGameInstance.addCreature(2);
+            }}, 1000, 1000/TICKSPERSECOND);
     }
 }

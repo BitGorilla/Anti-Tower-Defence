@@ -40,7 +40,7 @@ public class GameInstance {
     }
 
     public void update() {
-        creatures.get(0).getPosition().print();
+        //creatures.get(0).getPosition().print();
         moveCreatures();
         affectCreatureOnTile();
         handleCreaturesInGoal();
