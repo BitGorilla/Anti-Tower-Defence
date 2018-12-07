@@ -12,16 +12,18 @@ import java.util.ArrayList;
 public class Controller {
 
     private GUI gui;
-    //private GameManager gameM;
+    private GameManager gameM;
     private String levelName;
     private int windowWidth;
     private XMLReader reader;
+    private ArrayList<Map> map;
     private Animator animator;
 
     public Controller(){
         createGUI();
-        createGameManager();
         this.reader = createXMLReader();
+        //this.map = map.add(reader.buildMap());
+        this.gameM = createGameManager(map);
         //addGrantActionList(gui);
         this.levelName = getLevelName();
         this.windowWidth = 1000;
@@ -41,14 +43,15 @@ public class Controller {
         });
     }
 
-    public void createGameManager(){
-    }
-
     public XMLReader createXMLReader(){
         XMLReader reader = new XMLReader(windowWidth);
         return reader;
     }
 
+    public GameManager createGameManager(ArrayList<Map> maps){
+        GameManager gm = new GameManager(maps);
+        return gm;
+    }
 
     private String getLevelName(){
         String str = "Levelname";
