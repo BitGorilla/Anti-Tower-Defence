@@ -1,5 +1,6 @@
 package Main;
 
+import formatters.Animator;
 import formatters.XMLReader;
 
 import javax.swing.*;
@@ -7,9 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-/**
- * Created by Linnea on 2018-12-07.
- */
+
 public class Controller {
 
     private GUI gui;
@@ -17,6 +16,7 @@ public class Controller {
     private String levelName;
     private int windowWidth;
     private XMLReader reader;
+    private Animator animator;
 
     public Controller(){
         createGUI();
@@ -49,11 +49,16 @@ public class Controller {
         return reader;
     }
 
+
     private String getLevelName(){
         String str = "Levelname";
         //reader.
         return str;
         //return map.getName();
+    }
+
+    private void setCreditsToGUI(){
+       // gui.setCredits(10000);
     }
 
     /*private void setLevelNameInGUI(){
@@ -83,8 +88,6 @@ public class Controller {
         };
         gui.addActionListenerSpeed(actionListSpeedDemon);
     }
-
-
 
 
 }

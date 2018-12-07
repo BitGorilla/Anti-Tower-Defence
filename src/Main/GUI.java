@@ -1,14 +1,14 @@
 package Main;
 
+import formatters.Animator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-/**
- * Created by Linnea on 2018-11-27.
- */
+
 public class GUI {
 
     private JFrame frame;
@@ -17,10 +17,6 @@ public class GUI {
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
-    private JPanel upperPanel;
-    private JPanel levelPanel;
-    private JPanel gamePanel;
-    private JPanel userPanel;
     private String levelName;
     private JButton gruntButton;
     private JButton speedDemonButton;
@@ -170,26 +166,35 @@ public class GUI {
 
     /**
      * Components of the middle panel
-     *      - Game panel
+     *      - Game panel, animator view
      * @return JPanel
      */
     private JPanel buildGamePanel() {
 
         JPanel gamePanel = new JPanel();
 
-        //Put every image from xml in a table in background?
+        //Put every image from xml in a table in background
+        //Animator
 
         return gamePanel;
     }
 
     /**
-     * Components of the lower panel
-     *      - User panel
+     * Components of the panel to the right of game panel
+     *      - User panel with buttons
      * @return JPanel
      */
     private JPanel buildUserPanel() {
 
         JPanel userPanel = new JPanel();
+
+        JLabel userName = new JLabel("User Name");
+        userName.setFont(new Font("Verdana",1,20));
+        userPanel.add(userName);
+
+        JLabel credits = new JLabel(Integer.toString(setCredits(1000)));
+        credits.setFont(new Font("Verdana",1,20));
+        userPanel.add(credits);
 
         gruntButton = new JButton("Add more grant trupps");
         userPanel.add(gruntButton);
@@ -201,6 +206,9 @@ public class GUI {
         return userPanel;
     }
 
+    public int setCredits(int credits){
+        return credits;
+    }
 
     public void addActionListenerGrant(ActionListener actionListAddGrant){
         gruntButton.addActionListener(actionListAddGrant);
