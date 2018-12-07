@@ -12,7 +12,7 @@ public class SpeedDemon extends Creature {
     public static final int SPEED = 10;
     public static final int COST = 10;
     public static final Image image = ImageLoader.getImageLoader().getImage(
-            "images/testImages/speedDemon.png");
+            "speedDemon.png");
 
     public SpeedDemon(Position pos, Direction dir) {
         super(pos, image, dir);

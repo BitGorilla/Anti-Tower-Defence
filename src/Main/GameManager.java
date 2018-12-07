@@ -25,12 +25,12 @@ public class GameManager {
     }
 
     public void startGame() {
+        currentGameInstance.addCreature(1);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 updateGame();
             }}, 1000, 1000/TICKSPERSECOND);
-        currentGameInstance.addCreature(1);
     }
 
     public void stopGame() {
@@ -50,7 +50,6 @@ public class GameManager {
     }
 
     public static void main(String[] args) throws IOException {
-        ImageLoader.getImageLoader().setScale(10);
         XMLReader reader = new XMLReader(1000);
         reader.setSource(new FileInputStream(new File(
                 "XMLBuilder/Maps/mapBig.xml")));

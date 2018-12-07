@@ -16,7 +16,6 @@ public class ImageLoader {
         }
         else {
             try {
-                System.out.println("/images/testImages/" + s);
                 Image i = ImageIO.read(this.getClass().getResourceAsStream(
                                 "/images/testImages/" + s));
                 i=i.getScaledInstance(scale, scale, Image.SCALE_SMOOTH);
@@ -38,7 +37,7 @@ public class ImageLoader {
 
     public static synchronized ImageLoader getImageLoader(){
         if (loader != null){
-            return null;
+            return loader;
         } else {
             return loader=new ImageLoader();
         }

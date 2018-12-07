@@ -116,6 +116,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         sb.append(road);
         sb.append(type);
         ImageLoader loader = ImageLoader.getImageLoader();
+        loader.setScale(10);
         //Filetype?
         if(road.equals("BLANK"))
             return loader.getImage("blank.png");
