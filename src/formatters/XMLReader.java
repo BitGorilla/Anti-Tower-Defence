@@ -115,10 +115,12 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         StringBuilder sb = new StringBuilder();
         sb.append(road);
         sb.append(type);
+        ImageLoader loader = ImageLoader.getImageLoader();
         //Filetype?
-        return null;//ImageLoader.getImageLoader().getImage("starCreature.png",
-        // 100);
-        //sb.toString(),1);
+        if(road.equals("BLANK"))
+            return loader.getImage("blank.png");
+        else
+            return loader.getImage("road.png");
     }
 
     private Direction getDirection(String road) {
@@ -149,8 +151,16 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         return i<nodeList.getLength();
     }
 
-    @Override
-    public Map buildMap() {
+    public ArrayList<Map> getMaps() {
+        ArrayList<Map> maps = new ArrayList<>();
+        while(hasNext()) {
+            System.out.println(i);
+            maps.add(buildMap());
+        }
+        return maps;
+    }
+
+    private Map buildMap() {
         Node node = nodeList.item(i);
         i++;
 

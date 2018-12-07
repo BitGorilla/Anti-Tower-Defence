@@ -1,7 +1,9 @@
 package Main;
 
+import formatters.ImageLoader;
 import formatters.XMLReader;
 
+import javax.imageio.ImageReader;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,11 +50,11 @@ public class GameManager {
     }
 
     public static void main(String[] args) throws IOException {
+        ImageLoader.getImageLoader().setScale(10);
         XMLReader reader = new XMLReader(1000);
         reader.setSource(new FileInputStream(new File(
                 "XMLBuilder/Maps/mapBig.xml")));
-        ArrayList<Map> maps =new ArrayList<>();
-        maps.add(reader.buildMap());
+        ArrayList<Map> maps = reader.getMaps();
         GameManager GM = new GameManager(maps);
         GM.startGame();
         GM.currentGameInstance.addCreature(1);
