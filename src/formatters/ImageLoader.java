@@ -1,3 +1,5 @@
+package formatters;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
