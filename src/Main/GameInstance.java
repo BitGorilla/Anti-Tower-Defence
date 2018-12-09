@@ -30,6 +30,10 @@ public class GameInstance {
         this.tiles = map.getTiles();
         this.name = map.getName();
         this.credits = map.getStartCredit();
+        findStart();
+    }
+
+    private void findStart() {
         for (Tile tile: tiles) {
             tile.getCenterPos().print();
             if(tile.getClass() == StartTile.class) {

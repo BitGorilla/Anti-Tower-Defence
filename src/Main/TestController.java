@@ -25,8 +25,7 @@ public class TestController {
 
     public TestController() throws IOException {
         reader = new XMLReader(windowWidth);
-        reader.setSource(new FileInputStream(new File("/Users/martinsjolund" +
-                "/IdeaProjects/Anti-Tower-Defence/src/mapBig.xml")));
+        reader.setSource(new FileInputStream(new File("/Users/oscar/Documents/Skola/15. AppJava/Projekt/Anti-Tower-Defence/src/XMLBuilder/Maps/mapBig.xml")));
         manager = new GameManager(reader.getMaps());
 
         animator = new Animator(calcOffset(), fps);
