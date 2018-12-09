@@ -8,6 +8,7 @@ import Towers.SharpShooter;
 import Towers.Tower;
 import formatters.ImageLoader;
 import formatters.XMLReader;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.io.*;
@@ -21,6 +22,7 @@ public class GameInstance {
     private ArrayList<Tower> towers = new ArrayList<>();
     private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
     private ArrayList<Tile> tiles;
+    private ArrayList<TowerTile> towerTiles = new ArrayList<>();
     private Position startPosition = null;
     private Direction startDirection;
     private String name;
@@ -31,6 +33,11 @@ public class GameInstance {
         this.name = map.getName();
         this.credits = map.getStartCredit();
         findStart();
+        findTowerTiles();
+        addTower(1);
+        addTower(1);
+        addTower(1);
+        addTower(1);
     }
 
     private void findStart() {
@@ -43,6 +50,15 @@ public class GameInstance {
         }
     }
 
+    private void findTowerTiles() {
+        for (Tile tile: tiles) {
+            if(tile.getClass() == TowerTile.class) {
+                towerTiles.add((TowerTile) tile);
+            }
+        }
+        System.out.println(towerTiles.size());
+    }
+
     public void update() {
         //System.out.println(creatures.get(0).getCurrentSpeed());
         moveCreatures();
@@ -52,13 +68,28 @@ public class GameInstance {
     }
 
 
-    public void addTower(int towerType, Position pos) {
-        switch (towerType) {
-            case 1:
-                towers.add(new SharpShooter(pos));
-                break;
-            default:
-                System.err.println("No tower type of that int (addTower)");
+    public void addTower(int towerType) {
+        ArrayList<TowerTile> emptyTowerTiles = new ArrayList<>();
+        int random;
+        Position pos;
+        for (TowerTile tile: towerTiles) {
+            if(!tile.isBuiltOn()) {
+                emptyTowerTiles.add(tile);
+            }
+        }
+
+        if (emptyTowerTiles.size() > 0) {
+            random = (int) (Math.random() * (emptyTowerTiles.size()));
+            TowerTile tt = emptyTowerTiles.get(random);
+            pos = tt.getCenterPos();
+            switch (towerType) {
+                case 1:
+                    towers.add(new SharpShooter(pos));
+                    tt.setBuiltOn();
+                    break;
+                default:
+                    System.err.println("No tower type of that int (addTower)");
+            }
         }
     }
 

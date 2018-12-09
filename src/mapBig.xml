@@ -37,11 +37,11 @@
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
-            <tile road="BLANK" type="BlankTile"/>
-            <tile road="BLANK" type="BlankTile"/>
-            <tile road="BLANK" type="BlankTile"/>
-            <tile road="BLANK" type="BlankTile"/>
-            <tile road="BLANK" type="BlankTile"/>
+            <tile road="BLANK" type="TowerTile"/>
+            <tile road="BLANK" type="TowerTile"/>
+            <tile road="BLANK" type="TowerTile"/>
+            <tile road="BLANK" type="TowerTile"/>
+            <tile road="BLANK" type="TowerTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
