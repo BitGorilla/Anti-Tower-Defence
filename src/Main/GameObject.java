@@ -1,7 +1,5 @@
 package Main;
 
-import javafx.geometry.Pos;
-
 import java.awt.*;
 
 public class GameObject {

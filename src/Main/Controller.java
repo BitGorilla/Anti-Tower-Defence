@@ -37,6 +37,7 @@ public class Controller {
             @Override
             public void run() {
                 gui = new GUI("Anti Tower Defence", animator, windowWidth);
+                addActionListenerUsernameInput(gui.userName.getText());
                 addSpeedDemonActionList();
                 addGrantActionList();
                 gui.show();
@@ -62,18 +63,30 @@ public class Controller {
     }
 
     private void setCreditsToGUI(){
-       // gui.setCredits(10000);
+        // gui.setCredits(10000);
     }
 
     /*private void setLevelNameInGUI(){
         gui.setLevelName(getLevelName());
     }*/
 
+    private void addActionListenerUsernameInput(String userInput){
+        ActionListener actionListUsername = (new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String data = userInput;
+                //Put username in database
+                // Set the userName Label to username
+                gui.userName.setText(data);
+            }
+        });
+    }
+
     private void addGrantActionList() {
         ActionListener actionListGrunt = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Grant button is pressed");
+                gameM.getCurrentGameInstance().addCreature(2);
 
                 // Add more grant trupps in game set up before start
             }
@@ -95,3 +108,4 @@ public class Controller {
 
 
 }
+

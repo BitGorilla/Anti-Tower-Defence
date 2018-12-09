@@ -19,6 +19,8 @@ public class GUI {
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
     private String levelName;
+    public JLabel userName;
+    private JButton inputButton;
     private JButton gruntButton;
     private JButton speedDemonButton;
     public Animator animator;
@@ -33,7 +35,7 @@ public class GUI {
         frame.setPreferredSize(new Dimension(1500, 1000));
         //levelName = setLevelName();
         levelName = "levelname";
-        this.animator = animator;
+        //animator = new Animator();
         this.windowWidth = windowWidth;
 
         // Build panels
@@ -194,9 +196,14 @@ public class GUI {
 
         JPanel userPanel = new JPanel();
 
-        JLabel userName = new JLabel("User Name");
+        userName = new JLabel("User Name");
         userName.setFont(new Font("Verdana",1,20));
         userPanel.add(userName);
+
+        JTextField userInput = new JTextField("Type in your user name");
+        inputButton = new JButton("Send");
+        userPanel.add(userInput, BorderLayout.SOUTH);
+        userPanel.add(inputButton, BorderLayout.WEST);
 
         JLabel credits = new JLabel(Integer.toString(setCredits(1000)));
         credits.setFont(new Font("Verdana",1,20));
@@ -208,12 +215,16 @@ public class GUI {
         speedDemonButton = new JButton("Add more grant trupps");
         userPanel.add(speedDemonButton);
 
-
         return userPanel;
     }
 
     public int setCredits(int credits){
         return credits;
+    }
+
+    public void addActionListenerUsernameInput(ActionListener
+                                                 actionListUsername){
+        inputButton.addActionListener(actionListUsername);
     }
 
     public void addActionListenerGrant(ActionListener actionListAddGrant){
