@@ -55,6 +55,7 @@ public class GamePanel extends JComponent {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
+
         for (GameObject obj : drawables) {
                 int x = obj.getPosition().getX();
                 int y = obj.getPosition().getY();

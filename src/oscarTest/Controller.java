@@ -18,6 +18,8 @@ public class Controller {
     private GameManager manager;
     private XMLReader reader;
     private GamePanel gamePanel;
+    private MenuPanel menuPanel;
+
 
     ActionListener startButtonPressed = e -> startUp();
     ActionListener pausPressed = e -> pausGame();
@@ -34,17 +36,16 @@ public class Controller {
                 "/Skola/15. AppJava/Projekt/Anti-Tower-Defence/src/XMLBuilder" +
                 "/Maps/mapMedium.xml")));
         manager = new GameManager(reader.getMaps(), tickRate);
-        gamePanel = new GamePanel(windowWidth/reader.getWidth(),fps);
+        gamePanel = new GamePanel(windowWidth/reader.getWidth()/2,fps);
+        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
+                addCreature1Pressed, addCreature2Pressed);
         showWindow();
         startDraw();
     }
 
     private void showWindow() {
             SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanel,
-                        new MenuPanel(startButtonPressed, pausPressed,
-                                addCreature1Pressed
-                                , addCreature2Pressed));
+                window = new Window(gamePanel, menuPanel);
                 window.showWindow();
             });
     }
@@ -71,6 +72,7 @@ public class Controller {
         t.schedule(new TimerTask() {
             @Override
             public void run() {
+                menuPanel.updateCredits(manager.getCredits());
                 gamePanel.updateObjects(manager.getGameObjectsToDraw());
                 gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                 gamePanel.updateHealthBars(manager.getHealthbarsToDraw());

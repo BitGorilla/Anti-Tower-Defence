@@ -14,6 +14,7 @@ public class GameManager {
     private Timer timer;
     private int tickRate;
     private GameInstance currentGameInstance;
+    boolean paused = true;
 
     public GameManager(ArrayList<Map> maps, int tickRate) {
         this.maps = maps;
@@ -23,12 +24,16 @@ public class GameManager {
     }
 
     public void startGame() {
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                updateGame();
-            }}, 1000, 1000/tickRate);
+        if(paused) {
+            paused = false;
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    updateGame();
+                }
+            }, 1000, 1000 / tickRate);
+        }
     }
 
     public GameInstance getCurrentGameInstance() {
@@ -36,7 +41,10 @@ public class GameManager {
     }
 
     public void stopGame() {
-        timer.cancel();
+        if(timer != null) {
+            timer.cancel();
+            paused = true;
+        }
     }
 
     public ArrayList<GameObject> getGameObjectsToDraw() {
@@ -52,13 +60,15 @@ public class GameManager {
     }
 
     public void addCreature(int type) {
-        switch (type) {
-            case 1:
-                currentGameInstance.addCreature(1);
-                break;
-            case 2:
-                currentGameInstance.addCreature(2);
-                break;
+        if(!paused) {
+            switch (type) {
+                case 1:
+                    currentGameInstance.addCreature(1);
+                    break;
+                case 2:
+                    currentGameInstance.addCreature(2);
+                    break;
+            }
         }
     }
 

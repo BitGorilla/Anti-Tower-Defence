@@ -7,6 +7,7 @@ import Tiles.*;
 import Towers.SharpShooter;
 import Towers.Tower;
 
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -99,10 +100,16 @@ public class GameInstance {
         Position pos = new Position(startPosition.getX(), startPosition.getY());
         switch (creatureType) {
             case 1:
-                creatures.add(new SpeedDemon(pos, startDirection));
+                if(credits >= SpeedDemon.COST) {
+                    creatures.add(new SpeedDemon(pos, startDirection));
+                    credits -= SpeedDemon.COST;
+                }
                 break;
             case 2:
-                creatures.add(new Grunt(pos, startDirection));
+                if(credits >= Grunt.COST) {
+                    creatures.add(new Grunt(pos, startDirection));
+                    credits -= Grunt.COST;
+                }
                 break;
             default:
                 System.err.println("No creature type of that int (addCreature)");
@@ -182,6 +189,7 @@ public class GameInstance {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
                 //TODO add score
+                credits += 100;
                 System.out.println("IN GOAL");
                 creatures.remove(creature);
             }

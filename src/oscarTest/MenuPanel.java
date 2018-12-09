@@ -6,12 +6,20 @@ import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel {
 
+    JLabel creditLabel = new JLabel();
+
     public MenuPanel(ActionListener startButtonPressed,
                      ActionListener pausPressed, ActionListener addCreature1,
                      ActionListener addCreature2) {
-        setLayout(new GridLayout(4,0));
+        setLayout(new GridLayout(5,0));
         setPreferredSize(new Dimension(200,100));
         setBackground(Color.blue);
+
+        JLabel creditLabel = new JLabel();
+        creditLabel.setHorizontalTextPosition(JLabel.CENTER);
+        creditLabel.setPreferredSize(new Dimension(100,30));
+        updateCredits(1);
+
         JButton start = new JButton();
         start.setPreferredSize(new Dimension(100,30));
         start.setText("Start");
@@ -35,5 +43,10 @@ public class MenuPanel extends JPanel {
         creature2.setText("Creature2");
         creature2.addActionListener(addCreature2);
         add(creature2);
+    }
+
+    public void updateCredits(int credit) {
+        creditLabel.setText(Integer.toString(credit));
+        add(creditLabel);
     }
 }
