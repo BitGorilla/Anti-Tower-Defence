@@ -1,0 +1,16 @@
+<maps>
+    <map>
+        <meta>
+			<name>Small Map</name>
+			<height>2</height>
+			<width>2</width>
+			<startcredit>1000</startcredit>
+		</meta>
+        <tiles>
+            <tile road="SOUTH" type="StartTile"/>
+            <tile road="EAST" type="BlankTile"/>
+            <tile road="EAST" type="BlankTile"/>
+            <tile road="EAST" type="GoalTile"/>
+        </tiles>
+    </map>
+</maps>

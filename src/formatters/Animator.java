@@ -4,6 +4,8 @@ import Main.GameObject;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Animator extends JComponent {
 
@@ -11,10 +13,8 @@ public class Animator extends JComponent {
 
     /**Constructor of class.
      *
-     * @param objects Arraylist of GameObjects to draw.
      */
-    public Animator(ArrayList<GameObject> objects){
-        drawables = objects;
+    public Animator(){
     }
 
     /**
@@ -24,6 +24,7 @@ public class Animator extends JComponent {
      */
     public void changeObjects(ArrayList<GameObject> objects){
         drawables = objects;
+        Animator.this.repaint();
     }
 
     /**
