@@ -13,7 +13,7 @@ public class Grunt extends Creature {
     public static final Image image = null;
 
     public Grunt(Position pos, Direction dir) {
-        super(pos, image, dir, SPEED);
+        super(pos, image, dir, SPEED, MAXHEALTH);
         super.setCurrentHealth(MAXHEALTH);
         resetStats();
 

@@ -1,11 +1,9 @@
 package Main;
 
 import formatters.Animator;
-import formatters.ImageLoader;
 import formatters.XMLReader;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -58,7 +56,9 @@ public class TestController {
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                animator.changeObjects(manager.getWhatToDraw());
+                animator.updateObjects(manager.getGameObjectsToDraw());
+                animator.updateLasers(manager.getLaserPositionsToDraw());
+                animator.updateHealthBars(manager.getHealthbarsToDraw());
                 animator.repaint();
             }
         }, 0, 1000/fps);

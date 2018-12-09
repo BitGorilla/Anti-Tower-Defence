@@ -11,13 +11,15 @@ public class Tower extends GameObject implements TowerInterface {
     private int damage;
     private int rateOfFire;
     private int range;
+    private Color laserColor;
 
     public Tower(Position pos, Image image, int range, int damage,
-                 int rateOfFire) {
+                 int rateOfFire, Color laserColor) {
         super(pos, image);
         this.range = range;
         this.damage = damage;
         this.rateOfFire = rateOfFire;
+        this.laserColor = laserColor;
     }
 
     @Override
@@ -54,5 +56,9 @@ public class Tower extends GameObject implements TowerInterface {
 
     public int getCooldown() {
         return cooldown;
+    }
+
+    public Color getLaserColor() {
+        return laserColor;
     }
 }

@@ -6,12 +6,7 @@ import Creatures.SpeedDemon;
 import Tiles.*;
 import Towers.SharpShooter;
 import Towers.Tower;
-import formatters.ImageLoader;
-import formatters.XMLReader;
-import javafx.geometry.Pos;
 
-import java.awt.*;
-import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -22,6 +17,7 @@ public class GameInstance {
     private ArrayList<Tower> towers = new ArrayList<>();
     private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
     private ArrayList<Tile> tiles;
+    private ArrayList<Laser> lasers = new ArrayList<>();
     private ArrayList<TowerTile> towerTiles = new ArrayList<>();
     private Position startPosition = null;
     private Direction startDirection;
@@ -42,7 +38,6 @@ public class GameInstance {
 
     private void findStart() {
         for (Tile tile: tiles) {
-            tile.getCenterPos().print();
             if(tile.getClass() == StartTile.class) {
                 startDirection = tile.getDirection();
                 startPosition = tile.getCenterPos();
@@ -56,7 +51,6 @@ public class GameInstance {
                 towerTiles.add((TowerTile) tile);
             }
         }
-        System.out.println(towerTiles.size());
     }
 
     public void update() {
@@ -117,7 +111,6 @@ public class GameInstance {
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
-                System.out.println("moving");
                 creature.move();
                 //creature.getPosition().print();
                 //WARNING ORDO WARNING jontor
@@ -155,6 +148,7 @@ public class GameInstance {
     }
 
     private void damageCreaturesIfPossible() {
+        reduceLaserLifeSpan();
         for (Tower tower: towers) {
             tower.reduceCooldown();
             if(tower.readyToShoot()) {
@@ -163,10 +157,23 @@ public class GameInstance {
                         System.out.println("FIREING AT CREATURE: " + creatures.indexOf(creature));
                         creature.setCurrentHealth(creature.getCurrentHealth() - tower.shoot());
                         deleteCreatureIfDead(creature);
+                        lasers.add(new Laser(tower.getPosition(),
+                                creature.getPosition(), tower.getLaserColor()));
                         break;
                     }
                 }
             }
+        }
+    }
+
+    private void reduceLaserLifeSpan() {
+        Laser laser;
+        for (int i = 0; i < lasers.size(); i++) {
+            laser = lasers.get(i);
+            if (laser.getLifeTime() > 0)
+                laser.reduceLifeTime();
+            else
+                lasers.remove(laser);
         }
     }
 
@@ -192,12 +199,24 @@ public class GameInstance {
         }
     }
 
-    public synchronized ArrayList<GameObject> getWhatToDraw() {
+    public synchronized ArrayList<GameObject> getGameObjectsToDraw() {
         ArrayList<GameObject> objectsToDraw = new ArrayList<>();
         objectsToDraw.addAll(tiles);
         objectsToDraw.addAll(towers);
         objectsToDraw.addAll(creatures);
         return objectsToDraw;
+    }
+
+    public synchronized ArrayList<Laser> getLaserPositionsToDraw() {
+        return lasers;
+    }
+
+    public synchronized ArrayList<Healthbar> getHealthBarsToDraw() {
+        ArrayList<Healthbar> healthbarsToDraw = new ArrayList<>();
+        for (Creature creature: creatures) {
+            healthbarsToDraw.add(creature.getHealthbar());
+        }
+        return healthbarsToDraw;
     }
 
     public synchronized int getCredits() {

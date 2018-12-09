@@ -1,13 +1,9 @@
 package Main;
 
-import formatters.ImageLoader;
 import formatters.XMLReader;
 
-import javax.imageio.ImageReader;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -41,8 +37,16 @@ public class GameManager {
         timer.cancel();
     }
 
-    public ArrayList<GameObject> getWhatToDraw() {
-        return currentGameInstance.getWhatToDraw();
+    public ArrayList<GameObject> getGameObjectsToDraw() {
+        return currentGameInstance.getGameObjectsToDraw();
+    }
+
+    public ArrayList<Laser> getLaserPositionsToDraw() {
+        return currentGameInstance.getLaserPositionsToDraw();
+    }
+
+    public ArrayList<Healthbar> getHealthbarsToDraw() {
+        return currentGameInstance.getHealthBarsToDraw();
     }
 
     public int getCredits() {
@@ -66,7 +70,7 @@ public class GameManager {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                ArrayList<GameObject> objects = GM.getWhatToDraw();
+                ArrayList<GameObject> objects = GM.getGameObjectsToDraw();
                 objects.get(objects.size()-1).getPosition().print();
                 //GM.currentGameInstance.addCreature(2);
             }}, 1000, 1000/TICKSPERSECOND);

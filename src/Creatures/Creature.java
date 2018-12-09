@@ -2,6 +2,7 @@ package Creatures;
 
 import Main.Direction;
 import Main.GameObject;
+import Main.Healthbar;
 import Main.Position;
 
 import java.awt.*;
@@ -15,13 +16,15 @@ public class Creature extends GameObject implements CreatureInterface {
     private int currentSpeed;
     private boolean goaled;
     private int defaultSpeed;
+    private Healthbar healthbar;
 
     public Creature(Position position, Image image, Direction direction,
-                    int defaultSpeed) {
+                    int defaultSpeed, int maxHealth) {
         super(position, image);
         this.defaultSpeed = defaultSpeed;
         this.direction = direction;
         setCurrentSpeed(defaultSpeed);
+        healthbar = new Healthbar(maxHealth, maxHealth, position);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class Creature extends GameObject implements CreatureInterface {
         currentHealth = newHealth;
         if(currentHealth < 0)
             currentHealth = 0;
+        healthbar.setCurrentHealth(currentHealth);
     }
 
     @Override
@@ -59,6 +63,7 @@ public class Creature extends GameObject implements CreatureInterface {
     @Override
     public void move() {
         getPosition().addVector(direction.asVector());
+        healthbar.setPosition(getPosition());
     }
 
     public void setDefaultStats() {
@@ -73,6 +78,10 @@ public class Creature extends GameObject implements CreatureInterface {
     @Override
     public boolean inGoal() {
         return goaled;
+    }
+
+    public Healthbar getHealthbar() {
+        return healthbar;
     }
 
     public void printStats() {

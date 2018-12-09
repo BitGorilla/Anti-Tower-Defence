@@ -1,6 +1,9 @@
 package formatters;
-import Creatures.Creature;
 import Main.GameObject;
+import Main.Healthbar;
+import Main.Laser;
+import Main.Position;
+import javafx.geometry.Pos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +14,8 @@ import java.util.TimerTask;
 public class Animator extends JComponent {
 
     private ArrayList<GameObject> drawables;
+    private ArrayList<Laser> lasers;
+    private ArrayList<Healthbar> healthbars;
     private int offset;
     private int tickPerSecond;
 
@@ -27,8 +32,16 @@ public class Animator extends JComponent {
      *
      * @param objects ArrayList of GameObjects
      */
-    public void changeObjects(ArrayList<GameObject> objects){
+    public void updateObjects(ArrayList<GameObject> objects){
         drawables = objects;
+    }
+
+    public void updateLasers(ArrayList<Laser> lasers){
+        this.lasers = lasers;
+    }
+
+    public void updateHealthBars(ArrayList<Healthbar> healthbars) {
+        this.healthbars = healthbars;
     }
 
     /**
@@ -45,6 +58,26 @@ public class Animator extends JComponent {
             int x = obj.getPosition().getX();
             int y = obj.getPosition().getY();
             g2d.drawImage(obj.getImage(), x-offset, y-offset,null);
+        }
+
+        for (int i = 0; i < lasers.size(); i += 2) {
+            Position lineStart = lasers.get(i).getLineStart();
+            Position lineEnd = lasers.get(i).getLineEnd();
+            g.setColor(lasers.get(i).getColor());
+            g2d.drawLine(lineStart.getX(),lineStart.getY(),lineEnd.getX(),
+                    lineEnd.getY());
+        }
+
+        for (int i = 0; i < healthbars.size(); i++) {
+            Position position = healthbars.get(i).getPosition();
+            g.setColor(healthbars.get(i).getMaxHealthColor());
+            g2d.fillRect(position.getX(),position.getY(),
+                    healthbars.get(i).getMaxHealthWidth(),
+                    healthbars.get(i).getMaxHealthHeight());
+            g.setColor(healthbars.get(i).getCurrentHealthColor());
+            g2d.fillRect(position.getX(),position.getY(),
+                    healthbars.get(i).getCurrentHealthWidth(),
+                    healthbars.get(i).getCurrentHealthHeight());
         }
     }
 
