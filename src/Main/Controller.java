@@ -6,12 +6,13 @@ import formatters.XMLReader;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 
 public class Controller {
 
-    private GUI gui;
+    private GameFieldTest gui;
     private GameManager gameM;
     private String levelName;
     private int windowWidth;
@@ -20,14 +21,10 @@ public class Controller {
     private Animator animator;
 
     public Controller(){
+        XMLReader reader = new XMLReader(100);
+        //reader.setSource(new FileInputStream(new File("")));
         createGUI();
-        this.reader = createXMLReader();
-        //this.map = map.add(reader.buildMap());
-        this.gameM = createGameManager(map);
-        //addGrantActionList(gui);
-        this.levelName = getLevelName();
-        this.windowWidth = 1000;
-        //setLevelNameInGUI();
+
     }
 
     public void createGUI(){
@@ -35,62 +32,13 @@ public class Controller {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                gui = new GUI("Anti Tower Defence");
-                addSpeedDemonActionList();
-                addGrantActionList();
+                gui = new GameFieldTest();
+
                 gui.show();
             }
         });
     }
 
-    public XMLReader createXMLReader(){
-        XMLReader reader = new XMLReader(windowWidth);
-        return reader;
-    }
-
-    public GameManager createGameManager(ArrayList<Map> maps){
-        GameManager gm = new GameManager(maps);
-        return gm;
-    }
-
-    private String getLevelName(){
-        String str = "Levelname";
-        //reader.
-        return str;
-        //return map.getName();
-    }
-
-    private void setCreditsToGUI(){
-       // gui.setCredits(10000);
-    }
-
-    /*private void setLevelNameInGUI(){
-        gui.setLevelName(getLevelName());
-    }*/
-
-    private void addGrantActionList() {
-        ActionListener actionListGrunt = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Grant button is pressed");
-
-                // Add more grant trupps in game set up before start
-            }
-        };
-        gui.addActionListenerGrant(actionListGrunt);
-    }
-
-    private void addSpeedDemonActionList() {
-        ActionListener actionListSpeedDemon = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Speed demon button is pressed");
-
-                // Add more speed demon trupps in game set up before start
-            }
-        };
-        gui.addActionListenerSpeed(actionListSpeedDemon);
-    }
 
 
 }
