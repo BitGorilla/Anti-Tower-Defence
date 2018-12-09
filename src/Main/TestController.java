@@ -13,7 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Controller {
+public class TestController {
 
     private GameFieldTest gui;
     private GameManager manager;
@@ -23,7 +23,7 @@ public class Controller {
     private int fps = 60;
     private int windowWidth = 700;
 
-    public Controller() throws IOException {
+    public TestController() throws IOException {
         reader = new XMLReader(windowWidth);
         reader.setSource(new FileInputStream(new File("/Users/martinsjolund" +
                 "/IdeaProjects/Anti-Tower-Defence/src/mapBig.xml")));
