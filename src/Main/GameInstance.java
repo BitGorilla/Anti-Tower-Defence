@@ -40,7 +40,7 @@ public class GameInstance {
     }
 
     public void update() {
-        //creatures.get(0).getPosition().print();
+        //System.out.println(creatures.get(0).getCurrentSpeed());
         moveCreatures();
         affectCreatureOnTile();
         handleCreaturesInGoal();
@@ -75,6 +75,7 @@ public class GameInstance {
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
+                System.out.println("moving");
                 creature.move();
                 //creature.getPosition().print();
                 //WARNING ORDO WARNING jontor
@@ -93,7 +94,6 @@ public class GameInstance {
 
     private void affectCreatureOnTile() {
         for (Creature creature : creatures) {
-            creature.setCurrentSpeed(10);
             for (Tile tile : tiles) {
                 if (tile.positionOnTile(creature.getPosition())) {
                     try {
