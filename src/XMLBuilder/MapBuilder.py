@@ -1,5 +1,5 @@
-template = open("Templates/templateBig.txt", "r")
-f = open("Maps/mapBig.xml", "w+")
+template = open("Templates/templateBigWithTowers.txt", "r")
+f = open("Maps/mapBigWithTowers.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
@@ -56,6 +56,8 @@ while i < len(template):
 		f.write("GoalTile")
 	elif template[i+1] == "b":
 		f.write("BlankTile")
+	elif template[i+1] == "t":
+		f.write("TowerTile")
 	elif template[i+1] == "s":
 		f.write("SlowTile")
 	else:
