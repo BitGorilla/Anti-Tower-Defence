@@ -33,6 +33,10 @@ public class GameManager {
             }}, 1000, 1000/TICKSPERSECOND);
     }
 
+    public GameInstance getCurrentGameInstance() {
+        return currentGameInstance;
+    }
+
     public void stopGame() {
         timer.cancel();
     }
@@ -49,7 +53,7 @@ public class GameManager {
         currentGameInstance.update();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         XMLReader reader = new XMLReader(1000);
         reader.setSource(new FileInputStream(new File(
                 "XMLBuilder/Maps/mapBig.xml")));
@@ -62,9 +66,9 @@ public class GameManager {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-               ArrayList<GameObject> objects = GM.getWhatToDraw();
+                ArrayList<GameObject> objects = GM.getWhatToDraw();
                 objects.get(objects.size()-1).getPosition().print();
-                GM.currentGameInstance.addCreature(2);
+                //GM.currentGameInstance.addCreature(2);
             }}, 1000, 1000/TICKSPERSECOND);
     }
 }
