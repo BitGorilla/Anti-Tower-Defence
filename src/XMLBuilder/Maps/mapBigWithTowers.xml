@@ -120,7 +120,7 @@
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
-            <tile road="SOUTH" type="BlankTile"/>
+            <tile road="SOUTH" type="SlowTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>

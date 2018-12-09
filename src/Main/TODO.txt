@@ -1,0 +1,9 @@
+1. Healthbars
+2. lasers/projectiles
+3. add creature
+4. switch tiledirection
+5. add switchdirection button to GUI
+6. teleporter creature
+7. gam over menu/next level
+8. save score
+9.

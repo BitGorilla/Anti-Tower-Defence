@@ -61,10 +61,17 @@ public class GameInstance {
 
     public void update() {
         //System.out.println(creatures.get(0).getCurrentSpeed());
-        moveCreatures();
+        resetCreatureStats();
         affectCreatureOnTile();
+        moveCreatures();
         handleCreaturesInGoal();
         damageCreaturesIfPossible();
+    }
+
+    private void resetCreatureStats() {
+        for (Creature creature: creatures) {
+            creature.setDefaultStats();
+        }
     }
 
 

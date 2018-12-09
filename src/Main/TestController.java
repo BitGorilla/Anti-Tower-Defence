@@ -21,11 +21,13 @@ public class TestController {
     private Animator animator;
 
     private int fps = 60;
-    private int windowWidth = 600;
+    private int windowWidth = 700;
 
     public TestController() throws IOException {
         reader = new XMLReader(windowWidth);
-        reader.setSource(new FileInputStream(new File("/Users/jontor/GoogleDrive/universitet/AppJava/projekt/Anti-Tower-Defence/src/XMLBuilder/Maps/mapBigWithTowers.xml")));
+        reader.setSource(new FileInputStream(new File("/Users/oscar/Documents" +
+                "/Skola/15. AppJava/Projekt/Anti-Tower-Defence/src/XMLBuilder" +
+                "/Maps/mapBigWithTowers.xml")));
         manager = new GameManager(reader.getMaps());
 
         animator = new Animator(calcOffset(), fps);
@@ -61,6 +63,4 @@ public class TestController {
             }
         }, 0, 1000/fps);
     }
-
-
 }

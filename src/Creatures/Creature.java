@@ -14,10 +14,14 @@ public class Creature extends GameObject implements CreatureInterface {
     private int currentHealth;
     private int currentSpeed;
     private boolean goaled;
+    private int defaultSpeed;
 
-    public Creature(Position position, Image image, Direction direction) {
+    public Creature(Position position, Image image, Direction direction,
+                    int defaultSpeed) {
         super(position, image);
+        this.defaultSpeed = defaultSpeed;
         this.direction = direction;
+        setCurrentSpeed(defaultSpeed);
     }
 
     @Override
@@ -55,6 +59,10 @@ public class Creature extends GameObject implements CreatureInterface {
     @Override
     public void move() {
         getPosition().addVector(direction.asVector());
+    }
+
+    public void setDefaultStats() {
+        currentSpeed = defaultSpeed;
     }
 
     @Override

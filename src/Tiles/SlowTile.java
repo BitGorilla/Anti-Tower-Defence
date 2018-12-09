@@ -15,6 +15,10 @@ public class SlowTile extends Tile implements TileInterface {
 
     @Override
     public void landOn(Creature creature) {
-        //creature.setCurrentSpeed(creature.getCurrentSpeed()/2);
+        int speed = creature.getCurrentSpeed()/2;
+        if (speed > 0)
+            creature.setCurrentSpeed(speed);
+        else
+            creature.setCurrentSpeed(1);
     }
 }
