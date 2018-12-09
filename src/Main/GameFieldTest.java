@@ -9,9 +9,10 @@ public class GameFieldTest {
     JFrame frame;
     JPanel panel;
 
-    public GameFieldTest(){
+    public GameFieldTest(int windowWidth){
         frame = new JFrame("Test");
-        frame.setSize(300, 300);
+        frame.setPreferredSize(new Dimension(windowWidth,windowWidth));
+
 
         //panel = new JPanel();
         //panel.setSize(100, 100);

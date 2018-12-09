@@ -1,4 +1,5 @@
 package formatters;
+import Creatures.Creature;
 import Main.GameObject;
 
 import javax.swing.*;
@@ -10,11 +11,15 @@ import java.util.TimerTask;
 public class Animator extends JComponent {
 
     private ArrayList<GameObject> drawables;
+    private int offset;
+    private int tickPerSecond;
 
     /**Constructor of class.
      *
      */
-    public Animator(){
+    public Animator(int offset, int fps){
+        this.offset = offset;
+        tickPerSecond = fps;
     }
 
     /**
@@ -24,7 +29,6 @@ public class Animator extends JComponent {
      */
     public void changeObjects(ArrayList<GameObject> objects){
         drawables = objects;
-        Animator.this.repaint();
     }
 
     /**
@@ -40,7 +44,17 @@ public class Animator extends JComponent {
         for(GameObject obj:drawables) {
             int x = obj.getPosition().getX();
             int y = obj.getPosition().getY();
-            g2d.drawImage(obj.getImage(), x, y,null);
+            g2d.drawImage(obj.getImage(), x-offset, y-offset,null);
         }
+    }
+
+    public void startTicker(){
+        java.util.Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                repaint();
+            }
+        }, 0, 1000/tickPerSecond);
     }
 }

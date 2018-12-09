@@ -52,6 +52,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
 
         height = Integer.parseInt(getValue(getNodeByTag(HEIGHT,metaNode)));
         width = Integer.parseInt(getValue(getNodeByTag(WIDTH,metaNode)));
+        ImageLoader.getImageLoader().setScale(gameWindowWidth/width);
         name = getValue(getNodeByTag(NAME,metaNode));
         startCredit = Integer.parseInt(getValue(getNodeByTag(STARTCREDIT,
                 metaNode)));
@@ -116,7 +117,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         sb.append(road);
         sb.append(type);
         ImageLoader loader = ImageLoader.getImageLoader();
-        loader.setScale(10);
         //Filetype?
         if(road.equals("BLANK"))
             return loader.getImage("blank.png");
@@ -199,5 +199,9 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         } catch (SAXException e) {
             throw new IOException("Not correct format");
         }
+    }
+
+    public int getWidth(){
+        return width;
     }
 }

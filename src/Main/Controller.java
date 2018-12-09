@@ -5,13 +5,10 @@ import formatters.ImageLoader;
 import formatters.XMLReader;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,24 +17,23 @@ public class Controller {
 
     private GameFieldTest gui;
     private GameManager manager;
-    private String levelName;
-    private int windowWidth;
     private XMLReader reader;
-    private ArrayList<Map> map;
     private Animator animator;
 
-    public Controller() throws IOException {
-        animator = new Animator();
-        ImageLoader.getImageLoader().setScale(150);
+    private int fps = 60;
+    private int windowWidth = 700;
 
-        reader = new XMLReader(300);
-        reader.setSource(new FileInputStream(new File("/Users/martinsjolund/IdeaProjects/Anti-Tower-Defence/src/mapSmall.xml")));
+    public Controller() throws IOException {
+        reader = new XMLReader(windowWidth);
+        reader.setSource(new FileInputStream(new File("/Users/martinsjolund" +
+                "/IdeaProjects/Anti-Tower-Defence/src/mapBig.xml")));
         manager = new GameManager(reader.getMaps());
-        animator.changeObjects(manager.getWhatToDraw());
+
+        animator = new Animator(calcOffset(), fps);
 
         createGUI();
         manager.startGame();
-        ticker();
+        startDraw();
     }
 
     public void createGUI(){
@@ -45,23 +41,27 @@ public class Controller {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                gui = new GameFieldTest();
+                gui = new GameFieldTest(windowWidth);
                 gui.setAnimator(animator);
                 gui.show();
             }
         });
     }
 
-    private void ticker(){
+    private int calcOffset(){
+        return windowWidth/reader.getWidth()/2;
+    }
+
+    public void startDraw(){
         java.util.Timer t = new Timer();
         t.schedule(new TimerTask() {
             @Override
             public void run() {
                 animator.changeObjects(manager.getWhatToDraw());
+                animator.repaint();
             }
-        }, 0, 200);
+        }, 0, 1000/fps);
     }
-
 
 
 }

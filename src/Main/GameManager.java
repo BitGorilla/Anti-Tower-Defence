@@ -16,7 +16,7 @@ import java.util.TimerTask;
 public class GameManager {
     private ArrayList<Map> maps;
     private Timer timer = new Timer();
-    private static final int TICKSPERSECOND = 1;
+    private static final int TICKSPERSECOND = 30;
     private GameInstance currentGameInstance;
 
     public GameManager(ArrayList<Map> maps) {
