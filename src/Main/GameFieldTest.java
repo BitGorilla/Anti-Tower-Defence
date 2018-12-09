@@ -11,13 +11,7 @@ public class GameFieldTest {
 
     public GameFieldTest(int windowWidth){
         frame = new JFrame("Test");
-        frame.setPreferredSize(new Dimension(windowWidth,windowWidth));
-
-
-        //panel = new JPanel();
-        //panel.setSize(100, 100);
-
-        //frame.add(panel, BorderLayout.CENTER);
+        frame.setPreferredSize(new Dimension(windowWidth, windowWidth));
     }
 
     public void setAnimator(Animator a){

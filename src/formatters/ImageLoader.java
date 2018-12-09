@@ -26,7 +26,7 @@ public class ImageLoader {
         else {
             try {
                 Image i = ImageIO.read(this.getClass().getResourceAsStream(
-                                "/images/testImages/" + s));
+                                "/images/newImages/" + s));
                 i=i.getScaledInstance(scale, scale, Image.SCALE_SMOOTH);
                 imageStorage.put(s, i);
                 return i;

@@ -1,5 +1,5 @@
-template = open("Templates/templateBigWithTowers.txt", "r")
-f = open("Maps/mapBigWithTowers.xml", "w+")
+template = open("Templates/templateMedium.txt", "r")
+f = open("Maps/mapMedium.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")

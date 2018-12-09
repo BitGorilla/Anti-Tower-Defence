@@ -19,6 +19,7 @@ public class TestController {
     private Animator animator;
 
     private int fps = 60;
+    private int tickRate = 30;
     private int windowWidth = 700;
 
     public TestController() throws IOException {
@@ -26,7 +27,7 @@ public class TestController {
         reader.setSource(new FileInputStream(new File("/Users/oscar/Documents" +
                 "/Skola/15. AppJava/Projekt/Anti-Tower-Defence/src/XMLBuilder" +
                 "/Maps/mapBigWithTowers.xml")));
-        manager = new GameManager(reader.getMaps());
+        manager = new GameManager(reader.getMaps(), tickRate);
 
         animator = new Animator(calcOffset(), fps);
 

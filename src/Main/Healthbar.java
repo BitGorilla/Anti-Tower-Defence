@@ -10,8 +10,8 @@ public class Healthbar {
     private int maxHealthHeight = 5;
     private int currentHealthHeight = 5;
     private int offset = 20;
-    private Color maxHealthColor = Color.red;
-    private Color currentHealthColor = Color.green;
+    private Color maxHealthColor = Color.black;
+    private Color currentHealthColor = Color.red;
 
     public Healthbar(int maxHealth, int currentHealth, Position position) {
         this.maxHealth = maxHealth;
@@ -42,7 +42,6 @@ public class Healthbar {
     }
 
     public int getCurrentHealthWidth() {
-        System.out.println(maxHealth);
         return (int) ((double) currentHealth / (double) maxHealth * (double) maxHealthWidth);
     }
 

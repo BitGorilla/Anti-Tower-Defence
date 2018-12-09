@@ -11,22 +11,24 @@ import java.util.TimerTask;
 
 public class GameManager {
     private ArrayList<Map> maps;
-    private Timer timer = new Timer();
-    private static final int TICKSPERSECOND = 30;
+    private Timer timer;
+    private int tickRate;
     private GameInstance currentGameInstance;
 
-    public GameManager(ArrayList<Map> maps) {
+    public GameManager(ArrayList<Map> maps, int tickRate) {
         this.maps = maps;
+        //30
+        this.tickRate = tickRate;
         currentGameInstance = new GameInstance(maps.get(0));
     }
 
     public void startGame() {
-        currentGameInstance.addCreature(1);
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 updateGame();
-            }}, 1000, 1000/TICKSPERSECOND);
+            }}, 1000, 1000/tickRate);
     }
 
     public GameInstance getCurrentGameInstance() {
@@ -49,6 +51,17 @@ public class GameManager {
         return currentGameInstance.getHealthBarsToDraw();
     }
 
+    public void addCreature(int type) {
+        switch (type) {
+            case 1:
+                currentGameInstance.addCreature(1);
+                break;
+            case 2:
+                currentGameInstance.addCreature(2);
+                break;
+        }
+    }
+
     public int getCredits() {
         return currentGameInstance.getCredits();
     }
@@ -62,7 +75,7 @@ public class GameManager {
         reader.setSource(new FileInputStream(new File(
                 "XMLBuilder/Maps/mapBig.xml")));
         ArrayList<Map> maps = reader.getMaps();
-        GameManager GM = new GameManager(maps);
+        GameManager GM = new GameManager(maps,10);
         GM.startGame();
         GM.currentGameInstance.addCreature(1);
 
@@ -73,6 +86,6 @@ public class GameManager {
                 ArrayList<GameObject> objects = GM.getGameObjectsToDraw();
                 objects.get(objects.size()-1).getPosition().print();
                 //GM.currentGameInstance.addCreature(2);
-            }}, 1000, 1000/TICKSPERSECOND);
+            }}, 1000, 1000);
     }
 }

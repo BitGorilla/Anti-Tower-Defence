@@ -34,6 +34,7 @@ public class GameInstance {
         addTower(1);
         addTower(1);
         addTower(1);
+        update();
     }
 
     private void findStart() {
