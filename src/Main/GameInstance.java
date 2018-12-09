@@ -31,7 +31,7 @@ public class GameInstance {
         this.name = map.getName();
         this.credits = map.getStartCredit();
         for (Tile tile: tiles) {
-            tile.getCenterPos().print();
+            //tile.getCenterPos().print();
             if(tile.getClass() == StartTile.class) {
                 startDirection = tile.getDirection();
                 startPosition = tile.getCenterPos();
@@ -40,7 +40,6 @@ public class GameInstance {
     }
 
     public void update() {
-        //creatures.get(0).getPosition().print();
         moveCreatures();
         affectCreatureOnTile();
         handleCreaturesInGoal();
