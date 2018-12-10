@@ -17,7 +17,7 @@ public class Window extends JFrame {
         add(layeredPane);
         //add(gamePanel, BorderLayout.CENTER);
         //add(flipperPanel);
-        setPreferredSize(new Dimension(900,700));
+        setPreferredSize(new Dimension(900,800));
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();

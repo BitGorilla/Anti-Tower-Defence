@@ -40,7 +40,7 @@ public class Controller {
     public Controller() throws IOException {
         reader = new XMLReader(gameWidth);
         reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                "/maps/mapFlipper.xml")));
+                "/maps/mapBig.xml")));
         manager = new GameManager(reader.getMaps(), tickRate);
         currentGameInstance = manager.getCurrentGameInstance();
         flipperTilePositions = currentGameInstance.getFlipperTilePositions();
@@ -82,11 +82,13 @@ public class Controller {
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                menuPanel.updateCredits(currentGameInstance.getCredits());
-                gamePanel.updateObjects(currentGameInstance.getGameObjectsToDraw());
-                gamePanel.updateLasers(currentGameInstance.getLaserPositionsToDraw());
-                gamePanel.updateHealthBars(currentGameInstance.getHealthBarsToDraw());
-                gamePanel.repaint();
+                SwingUtilities.invokeLater(()-> {
+                    menuPanel.updateCredits(currentGameInstance.getCredits());
+                    gamePanel.updateObjects(currentGameInstance.getGameObjectsToDraw());
+                    gamePanel.updateLasers(currentGameInstance.getLaserPositionsToDraw());
+                    gamePanel.updateHealthBars(currentGameInstance.getHealthBarsToDraw());
+                    gamePanel.repaint();
+                });
             }
         }, 10, 1000/fps);
     }

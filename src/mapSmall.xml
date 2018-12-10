@@ -8,7 +8,7 @@
 		</meta>
         <tiles>
             <tile road="SOUTH" type="StartTile"/>
-            <tile road="EAST" type="BlankTile"/>
+            <tile road="EAST" type="TowerTile"/>
             <tile road="EAST" type="BlankTile"/>
             <tile road="EAST" type="GoalTile"/>
         </tiles>
