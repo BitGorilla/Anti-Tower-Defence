@@ -32,6 +32,10 @@ public class Creature extends GameObject implements CreatureInterface {
         this.direction = direction;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     @Override
     public int getCurrentHealth() {
         return currentHealth;
