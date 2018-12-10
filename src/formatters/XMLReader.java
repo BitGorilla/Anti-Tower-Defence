@@ -32,6 +32,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         this.gameWindowWidth = gameWindowWidth;
     }
 
+    //TODO remove method?
     private String getTagValue(String tag, Element element){
         NodeList nlList =
                 element.getElementsByTagName(tag).item(0).getChildNodes();
@@ -58,6 +59,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                 metaNode)));
     }
 
+    //TODO remove method?
     private void readTileRoads(Node tilesNode) {
         for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
             Node tempNode = tilesNode.getChildNodes().item(j);
@@ -133,6 +135,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
+    //TODO remove method?
     private void readTileTypes(Node tilesNode) {
         for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
             Node tempNode = tilesNode.getChildNodes().item(j);
