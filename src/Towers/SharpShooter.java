@@ -7,7 +7,7 @@ import java.awt.*;
 
 
 public class SharpShooter extends Tower {
-    public static final int RANGE = 100;
+    public static final int RANGE = 10000;
     public static final int DAMAGE = 10;
     public static final int RATEOFFIRE = 20;
     public static final Color COLOR = Color.magenta;

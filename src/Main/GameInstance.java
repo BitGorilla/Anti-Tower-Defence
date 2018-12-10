@@ -38,6 +38,7 @@ public class GameInstance {
         addTower(1);
         addTower(1);
         addTower(1);
+
         update();
     }
 
@@ -70,7 +71,6 @@ public class GameInstance {
     }
 
     public void update() {
-        //System.out.println(creatures.get(0).getCurrentSpeed());
         resetCreatureStats();
         affectCreatureOnTile();
         moveCreatures();
