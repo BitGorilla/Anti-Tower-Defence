@@ -43,4 +43,8 @@ public class Tile extends GameObject {
     public Position getLowerRight() {
         return lowerRight;
     }
+
+    public void setDirection(Direction direction){
+        this.direction = direction;
+    }
 }
