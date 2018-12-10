@@ -2,7 +2,7 @@ package Main;
 
 /**
  * Class with the purpose to calculate the center position of a
- * game field tile. Also calculates the maximum and minimum  x and y values
+ * game field tile. Also calculates the maximum and minimum x and y values
  * for the tile.
  *
  */

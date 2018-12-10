@@ -2,6 +2,7 @@ package Main;
 
 import Creatures.Creature;
 import Creatures.Grunt;
+import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
 import Tiles.*;
 import Towers.SharpShooter;
@@ -18,6 +19,7 @@ public class GameInstance {
 
     private ArrayList<Tower> towers = new ArrayList<>();
     private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
+    private PortalusTotalus portalusTotalus;
     private ArrayList<Tile> tiles;
     private ArrayList<Laser> lasers = new ArrayList<>();
     private ArrayList<TowerTile> towerTiles = new ArrayList<>();
@@ -36,6 +38,7 @@ public class GameInstance {
         addTower(1);
         addTower(1);
         addTower(1);
+
         update();
     }
 
@@ -68,7 +71,6 @@ public class GameInstance {
     }
 
     public void update() {
-        //System.out.println(creatures.get(0).getCurrentSpeed());
         resetCreatureStats();
         affectCreatureOnTile();
         moveCreatures();
@@ -123,6 +125,11 @@ public class GameInstance {
                     credits -= Grunt.COST;
                 }
                 break;
+            case 3:
+                if(credits >= PortalusTotalus.COST && portalusTotalus == null){
+                    portalusTotalus = (new PortalusTotalus(pos, startDirection));
+                    creatures.add(portalusTotalus);
+                }
             default:
                 System.err.println("No creature type of that int (addCreature)");
         }
@@ -132,11 +139,27 @@ public class GameInstance {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
                 creature.move();
-                //creature.getPosition().print();
-                //WARNING ORDO WARNING jontor
                 changeDirectionIfNeeded(creature);
             }
         }
+        movePortalusTotalusers();
+
+    }
+
+    private void movePortalusTotalusers(){
+        if(portalusTotalus != null){
+            for (int i = 0; i < PortalusTotalus.SPEED; i++) {
+                portalusTotalus.move();
+                changeDirectionIfNeeded(portalusTotalus);
+                if(portalusTotalus.getTeleportCountDown() == 0){
+                    tiles.add(portalusTotalus.createExitTeleporterTile());
+                }
+            }
+        }
+    }
+
+    public void placePortal(){
+        tiles.add(portalusTotalus.createEntryTeleporterTile());
     }
 
     private void changeDirectionIfNeeded(Creature creature) {
