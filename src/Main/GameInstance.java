@@ -120,6 +120,11 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Adds creature to the list of creatures.
+     *
+     * @param creatureType Type of creature to add.
+     */
     public void addCreature(int creatureType) {
         Position pos = new Position(startPosition.getX(), startPosition.getY());
         switch (creatureType) {
@@ -140,6 +145,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Moves all creatures.
+     */
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
@@ -151,6 +159,11 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Changes direction of the creature if it's in the center of a tile.
+     *
+     * @param creature The creature to change position for.
+     */
     private void changeDirectionIfNeeded(Creature creature) {
         for (Tile tile: tiles) {
             if (creature.getPosition().equals(tile.getCenterPos())) {
@@ -159,6 +172,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Affects the creature with the tiles effect.
+     */
     private void affectCreatureOnTile() {
         for (Creature creature : creatures) {
             for (Tile tile : tiles) {
@@ -179,6 +195,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Damages creatures in range of the towers.
+     */
     private void damageCreaturesIfPossible() {
         reduceLaserLifeSpan();
         for (Tower tower: towers) {
@@ -198,6 +217,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * TODO comment purpose
+     */
     private void reduceLaserLifeSpan() {
         Laser laser;
         for (int i = 0; i < lasers.size(); i++) {
@@ -209,6 +231,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Handles what happens when a creature has reach its goal.
+     */
     private void handleCreaturesInGoal() {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
@@ -220,11 +245,16 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Deletes a creature if its dead.
+     * @param creature The creature to delete.
+     */
     private void deleteCreatureIfDead(Creature creature) {
         if(creature.isDead())
             creatures.remove(creature);
     }
 
+    //TODO remove method?
     public void printAll() {
         for (Creature creature: creatures) {
             creature.printStats();
@@ -232,6 +262,11 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Returns a list of GameObjects to draw.
+     *
+     * @return List of GameObjects.
+     */
     public synchronized ArrayList<GameObject> getGameObjectsToDraw() {
         ArrayList<GameObject> objectsToDraw = new ArrayList<>();
         objectsToDraw.addAll(tiles);
@@ -240,10 +275,18 @@ public class GameInstance {
         return objectsToDraw;
     }
 
+    /**
+     * Returns a list of Laser to draw.
+     * @return A list of Laser.
+     */
     public synchronized ArrayList<Laser> getLaserPositionsToDraw() {
         return lasers;
     }
 
+    /**
+     * Returns a list of Healthbar to draw.
+     * @return A list of Healthbar.
+     */
     public synchronized ArrayList<Healthbar> getHealthBarsToDraw() {
         ArrayList<Healthbar> healthbarsToDraw = new ArrayList<>();
         for (Creature creature: creatures) {
@@ -252,6 +295,9 @@ public class GameInstance {
         return healthbarsToDraw;
     }
 
+    /**
+     * @return The current credits of the game.
+     */
     public synchronized int getCredits() {
         return credits;
     }
