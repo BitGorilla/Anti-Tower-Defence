@@ -2,14 +2,33 @@ package Main;
 
 import java.io.IOException;
 
-/**
- * Created by Linnea on 2018-11-27.
- */
+
 public class AntiTowerDefence {
 
     public static void main( String[] args ) throws IOException {
 
-        new TestController();
+
+        //new TestController();
     }
 
+        /*Controller2 controller = new Controller2();
+        XMLReader reader = controller.createXMLReader();
+        reader.setSource(new FileInputStream(new File(
+                "XMLBuilder/Maps/mapBig.xml")));
+
+        GameManager gm = controller.createGameManager(reader.getMaps());
+        gm.startGame();
+
+        while (true) {
+            if (!gm.getWhatToDraw().isEmpty())
+                gm.getWhatToDraw().get(0).getPosition().print();
+        }*/
+
+    // new ControllerGUI();
+
+
 }
+
+
+
+
