@@ -1,17 +1,14 @@
 package oscarTest;
 
-import Main.GameInstance;
 import Main.GameManager;
-import Main.Position;
+import formatters.Animator;
 import formatters.XMLReader;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,40 +19,32 @@ public class Controller {
     private XMLReader reader;
     private GamePanel gamePanel;
     private MenuPanel menuPanel;
-    private FlipperPanel flipperPanel;
-    private GameInstance currentGameInstance;
 
 
     ActionListener startButtonPressed = e -> startUp();
     ActionListener pausPressed = e -> pausGame();
     ActionListener addCreature1Pressed = e -> addCreature1();
     ActionListener addCreature2Pressed = e -> addCreature2();
-    ActionListener flipperPressed = e -> flipFlipperTile(e);
 
     private int tickRate = 30;
     private int fps = 60;
-    private int gameWidth = 700;
-    private ArrayList<Position> flipperTilePositions;
+    private int windowWidth = 700;
 
     public Controller() throws IOException {
-        reader = new XMLReader(gameWidth);
+        reader = new XMLReader(windowWidth);
         reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                "/maps/mapFlipper.xml")));
+                "/Maps/mapMedium.xml")));
         manager = new GameManager(reader.getMaps(), tickRate);
-        currentGameInstance = manager.getCurrentGameInstance();
-        flipperTilePositions = currentGameInstance.getFlipperTilePositions();
-        gamePanel = new GamePanel(gameWidth /reader.getWidth()/2,fps, gameWidth);
+        gamePanel = new GamePanel(windowWidth/reader.getWidth()/2,fps);
         menuPanel = new MenuPanel(startButtonPressed, pausPressed,
                 addCreature1Pressed, addCreature2Pressed);
-        flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
-                gameWidth, gameWidth /reader.getWidth());
         showWindow();
         startDraw();
     }
 
     private void showWindow() {
             SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanel, menuPanel, flipperPanel);
+                window = new Window(gamePanel, menuPanel);
                 window.showWindow();
             });
     }
@@ -70,11 +59,22 @@ public class Controller {
     }
 
     private void addCreature1() {
-        new Thread (()-> currentGameInstance.addCreature(1)).start();
+
+        class addCreatureWorker extends SwingWorker<Integer,Integer>{
+
+            @Override
+            protected Integer doInBackground() throws Exception {
+                Thread.sleep(3000);
+                manager.addCreature(1);
+                return 1;
+
+            }
+        }
+        new addCreatureWorker().execute();
     }
 
     private void addCreature2() {
-        currentGameInstance.addCreature(2);
+        manager.addCreature(2);
     }
 
     private void startDraw() {
@@ -82,20 +82,13 @@ public class Controller {
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                menuPanel.updateCredits(currentGameInstance.getCredits());
-                gamePanel.updateObjects(currentGameInstance.getGameObjectsToDraw());
-                gamePanel.updateLasers(currentGameInstance.getLaserPositionsToDraw());
-                gamePanel.updateHealthBars(currentGameInstance.getHealthBarsToDraw());
+                menuPanel.updateCredits(manager.getCredits());
+                gamePanel.updateObjects(manager.getGameObjectsToDraw());
+                gamePanel.updateLasers(manager.getLaserPositionsToDraw());
+                gamePanel.updateHealthBars(manager.getHealthbarsToDraw());
                 gamePanel.repaint();
             }
         }, 10, 1000/fps);
-    }
-
-    private void flipFlipperTile(ActionEvent actionEvent) {
-        FlipperButton flipperButton = (FlipperButton) actionEvent.getSource();
-        flipperButton.getPos().print();
-        currentGameInstance.flipTile(flipperButton.getPos());
-        System.out.println("FLIPPING STUFF");
     }
 
     public static void main(String[] args) throws IOException {

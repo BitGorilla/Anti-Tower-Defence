@@ -66,6 +66,7 @@ public class GamePanel extends JComponent {
         for (int i = 0; i < lasers.size(); i += 2) {
             Position lineStart = lasers.get(i).getLineStart();
             Position lineEnd = lasers.get(i).getLineEnd();
+            ((Graphics2D) g).setStroke(new BasicStroke(8));
             g.setColor(lasers.get(i).getColor());
             g2d.drawLine(lineStart.getX(),lineStart.getY(),lineEnd.getX(),
                     lineEnd.getY());
