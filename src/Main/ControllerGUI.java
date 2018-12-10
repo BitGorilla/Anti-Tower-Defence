@@ -33,6 +33,8 @@ public class ControllerGUI {
                 //System.out.println(test);
                 setUserNameInGUI(test);
                 System.out.println(gui.winnerDialog());
+                System.out.println(gui.loserDialog());
+                //gui.aboutDialog();
             }
         });
     }
