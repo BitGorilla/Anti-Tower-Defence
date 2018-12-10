@@ -76,6 +76,7 @@ public class GameInstance {
         moveCreatures();
         handleCreaturesInGoal();
         damageCreaturesIfPossible();
+
     }
 
     private void resetCreatureStats() {
@@ -138,8 +139,8 @@ public class GameInstance {
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
-                creature.move();
                 changeDirectionIfNeeded(creature);
+                creature.move();
             }
         }
         movePortalusTotalusers();
@@ -148,14 +149,20 @@ public class GameInstance {
 
     private void movePortalusTotalusers(){
         if(portalusTotalus != null){
+            System.out.println(portalusTotalus.getCurrentHealth());
             for (int i = 0; i < PortalusTotalus.SPEED; i++) {
+                changeDirectionIfNeeded((Creature) portalusTotalus);
                 portalusTotalus.move();
-                changeDirectionIfNeeded(portalusTotalus);
                 if(portalusTotalus.getTeleportCountDown() == 0){
                     tiles.add(portalusTotalus.createExitTeleporterTile());
                 }
             }
+            if(portalusTotalus.isDead()){
+                creatures.remove(portalusTotalus);
+                portalusTotalus = null;
+            }
         }
+
     }
 
     public void placePortal(){
@@ -232,10 +239,13 @@ public class GameInstance {
     }
 
     private void deleteCreatureIfDead(Creature creature) {
+        System.out.println(portalusTotalus.isDead());
+        if(portalusTotalus.isDead()) {
+            portalusTotalus = null;
+        }
         if(creature.isDead())
             creatures.remove(creature);
-        if(portalusTotalus.isDead())
-            portalusTotalus = null;
+
     }
 
     public void flipTile(Position tilePosition) {

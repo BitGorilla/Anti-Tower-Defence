@@ -27,11 +27,13 @@ public class PortalusTotalus extends Creature {
 
     public PortalusTotalus(Position pos, Direction dir) {
         super(pos, image, dir, 0, MAXHEALTH);
+        setCurrentHealth(MAXHEALTH);
     }
 
     public Tile createEntryTeleporterTile(){
         if(entryTeleporterTile == null) {
-            entryTeleporterTile = new EntryTeleporterTile(getDirection(), getPosition());
+            Position teleportPosition = new Position(getPosition().getX(), getPosition().getY());
+            entryTeleporterTile = new EntryTeleporterTile(getDirection(), teleportPosition);
         }
         return entryTeleporterTile;
 
