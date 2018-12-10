@@ -13,6 +13,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * TODO write the purpose of the class.
+ */
 public class GameInstance {
 
     private ArrayList<Tower> towers = new ArrayList<>();
@@ -25,6 +28,11 @@ public class GameInstance {
     private String name;
     private int credits;
 
+    /**
+     * Constructor of class.
+     *
+     * @param map A map with game field information.
+     */
     public GameInstance(Map map) {
         this.tiles = map.getTiles();
         this.name = map.getName();
@@ -38,6 +46,9 @@ public class GameInstance {
         update();
     }
 
+    /**
+     * Finds the start tile.
+     */
     private void findStart() {
         for (Tile tile: tiles) {
             if(tile.getClass() == StartTile.class) {
@@ -47,6 +58,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Finds the tower tiles.
+     */
     private void findTowerTiles() {
         for (Tile tile: tiles) {
             if(tile.getClass() == TowerTile.class) {
@@ -55,6 +69,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Updates all game objects.
+     */
     public void update() {
         //System.out.println(creatures.get(0).getCurrentSpeed());
         resetCreatureStats();
@@ -64,13 +81,20 @@ public class GameInstance {
         damageCreaturesIfPossible();
     }
 
+    /**
+     * Resets stats of all creatures.
+     */
     private void resetCreatureStats() {
         for (Creature creature: creatures) {
             creature.setDefaultStats();
         }
     }
 
-
+    /**
+     * Adds a tower to the list of tower objects.
+     *
+     * @param towerType Tower object to add.
+     */
     public void addTower(int towerType) {
         ArrayList<TowerTile> emptyTowerTiles = new ArrayList<>();
         int random;

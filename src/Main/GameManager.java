@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * TODO write the purpose of the class.
+ */
 public class GameManager {
     private ArrayList<Map> maps;
     private Timer timer;
@@ -16,6 +19,12 @@ public class GameManager {
     private GameInstance currentGameInstance;
     boolean paused = true;
 
+    /**
+     * Constructor of the class.
+     *
+     * @param maps List of maps to manage.
+     * @param tickRate How fast to update the game.
+     */
     public GameManager(ArrayList<Map> maps, int tickRate) {
         this.maps = maps;
         //30
@@ -23,6 +32,9 @@ public class GameManager {
         currentGameInstance = new GameInstance(maps.get(0));
     }
 
+    /**
+     * Start the game.
+     */
     public void startGame() {
         if(paused) {
             paused = false;
@@ -36,10 +48,17 @@ public class GameManager {
         }
     }
 
+    /**
+     *
+     * @return The current game instance.
+     */
     public GameInstance getCurrentGameInstance() {
         return currentGameInstance;
     }
 
+    /**
+     * Stops the game.
+     */
     public void stopGame() {
         if(timer != null) {
             timer.cancel();
@@ -47,18 +66,34 @@ public class GameManager {
         }
     }
 
+    /**
+     *
+     * @return A list of GameObject objects to draw.
+     */
     public ArrayList<GameObject> getGameObjectsToDraw() {
         return currentGameInstance.getGameObjectsToDraw();
     }
 
+    /**
+     *
+     * @return A list of positions to draw a laser between.
+     */
     public ArrayList<Laser> getLaserPositionsToDraw() {
         return currentGameInstance.getLaserPositionsToDraw();
     }
 
+    /**
+     *
+     * @return A list of healthbars to draw.
+     */
     public ArrayList<Healthbar> getHealthbarsToDraw() {
         return currentGameInstance.getHealthBarsToDraw();
     }
 
+    /**
+     * Adds a creature to the game instance.
+     * @param type Which type of creature to add.
+     */
     public void addCreature(int type) {
         if(!paused) {
             switch (type) {
@@ -72,14 +107,22 @@ public class GameManager {
         }
     }
 
+    /**
+     *
+     * @return The current credits of the game instance.
+     */
     public int getCredits() {
         return currentGameInstance.getCredits();
     }
 
+    /**
+     * Updates all game objects.
+     */
     private void updateGame() {
         currentGameInstance.update();
     }
 
+    //TODO remove?
     public static void main(String[] args) throws IOException, InterruptedException {
         XMLReader reader = new XMLReader(1000);
         reader.setSource(new FileInputStream(new File(
