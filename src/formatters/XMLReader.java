@@ -120,10 +120,35 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         sb.append(type);
         ImageLoader loader = ImageLoader.getImageLoader();
         //Filetype?
-        if(road.equals("BLANK"))
+        try {
+            if (road.equals("BLANK"))
+                return loader.getImage("blank.png");
+            else {
+                switch (type) {
+                    case "BlankTile":
+                        return loader.getImage("road.png");
+                    case "GoalTile":
+                        return loader.getImage("goal.png");
+                    case "StartTile":
+                        return loader.getImage("start.png");
+                    case "FlipperTile":
+                        switch (road) {
+                            case "EAST":
+                                return loader.getImage("FLipperTile-East.png");
+                            case "WEST":
+                                return loader.getImage("FLipperTile-West.png");
+                            case "NORTH":
+                                return loader.getImage("FLipperTile-North.png");
+                            case "SOUTH":
+                                return loader.getImage("FLipperTile-South.png");
+                        }
+                    default:
+                        return loader.getImage("blank.png");
+                }
+            }
+        } catch (IllegalArgumentException e) {
             return loader.getImage("blank.png");
-        else
-            return loader.getImage("road.png");
+        }
     }
 
     private Direction getDirection(String road) {

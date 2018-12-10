@@ -95,6 +95,11 @@ public class GameManager {
      * @param type Which type of creature to add.
      */
     public void addCreature(int type) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(!paused) {
             switch (type) {
                 case 1:

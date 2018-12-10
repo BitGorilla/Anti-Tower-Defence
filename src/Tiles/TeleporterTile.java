@@ -3,7 +3,6 @@ package Tiles;
 import Creatures.Creature;
 import Main.Direction;
 import Main.Position;
-import formatters.ImageLoader;
 
 import java.awt.*;
 
@@ -17,11 +16,12 @@ public class TeleporterTile extends Tile implements TileInterface {
         super(image, direction, centerPos, upperLeft, lowerRight);
     }
 
+    //TODO Can't change direction..
     @Override
     public void landOn(Creature creature) {
-        System.out.println();
         for (int i = 0; i < teleportDistance ; i++) {
             creature.move();
         }
     }
+
 }

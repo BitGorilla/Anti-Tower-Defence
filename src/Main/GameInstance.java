@@ -6,6 +6,7 @@ import Creatures.SpeedDemon;
 import Tiles.*;
 import Towers.SharpShooter;
 import Towers.Tower;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -13,9 +14,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * TODO write the purpose of the class.
- */
 public class GameInstance {
 
     private ArrayList<Tower> towers = new ArrayList<>();
@@ -28,11 +26,6 @@ public class GameInstance {
     private String name;
     private int credits;
 
-    /**
-     * Constructor of class.
-     *
-     * @param map A map with game field information.
-     */
     public GameInstance(Map map) {
         this.tiles = map.getTiles();
         this.name = map.getName();
@@ -46,9 +39,6 @@ public class GameInstance {
         update();
     }
 
-    /**
-     * Finds the start tile.
-     */
     private void findStart() {
         for (Tile tile: tiles) {
             if(tile.getClass() == StartTile.class) {
@@ -58,9 +48,17 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Finds the tower tiles.
-     */
+    public ArrayList<Position> getFlipperTilePositions() {
+        ArrayList<Position> positions = new ArrayList<>();
+        for (Tile tile: tiles) {
+            if(tile.getClass() == FlipperTile.class) {
+                positions.add(new Position(tile.getCenterPos().getX(),
+                        tile.getCenterPos().getY()));
+            }
+        }
+        return positions;
+    }
+
     private void findTowerTiles() {
         for (Tile tile: tiles) {
             if(tile.getClass() == TowerTile.class) {
@@ -69,9 +67,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Updates all game objects.
-     */
     public void update() {
         //System.out.println(creatures.get(0).getCurrentSpeed());
         resetCreatureStats();
@@ -81,20 +76,13 @@ public class GameInstance {
         damageCreaturesIfPossible();
     }
 
-    /**
-     * Resets stats of all creatures.
-     */
     private void resetCreatureStats() {
         for (Creature creature: creatures) {
             creature.setDefaultStats();
         }
     }
 
-    /**
-     * Adds a tower to the list of tower objects.
-     *
-     * @param towerType Tower object to add.
-     */
+
     public void addTower(int towerType) {
         ArrayList<TowerTile> emptyTowerTiles = new ArrayList<>();
         int random;
@@ -120,11 +108,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Adds creature to the list of creatures.
-     *
-     * @param creatureType Type of creature to add.
-     */
     public void addCreature(int creatureType) {
         Position pos = new Position(startPosition.getX(), startPosition.getY());
         switch (creatureType) {
@@ -145,9 +128,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Moves all creatures.
-     */
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
@@ -159,11 +139,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Changes direction of the creature if it's in the center of a tile.
-     *
-     * @param creature The creature to change position for.
-     */
     private void changeDirectionIfNeeded(Creature creature) {
         for (Tile tile: tiles) {
             if (creature.getPosition().equals(tile.getCenterPos())) {
@@ -172,9 +147,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Affects the creature with the tiles effect.
-     */
     private void affectCreatureOnTile() {
         for (Creature creature : creatures) {
             for (Tile tile : tiles) {
@@ -195,9 +167,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Damages creatures in range of the towers.
-     */
     private void damageCreaturesIfPossible() {
         reduceLaserLifeSpan();
         for (Tower tower: towers) {
@@ -217,9 +186,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * TODO comment purpose
-     */
     private void reduceLaserLifeSpan() {
         Laser laser;
         for (int i = 0; i < lasers.size(); i++) {
@@ -231,9 +197,6 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Handles what happens when a creature has reach its goal.
-     */
     private void handleCreaturesInGoal() {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
@@ -245,28 +208,20 @@ public class GameInstance {
         }
     }
 
-    /**
-     * Deletes a creature if its dead.
-     * @param creature The creature to delete.
-     */
     private void deleteCreatureIfDead(Creature creature) {
         if(creature.isDead())
             creatures.remove(creature);
     }
 
-    //TODO remove method?
-    public void printAll() {
-        for (Creature creature: creatures) {
-            creature.printStats();
-            System.out.println();
+    public void flipTile(Position tilePosition) {
+        for (int i = 0; i < tiles.size(); i++) {
+            if(tilePosition.equals(tiles.get(i).getCenterPos())) {
+                FlipperTile flipTile = (FlipperTile) tiles.get(i);
+                flipTile.flipDirection();
+            }
         }
     }
 
-    /**
-     * Returns a list of GameObjects to draw.
-     *
-     * @return List of GameObjects.
-     */
     public synchronized ArrayList<GameObject> getGameObjectsToDraw() {
         ArrayList<GameObject> objectsToDraw = new ArrayList<>();
         objectsToDraw.addAll(tiles);
@@ -275,18 +230,10 @@ public class GameInstance {
         return objectsToDraw;
     }
 
-    /**
-     * Returns a list of Laser to draw.
-     * @return A list of Laser.
-     */
     public synchronized ArrayList<Laser> getLaserPositionsToDraw() {
         return lasers;
     }
 
-    /**
-     * Returns a list of Healthbar to draw.
-     * @return A list of Healthbar.
-     */
     public synchronized ArrayList<Healthbar> getHealthBarsToDraw() {
         ArrayList<Healthbar> healthbarsToDraw = new ArrayList<>();
         for (Creature creature: creatures) {
@@ -295,9 +242,6 @@ public class GameInstance {
         return healthbarsToDraw;
     }
 
-    /**
-     * @return The current credits of the game.
-     */
     public synchronized int getCredits() {
         return credits;
     }

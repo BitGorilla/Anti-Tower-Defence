@@ -3,6 +3,7 @@ package Tiles;
 import Creatures.Creature;
 import Main.Direction;
 import Main.Position;
+import formatters.ImageLoader;
 
 import java.awt.*;
 
@@ -20,12 +21,26 @@ public class FlipperTile extends Tile implements TileInterface {
     }
 
     public void flipDirection(){
+        System.out.println(getDirection());
         Direction dir = getDirection();
         switch (dir){
             case EAST: setDirection(Direction.WEST);
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
+                        "-West.png"));
+            break;
             case WEST: setDirection(Direction.EAST);
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
+                        "-East.png"));
+            break;
             case NORTH: setDirection(Direction.SOUTH);
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
+                        "-South.png"));
+            break;
             case SOUTH: setDirection(Direction.NORTH);
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
+                        "-North.png"));
+            break;
         }
+        System.out.println(getDirection());
     }
 }

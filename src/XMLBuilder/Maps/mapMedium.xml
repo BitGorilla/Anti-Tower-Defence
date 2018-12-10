@@ -36,7 +36,7 @@
             <tile road="WEST" type="BlankTile"/>
             <tile road="WEST" type="BlankTile"/>
             <tile road="WEST" type="BlankTile"/>
-            <tile road="WEST" type="BlankTile"/>
+            <tile road="WEST" type="TeleporterTile"/>
             <tile road="WEST" type="BlankTile"/>
             <tile road="WEST" type="BlankTile"/>
             <tile road="WEST" type="BlankTile"/>

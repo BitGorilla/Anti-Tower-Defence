@@ -1,5 +1,5 @@
-template = open("Templates/templateMedium.txt", "r")
-f = open("Maps/mapMedium.xml", "w+")
+template = open("Templates/templateFlipper.txt", "r")
+f = open("Maps/mapFlipper.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
@@ -60,6 +60,8 @@ while i < len(template):
 		f.write("TowerTile")
 	elif template[i+1] == "s":
 		f.write("SlowTile")
+	elif template[i+1] == "f":
+		f.write("FlipperTile")
 	else:
 		f.write("BlankTile")
 
