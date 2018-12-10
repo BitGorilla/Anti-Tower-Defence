@@ -30,7 +30,11 @@ public class Controller {
     ActionListener pausPressed = e -> pausGame();
     ActionListener addCreature1Pressed = e -> addCreature1();
     ActionListener addCreature2Pressed = e -> addCreature2();
+    ActionListener addCreature3Pressed = e -> addCreature3();
+    ActionListener placePortalPressed = e -> placePortal();
+
     ActionListener flipperPressed = e -> flipFlipperTile(e);
+
 
     private int tickRate = 30;
     private int fps = 60;
@@ -46,7 +50,8 @@ public class Controller {
         flipperTilePositions = currentGameInstance.getFlipperTilePositions();
         gamePanel = new GamePanel(gameWidth /reader.getWidth()/2,fps, gameWidth);
         menuPanel = new MenuPanel(startButtonPressed, pausPressed,
-                addCreature1Pressed, addCreature2Pressed);
+                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
+                , placePortalPressed);
         flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
                 gameWidth, gameWidth /reader.getWidth());
         showWindow();
@@ -77,6 +82,10 @@ public class Controller {
         currentGameInstance.addCreature(2);
     }
 
+    private void addCreature3() {
+        currentGameInstance.addCreature(3);
+    }
+
     private void startDraw() {
         java.util.Timer t = new Timer();
         t.schedule(new TimerTask() {
@@ -96,6 +105,12 @@ public class Controller {
     private void flipFlipperTile(ActionEvent actionEvent) {
         FlipperButton flipperButton = (FlipperButton) actionEvent.getSource();
         currentGameInstance.flipTile(flipperButton.getPos());
+    }
+
+
+
+    private void placePortal() {
+        currentGameInstance.placePortal();
     }
 
     public static void main(String[] args) throws IOException {

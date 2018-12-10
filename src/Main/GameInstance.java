@@ -148,7 +148,7 @@ public class GameInstance {
 
     private void movePortalusTotalusers(){
         if(portalusTotalus != null){
-            for (int i = 0; i < portalusTotalus.getCurrentSpeed(); i++) {
+            for (int i = 0; i < PortalusTotalus.SPEED; i++) {
                 portalusTotalus.move();
                 changeDirectionIfNeeded(portalusTotalus);
                 if(portalusTotalus.getTeleportCountDown() == 0){
