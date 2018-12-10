@@ -142,6 +142,7 @@ public class GameInstance {
                 changeDirectionIfNeeded(creature);
             }
         }
+        movePortalusTotalusers();
 
     }
 
@@ -158,7 +159,7 @@ public class GameInstance {
     }
 
     public void placePortal(){
-        portalusTotalus.createEntryTeleporterTile();
+        tiles.add(portalusTotalus.createEntryTeleporterTile());
     }
 
     private void changeDirectionIfNeeded(Creature creature) {

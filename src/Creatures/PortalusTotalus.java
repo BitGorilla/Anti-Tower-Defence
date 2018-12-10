@@ -26,13 +26,14 @@ public class PortalusTotalus extends Creature {
     int teleportCountDown = teleportDistance;
 
     public PortalusTotalus(Position pos, Direction dir) {
-        super(pos, image, dir, SPEED, MAXHEALTH);
+        super(pos, image, dir, 0, MAXHEALTH);
     }
 
-    public void createEntryTeleporterTile(){
+    public Tile createEntryTeleporterTile(){
         if(entryTeleporterTile == null) {
             entryTeleporterTile = new EntryTeleporterTile(getDirection(), getPosition());
         }
+        return entryTeleporterTile;
 
     }
     @Override
