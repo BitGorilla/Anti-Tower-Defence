@@ -131,6 +131,17 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("goal.png");
                     case "StartTile":
                         return loader.getImage("start.png");
+                    case "FlipperTile":
+                        switch (road) {
+                            case "EAST":
+                                return loader.getImage("FLipperTile-East.png");
+                            case "WEST":
+                                return loader.getImage("FLipperTile-West.png");
+                            case "NORTH":
+                                return loader.getImage("FLipperTile-North.png");
+                            case "SOUTH":
+                                return loader.getImage("FLipperTile-South.png");
+                        }
                     default:
                         return loader.getImage("blank.png");
                 }
