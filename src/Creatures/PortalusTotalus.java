@@ -50,8 +50,9 @@ public class PortalusTotalus extends Creature {
     }
 
     public Tile createExitTeleporterTile(){
-        entryTeleporterTile.setPortalLocation(getPosition());
-        exitTeleporterTile = new ExitTeleporterTile(getDirection(),getPosition());
+        Position exitPos = new Position(getPosition().getX(), getPosition().getY());
+        entryTeleporterTile.setPortalLocation(exitPos);
+        exitTeleporterTile = new ExitTeleporterTile(getDirection(),exitPos);
         setCurrentHealth(0);
         return exitTeleporterTile;
     }

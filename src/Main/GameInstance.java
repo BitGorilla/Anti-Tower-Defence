@@ -234,6 +234,8 @@ public class GameInstance {
     private void deleteCreatureIfDead(Creature creature) {
         if(creature.isDead())
             creatures.remove(creature);
+        if(portalusTotalus.isDead())
+            portalusTotalus = null;
     }
 
     public void flipTile(Position tilePosition) {

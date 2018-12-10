@@ -25,12 +25,15 @@ public class EntryTeleporterTile extends Tile implements TileInterface {
     @Override
     public void landOn(Creature creature) {
         if(portalLocation != null) {
+            System.out.println("Teleporting creature!!!" + creature.getClass().getName());
             creature.setPosition(portalLocation);
         }
     }
 
     public void setPortalLocation(Position portalLocation){
         this.portalLocation = portalLocation;
+        System.out.println("Teleporting to location:");
+        portalLocation.print();
     }
 
 }
