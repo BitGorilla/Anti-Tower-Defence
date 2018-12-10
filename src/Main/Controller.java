@@ -36,10 +36,11 @@ public class Controller {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                gui = new GUI("Anti Tower Defence", animator, windowWidth);
+                gui = new GUI("Anti Tower Defence", windowWidth);
                 addActionListenerUsernameInput(gui.userName.getText());
                 addSpeedDemonActionList();
                 addGrantActionList();
+                gui.setAnimator(animator);
                 gui.show();
             }
         });
@@ -88,7 +89,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 gameM.getCurrentGameInstance().addCreature(2);
 
-                // Add more grant trupps in game set up before start
+                // Add more grant trup in game set up before start
             }
         };
         gui.addActionListenerGrant(actionListGrunt);
