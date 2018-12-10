@@ -19,8 +19,11 @@ public class Animator extends JComponent {
     private int offset;
     private int tickPerSecond;
 
-    /**Constructor of class.
+    /**
+     * Constructor of class.
      *
+     * @param offset distance from center to edges of objects to draw.
+     * @param fps Update speed.
      */
     public Animator(int offset, int fps){
         this.offset = offset;
@@ -36,6 +39,10 @@ public class Animator extends JComponent {
         drawables = objects;
     }
 
+    /**
+     * Updates laser list.
+     * @param lasers list of lasers.
+     */
     public void updateLasers(ArrayList<Laser> lasers){
         this.lasers = lasers;
     }
@@ -81,6 +88,7 @@ public class Animator extends JComponent {
         }
     }
 
+    //TODO remove method?
     public void startTicker(){
         java.util.Timer t = new Timer();
         t.schedule(new TimerTask() {
