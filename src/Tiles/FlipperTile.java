@@ -20,12 +20,18 @@ public class FlipperTile extends Tile implements TileInterface {
     }
 
     public void flipDirection(){
+        System.out.println(getDirection());
         Direction dir = getDirection();
         switch (dir){
             case EAST: setDirection(Direction.WEST);
+            break;
             case WEST: setDirection(Direction.EAST);
+            break;
             case NORTH: setDirection(Direction.SOUTH);
+            break;
             case SOUTH: setDirection(Direction.NORTH);
+            break;
         }
+        System.out.println(getDirection());
     }
 }

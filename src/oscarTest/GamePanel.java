@@ -21,9 +21,10 @@ public class GamePanel extends JComponent {
     /**Constructor of class.
      *
      */
-    public GamePanel(int offset, int fps){
+    public GamePanel(int offset, int fps, int gameWidth){
         this.offset = offset;
         tickPerSecond = fps;
+        setBounds(0,0,gameWidth,gameWidth);
         setBackground(Color.darkGray);
     }
 

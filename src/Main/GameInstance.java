@@ -6,6 +6,7 @@ import Creatures.SpeedDemon;
 import Tiles.*;
 import Towers.SharpShooter;
 import Towers.Tower;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -45,6 +46,17 @@ public class GameInstance {
                 startPosition = tile.getCenterPos();
             }
         }
+    }
+
+    public ArrayList<Position> getFlipperTilePositions() {
+        ArrayList<Position> positions = new ArrayList<>();
+        for (Tile tile: tiles) {
+            if(tile.getClass() == FlipperTile.class) {
+                positions.add(new Position(tile.getCenterPos().getX(),
+                        tile.getCenterPos().getY()));
+            }
+        }
+        return positions;
     }
 
     private void findTowerTiles() {
@@ -201,10 +213,12 @@ public class GameInstance {
             creatures.remove(creature);
     }
 
-    public void printAll() {
-        for (Creature creature: creatures) {
-            creature.printStats();
-            System.out.println();
+    public void flipTile(Position tilePosition) {
+        for (int i = 0; i < tiles.size(); i++) {
+            if(tilePosition.equals(tiles.get(i).getCenterPos())) {
+                FlipperTile flipTile = (FlipperTile) tiles.get(i);
+                flipTile.flipDirection();
+            }
         }
     }
 

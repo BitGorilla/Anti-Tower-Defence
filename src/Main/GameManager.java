@@ -60,6 +60,11 @@ public class GameManager {
     }
 
     public void addCreature(int type) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(!paused) {
             switch (type) {
                 case 1:

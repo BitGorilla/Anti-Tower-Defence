@@ -135,7 +135,7 @@
             <tile road="SOUTH" type="BlankTile"/>
             <tile road="WEST" type="BlankTile"/>
             <tile road="WEST" type="BlankTile"/>
-            <tile road="EAST" type="BlankTile"/>
+            <tile road="EAST" type="FlipperTile"/>
             <tile road="EAST" type="BlankTile"/>
             <tile road="EAST" type="BlankTile"/>
             <tile road="EAST" type="BlankTile"/>
