@@ -3,9 +3,6 @@ package highscore;
 public class User {
 
     private String name;
-
-
-
     private String mapName;
     private int score;
 

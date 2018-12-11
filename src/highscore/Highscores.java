@@ -18,47 +18,68 @@ public class Highscores {
         initializeDatabaseConnection();
     }
 
-    public ArrayList<User> printHighscore() throws SQLException {
-        ResultSet res = getHighscores();
+    public ArrayList<User> printHighscore(String mapName) throws SQLException {
+        ResultSet res = getHighscores(mapName);
 
         res.beforeFirst();
         while (res.next()){
 
             String username = res.getString("User");
-            String mapName = res.getString("MapName");
-            int score = Integer.parseInt(res.getString("Score"));
+            String map = res.getString("MapName");
+            int score = res.getInt("Score");
 
-            users.add(new User(username, mapName, score));
+            users.add(new User(username, map, score));
         }
+        res.close();
 
         Collections.sort(users, new CustomComperator());
-        printSortedUsers();
 
         return users;
     }
 
     public void insertScore(String name, String mapName, int score)
                             throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("INSERT INTO Highscores " +
+                                        "(User, MapName, Score) " +
+                                        "VALUES (?,?,?)");
 
-        String scoreString = String.valueOf(score);
-        s.execute("INSERT INTO Highscore VALUES " +
-                "(NULL,'"+name+"','"+mapName+"','"+scoreString+"')");
+            stmt.setString(1, name);
+            stmt.setString(2, mapName);
+            stmt.setInt(3, score);
+
+            stmt.executeUpdate();
+        }
+        finally {
+            try {
+                if (stmt != null) { stmt.close(); }
+            }
+            catch (Exception e) {
+                // log this error
+            }
+        }
     }
 
-    private ResultSet getHighscores() throws SQLException {
-        return s.executeQuery("SELECT * FROM Highscore");
+    private ResultSet getHighscores(String mapName) throws SQLException {
+
+        PreparedStatement stmt = null;
+        stmt = con.prepareStatement("SELECT * FROM Highscores " +
+                                        "WHERE MapName = ?");
+        stmt.setString(1, mapName);
+        return stmt.executeQuery();
     }
 
     private void initializeDatabaseConnection() throws SQLException{
 
         con = DriverManager.getConnection(DBURL, USER, PASSWORD);
-        s = con.createStatement();
-        s.execute("CREATE TABLE IF NOT EXISTS Highscore " +
+        /*s = con.createStatement();
+        s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
                 "(HS_Id int NOT NULL AUTO_INCREMENT," +
                 "User varchar(255)," +
                 "MapName varchar(255), " +
-                "Score varchar(255), " +
-                "CONSTRAINT PK_Highscore PRIMARY KEY (HS_Id))");
+                "Score int, " +
+                "CONSTRAINT PK_Highscore PRIMARY KEY (HS_Id))");*/
 
     }
 
@@ -77,6 +98,15 @@ public class Highscores {
             System.out.println(u.getMapName());
             System.out.println(u.getScore());
             System.out.println("");
+        }
+    }
+
+    public void closeCon(){
+        try{
+            con.close();
+        }
+        catch (SQLException e){
+            System.out.println("Could not close connection");
         }
     }
 }
