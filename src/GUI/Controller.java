@@ -139,7 +139,7 @@ public class Controller {
                             window.showMapWon();
                         }
                     }
-                    menuPanel.updateCredits(manager.getCredits());
+                    //menuPanel.updateCredits(manager.getCredits());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                     gamePanel.updateHealthBars(manager.getHealthbarsToDraw());
