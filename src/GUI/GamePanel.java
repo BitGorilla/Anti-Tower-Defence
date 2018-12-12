@@ -1,4 +1,4 @@
-package oscarTest;
+package GUI;
 import Main.GameObject;
 import Main.Healthbar;
 import Main.Laser;
