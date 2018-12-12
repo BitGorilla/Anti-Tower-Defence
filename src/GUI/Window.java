@@ -1,7 +1,5 @@
 package GUI;
 
-import Main.DropDownMenu;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -15,8 +13,9 @@ public class Window extends JFrame {
     public Window(int gamePanelWidth, DropDownMenu dropDownMenu,
                   GamePanel gamePanel,
                   MenuPanel menuPanel, FlipperPanel flipperPanel,
-                  ActionListener nextLevel) {
+                  ActionListener nextLevel, ActionListener restartLevel) {
         this.nextLevel = nextLevel;
+        this.restartLevel = restartLevel;
         add(menuPanel, BorderLayout.EAST);
         setJMenuBar(dropDownMenu);
         layeredPane.add(gamePanel,Integer.valueOf(1));

@@ -33,12 +33,12 @@ public class MapWonPanel {
                 options[0]);
         switch (result) {
             case 0:
-                option = "play again";
+                option = "next level";
                 nextLevel.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
             case 1:
-                option = "next level";
+                option = "play again";
                 restartLevel.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;

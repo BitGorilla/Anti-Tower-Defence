@@ -57,9 +57,8 @@ public class Controller {
     private void buildWindow() {
             SwingUtilities.invokeLater(()-> {
                 window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
-                        menuPanel,
-                        flipperPanel,
-                        nextMapPressed);
+                        menuPanel, flipperPanel, nextMapPressed,
+                        restartGamePressed);
                 window.showWindow();
             });
         startUp();
