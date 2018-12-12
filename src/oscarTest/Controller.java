@@ -50,7 +50,7 @@ public class Controller {
                 addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
                 , placePortalPressed);
         flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
-                gamePanelWidth, gamePanelWidth /gamePanelWidth);
+                gamePanelWidth, gamePanelWidth /tileDimension);
         showWindow();
         startDraw();
     }
