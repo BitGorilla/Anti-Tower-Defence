@@ -13,8 +13,6 @@ public class Highscores {
     private final String USER = "v135h18g9";
     private final String PASSWORD = "Shqo9EdI0yjL138n";
     private Connection con;
-    private ArrayList<Score> scores = new ArrayList<>();
-
 
     /**
      * Constructor of class.
@@ -24,6 +22,10 @@ public class Highscores {
     public Highscores() throws SQLException{
         fetchDriver();
         initializeDatabaseConnection();
+        for (String[] s: getHighscores("Map2")) {
+            System.out.println(s[2]);
+
+    }
     }
 
     /**
@@ -33,7 +35,8 @@ public class Highscores {
      * @return A sorted ArrayList with arrays of strings with database data.
      * @throws SQLException If cannot fetch from database.
      */
-    public ArrayList<String[]> getHighscores(String mapName) throws SQLException {
+    public ArrayList<String[]> getHighscores(String mapName)
+                                            throws SQLException {
 
         PreparedStatement stmt = null;
         stmt = con.prepareStatement("SELECT * FROM Highscores " +
@@ -86,7 +89,8 @@ public class Highscores {
      */
     private ArrayList<String[]> sortHighscore(ResultSet res)
             throws SQLException {
-        ArrayList<String[]> list = new ArrayList<>();
+        ArrayList<String[]> DBlist = new ArrayList<>();
+        ArrayList<Score> scores = new ArrayList<>();
 
         res.beforeFirst();
         while (res.next()){
@@ -97,16 +101,16 @@ public class Highscores {
 
             scores.add(new Score(username, map, score));
         }
+        res.close();
 
         Collections.sort(scores, new CustomComparator());
         for (Score score: scores) {
             String[] s = {score.getName(), score.getMapName(),
                     String.valueOf(score.getScore())};
-            list.add(s);
+            DBlist.add(s);
         }
-        res.close();
 
-        return list;
+        return DBlist;
     }
 
     /**
@@ -129,15 +133,6 @@ public class Highscores {
         } catch (ClassNotFoundException e) {
             System.out.println("nooo");
             e.printStackTrace();
-        }
-    }
-
-    private void printSortedUsers(){
-        for (Score u: scores) {
-            System.out.println(u.getName());
-            System.out.println(u.getMapName());
-            System.out.println(u.getScore());
-            System.out.println(" ");
         }
     }
 
