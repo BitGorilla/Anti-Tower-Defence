@@ -54,6 +54,9 @@ public class GameManager {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
+                    if (currentGameInstance.mapWon()) {
+                        setNextMap();
+                    }
                     updateGame();
                 }
             }, 1000, 1000 / tickRate);
@@ -68,7 +71,7 @@ public class GameManager {
      *
      * @return The current game instance.
      */
-    public GameInstance getCurrentGameInstance() {
+    private GameInstance getCurrentGameInstance() {
         return currentGameInstance;
     }
 

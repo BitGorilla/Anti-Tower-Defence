@@ -27,11 +27,14 @@ public class GameInstance {
     private Direction startDirection;
     private String name;
     private int credits;
+    private int goaledCreatures;
+    private int winCondition = 10;
 
     public GameInstance(Map map) {
         this.tiles = map.getTiles();
         this.name = map.getName();
         this.credits = map.getStartCredit();
+        goaledCreatures = 0;
         findStart();
         findTowerTiles();
         addTower(1);
@@ -53,6 +56,14 @@ public class GameInstance {
                 startPosition = tile.getCenterPos();
             }
         }
+    }
+
+    public boolean mapWon(){
+        return goaledCreatures >= winCondition;
+    }
+
+    public boolean gameOver() {
+        return creatures.isEmpty() && credits < SpeedDemon.COST;
     }
 
     public ArrayList<Position> getFlipperTilePositions() {
@@ -235,7 +246,7 @@ public class GameInstance {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
                 //TODO add score
-                credits += 100;
+                goaledCreatures++;
                 System.out.println("IN GOAL");
                 creatures.remove(creature);
             }
