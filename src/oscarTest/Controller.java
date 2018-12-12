@@ -1,9 +1,6 @@
 package oscarTest;
 
-import Main.GameInstance;
-import Main.GameManager;
-import Main.Map;
-import Main.Position;
+import Main.*;
 import formatters.XMLReader;
 
 import javax.swing.*;
@@ -23,6 +20,7 @@ public class Controller {
     private GamePanel gamePanel;
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
+    private DropDownMenu dropDownMenu;
 
 
     ActionListener startButtonPressed = e -> startUp();
@@ -33,6 +31,8 @@ public class Controller {
     ActionListener placePortalPressed = e -> placePortal();
     ActionListener flipperPressed = e -> flipFlipperTile(e);
     ActionListener nextMapPressed = e -> nextMap();
+    ActionListener restartGamePressed = e -> restartGame();
+    ActionListener quitPressed = e -> quitGame();
 
 
     private int tickRate = 30;
@@ -40,6 +40,7 @@ public class Controller {
     private ArrayList<Position> flipperTilePositions;
     private int gamePanelWidth;
     private int tileDimension;
+    private boolean mapWonIsShown = false;
 
     public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) {
         manager = new GameManager(maps, tickRate);
@@ -48,15 +49,20 @@ public class Controller {
         buildFlipperPanel();
         buildGamePanel();
         buildMenuPanel();
+        buildDropDown();
         buildWindow();
         startDraw();
     }
 
     private void buildWindow() {
             SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanel, menuPanel, flipperPanel);
+                window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
+                        menuPanel,
+                        flipperPanel,
+                        nextMapPressed);
                 window.showWindow();
             });
+        startUp();
     }
 
     private void buildGamePanel() {
@@ -77,24 +83,31 @@ public class Controller {
                     gamePanelWidth, gamePanelWidth / tileDimension);
         }
         else {
-            System.out.println("Updatingflippers");
             flipperPanel.updateFlippers(flipperTilePositions);
         }
     }
 
+    private void buildDropDown() {
+        dropDownMenu = new DropDownMenu(restartGamePressed, pausPressed, startButtonPressed,
+                quitPressed);
+    }
+
     private void nextMap() {
+        mapWonIsShown = false;
         manager.setNextMap();
         buildFlipperPanel();
     }
 
     private void startUp() {
-        System.out.println("starting");
         manager.startGame();
     }
 
     private void pausGame() {
-        nextMap();
         manager.stopGame();
+    }
+
+    private void quitGame() {
+        System.exit(1);
     }
 
     private void addCreature1() {
@@ -115,6 +128,15 @@ public class Controller {
             @Override
             public void run() {
                 SwingUtilities.invokeLater(()-> {
+                    if (manager.isMapWon()) {
+                        if(manager.allLevelsWon()) {
+                            //window.showVictoryPopUp();
+                        }
+                        else if (!mapWonIsShown) {
+                            mapWonIsShown = true;
+                            window.showMapWon();
+                        }
+                    }
                     menuPanel.updateCredits(manager.getCredits());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
@@ -132,6 +154,11 @@ public class Controller {
 
     private void placePortal() {
         manager.placePortal();
+    }
+
+    private void restartGame() {
+        mapWonIsShown = false;
+        manager.restartGame();
     }
 
 

@@ -142,8 +142,7 @@ public class GameInstance {
                     portalusTotalus = (new PortalusTotalus(pos, startDirection));
                     creatures.add(portalusTotalus);
                 }
-            default:
-                System.err.println("No creature type of that int (addCreature)");
+                break;
         }
     }
 
@@ -160,7 +159,6 @@ public class GameInstance {
 
     private void movePortalusTotalusers(){
         if(portalusTotalus != null){
-            System.out.println(portalusTotalus.getCurrentHealth());
             for (int i = 0; i < PortalusTotalus.SPEED; i++) {
                 changeDirectionIfNeeded((Creature) portalusTotalus);
                 portalusTotalus.move();
@@ -177,7 +175,9 @@ public class GameInstance {
     }
 
     public void placePortal(){
-        tiles.add(portalusTotalus.createEntryTeleporterTile());
+        if(portalusTotalus != null) {
+            tiles.add(portalusTotalus.createEntryTeleporterTile());
+        }
     }
 
     private void changeDirectionIfNeeded(Creature creature) {
@@ -215,7 +215,6 @@ public class GameInstance {
             if(tower.readyToShoot()) {
                 for (Creature creature : creatures) {
                     if(tower.positionInRange(creature.getPosition())) {
-                        System.out.println("FIREING AT CREATURE: " + creatures.indexOf(creature));
                         creature.setCurrentHealth(creature.getCurrentHealth() - tower.shoot());
                         deleteCreatureIfDead(creature);
                         lasers.add(new Laser(tower.getPosition(),
@@ -241,9 +240,7 @@ public class GameInstance {
     private void handleCreaturesInGoal() {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
-                //TODO add score
                 goaledCreatures++;
-                System.out.println("IN GOAL");
                 creatures.remove(creature);
             }
         }

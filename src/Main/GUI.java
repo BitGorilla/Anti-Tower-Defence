@@ -36,7 +36,7 @@ public class GUI {
         this.windowWidth = windowWidth;
 
         // Build panels
-        JPanel upperPanel = buildMenu();
+//        JPanel upperPanel = buildMenu();
         JPanel levelPanel = buildLevelPanel();
         gamePanel = buildGamePanel();
         JPanel userPanel = buildUserPanel();
@@ -67,16 +67,16 @@ public class GUI {
      *
      * @return JPanel
      */
-    private JPanel buildMenu() {
+/*    private JPanel buildMenu() {
 
         JPanel upperPanel = new JPanel();
-        DropDownMenu ddMeny = new DropDownMenu();
+       // DropDownMenu ddMeny = new DropDownMenu();
 
         upperPanel.add(ddMeny);
         frame.setJMenuBar(ddMeny);
 
         return upperPanel;
-    }
+    }*/
 
     /**
      * Components of the center panel
