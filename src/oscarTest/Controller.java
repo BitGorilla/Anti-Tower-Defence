@@ -115,7 +115,7 @@ public class Controller {
 
         if (args.length == 0) {
             reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                    "/maps/mapArray.xml")));
+                    "/maps/mapArray2.xml")));
         }
         else if (args.length == 1 && args[0].endsWith(".xml")) {
             reader.setSource(new FileInputStream(new File(args[0])));
