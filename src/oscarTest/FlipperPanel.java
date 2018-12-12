@@ -31,7 +31,6 @@ public class FlipperPanel extends JPanel {
         FlipperButton flipperButton;
         Position pos;
         for (int i = 0; i < positions.size(); i++) {
-            positions.get(i).print();
             flipperButton = new FlipperButton(positions.get(i));
             pos = new Position(positions.get(i).getX(),
                     positions.get(i).getY());

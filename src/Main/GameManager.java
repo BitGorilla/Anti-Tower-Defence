@@ -20,6 +20,7 @@ public class GameManager {
     private GameInstance currentGameInstance;
     boolean paused = true;
     int mapIndex;
+    boolean mapWon;
 
     /**
      * Constructor of the class.
@@ -36,12 +37,9 @@ public class GameManager {
     }
 
     public void setNextMap(){
-        try {
-            currentGameInstance = new GameInstance(maps.get(mapIndex));
-            mapIndex++;
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("Yooooou woooooon!");
-        }
+        mapWon = false;
+        currentGameInstance = new GameInstance(maps.get(mapIndex));
+        mapIndex++;
     }
 
     /**
@@ -55,20 +53,12 @@ public class GameManager {
                 @Override
                 public void run() {
                     if (currentGameInstance.mapWon()) {
-                        setNextMap();
+                        mapWon = true;
                     }
                     updateGame();
                 }
             }, 1000, 1000 / tickRate);
         }
-    }
-
-    /**
-     *
-     * @return The current game instance.
-     */
-    private GameInstance getCurrentGameInstance() {
-        return currentGameInstance;
     }
 
     public ArrayList<Position> getFlipperTilePositions(){
@@ -157,7 +147,6 @@ public class GameManager {
             @Override
             public void run() {
                 ArrayList<GameObject> objects = GM.getGameObjectsToDraw();
-                objects.get(objects.size()-1).getPosition().print();
                 //GM.currentGameInstance.addCreature(2);
             }}, 1000, 1000);
     }
@@ -169,4 +158,18 @@ public class GameManager {
     public void placePortal(){
         currentGameInstance.placePortal();
     }
+
+    public boolean isMapWon() {
+        return mapWon;
+    }
+
+    public void restartGame() {
+        mapIndex = 0;
+        setNextMap();
+    }
+
+    public boolean allLevelsWon() {
+        return mapWon && mapIndex == maps.size();
+    }
+
 }

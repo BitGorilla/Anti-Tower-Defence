@@ -41,6 +41,5 @@ public class FlipperTile extends Tile implements TileInterface {
                         "-North.png"));
             break;
         }
-        System.out.println(getDirection());
     }
 }

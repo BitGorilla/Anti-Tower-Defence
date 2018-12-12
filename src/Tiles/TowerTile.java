@@ -25,7 +25,7 @@ public class TowerTile extends Tile implements TileInterface {
         return builtOn;
     }
 
-    public void setBuiltOn() {
-        builtOn = true;
+    public void setBuiltOn(boolean bool) {
+        builtOn = bool;
     }
 }

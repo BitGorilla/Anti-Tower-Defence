@@ -5,6 +5,7 @@ import Creatures.Grunt;
 import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
 import Tiles.*;
+import Towers.LazerToTheFazer;
 import Towers.SharpShooter;
 import Towers.Tower;
 import javafx.geometry.Pos;
@@ -20,7 +21,7 @@ public class GameInstance {
     private ArrayList<Tower> towers = new ArrayList<>();
     private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
     private PortalusTotalus portalusTotalus;
-    private ArrayList<Tile> tiles;
+    private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Laser> lasers = new ArrayList<>();
     private ArrayList<TowerTile> towerTiles = new ArrayList<>();
     private Position startPosition = null;
@@ -31,17 +32,13 @@ public class GameInstance {
     private int winCondition = 10;
 
     public GameInstance(Map map) {
-        this.tiles = map.getTiles();
+        this.tiles.addAll(map.getTiles());
         this.name = map.getName();
         this.credits = map.getStartCredit();
         goaledCreatures = 0;
         findStart();
         findTowerTiles();
-        addTower(1);
-        addTower(1);
-        addTower(1);
-        addTower(1);
-
+        placeTowers();
         update();
     }
 
@@ -51,6 +48,14 @@ public class GameInstance {
                 startDirection = tile.getDirection();
                 startPosition = tile.getCenterPos();
             }
+        }
+    }
+
+    private void placeTowers() {
+        int numberOfTowers = (int) ((double)towerTiles.size()/2);
+
+        for (int i = 0; i < numberOfTowers; i++) {
+            addTower((int) (Math.random() * (2)) +1);
         }
     }
 
@@ -77,6 +82,7 @@ public class GameInstance {
         for (Tile tile: tiles) {
             if(tile.getClass() == TowerTile.class) {
                 towerTiles.add((TowerTile) tile);
+                ((TowerTile) tile).setBuiltOn(false);
             }
         }
     }
@@ -114,7 +120,11 @@ public class GameInstance {
             switch (towerType) {
                 case 1:
                     towers.add(new SharpShooter(pos));
-                    tt.setBuiltOn();
+                    tt.setBuiltOn(true);
+                    break;
+                case 2:
+                    towers.add(new LazerToTheFazer(pos));
+                    tt.setBuiltOn(true);
                     break;
                 default:
                     System.err.println("No tower type of that int (addTower)");
@@ -142,8 +152,7 @@ public class GameInstance {
                     portalusTotalus = (new PortalusTotalus(pos, startDirection));
                     creatures.add(portalusTotalus);
                 }
-            default:
-                System.err.println("No creature type of that int (addCreature)");
+                break;
         }
     }
 
@@ -160,7 +169,6 @@ public class GameInstance {
 
     private void movePortalusTotalusers(){
         if(portalusTotalus != null){
-            System.out.println(portalusTotalus.getCurrentHealth());
             for (int i = 0; i < PortalusTotalus.SPEED; i++) {
                 changeDirectionIfNeeded((Creature) portalusTotalus);
                 portalusTotalus.move();
@@ -177,7 +185,9 @@ public class GameInstance {
     }
 
     public void placePortal(){
-        tiles.add(portalusTotalus.createEntryTeleporterTile());
+        if(portalusTotalus != null) {
+            tiles.add(portalusTotalus.createEntryTeleporterTile());
+        }
     }
 
     private void changeDirectionIfNeeded(Creature creature) {
@@ -215,7 +225,6 @@ public class GameInstance {
             if(tower.readyToShoot()) {
                 for (Creature creature : creatures) {
                     if(tower.positionInRange(creature.getPosition())) {
-                        System.out.println("FIREING AT CREATURE: " + creatures.indexOf(creature));
                         creature.setCurrentHealth(creature.getCurrentHealth() - tower.shoot());
                         deleteCreatureIfDead(creature);
                         lasers.add(new Laser(tower.getPosition(),
@@ -241,9 +250,7 @@ public class GameInstance {
     private void handleCreaturesInGoal() {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
-                //TODO add score
                 goaledCreatures++;
-                System.out.println("IN GOAL");
                 creatures.remove(creature);
             }
         }

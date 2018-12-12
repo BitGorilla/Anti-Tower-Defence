@@ -1,5 +1,5 @@
-template = open("Templates/levels/templateMania.txt", "r")
-f = open("Maps/levels/mania.xml", "w+")
+template = open("Templates/levels/hell.txt", "r")
+f = open("Maps/hell.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")

@@ -87,7 +87,7 @@ public class Controller2 {
         ActionListener actionListGrunt = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameM.getCurrentGameInstance().addCreature(2);
+                //gameM.getCurrentGameInstance().addCreature(2);
 
                 // Add more grants
             }

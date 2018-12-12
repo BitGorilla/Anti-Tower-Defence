@@ -59,21 +59,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         ImageLoader.getImageLoader().setScale(gameWindowWidth/width);
     }
 
-    //TODO remove method?
-    private void readTileRoads(Node tilesNode) {
-        for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
-            Node tempNode = tilesNode.getChildNodes().item(j);
-
-            if (tempNode.getNodeType()==Node.ELEMENT_NODE) {
-                if(tempNode.getAttributes().getNamedItem(
-                        ROAD).getNodeValue() != "") {
-                    System.out.println(tempNode.getAttributes().getNamedItem(
-                            ROAD).getNodeValue());
-                }
-            }
-        }
-    }
-
     private ArrayList<Tile> buildTiles(Node parentTileNode){
         ArrayList<Tile> tiles = new ArrayList<>();
         CenterPositionCalculator CRC;
@@ -160,21 +145,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
-    //TODO remove method?
-    private void readTileTypes(Node tilesNode) {
-        for (int j=0; j<tilesNode.getChildNodes().getLength();j++){
-            Node tempNode = tilesNode.getChildNodes().item(j);
-
-            if (tempNode.getNodeType()==Node.ELEMENT_NODE){
-                if(tempNode.getAttributes().getNamedItem(
-                        TYPE).getNodeValue() != "") {
-                    System.out.println(tempNode.getAttributes().getNamedItem(
-                            TYPE).getNodeValue());
-                }
-            }
-        }
-    }
-
     @Override
     public boolean hasNext() {
         return i<nodeList.getLength();
@@ -183,7 +153,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     public ArrayList<Map> getMaps() {
         ArrayList<Map> maps = new ArrayList<>();
         while(hasNext()) {
-            System.out.println(i);
             maps.add(buildMap());
         }
         return maps;
@@ -201,11 +170,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             setMapAttributes(metaNode, tilesNode);
             map = new Map(name, startCredit, buildTiles(tilesNode));
             return map;
-            //System.out.println(height+" "+width+" "+name+" "+startCredit);
-
-            //readTileRoads(tilesNode);
-            //readTileTypes(tilesNode);
-            //System.out.println(" ");
         }
         return null;
     }
