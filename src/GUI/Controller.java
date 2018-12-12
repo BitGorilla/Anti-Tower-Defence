@@ -1,4 +1,4 @@
-package oscarTest;
+package GUI;
 
 import Main.*;
 import formatters.XMLReader;
