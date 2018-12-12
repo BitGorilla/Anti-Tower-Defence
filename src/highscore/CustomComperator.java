@@ -2,9 +2,9 @@ package highscore;
 
 import java.util.Comparator;
 
-public class CustomComperator implements Comparator<User> {
+public class CustomComperator implements Comparator<Score> {
     @Override
-    public int compare(User o1, User o2) {
-        return o2.getScore()-o1.getScore() ;
+    public int compare(Score score1, Score score2) {
+        return score2.getScore()-score1.getScore() ;
     }
 }

@@ -1,12 +1,12 @@
 package highscore;
 
-public class User {
+public class Score {
 
     private String name;
     private String mapName;
     private int score;
 
-    public User(String name, String mapName, int score){
+    public Score(String name, String mapName, int score){
         this.name = name;
         this.mapName = mapName;
         this.score = score;

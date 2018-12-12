@@ -10,7 +10,7 @@ public class Highscores {
     final String PASSWORD = "Shqo9EdI0yjL138n";
     private Connection con;
     private Statement s;
-    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<Score> scores = new ArrayList<>();
 
 
     public Highscores() throws SQLException{
@@ -18,7 +18,7 @@ public class Highscores {
         initializeDatabaseConnection();
     }
 
-    public ArrayList<User> printHighscore(String mapName) throws SQLException {
+    public ArrayList<Score> printHighscore(String mapName) throws SQLException {
         ResultSet res = getHighscores(mapName);
 
         res.beforeFirst();
@@ -28,13 +28,13 @@ public class Highscores {
             String map = res.getString("MapName");
             int score = res.getInt("Score");
 
-            users.add(new User(username, map, score));
+            scores.add(new Score(username, map, score));
         }
         res.close();
 
-        Collections.sort(users, new CustomComperator());
+        Collections.sort(scores, new CustomComperator());
 
-        return users;
+        return scores;
     }
 
     public void insertScore(String name, String mapName, int score)
@@ -93,7 +93,7 @@ public class Highscores {
     }
 
     private void printSortedUsers(){
-        for (User u: users) {
+        for (Score u: scores) {
             System.out.println(u.getName());
             System.out.println(u.getMapName());
             System.out.println(u.getScore());
