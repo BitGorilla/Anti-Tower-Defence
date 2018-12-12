@@ -13,8 +13,6 @@ public class Highscores {
     private final String USER = "v135h18g9";
     private final String PASSWORD = "Shqo9EdI0yjL138n";
     private Connection con;
-    private ArrayList<Score> scores = new ArrayList<>();
-
 
     /**
      * Constructor of class.
@@ -24,17 +22,21 @@ public class Highscores {
     public Highscores() throws SQLException{
         fetchDriver();
         initializeDatabaseConnection();
+        for (String[] s: getHighscores("Map2")) {
+            System.out.println(s[2]);
+
+    }
     }
 
     /**
-     * Fetches highscores from the database and return a sorted list of Score.
+     * Fetches highscores from the database and return a sorted list of strings.
      *
      * @param mapName From which map to fetch scores.
-     * @return A sorted ArrayList with objects of Score. Sorted by highest score
-     * to lowest.
+     * @return A sorted ArrayList with arrays of strings with database data.
      * @throws SQLException If cannot fetch from database.
      */
-    public ArrayList<Score> getHighscores(String mapName) throws SQLException {
+    public ArrayList<String[]> getHighscores(String mapName)
+                                            throws SQLException {
 
         PreparedStatement stmt = null;
         stmt = con.prepareStatement("SELECT * FROM Highscores " +
@@ -77,16 +79,19 @@ public class Highscores {
     }
 
     /**
-     * Creates an ArrayList of Score with the ResultSet from the database and
-     * sorts it by highest to lowest score.
+     * Creates an ArrayList with arrays of String with the ResultSet from the
+     * database and sorts it by highest to lowest score.
      *
      * @param res The ResultSet.
-     * @return A sorted ArrayList with Score objects.
+     * @return A sorted ArrayList with arrays of Strings.
      * @throws SQLException If ResultSet method is called and the result set
      * is closed.
      */
-    private ArrayList<Score> sortHighscore(ResultSet res)
-                                            throws SQLException {
+    private ArrayList<String[]> sortHighscore(ResultSet res)
+            throws SQLException {
+        ArrayList<String[]> DBlist = new ArrayList<>();
+        ArrayList<Score> scores = new ArrayList<>();
+
         res.beforeFirst();
         while (res.next()){
 
@@ -99,7 +104,13 @@ public class Highscores {
         res.close();
 
         Collections.sort(scores, new CustomComparator());
-        return scores;
+        for (Score score: scores) {
+            String[] s = {score.getName(), score.getMapName(),
+                    String.valueOf(score.getScore())};
+            DBlist.add(s);
+        }
+
+        return DBlist;
     }
 
     /**
@@ -125,15 +136,6 @@ public class Highscores {
         }
     }
 
-    private void printSortedUsers(){
-        for (Score u: scores) {
-            System.out.println(u.getName());
-            System.out.println(u.getMapName());
-            System.out.println(u.getScore());
-            System.out.println(" ");
-        }
-    }
-
     /**
      * Closes connection to database.
      */
@@ -152,7 +154,7 @@ public class Highscores {
      * @throws SQLException If creation of database fails.
      */
     private void createDB() throws SQLException{
-                Statement s = con.createStatement();
+        Statement s = con.createStatement();
         s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
                 "(HS_Id int NOT NULL AUTO_INCREMENT," +
                 "User varchar(255)," +
