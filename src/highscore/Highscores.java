@@ -27,14 +27,13 @@ public class Highscores {
     }
 
     /**
-     * Fetches highscores from the database and return a sorted list of Score.
+     * Fetches highscores from the database and return a sorted list of strings.
      *
      * @param mapName From which map to fetch scores.
-     * @return A sorted ArrayList with objects of Score. Sorted by highest score
-     * to lowest.
+     * @return A sorted ArrayList with arrays of strings with database data.
      * @throws SQLException If cannot fetch from database.
      */
-    public ArrayList<Score> getHighscores(String mapName) throws SQLException {
+    public ArrayList<String[]> getHighscores(String mapName) throws SQLException {
 
         PreparedStatement stmt = null;
         stmt = con.prepareStatement("SELECT * FROM Highscores " +
@@ -77,16 +76,18 @@ public class Highscores {
     }
 
     /**
-     * Creates an ArrayList of Score with the ResultSet from the database and
-     * sorts it by highest to lowest score.
+     * Creates an ArrayList with arrays of String with the ResultSet from the
+     * database and sorts it by highest to lowest score.
      *
      * @param res The ResultSet.
-     * @return A sorted ArrayList with Score objects.
+     * @return A sorted ArrayList with arrays of Strings.
      * @throws SQLException If ResultSet method is called and the result set
      * is closed.
      */
-    private ArrayList<Score> sortHighscore(ResultSet res)
-                                            throws SQLException {
+    private ArrayList<String[]> sortHighscore(ResultSet res)
+            throws SQLException {
+        ArrayList<String[]> list = new ArrayList<>();
+
         res.beforeFirst();
         while (res.next()){
 
@@ -96,10 +97,16 @@ public class Highscores {
 
             scores.add(new Score(username, map, score));
         }
-        res.close();
 
         Collections.sort(scores, new CustomComparator());
-        return scores;
+        for (Score score: scores) {
+            String[] s = {score.getName(), score.getMapName(),
+                    String.valueOf(score.getScore())};
+            list.add(s);
+        }
+        res.close();
+
+        return list;
     }
 
     /**
@@ -152,7 +159,7 @@ public class Highscores {
      * @throws SQLException If creation of database fails.
      */
     private void createDB() throws SQLException{
-                Statement s = con.createStatement();
+        Statement s = con.createStatement();
         s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
                 "(HS_Id int NOT NULL AUTO_INCREMENT," +
                 "User varchar(255)," +
