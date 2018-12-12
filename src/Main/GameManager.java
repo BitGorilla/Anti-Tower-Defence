@@ -172,4 +172,8 @@ public class GameManager {
         return mapWon && mapIndex == maps.size();
     }
 
+    public String getCurrentMapName(){
+        return currentGameInstance.getMapName();
+    }
+
 }
