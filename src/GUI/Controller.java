@@ -2,6 +2,7 @@ package GUI;
 
 import Main.*;
 import formatters.XMLReader;
+import highscore.Highscores;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,9 +10,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 public class Controller {
 
@@ -183,5 +186,40 @@ public class Controller {
         }
         Controller controller = new Controller(reader.getMaps(), gameWidth,
                 reader.getWidth());
+    }
+
+    public class HighScoreFetcher extends SwingWorker<ArrayList<String[]>,
+            Integer>{
+
+        @Override
+        protected ArrayList<String[]> doInBackground(){
+            ArrayList<String[]> scoreList;
+
+            Highscores highscores = null;
+            try {
+                highscores = new Highscores();
+                scoreList = highscores.getHighscores(
+                        manager.getCurrentMapName());
+                return scoreList;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void done(){
+
+            try {
+                ArrayList<String[]> scoreList = get();
+
+                //Call highscore-method in Window instance
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

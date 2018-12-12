@@ -302,4 +302,8 @@ public class GameInstance {
     public synchronized int getCredits() {
         return credits;
     }
+
+    public String getMapName(){
+        return name;
+    }
 }
