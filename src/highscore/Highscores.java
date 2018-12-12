@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Highscores {
-    final String DBURL = "jdbc:mysql://mysql.cs.umu.se/v135h18g9";
-    final String USER = "v135h18g9";
-    final String PASSWORD = "Shqo9EdI0yjL138n";
+    private final String DBURL = "jdbc:mysql://mysql.cs.umu.se/v135h18g9";
+    private final String USER = "v135h18g9";
+    private final String PASSWORD = "Shqo9EdI0yjL138n";
     private Connection con;
-    private Statement s;
     private ArrayList<Score> scores = new ArrayList<>();
 
 
@@ -90,7 +89,7 @@ public class Highscores {
             System.out.println(u.getName());
             System.out.println(u.getMapName());
             System.out.println(u.getScore());
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
@@ -104,7 +103,7 @@ public class Highscores {
     }
 
     private void createDB() throws SQLException{
-                s = con.createStatement();
+                Statement s = con.createStatement();
         s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
                 "(HS_Id int NOT NULL AUTO_INCREMENT," +
                 "User varchar(255)," +
