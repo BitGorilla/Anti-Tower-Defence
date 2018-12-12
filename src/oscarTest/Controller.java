@@ -158,7 +158,7 @@ public class Controller {
         protected Integer doInBackground() throws Exception{
 
             Highscores hs = new Highscores();
-            String[] list = hs.getHighscores(manager.getCurrentMapName());
+            //String[] list = hs.getHighscores(manager.getCurrentMapName());
 
             return 1;
         }

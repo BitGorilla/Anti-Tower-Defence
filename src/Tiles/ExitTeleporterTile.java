@@ -1,5 +1,5 @@
 package Tiles;
-
+import Main.*;
 import Creatures.Creature;
 import Main.Direction;
 import Main.Position;
