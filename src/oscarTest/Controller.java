@@ -32,30 +32,59 @@ public class Controller {
     ActionListener addCreature3Pressed = e -> addCreature3();
     ActionListener placePortalPressed = e -> placePortal();
     ActionListener flipperPressed = e -> flipFlipperTile(e);
+    ActionListener nextMapPressed = e -> nextMap();
+
 
     private int tickRate = 30;
     private int fps = 60;
     private ArrayList<Position> flipperTilePositions;
+    private int gamePanelWidth;
+    private int tileDimension;
 
-    public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) throws IOException {
+    public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) {
         manager = new GameManager(maps, tickRate);
-        flipperTilePositions = manager.getFlipperTilePositions();
-        gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
-                gamePanelWidth);
-        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
-                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed);
-        flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
-                gamePanelWidth, gamePanelWidth /tileDimension);
-        showWindow();
+        this.gamePanelWidth = gamePanelWidth;
+        this.tileDimension = tileDimension;
+        buildFlipperPanel();
+        buildGamePanel();
+        buildMenuPanel();
+        buildWindow();
         startDraw();
     }
 
-    private void showWindow() {
+    private void buildWindow() {
             SwingUtilities.invokeLater(()-> {
                 window = new Window(gamePanel, menuPanel, flipperPanel);
                 window.showWindow();
             });
+    }
+
+    private void buildGamePanel() {
+        gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
+                gamePanelWidth);
+    }
+
+    private void buildMenuPanel() {
+        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
+                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
+                , placePortalPressed);
+    }
+
+    private void buildFlipperPanel() {
+        flipperTilePositions = manager.getFlipperTilePositions();
+        if (flipperPanel == null) {
+            flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
+                    gamePanelWidth, gamePanelWidth / tileDimension);
+        }
+        else {
+            System.out.println("Updatingflippers");
+            flipperPanel.updateFlippers(flipperTilePositions);
+        }
+    }
+
+    private void nextMap() {
+        manager.setNextMap();
+        buildFlipperPanel();
     }
 
     private void startUp() {
@@ -64,7 +93,7 @@ public class Controller {
     }
 
     private void pausGame() {
-        manager.setNextMap();
+        nextMap();
         manager.stopGame();
     }
 
@@ -113,7 +142,7 @@ public class Controller {
 
         if (args.length == 0) {
             reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                    "/maps/mapArray2.xml")));
+                    "/maps/levels/levels.xml")));
         }
         else if (args.length == 1 && args[0].endsWith(".xml")) {
             reader.setSource(new FileInputStream(new File(args[0])));
