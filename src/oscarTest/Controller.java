@@ -33,13 +33,11 @@ public class Controller {
     ActionListener placePortalPressed = e -> placePortal();
     ActionListener flipperPressed = e -> flipFlipperTile(e);
 
-    private int gamePanelWidth;
     private int tickRate = 30;
     private int fps = 60;
     private ArrayList<Position> flipperTilePositions;
 
     public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) throws IOException {
-        this.gamePanelWidth = gamePanelWidth;
         manager = new GameManager(maps, tickRate);
         flipperTilePositions = manager.getFlipperTilePositions();
         gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
