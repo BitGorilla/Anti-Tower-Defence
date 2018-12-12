@@ -236,7 +236,7 @@ public class Controller {
     }
 
     /**
-     * Intserts a highscore in the database via SwingWorker.
+     * Inserts a highscore in the database via SwingWorker.
      */
     public class HighScoreInserter extends SwingWorker<Integer, Integer>{
 
