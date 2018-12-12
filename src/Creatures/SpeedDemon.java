@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class SpeedDemon extends Creature {
 
-    public static final int MAXHEALTH = 100;
+    public static final int MAXHEALTH = 300;
     public static final int SPEED = 10;
     public static final int COST = 10;
     public static final Image image = ImageLoader.getImageLoader().getImage(

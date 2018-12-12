@@ -23,8 +23,8 @@ public class Controller {
     private DropDownMenu dropDownMenu;
 
 
-    ActionListener startButtonPressed = e -> startUp();
-    ActionListener pausPressed = e -> pausGame();
+    ActionListener startButtonPressed    = e -> startUp();
+    ActionListener pausPressed          = e -> pausGame();
     ActionListener addCreature1Pressed = e -> addCreature1();
     ActionListener addCreature2Pressed = e -> addCreature2();
     ActionListener addCreature3Pressed = e -> addCreature3();
@@ -169,7 +169,7 @@ public class Controller {
 
         if (args.length == 0) {
             reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                    "/maps/levels/levels.xml")));
+                    "/levels.xml")));
         }
         else if (args.length == 1 && args[0].endsWith(".xml")) {
             reader.setSource(new FileInputStream(new File(args[0])));

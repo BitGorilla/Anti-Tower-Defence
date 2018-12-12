@@ -23,7 +23,7 @@ public class MapWonPanel {
         Object[] array = {msgString};
         //Create an array specifying the number of dialog buttons
         //and their text.
-        Object[] options = {btnString1, btnString2};
+        Object[] options = {btnString2, btnString1};
 
         int result = JOptionPane.showOptionDialog(null, array,
                 "Congratulations!",
@@ -32,12 +32,12 @@ public class MapWonPanel {
                 options,
                 options[0]);
         switch (result) {
-            case 1:
+            case 0:
                 option = "play again";
                 nextLevel.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
-            case 0:
+            case 1:
                 option = "next level";
                 restartLevel.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
