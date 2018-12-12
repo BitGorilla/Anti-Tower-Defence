@@ -18,6 +18,7 @@ public class GameManager {
     private int tickRate;
     private GameInstance currentGameInstance;
     boolean paused = true;
+    int mapIndex;
 
     /**
      * Constructor of the class.
@@ -29,7 +30,17 @@ public class GameManager {
         this.maps = maps;
         //30
         this.tickRate = tickRate;
-        currentGameInstance = new GameInstance(maps.get(0));
+        this.mapIndex = 0;
+        currentGameInstance = new GameInstance(maps.get(mapIndex));
+    }
+
+    public void setNextMap(){
+        mapIndex++;
+        try {
+            currentGameInstance = new GameInstance(maps.get(mapIndex));
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Yooooou woooooon!");
+        }
     }
 
     /**
@@ -54,6 +65,10 @@ public class GameManager {
      */
     public GameInstance getCurrentGameInstance() {
         return currentGameInstance;
+    }
+
+    public ArrayList<Position> getFlipperTilePositions(){
+        return currentGameInstance.getFlipperTilePositions();
     }
 
     /**
@@ -87,7 +102,7 @@ public class GameManager {
      * @return A list of healthbars to draw.
      */
     public ArrayList<Healthbar> getHealthbarsToDraw() {
-        return currentGameInstance.getHealthBarsToDraw();
+        return currentGameInstance.getHealthbarsToDraw();
     }
 
     /**
@@ -95,11 +110,6 @@ public class GameManager {
      * @param type Which type of creature to add.
      */
     public void addCreature(int type) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if(!paused) {
             switch (type) {
                 case 1:
@@ -108,6 +118,7 @@ public class GameManager {
                 case 2:
                     currentGameInstance.addCreature(2);
                     break;
+                case 3: currentGameInstance.addCreature(3);
             }
         }
     }
@@ -145,5 +156,13 @@ public class GameManager {
                 objects.get(objects.size()-1).getPosition().print();
                 //GM.currentGameInstance.addCreature(2);
             }}, 1000, 1000);
+    }
+
+    public void flipTile(Position flipTilePosition){
+        currentGameInstance.flipTile(flipTilePosition);
+    }
+
+    public void placePortal(){
+        currentGameInstance.placePortal();
     }
 }

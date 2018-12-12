@@ -23,7 +23,6 @@ public class Controller {
     private GamePanel gamePanel;
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
-    private GameInstance currentGameInstance;
 
 
     ActionListener startButtonPressed = e -> startUp();
@@ -42,8 +41,7 @@ public class Controller {
     public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) throws IOException {
         this.gamePanelWidth = gamePanelWidth;
         manager = new GameManager(maps, tickRate);
-        currentGameInstance = manager.getCurrentGameInstance();
-        flipperTilePositions = currentGameInstance.getFlipperTilePositions();
+        flipperTilePositions = manager.getFlipperTilePositions();
         gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
                 gamePanelWidth);
         menuPanel = new MenuPanel(startButtonPressed, pausPressed,
@@ -68,19 +66,20 @@ public class Controller {
     }
 
     private void pausGame() {
+        manager.setNextMap();
         manager.stopGame();
     }
 
     private void addCreature1() {
-        new Thread (()-> currentGameInstance.addCreature(1)).start();
+        new Thread (()-> manager.addCreature(1)).start();
     }
 
     private void addCreature2() {
-        currentGameInstance.addCreature(2);
+        manager.addCreature(2);
     }
 
     private void addCreature3() {
-        currentGameInstance.addCreature(3);
+        manager.addCreature(3);
     }
 
     private void startDraw() {
@@ -89,10 +88,10 @@ public class Controller {
             @Override
             public void run() {
                 SwingUtilities.invokeLater(()-> {
-                    menuPanel.updateCredits(currentGameInstance.getCredits());
-                    gamePanel.updateObjects(currentGameInstance.getGameObjectsToDraw());
-                    gamePanel.updateLasers(currentGameInstance.getLaserPositionsToDraw());
-                    gamePanel.updateHealthBars(currentGameInstance.getHealthBarsToDraw());
+                    menuPanel.updateCredits(manager.getCredits());
+                    gamePanel.updateObjects(manager.getGameObjectsToDraw());
+                    gamePanel.updateLasers(manager.getLaserPositionsToDraw());
+                    gamePanel.updateHealthBars(manager.getHealthbarsToDraw());
                     gamePanel.repaint();
                 });
             }
@@ -101,11 +100,11 @@ public class Controller {
 
     private void flipFlipperTile(ActionEvent actionEvent) {
         FlipperButton flipperButton = (FlipperButton) actionEvent.getSource();
-        currentGameInstance.flipTile(flipperButton.getPos());
+        manager.flipTile(flipperButton.getPos());
     }
 
     private void placePortal() {
-        currentGameInstance.placePortal();
+        manager.placePortal();
     }
 
 
@@ -116,7 +115,7 @@ public class Controller {
 
         if (args.length == 0) {
             reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                    "/maps/mapFlipper.xml")));
+                    "/maps/mapArray.xml")));
         }
         else if (args.length == 1 && args[0].endsWith(".xml")) {
             reader.setSource(new FileInputStream(new File(args[0])));

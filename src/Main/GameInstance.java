@@ -273,7 +273,7 @@ public class GameInstance {
         return lasers;
     }
 
-    public synchronized ArrayList<Healthbar> getHealthBarsToDraw() {
+    public synchronized ArrayList<Healthbar> getHealthbarsToDraw() {
         ArrayList<Healthbar> healthbarsToDraw = new ArrayList<>();
         for (Creature creature: creatures) {
             healthbarsToDraw.add(creature.getHealthbar());
