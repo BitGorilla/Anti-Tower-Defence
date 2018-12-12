@@ -39,4 +39,9 @@ public class Window extends JFrame {
         mapWonPanel = new MapWonPanel();
         mapWonPanel.show(nextLevel, restartLevel);
     }
+
+    public void showVictoryPopUp(){
+
+    }
 }
+

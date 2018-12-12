@@ -24,6 +24,7 @@ public class Controller {
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
     private DropDownMenu dropDownMenu;
+    private String usernameToDB;
 
 
     ActionListener startButtonPressed    = e -> startUp();
@@ -132,7 +133,14 @@ public class Controller {
                 SwingUtilities.invokeLater(()-> {
                     if (manager.isMapWon()) {
                         if(manager.allLevelsWon()) {
+                            t.cancel();
                             //window.showVictoryPopUp();
+                            UserNameDialog userNameDialog =
+                                    new UserNameDialog();
+                            usernameToDB = userNameDialog.getUserNameInput();
+
+                            HighScoreInserter putter = new HighScoreInserter();
+                            putter.execute();
                         }
                         else if (!mapWonIsShown) {
                             mapWonIsShown = true;
@@ -187,6 +195,10 @@ public class Controller {
                 reader.getWidth());
     }
 
+
+    /**
+     * Fetches highscores from database via SwingWorker.
+     */
     public class HighScoreFetcher extends SwingWorker<ArrayList<String[]>,
             Integer>{
 
@@ -199,6 +211,7 @@ public class Controller {
                 highscores = new Highscores();
                 scoreList = highscores.getHighscores(
                         manager.getCurrentMapName());
+                highscores.closeCon();
                 return scoreList;
 
             } catch (SQLException e) {
@@ -219,6 +232,31 @@ public class Controller {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    /**
+     * Intserts a highscore in the database via SwingWorker.
+     */
+    public class HighScoreInserter extends SwingWorker<Integer, Integer>{
+
+        @Override
+        protected Integer doInBackground(){
+            try {
+                Highscores highscores = new Highscores();
+                highscores.insertScore(usernameToDB, manager.getCurrentMapName()
+                        ,123);
+                highscores.closeCon();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return 1;
+        }
+
+        @Override
+        protected void done(){
+
         }
     }
 }
