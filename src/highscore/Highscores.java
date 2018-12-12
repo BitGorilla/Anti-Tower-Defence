@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Creates connection to Highscore database and has methods for adding rows
+ * to database and fetching database data.
+ */
 public class Highscores {
     private final String DBURL = "jdbc:mysql://mysql.cs.umu.se/v135h18g9";
     private final String USER = "v135h18g9";
@@ -12,37 +16,49 @@ public class Highscores {
     private ArrayList<Score> scores = new ArrayList<>();
 
 
+    /**
+     * Constructor of class.
+     *
+     * @throws SQLException If database connection fails.
+     */
     public Highscores() throws SQLException{
         fetchDriver();
         initializeDatabaseConnection();
     }
 
-    public ArrayList<Score> printHighscore(String mapName) throws SQLException {
-        ResultSet res = getHighscores(mapName);
+    /**
+     * Fetches highscores from the database and return a sorted list of Score.
+     *
+     * @param mapName From which map to fetch scores.
+     * @return A sorted ArrayList with objects of Score. Sorted by highest score
+     * to lowest.
+     * @throws SQLException If cannot fetch from database.
+     */
+    public ArrayList<Score> getHighscores(String mapName) throws SQLException {
 
-        res.beforeFirst();
-        while (res.next()){
+        PreparedStatement stmt = null;
+        stmt = con.prepareStatement("SELECT * FROM Highscores " +
+                "WHERE MapName = ?");
+        stmt.setString(1, mapName);
+        return sortHighscore(stmt.executeQuery());
 
-            String username = res.getString("User");
-            String map = res.getString("MapName");
-            int score = res.getInt("Score");
-
-            scores.add(new Score(username, map, score));
-        }
-        res.close();
-
-        Collections.sort(scores, new CustomComperator());
-
-        return scores;
     }
 
+    /**
+     * Insert a row to the database.
+     *
+     * @param name Name of user.
+     * @param mapName Name of map.
+     * @param score Users score on the map.
+     * @throws SQLException If insertion fails.
+     */
     public void insertScore(String name, String mapName, int score)
-                            throws SQLException {
+            throws SQLException {
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("INSERT INTO Highscores " +
-                                        "(User, MapName, Score) " +
-                                        "VALUES (?,?,?)");
+                    "(User, MapName, Score) " +
+                    "VALUES (?,?,?)");
 
             stmt.setString(1, name);
             stmt.setString(2, mapName);
@@ -60,21 +76,46 @@ public class Highscores {
         }
     }
 
-    private ResultSet getHighscores(String mapName) throws SQLException {
+    /**
+     * Creates an ArrayList of Score with the ResultSet from the database and
+     * sorts it by highest to lowest score.
+     *
+     * @param res The ResultSet.
+     * @return A sorted ArrayList with Score objects.
+     * @throws SQLException If ResultSet method is called and the result set
+     * is closed.
+     */
+    private ArrayList<Score> sortHighscore(ResultSet res)
+                                            throws SQLException {
+        res.beforeFirst();
+        while (res.next()){
 
-        PreparedStatement stmt = null;
-        stmt = con.prepareStatement("SELECT * FROM Highscores " +
-                                        "WHERE MapName = ?");
-        stmt.setString(1, mapName);
-        return stmt.executeQuery();
+            String username = res.getString("User");
+            String map = res.getString("MapName");
+            int score = res.getInt("Score");
+
+            scores.add(new Score(username, map, score));
+        }
+        res.close();
+
+        Collections.sort(scores, new CustomComparator());
+        return scores;
     }
 
+    /**
+     * Creates a connection with the database.
+     *
+     * @throws SQLException If connection fails.
+     */
     private void initializeDatabaseConnection() throws SQLException{
 
         con = DriverManager.getConnection(DBURL, USER, PASSWORD);
 
     }
 
+    /**
+     * Fetches JDBC driver for database connection.
+     */
     private void fetchDriver(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -93,6 +134,9 @@ public class Highscores {
         }
     }
 
+    /**
+     * Closes connection to database.
+     */
     public void closeCon(){
         try{
             con.close();
@@ -102,6 +146,11 @@ public class Highscores {
         }
     }
 
+    /**
+     * Creates Highscore database if it does not already exist.
+     *
+     * @throws SQLException If creation of database fails.
+     */
     private void createDB() throws SQLException{
                 Statement s = con.createStatement();
         s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
