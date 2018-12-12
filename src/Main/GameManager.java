@@ -9,20 +9,43 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * TODO write the purpose of the class.
+ */
 public class GameManager {
     private ArrayList<Map> maps;
     private Timer timer;
     private int tickRate;
     private GameInstance currentGameInstance;
     boolean paused = true;
+    int mapIndex;
 
+    /**
+     * Constructor of the class.
+     *
+     * @param maps List of maps to manage.
+     * @param tickRate How fast to update the game.
+     */
     public GameManager(ArrayList<Map> maps, int tickRate) {
         this.maps = maps;
         //30
         this.tickRate = tickRate;
-        currentGameInstance = new GameInstance(maps.get(0));
+        this.mapIndex = 0;
+        currentGameInstance = new GameInstance(maps.get(mapIndex));
     }
 
+    public void setNextMap(){
+        mapIndex++;
+        try {
+            currentGameInstance = new GameInstance(maps.get(mapIndex));
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Yooooou woooooon!");
+        }
+    }
+
+    /**
+     * Start the game.
+     */
     public void startGame() {
         if(paused) {
             paused = false;
@@ -36,10 +59,21 @@ public class GameManager {
         }
     }
 
+    /**
+     *
+     * @return The current game instance.
+     */
     public GameInstance getCurrentGameInstance() {
         return currentGameInstance;
     }
 
+    public ArrayList<Position> getFlipperTilePositions(){
+        return currentGameInstance.getFlipperTilePositions();
+    }
+
+    /**
+     * Stops the game.
+     */
     public void stopGame() {
         if(timer != null) {
             timer.cancel();
@@ -47,24 +81,35 @@ public class GameManager {
         }
     }
 
+    /**
+     *
+     * @return A list of GameObject objects to draw.
+     */
     public ArrayList<GameObject> getGameObjectsToDraw() {
         return currentGameInstance.getGameObjectsToDraw();
     }
 
+    /**
+     *
+     * @return A list of positions to draw a laser between.
+     */
     public ArrayList<Laser> getLaserPositionsToDraw() {
         return currentGameInstance.getLaserPositionsToDraw();
     }
 
+    /**
+     *
+     * @return A list of healthbars to draw.
+     */
     public ArrayList<Healthbar> getHealthbarsToDraw() {
-        return currentGameInstance.getHealthBarsToDraw();
+        return currentGameInstance.getHealthbarsToDraw();
     }
 
+    /**
+     * Adds a creature to the game instance.
+     * @param type Which type of creature to add.
+     */
     public void addCreature(int type) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if(!paused) {
             switch (type) {
                 case 1:
@@ -73,18 +118,27 @@ public class GameManager {
                 case 2:
                     currentGameInstance.addCreature(2);
                     break;
+                case 3: currentGameInstance.addCreature(3);
             }
         }
     }
 
+    /**
+     *
+     * @return The current credits of the game instance.
+     */
     public int getCredits() {
         return currentGameInstance.getCredits();
     }
 
+    /**
+     * Updates all game objects.
+     */
     private void updateGame() {
         currentGameInstance.update();
     }
 
+    //TODO remove?
     public static void main(String[] args) throws IOException, InterruptedException {
         XMLReader reader = new XMLReader(1000);
         reader.setSource(new FileInputStream(new File(
@@ -102,5 +156,13 @@ public class GameManager {
                 objects.get(objects.size()-1).getPosition().print();
                 //GM.currentGameInstance.addCreature(2);
             }}, 1000, 1000);
+    }
+
+    public void flipTile(Position flipTilePosition){
+        currentGameInstance.flipTile(flipTilePosition);
+    }
+
+    public void placePortal(){
+        currentGameInstance.placePortal();
     }
 }

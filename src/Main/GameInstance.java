@@ -2,6 +2,7 @@ package Main;
 
 import Creatures.Creature;
 import Creatures.Grunt;
+import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
 import Tiles.*;
 import Towers.SharpShooter;
@@ -18,6 +19,7 @@ public class GameInstance {
 
     private ArrayList<Tower> towers = new ArrayList<>();
     private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
+    private PortalusTotalus portalusTotalus;
     private ArrayList<Tile> tiles;
     private ArrayList<Laser> lasers = new ArrayList<>();
     private ArrayList<TowerTile> towerTiles = new ArrayList<>();
@@ -36,6 +38,7 @@ public class GameInstance {
         addTower(1);
         addTower(1);
         addTower(1);
+
         update();
     }
 
@@ -68,12 +71,12 @@ public class GameInstance {
     }
 
     public void update() {
-        //System.out.println(creatures.get(0).getCurrentSpeed());
         resetCreatureStats();
         affectCreatureOnTile();
         moveCreatures();
         handleCreaturesInGoal();
         damageCreaturesIfPossible();
+
     }
 
     private void resetCreatureStats() {
@@ -123,6 +126,11 @@ public class GameInstance {
                     credits -= Grunt.COST;
                 }
                 break;
+            case 3:
+                if(credits >= PortalusTotalus.COST && portalusTotalus == null){
+                    portalusTotalus = (new PortalusTotalus(pos, startDirection));
+                    creatures.add(portalusTotalus);
+                }
             default:
                 System.err.println("No creature type of that int (addCreature)");
         }
@@ -131,12 +139,34 @@ public class GameInstance {
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
-                creature.move();
-                //creature.getPosition().print();
-                //WARNING ORDO WARNING jontor
                 changeDirectionIfNeeded(creature);
+                creature.move();
             }
         }
+        movePortalusTotalusers();
+
+    }
+
+    private void movePortalusTotalusers(){
+        if(portalusTotalus != null){
+            System.out.println(portalusTotalus.getCurrentHealth());
+            for (int i = 0; i < PortalusTotalus.SPEED; i++) {
+                changeDirectionIfNeeded((Creature) portalusTotalus);
+                portalusTotalus.move();
+                if(portalusTotalus.getTeleportCountDown() == 0){
+                    tiles.add(portalusTotalus.createExitTeleporterTile());
+                }
+            }
+            if(portalusTotalus.isDead()){
+                creatures.remove(portalusTotalus);
+                portalusTotalus = null;
+            }
+        }
+
+    }
+
+    public void placePortal(){
+        tiles.add(portalusTotalus.createEntryTeleporterTile());
     }
 
     private void changeDirectionIfNeeded(Creature creature) {
@@ -209,8 +239,17 @@ public class GameInstance {
     }
 
     private void deleteCreatureIfDead(Creature creature) {
-        if(creature.isDead())
+        if (portalusTotalus != null) {
+            if (portalusTotalus.isDead()) {
+                if(portalusTotalus.getTeleportCountDown() > 0)
+                    tiles.remove(portalusTotalus.getEntryTeleporterTile());
+
+                portalusTotalus = null;
+            }
+        }
+        if (creature.isDead())
             creatures.remove(creature);
+
     }
 
     public void flipTile(Position tilePosition) {
@@ -234,7 +273,7 @@ public class GameInstance {
         return lasers;
     }
 
-    public synchronized ArrayList<Healthbar> getHealthBarsToDraw() {
+    public synchronized ArrayList<Healthbar> getHealthbarsToDraw() {
         ArrayList<Healthbar> healthbarsToDraw = new ArrayList<>();
         for (Creature creature: creatures) {
             healthbarsToDraw.add(creature.getHealthbar());

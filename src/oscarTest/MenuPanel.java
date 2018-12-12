@@ -11,8 +11,9 @@ public class MenuPanel extends JPanel {
 
     public MenuPanel(ActionListener startButtonPressed,
                      ActionListener pausPressed, ActionListener addCreature1,
-                     ActionListener addCreature2) {
-        setLayout(new GridLayout(5,0));
+                     ActionListener addCreature2, ActionListener addCreature3
+            , ActionListener placePortal) {
+        setLayout(new GridLayout(6,0));
         setPreferredSize(new Dimension(200,100));
         setBackground(Color.blue);
 
@@ -48,12 +49,25 @@ public class MenuPanel extends JPanel {
         userName = new JLabel("User Name");
         userName.setFont(new Font("Verdana", 1, 20));
         add(userName);
+
+        JButton creature3 = new JButton();
+        creature3.setPreferredSize(new Dimension(100,100));
+        creature3.setText("Creature3");
+        creature3.addActionListener(addCreature3);
+        add(creature3);
+
+        JButton portal = new JButton();
+        portal.setPreferredSize(new Dimension(100,100));
+        portal.setText("Creature3");
+        portal.addActionListener(placePortal);
+        add(portal);
     }
 
     public void setUserName(String username) {
         userName.setText(username);
         add(userName);
     }
+
 
     public void updateCredits(int credit) {
         creditLabel.setText(Integer.toString(credit));

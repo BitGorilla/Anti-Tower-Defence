@@ -15,7 +15,6 @@ public class FlipperPanel extends JPanel {
 
     public FlipperPanel(ArrayList<Position> positions,
                         ActionListener flipperPressed, int panelWidth, int buttonWidth) {
-        positions.get(0).print();
         this.positions = positions;
         setBounds(0,0,panelWidth,panelWidth);
         setPreferredSize(new Dimension(panelWidth, panelWidth));

@@ -1,5 +1,5 @@
-template = open("Templates/templateFlipper.txt", "r")
-f = open("Maps/mapFlipper.xml", "w+")
+template = open("Templates/templateBigWithTowers.txt", "r")
+f = open("Maps/mapPart2.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
