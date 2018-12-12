@@ -22,10 +22,6 @@ public class Highscores {
     public Highscores() throws SQLException{
         fetchDriver();
         initializeDatabaseConnection();
-        for (String[] s: getHighscores("Map2")) {
-            System.out.println(s[2]);
-
-    }
     }
 
     /**
