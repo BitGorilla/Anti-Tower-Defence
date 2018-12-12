@@ -12,11 +12,6 @@ public class GUI {
 
     public JFrame frame;
     private JPanel gamePanel;
-    private JMenuBar menuBar;
-    private JMenu menu1;
-    private JMenu menu2;
-    private JMenuItem menuItem1;
-    private JMenuItem menuItem2;
     private String levelName;
     public JLabel userName;
     private String username;
@@ -133,11 +128,6 @@ public class GUI {
         userName.setFont(new Font("Verdana", 1, 20));
         userPanel.add(userName);
 
-        JTextField userInput = new JTextField("Type in your user name");
-        inputButton = new JButton("Send");
-        userPanel.add(userInput, BorderLayout.SOUTH);
-        userPanel.add(inputButton, BorderLayout.WEST);
-
         JLabel credits = new JLabel(Integer.toString(setCredits(1000)));
         credits.setFont(new Font("Verdana", 1, 20));
         userPanel.add(credits);
@@ -155,10 +145,6 @@ public class GUI {
         return credits;
     }
 
-    public void addActionListenerUsernameInput(ActionListener
-                                                       actionListUsername) {
-        inputButton.addActionListener(actionListUsername);
-    }
 
     public void addActionListenerGrant(ActionListener actionListAddGrant) {
         gruntButton.addActionListener(actionListAddGrant);
@@ -169,6 +155,7 @@ public class GUI {
     }
 
 
+    /*
     public void showWinningDialog() {
 
         Object[] options = {"Play this level again",
@@ -183,7 +170,7 @@ public class GUI {
                 options[0]); //default button title
 
         UIManager.put("JOptionPane.minimumSize", new Dimension(1000, 1000));
-    }
+    }*/
 
 
     public String userNameDialog() {

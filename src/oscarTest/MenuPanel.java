@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class MenuPanel extends JPanel {
 
     JLabel creditLabel = new JLabel();
+    JLabel userName = new JLabel();
 
     public MenuPanel(ActionListener startButtonPressed,
                      ActionListener pausPressed, ActionListener addCreature1,
@@ -43,6 +44,15 @@ public class MenuPanel extends JPanel {
         creature2.setText("Creature2");
         creature2.addActionListener(addCreature2);
         add(creature2);
+
+        userName = new JLabel("User Name");
+        userName.setFont(new Font("Verdana", 1, 20));
+        add(userName);
+    }
+
+    public void setUserName(String username) {
+        userName.setText(username);
+        add(userName);
     }
 
     public void updateCredits(int credit) {

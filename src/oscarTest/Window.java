@@ -1,13 +1,17 @@
 package oscarTest;
 
+import Main.UserNameDialog;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame {
 
+    MenuPanel mp;
+
     public Window(GamePanel gamePanel,
                   MenuPanel menuPanel, FlipperPanel flipperPanel) {
-
+        mp = menuPanel;
         add(menuPanel, BorderLayout.EAST);
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.add(gamePanel,Integer.valueOf(1));
@@ -25,5 +29,32 @@ public class Window extends JFrame {
 
     public void showWindow() {
         setVisible(true);
+    }
+
+    public void userNameDialog(){
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                UserNameDialog und = new UserNameDialog();
+                String name = und.getUserNameInput();
+                // put user in database
+                mp.setUserName(name);
+                //myLabel.setText("Processing");
+                //Do the job
+                //myLabel.setText("Processed");
+            }
+        });
+        t.start();
+
+    }
+
+    /*public void runSetUserName(String name){
+        mp.setUserName(name);
+    }*/
+
+    public JPanel getMenuPanel(){
+        return mp;
     }
 }

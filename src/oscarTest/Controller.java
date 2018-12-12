@@ -3,6 +3,7 @@ package oscarTest;
 import Main.GameInstance;
 import Main.GameManager;
 import Main.Position;
+import Main.UserNameDialog;
 import formatters.XMLReader;
 
 import javax.swing.*;
@@ -57,6 +58,10 @@ public class Controller {
             SwingUtilities.invokeLater(()-> {
                 window = new Window(gamePanel, menuPanel, flipperPanel);
                 window.showWindow();
+                getUserName();
+                //String test = getUserName();
+                //System.out.println(test);
+                //window.runSetUserName(test);
             });
     }
 
@@ -64,6 +69,15 @@ public class Controller {
         System.out.println("starting");
         manager.startGame();
     }
+
+    private void getUserName(){
+        window.userNameDialog();
+        // put user in database
+    }
+
+    /*private void setUserNameInGUI(String username){
+        window.getMenuPanel().setUserName(username);
+    }*/
 
     private void pausGame() {
         manager.stopGame();

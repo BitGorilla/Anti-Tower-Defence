@@ -37,10 +37,16 @@ public class Controller2 {
             @Override
             public void run() {
                 gui = new GUI("Anti Tower Defence", windowWidth);
-                addActionListenerUsernameInput(gui.userName.getText());
+                //addActionListenerUsernameInput(gui.userName.getText());
                 addSpeedDemonActionList();
                 addGrantActionList();
-                gui.setAnimator(animator);
+                String test = getUserName();
+                //System.out.println(test);
+                setUserNameInGUI(test);
+                showWinnerDialog();
+                System.out.println(gui.winnerDialog());
+                System.out.println(gui.loserDialog());
+                //gui.setAnimator(animator);
                 gui.show();
             }
         });
@@ -71,17 +77,24 @@ public class Controller2 {
         gui.setLevelName(getLevelName());
     }*/
 
-    private void addActionListenerUsernameInput(String userInput){
-        ActionListener actionListUsername = (new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String data = userInput;
-                //Put username in database
-                // Set the userName Label to username
-                gui.userName.setText(data);
-            }
-        });
+    private String getUserName(){
+        String usern = gui.userNameDialog();
+        //Run sql script
+        return usern;
     }
+
+    private void setUserNameInGUI(String username){
+        gui.setUserName(username);
+    }
+
+    private void showWinnerDialog(){
+        gui.winnerDialog();
+    }
+
+    private void showLoserDialog(){
+        gui.loserDialog();
+    }
+
 
     private void addGrantActionList() {
         ActionListener actionListGrunt = new ActionListener() {
