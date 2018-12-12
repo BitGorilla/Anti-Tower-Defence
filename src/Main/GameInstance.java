@@ -42,6 +42,10 @@ public class GameInstance {
         update();
     }
 
+    public String getMapName(){
+        return name;
+    }
+
     private void findStart() {
         for (Tile tile: tiles) {
             if(tile.getClass() == StartTile.class) {

@@ -1,11 +1,6 @@
 package oscarTest;
-
-
 import Main.UserNameDialog;
-
 import Main.DropDownMenu;
-
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,10 +9,11 @@ public class Window extends JFrame {
     MenuPanel mp;
 
     public Window(GamePanel gamePanel,
-                  MenuPanel menuPanel, FlipperPanel flipperPanel) {
+                  MenuPanel menuPanel, FlipperPanel flipperPanel,
+                  DropDownMenu dropdown) {
         mp = menuPanel;
         add(menuPanel, BorderLayout.EAST);
-        setJMenuBar(new DropDownMenu());
+        setJMenuBar(dropdown);
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.add(gamePanel,Integer.valueOf(1));
         layeredPane.add(flipperPanel,Integer.valueOf(2));

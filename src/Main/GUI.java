@@ -65,10 +65,9 @@ public class GUI {
     private JPanel buildMenu() {
 
         JPanel upperPanel = new JPanel();
-        DropDownMenu ddMeny = new DropDownMenu();
-
-        upperPanel.add(ddMeny);
-        frame.setJMenuBar(ddMeny);
+       // DropDownMenu ddMenu = new DropDownMenu();
+        //upperPanel.add(ddMenu);
+        //frame.setJMenuBar(ddMenu);
 
         return upperPanel;
     }

@@ -60,6 +60,10 @@ public class GameManager {
         }
     }
 
+    public String getCurrentMapName(){
+        return currentGameInstance.getMapName();
+    }
+
     /**
      *
      * @return The current game instance.

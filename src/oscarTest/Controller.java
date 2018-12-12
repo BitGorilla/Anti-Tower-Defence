@@ -1,11 +1,8 @@
 package oscarTest;
 
-import Main.GameInstance;
-import Main.GameManager;
-import Main.Map;
-import Main.Position;
-import Main.UserNameDialog;
+import Main.*;
 import formatters.XMLReader;
+import highscore.Highscores;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,6 +21,7 @@ public class Controller {
     private GamePanel gamePanel;
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
+    private DropDownMenu dropDown;
 
 
     ActionListener startButtonPressed = e -> startUp();
@@ -33,6 +31,8 @@ public class Controller {
     ActionListener addCreature3Pressed = e -> addCreature3();
     ActionListener placePortalPressed = e -> placePortal();
     ActionListener flipperPressed = e -> flipFlipperTile(e);
+
+    ActionListener highScorePressed = e -> showHighScore();
 
     private int tickRate = 30;
     private int fps = 60;
@@ -48,13 +48,14 @@ public class Controller {
                 , placePortalPressed);
         flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
                 gamePanelWidth, gamePanelWidth /tileDimension);
+        dropDown = new DropDownMenu(highScorePressed, pausPressed);
         showWindow();
         startDraw();
     }
 
     private void showWindow() {
             SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanel, menuPanel, flipperPanel);
+                window = new Window(gamePanel, menuPanel, flipperPanel, dropDown );
                 window.showWindow();
                 getUserName();
                 //String test = getUserName();
@@ -142,4 +143,27 @@ public class Controller {
         Controller controller = new Controller(reader.getMaps(), gameWidth,
                 reader.getWidth());
     }
+
+    private void showHighScore(){
+        //hämta från DB
+        //Visa dialog
+
+
+    }
+
+
+    private class getHighScore extends SwingWorker<Integer, Integer>{
+
+        @Override
+        protected Integer doInBackground() throws Exception{
+
+            Highscores hs = new Highscores();
+            String[] list = hs.getHighscores(manager.getCurrentMapName());
+
+            return 1;
+        }
+    }
+
+
+
 }

@@ -3,6 +3,7 @@ package Main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 /**
@@ -14,8 +15,10 @@ public class DropDownMenu extends JMenuBar{
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
+    private JMenuItem menuItemHighScore;
 
-    public DropDownMenu(){
+
+    public DropDownMenu(ActionListener highScorePressed, ActionListener pausPressed){
         Font f = new Font("sans-serif", Font.PLAIN, 30);
         UIManager.put("Menu.font", f);
         //Build the first menu.
@@ -45,6 +48,8 @@ public class DropDownMenu extends JMenuBar{
                 KeyEvent.VK_1, ActionEvent.ALT_MASK));
         menuItem1.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
+
+        menuItem1.addActionListener(pausPressed);
         menu1.add(menuItem1);
 
         menuItem1 = new JMenuItem("Mute / Unmute", KeyEvent.VK_T);
@@ -84,13 +89,14 @@ public class DropDownMenu extends JMenuBar{
                 "This doesn't really do anything");
         menu2.add(menuItem2);
 
-        menuItem2 = new JMenuItem("High Score List",KeyEvent.VK_T);
-        menuItem2.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        menuItem2.getAccessibleContext().setAccessibleDescription(
-                "This doesn't really do anything");
+        menuItemHighScore = new JMenuItem("High Score List");
+        menuItemHighScore.addActionListener(highScorePressed);
         menu2.add(menuItem2);
 
 
     }
+
+    /*public void addActionListenerHighScore(highScorePressed) {
+        menuItemHighScore.addActionListener(highScorePressed);
+    }*/
 }

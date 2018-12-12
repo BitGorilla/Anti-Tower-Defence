@@ -46,10 +46,6 @@ public class MenuPanel extends JPanel {
         creature2.addActionListener(addCreature2);
         add(creature2);
 
-        userName = new JLabel("User Name");
-        userName.setFont(new Font("Verdana", 1, 20));
-        add(userName);
-
         JButton creature3 = new JButton();
         creature3.setPreferredSize(new Dimension(100,100));
         creature3.setText("Creature3");
@@ -61,6 +57,10 @@ public class MenuPanel extends JPanel {
         portal.setText("Creature3");
         portal.addActionListener(placePortal);
         add(portal);
+
+        userName = new JLabel("User Name");
+        userName.setFont(new Font("Verdana", 1, 20));
+        add(userName);
     }
 
     public void setUserName(String username) {
