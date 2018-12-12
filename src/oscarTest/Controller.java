@@ -2,6 +2,7 @@ package oscarTest;
 
 import Main.GameInstance;
 import Main.GameManager;
+import Main.Map;
 import Main.Position;
 import formatters.XMLReader;
 
@@ -19,7 +20,6 @@ public class Controller {
 
     private Window window;
     private GameManager manager;
-    private XMLReader reader;
     private GamePanel gamePanel;
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
@@ -32,28 +32,25 @@ public class Controller {
     ActionListener addCreature2Pressed = e -> addCreature2();
     ActionListener addCreature3Pressed = e -> addCreature3();
     ActionListener placePortalPressed = e -> placePortal();
-
     ActionListener flipperPressed = e -> flipFlipperTile(e);
 
-
+    private int gamePanelWidth;
     private int tickRate = 30;
     private int fps = 60;
-    private int gameWidth = 700;
     private ArrayList<Position> flipperTilePositions;
 
-    public Controller() throws IOException {
-        reader = new XMLReader(gameWidth);
-        reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                "/maps/mapBig.xml")));
-        manager = new GameManager(reader.getMaps(), tickRate);
+    public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) throws IOException {
+        this.gamePanelWidth = gamePanelWidth;
+        manager = new GameManager(maps, tickRate);
         currentGameInstance = manager.getCurrentGameInstance();
         flipperTilePositions = currentGameInstance.getFlipperTilePositions();
-        gamePanel = new GamePanel(gameWidth /reader.getWidth()/2,fps, gameWidth);
+        gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
+                gamePanelWidth);
         menuPanel = new MenuPanel(startButtonPressed, pausPressed,
                 addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
                 , placePortalPressed);
         flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
-                gameWidth, gameWidth /reader.getWidth());
+                gamePanelWidth, gamePanelWidth /gamePanelWidth);
         showWindow();
         startDraw();
     }
@@ -107,13 +104,31 @@ public class Controller {
         currentGameInstance.flipTile(flipperButton.getPos());
     }
 
-
-
     private void placePortal() {
         currentGameInstance.placePortal();
     }
 
+
     public static void main(String[] args) throws IOException {
-        Controller c = new Controller();
+        int gameWidth = 700;
+        XMLReader reader;
+        reader = new XMLReader(gameWidth);
+
+        if (args.length == 0) {
+            reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
+                    "/maps/mapFlipper.xml")));
+        }
+        else if (args.length == 1 && args[0].endsWith(".xml")) {
+            reader.setSource(new FileInputStream(new File(args[0])));
+        }
+        else {
+            System.err.println("The program only takes one argument, an .xml " +
+                    "file containing the maps.\nIf no arguments are given " +
+                    "the " +
+                    "default maps are run.");
+            System.exit(1);
+        }
+        Controller controller = new Controller(reader.getMaps(), gameWidth,
+                reader.getWidth());
     }
 }

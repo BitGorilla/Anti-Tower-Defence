@@ -239,11 +239,15 @@ public class GameInstance {
     }
 
     private void deleteCreatureIfDead(Creature creature) {
-        System.out.println(portalusTotalus.isDead());
-        if(portalusTotalus.isDead()) {
-            portalusTotalus = null;
+        if (portalusTotalus != null) {
+            if (portalusTotalus.isDead()) {
+                if(portalusTotalus.getTeleportCountDown() > 0)
+                    tiles.remove(portalusTotalus.getEntryTeleporterTile());
+
+                portalusTotalus = null;
+            }
         }
-        if(creature.isDead())
+        if (creature.isDead())
             creatures.remove(creature);
 
     }

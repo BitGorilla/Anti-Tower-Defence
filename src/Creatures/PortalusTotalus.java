@@ -32,12 +32,18 @@ public class PortalusTotalus extends Creature {
 
     public Tile createEntryTeleporterTile(){
         if(entryTeleporterTile == null) {
+            setImage(ImageLoader.getImageLoader().getImage("portalusTotalus2" +
+                    ".png"));
             Position teleportPosition = new Position(getPosition().getX(), getPosition().getY());
             entryTeleporterTile = new EntryTeleporterTile(getDirection(), teleportPosition);
         }
         return entryTeleporterTile;
-
     }
+
+    public EntryTeleporterTile getEntryTeleporterTile() {
+        return entryTeleporterTile;
+    }
+
     @Override
     public void move() {
         getPosition().addVector(getDirection().asVector());

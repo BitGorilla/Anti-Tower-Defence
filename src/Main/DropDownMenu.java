@@ -10,24 +10,20 @@ import java.awt.event.KeyEvent;
  */
 public class DropDownMenu extends JMenuBar{
 
-    private JMenuBar menuBar;
     private JMenu menu1;
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
 
     public DropDownMenu(){
-
-        menuBar = new JMenuBar();
-        Font f = new Font("sans-serif", Font.PLAIN, 20);
+        Font f = new Font("sans-serif", Font.PLAIN, 30);
         UIManager.put("Menu.font", f);
-
         //Build the first menu.
         menu1 = new JMenu("Game Menu");
         menu1.setMnemonic(KeyEvent.VK_A);
-        menu1.getAccessibleContext().setAccessibleDescription(
+        getAccessibleContext().setAccessibleDescription(
                 "The only menu in this program that has menu items");
-        menuBar.add(menu1);
+        add(menu1);
 
         //Group of JMenuItems in menu 1
         menuItem1 = new JMenuItem("New Game / Restart", KeyEvent.VK_T);
@@ -71,7 +67,7 @@ public class DropDownMenu extends JMenuBar{
         menu2.setMnemonic(KeyEvent.VK_A);
         menu2.getAccessibleContext().setAccessibleDescription(
                 "The only menu in this program that has menu items");
-        menuBar.add(menu2);
+        add(menu2);
 
         //Group of JMenuItems in menu 2
         menuItem2 = new JMenuItem("About",KeyEvent.VK_T);
@@ -97,10 +93,4 @@ public class DropDownMenu extends JMenuBar{
 
 
     }
-
-    public JMenuBar getMenyBar(){
-        return menuBar;
-    }
-
-
 }

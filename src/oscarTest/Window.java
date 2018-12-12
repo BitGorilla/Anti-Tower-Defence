@@ -1,5 +1,7 @@
 package oscarTest;
 
+import Main.DropDownMenu;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +11,7 @@ public class Window extends JFrame {
                   MenuPanel menuPanel, FlipperPanel flipperPanel) {
 
         add(menuPanel, BorderLayout.EAST);
-        //setJMenuBar(new (null,null,null,null,null,null));
+        setJMenuBar(new DropDownMenu());
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.add(gamePanel,Integer.valueOf(1));
         layeredPane.add(flipperPanel,Integer.valueOf(2));
