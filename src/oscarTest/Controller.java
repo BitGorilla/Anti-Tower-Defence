@@ -1,10 +1,8 @@
 package oscarTest;
 
-import Main.GameInstance;
-import Main.GameManager;
-import Main.Map;
-import Main.Position;
+import Main.*;
 import formatters.XMLReader;
+import highscore.Highscores;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +21,7 @@ public class Controller {
     private GamePanel gamePanel;
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
+    private DropDownMenu dropDown;
 
 
     ActionListener startButtonPressed = e -> startUp();
@@ -35,6 +34,8 @@ public class Controller {
     ActionListener nextMapPressed = e -> nextMap();
 
 
+    ActionListener highScorePressed = e -> showHighScore();
+
     private int tickRate = 30;
     private int fps = 60;
     private ArrayList<Position> flipperTilePositions;
@@ -43,19 +44,36 @@ public class Controller {
 
     public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) {
         manager = new GameManager(maps, tickRate);
+/*
+        flipperTilePositions = manager.getFlipperTilePositions();
+        gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
+                gamePanelWidth);
+        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
+                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
+                , placePortalPressed);
+        flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
+                gamePanelWidth, gamePanelWidth /tileDimension);
+        dropDown = new DropDownMenu(highScorePressed, pausPressed);
+        showWindow();
+*/
         this.gamePanelWidth = gamePanelWidth;
         this.tileDimension = tileDimension;
         buildFlipperPanel();
         buildGamePanel();
         buildMenuPanel();
         buildWindow();
+
         startDraw();
     }
 
     private void buildWindow() {
             SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanel, menuPanel, flipperPanel);
+                window = new Window(gamePanel, menuPanel, flipperPanel, dropDown );
                 window.showWindow();
+                getUserName();
+                //String test = getUserName();
+                //System.out.println(test);
+                //window.runSetUserName(test);
             });
     }
 
@@ -91,6 +109,15 @@ public class Controller {
         System.out.println("starting");
         manager.startGame();
     }
+
+    private void getUserName(){
+        window.userNameDialog();
+        // put user in database
+    }
+
+    /*private void setUserNameInGUI(String username){
+        window.getMenuPanel().setUserName(username);
+    }*/
 
     private void pausGame() {
         nextMap();
@@ -157,4 +184,26 @@ public class Controller {
         Controller controller = new Controller(reader.getMaps(), gameWidth,
                 reader.getWidth());
     }
+
+    private void showHighScore(){
+        //hämta från DB
+        //Visa dialog
+
+
+    }
+
+    private class getHighScore extends SwingWorker<Integer, Integer>{
+
+        @Override
+        protected Integer doInBackground() throws Exception{
+
+            Highscores hs = new Highscores();
+            //String[] list = hs.getHighscores(manager.getCurrentMapName());
+
+            return 1;
+        }
+    }
+
+
+
 }
