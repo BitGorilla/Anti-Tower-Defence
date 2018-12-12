@@ -73,13 +73,6 @@ public class Highscores {
     private void initializeDatabaseConnection() throws SQLException{
 
         con = DriverManager.getConnection(DBURL, USER, PASSWORD);
-        /*s = con.createStatement();
-        s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
-                "(HS_Id int NOT NULL AUTO_INCREMENT," +
-                "User varchar(255)," +
-                "MapName varchar(255), " +
-                "Score int, " +
-                "CONSTRAINT PK_Highscore PRIMARY KEY (HS_Id))");*/
 
     }
 
@@ -108,5 +101,15 @@ public class Highscores {
         catch (SQLException e){
             System.out.println("Could not close connection");
         }
+    }
+
+    private void createDB() throws SQLException{
+                s = con.createStatement();
+        s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
+                "(HS_Id int NOT NULL AUTO_INCREMENT," +
+                "User varchar(255)," +
+                "MapName varchar(255), " +
+                "Score int, " +
+                "CONSTRAINT PK_Highscore PRIMARY KEY (HS_Id))");
     }
 }
