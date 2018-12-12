@@ -53,10 +53,10 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
 
         height = Integer.parseInt(getValue(getNodeByTag(HEIGHT,metaNode)));
         width = Integer.parseInt(getValue(getNodeByTag(WIDTH,metaNode)));
-        ImageLoader.getImageLoader().setScale(gameWindowWidth/width);
         name = getValue(getNodeByTag(NAME,metaNode));
         startCredit = Integer.parseInt(getValue(getNodeByTag(STARTCREDIT,
                 metaNode)));
+        ImageLoader.getImageLoader().setScale(gameWindowWidth/width);
     }
 
     //TODO remove method?

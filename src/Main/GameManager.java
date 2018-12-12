@@ -1,5 +1,6 @@
 package Main;
 
+import formatters.ImageLoader;
 import formatters.XMLReader;
 
 import java.io.File;
@@ -31,13 +32,13 @@ public class GameManager {
         //30
         this.tickRate = tickRate;
         this.mapIndex = 0;
-        currentGameInstance = new GameInstance(maps.get(mapIndex));
+        setNextMap();
     }
 
     public void setNextMap(){
-        mapIndex++;
         try {
             currentGameInstance = new GameInstance(maps.get(mapIndex));
+            mapIndex++;
         }catch (IndexOutOfBoundsException e){
             System.out.println("Yooooou woooooon!");
         }

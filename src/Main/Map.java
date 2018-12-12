@@ -12,7 +12,6 @@ public class Map {
     private int startCredit;
     private String name;
     private ArrayList<Tile> tiles;
-    private int scale;
 
     /**
      * Constructor of the class.
@@ -20,11 +19,10 @@ public class Map {
      * @param startCredit The number of credits the user starts with.
      * @param tiles The tiles of which the game field consists of.
      */
-    public Map(String name, int startCredit, ArrayList<Tile> tiles, int scale) {
+    public Map(String name, int startCredit, ArrayList<Tile> tiles) {
         this.startCredit = startCredit;
         this.name = name;
         this.tiles = tiles;
-        this.scale = scale;
     }
 
     /**
@@ -51,7 +49,4 @@ public class Map {
         return tiles;
     }
 
-    public int getScale() {
-        return scale;
-    }
 }
