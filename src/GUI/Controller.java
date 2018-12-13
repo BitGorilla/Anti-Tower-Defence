@@ -148,7 +148,7 @@ public class Controller {
                             window.showMapWon();
                         }
                     }
-                    menuPanel.updateCredits(manager.getCredits());
+                    menuPanel.updateStats(manager.getCredits(), manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                     gamePanel.updateHealthBars(manager.getHealthbarsToDraw());

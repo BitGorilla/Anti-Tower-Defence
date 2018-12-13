@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 public class MenuPanel extends JPanel {
 
     JLabel creditLabel;
+    JLabel scoreLabel;
 
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
                      ActionListener addCreature3, ActionListener placePortal) {
@@ -61,15 +62,19 @@ public class MenuPanel extends JPanel {
         button.addActionListener(placePortal);
         add(button);
 
-        creditLabel = new JLabel("",SwingConstants.LEFT);
+        creditLabel = new JLabel("",SwingConstants.CENTER);
         creditLabel.setFont(f);
-        Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
-        creditLabel.setBorder(border);
-        updateCredits(0);
+
+        scoreLabel = new JLabel("",SwingConstants.CENTER);
+        creditLabel.setFont(f);
     }
 
-    public void updateCredits(int credit) {
+    public void updateStats(int credit, int score) {
         creditLabel.setText("<html><b> " + "$$$: </b>" +Integer.toString(credit)+"</html>");
         add(creditLabel);
+
+        scoreLabel.setText("<html><b> " + "Score: </b>" +Integer.toString(score)+
+                "</html>");
+        add(scoreLabel);
     }
 }
