@@ -2,6 +2,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import Main.*;
 
+/**
+ * Tests for the class CenterPositionCalculator.
+ *
+ * @author id15msd
+ */
+
 public class CenterPositionCalculatorTest {
     private CenterPositionCalculator calculator;
     private double windowDimension = 100;

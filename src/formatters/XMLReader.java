@@ -17,6 +17,11 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+/**
+ * Reads a XML file and translates it to playable levels.
+ *
+ * @author id15msd
+ */
 public class XMLReader implements LevelReader, LevelXMLConstants{
     private NodeList nodeList;
     private int i = 0;

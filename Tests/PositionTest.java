@@ -2,6 +2,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import Main.*;
 
+/**
+ * @author id15msd
+ */
+
 public class PositionTest {
     private Position position;
 

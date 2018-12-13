@@ -226,10 +226,18 @@ public class Controller {
 
     /**
      * Fetches highscores from database via SwingWorker.
+     *
+     * @author id15msd
      */
     public class HighScoreFetcher extends SwingWorker<ArrayList<String[]>,
             Integer>{
 
+        /**
+         * Gets highscores with the current map name. Scores are returned as an
+         * ArrayList with String[].
+         *
+         * @return ArrayList with scores as a String[].
+         */
         @Override
         protected ArrayList<String[]> doInBackground(){
             ArrayList<String[]> scoreList = new ArrayList<>();
@@ -250,6 +258,10 @@ public class Controller {
             return null;
         }
 
+        /**
+         * Takes the ArrayList with scores and calls a method in the GUI to
+         * display them on a dialog window.
+         */
         @Override
         protected void done(){
 
@@ -267,9 +279,16 @@ public class Controller {
 
     /**
      * Inserts a highscore in the database via SwingWorker.
+     *
+     * @author id15msd
      */
     public class HighScoreInserter extends SwingWorker<Integer, Integer>{
 
+        /**
+         * Inserts a score to the database via the Highscore-class.
+         *
+         * @return Unused Integer.
+         */
         @Override
         protected Integer doInBackground(){
             try {
@@ -283,11 +302,6 @@ public class Controller {
             }
 
             return 1;
-        }
-
-        @Override
-        protected void done(){
-
         }
     }
 }

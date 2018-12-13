@@ -3,9 +3,18 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Creates a dialog window to display game instructions.
+ *
+ * @author id15msd
+ */
 public class HelpDialog {
     private final int ROWS = 10;
 
+    /**
+     * Constructor of class.
+     * Creates a JDialog and JEditorPane which game instructions are added to.
+     */
     public HelpDialog() {
         JDialog jdialog = new JDialog();
         jdialog.setPreferredSize(new Dimension(500,500));

@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 
 /**
- * Created by Linnea on 2018-12-10.
+ * @author id15lbn, id15msd
  */
 public class UserNameDialog {
 
@@ -31,7 +31,6 @@ public class UserNameDialog {
         switch (result) {
             case 0:
                 username = textField.getText();
-                System.out.println("Save to database");
                 break;
             case 1:
                 System.out.println("cancel");
