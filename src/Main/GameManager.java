@@ -165,6 +165,7 @@ public class GameManager {
 
     public void restartGame() {
         mapIndex = 0;
+        mapWon = false;
         setNextMap();
     }
 

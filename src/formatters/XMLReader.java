@@ -107,7 +107,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         //Filetype?
         try {
             if (road.equals("BLANK"))
-                return loader.getImage("blank.png");
+                return loader.getImage("blank2.png");
             else {
                 switch (type) {
                     case "BlankTile":
@@ -117,7 +117,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                     case "StartTile":
                         return loader.getImage("start.png");
                     case "SlowTile":
-                        return loader.getImage("speedDemon.png");
+                        return loader.getImage("slowTile.png");
                     case "FlipperTile":
                         switch (road) {
                             case "EAST":
@@ -130,7 +130,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                                 return loader.getImage("FLipperTile-South.png");
                         }
                     default:
-                        return loader.getImage("blank.png");
+                        return loader.getImage("blank2.png");
                 }
             }
         } catch (IllegalArgumentException e) {

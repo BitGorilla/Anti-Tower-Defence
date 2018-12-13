@@ -5,6 +5,7 @@ import Creatures.Grunt;
 import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
 import Tiles.*;
+import Towers.CleavesYouInPieces;
 import Towers.LazerToTheFazer;
 import Towers.SharpShooter;
 import Towers.Tower;
@@ -55,7 +56,7 @@ public class GameInstance {
         int numberOfTowers = (int) ((double)towerTiles.size()/2);
 
         for (int i = 0; i < numberOfTowers; i++) {
-            addTower((int) (Math.random() * (2)) +1);
+            addTower((int) (Math.random() * (3)) +1);
         }
     }
 
@@ -126,6 +127,10 @@ public class GameInstance {
                     towers.add(new LazerToTheFazer(pos));
                     tt.setBuiltOn(true);
                     break;
+                case 3:
+                    towers.add(new CleavesYouInPieces(pos));
+                    tt.setBuiltOn(true);
+                    break;
                 default:
                     System.err.println("No tower type of that int (addTower)");
             }
@@ -151,6 +156,7 @@ public class GameInstance {
                 if(credits >= PortalusTotalus.COST && portalusTotalus == null){
                     portalusTotalus = (new PortalusTotalus(pos, startDirection));
                     creatures.add(portalusTotalus);
+                    credits -= PortalusTotalus.COST;
                 }
                 break;
         }

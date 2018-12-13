@@ -1,45 +1,75 @@
 package GUI;
 
+import Creatures.Grunt;
+import Creatures.PortalusTotalus;
+import Creatures.SpeedDemon;
+import formatters.ImageLoader;
+import sun.tools.jstat.Alignment;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel {
 
-    JLabel creditLabel = new JLabel();
+    JLabel creditLabel;
 
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
                      ActionListener addCreature3, ActionListener placePortal) {
-        setLayout(new GridLayout(3,0));
+        setLayout(new GridLayout(8,0));
+        GridBagConstraints c;
         setPreferredSize(new Dimension(200,700));
-        JLabel creditLabel = new JLabel();
-        creditLabel.setHorizontalTextPosition(JLabel.CENTER);
-        updateCredits(1);
 
-        JButton creature1 = new JButton();
-        creature1.setText("Speed Demon");
-        creature1.addActionListener(addCreature1);
-        add(creature1);
+        Font f = new Font("Courier New", Font.PLAIN, 15);
+        JButton button = new JButton();
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setFont(f);
+        button.setText("<html><b>Speed Demon</b><br>Cost:  " +
+                SpeedDemon.COST + "<br>Speed: "+SpeedDemon.SPEED+"<br>HP: "+
+                SpeedDemon.MAXHEALTH+"</html>");
+        button.setIcon(new ImageIcon(SpeedDemon.image));
+        button.addActionListener(addCreature1);
+        add(button);
 
-        JButton creature2 = new JButton();
-        creature2.setText("Grunt");
-        creature2.addActionListener(addCreature2);
-        add(creature2);
+        button = new JButton();
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setFont(f);
+        button.setText("<html><b>Grunt</b><br>Cost:  " +
+                Grunt.COST + "<br>Speed: "+Grunt.SPEED+"<br>HP: "+
+                Grunt.MAXHEALTH+"</html>");
+        button.setIcon(new ImageIcon(Grunt.image));
+        button.addActionListener(addCreature2);
+        add(button);
 
-        JButton creature3 = new JButton();
-        creature3.setText("Summon Portalus");
-        creature3.addActionListener(addCreature3);
-        creature3.setToolTipText("Our lord and saviour");
-        add(creature3);
+        button = new JButton();
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setFont(f);
+        button.setText("<html><b>PortalusTotalus</b><br>Cost:  " +
+                PortalusTotalus.COST + "<br>Speed: "+PortalusTotalus.SPEED+"<br>HP: "+
+                PortalusTotalus.MAXHEALTH+"</html>");
+        button.setIcon(new ImageIcon(PortalusTotalus.image));
+        button.addActionListener(addCreature3);
+        add(button);
 
-        JButton portal = new JButton();
-        portal.setText("Portal");
-        portal.addActionListener(placePortal);
-        add(portal);
+        button = new JButton();
+        button.setFont(f);
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setIcon(new ImageIcon(ImageLoader.getImageLoader().getImage(
+                "portal.png")));
+        button.setText("<html><b>Place Portal</b></html>");
+        button.addActionListener(placePortal);
+        add(button);
+
+        creditLabel = new JLabel("",SwingConstants.LEFT);
+        creditLabel.setFont(f);
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+        creditLabel.setBorder(border);
+        updateCredits(0);
     }
 
     public void updateCredits(int credit) {
-        creditLabel.setText(Integer.toString(credit));
+        creditLabel.setText("<html><b> " + "$$$: </b>" +Integer.toString(credit)+"</html>");
         add(creditLabel);
     }
 }

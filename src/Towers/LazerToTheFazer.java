@@ -11,7 +11,7 @@ public class LazerToTheFazer extends Tower{
     public static final int RATEOFFIRE = 4;
     public static final Color COLOR = Color.green;
     public static final Image image = ImageLoader.getImageLoader().getImage(
-            "fazer.png");
+            "towerGreen.png");
 
     public LazerToTheFazer(Position pos) {
         super(pos, image, RANGE, DAMAGE, RATEOFFIRE, COLOR);

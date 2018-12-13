@@ -76,8 +76,7 @@ public class Controller {
     }
 
     private void buildMenuPanel() {
-        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
-                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
+        menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
                 , placePortalPressed);
     }
 
@@ -149,7 +148,7 @@ public class Controller {
                             window.showMapWon();
                         }
                     }
-                    //menuPanel.updateCredits(manager.getCredits());
+                    menuPanel.updateCredits(manager.getCredits());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                     gamePanel.updateHealthBars(manager.getHealthbarsToDraw());
