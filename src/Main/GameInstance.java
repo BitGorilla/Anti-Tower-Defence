@@ -31,6 +31,8 @@ public class GameInstance {
     private int credits;
     private int goaledCreatures;
     private int winCondition = 10;
+    private int creaturesCreated = 0;
+
 
     public GameInstance(Map map) {
         this.tiles.addAll(map.getTiles());
@@ -43,6 +45,10 @@ public class GameInstance {
         update();
     }
 
+    public int getScore(){
+        return 1000000/creaturesCreated;
+    }
+
     private void findStart() {
         for (Tile tile: tiles) {
             if(tile.getClass() == StartTile.class) {
@@ -50,6 +56,10 @@ public class GameInstance {
                 startPosition = tile.getCenterPos();
             }
         }
+    }
+
+    private void earnCredits(int earnedCredits){
+        credits += earnedCredits;
     }
 
     private void placeTowers() {
@@ -160,6 +170,7 @@ public class GameInstance {
                 }
                 break;
         }
+        creaturesCreated++;
     }
 
     private void moveCreatures() {
@@ -271,8 +282,11 @@ public class GameInstance {
                 portalusTotalus = null;
             }
         }
-        if (creature.isDead())
+        if (creature.isDead()) {
+            earnCredits(creature.getCost()/2);
             creatures.remove(creature);
+
+        }
 
     }
 

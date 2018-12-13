@@ -18,6 +18,7 @@ public class GameManager {
     private Timer timer;
     private int tickRate;
     private GameInstance currentGameInstance;
+    int score;
     boolean paused = true;
     int mapIndex;
     boolean mapWon;
@@ -38,6 +39,9 @@ public class GameManager {
 
     public void setNextMap(){
         mapWon = false;
+        if(currentGameInstance !=null) {
+            score = +currentGameInstance.getScore();
+        }
         currentGameInstance = new GameInstance(maps.get(mapIndex));
         mapIndex++;
     }
@@ -132,24 +136,6 @@ public class GameManager {
         currentGameInstance.update();
     }
 
-    //TODO remove?
-    public static void main(String[] args) throws IOException, InterruptedException {
-        XMLReader reader = new XMLReader(1000);
-        reader.setSource(new FileInputStream(new File(
-                "XMLBuilder/Maps/mapBig.xml")));
-        ArrayList<Map> maps = reader.getMaps();
-        GameManager GM = new GameManager(maps,10);
-        GM.startGame();
-        GM.currentGameInstance.addCreature(1);
-
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                ArrayList<GameObject> objects = GM.getGameObjectsToDraw();
-                //GM.currentGameInstance.addCreature(2);
-            }}, 1000, 1000);
-    }
 
     public void flipTile(Position flipTilePosition){
         currentGameInstance.flipTile(flipTilePosition);
@@ -167,6 +153,7 @@ public class GameManager {
         mapIndex = 0;
         mapWon = false;
         setNextMap();
+        score = 0;
     }
 
     public boolean allLevelsWon() {
@@ -177,4 +164,7 @@ public class GameManager {
         return currentGameInstance.getMapName();
     }
 
+    public int getScore() {
+        return score;
+    }
 }

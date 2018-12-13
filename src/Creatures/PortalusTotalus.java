@@ -26,7 +26,7 @@ public class PortalusTotalus extends Creature {
     int teleportCountDown = teleportDistance;
 
     public PortalusTotalus(Position pos, Direction dir) {
-        super(pos, image, dir, 0, MAXHEALTH);
+        super(pos, image, dir, 0, MAXHEALTH, COST);
         setCurrentHealth(MAXHEALTH);
     }
 

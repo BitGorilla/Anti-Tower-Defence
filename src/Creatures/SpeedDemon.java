@@ -15,7 +15,7 @@ public class SpeedDemon extends Creature {
             "speedDemon.png");
 
     public SpeedDemon(Position pos, Direction dir) {
-        super(pos, image, dir, SPEED, MAXHEALTH);
+        super(pos, image, dir, SPEED, MAXHEALTH, COST);
         setCurrentHealth(MAXHEALTH);
     }
 }

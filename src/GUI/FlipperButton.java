@@ -9,6 +9,7 @@ public class FlipperButton extends JButton {
 
     public FlipperButton(Position pos) {
         this.pos = pos;
+        this.setToolTipText("FLIP ME");
     }
 
     public Position getPos() {

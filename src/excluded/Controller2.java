@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 public class Controller2 {
+    /*
 
     private GUI gui;
     private GameManager gameM;
@@ -56,6 +57,7 @@ public class Controller2 {
         return gm;
     }*/
 
+    /*
     private String getLevelName(){
         String str = "Levelname";
         //reader.
@@ -70,6 +72,8 @@ public class Controller2 {
     /*private void setLevelNameInGUI(){
         gui.setLevelName(getLevelName());
     }*/
+
+    /*
 
     private void addActionListenerUsernameInput(String userInput){
         ActionListener actionListUsername = (new ActionListener() {
@@ -107,6 +111,6 @@ public class Controller2 {
         gui.addActionListenerSpeed(actionListSpeedDemon);
     }
 
-
+*/
 }
 
