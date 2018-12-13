@@ -1,5 +1,6 @@
 package GUI;
 
+import Creatures.SpeedDemon;
 import Main.*;
 import formatters.XMLReader;
 import highscore.Highscores;
@@ -24,19 +25,18 @@ public class Controller {
     private MenuPanel menuPanel;
     private FlipperPanel flipperPanel;
     private DropDownMenu dropDownMenu;
-    private String usernameToDB;
 
 
-    ActionListener startButtonPressed    = e -> startUp();
-    ActionListener pausPressed          = e -> pausGame();
+    ActionListener startButtonPressed  = e -> startUp();
+    ActionListener pausPressed         = e -> pausGame();
     ActionListener addCreature1Pressed = e -> addCreature1();
     ActionListener addCreature2Pressed = e -> addCreature2();
     ActionListener addCreature3Pressed = e -> addCreature3();
-    ActionListener placePortalPressed = e -> placePortal();
-    ActionListener flipperPressed = e -> flipFlipperTile(e);
-    ActionListener nextMapPressed = e -> nextMap();
-    ActionListener restartGamePressed = e -> restartGame();
-    ActionListener quitPressed = e -> quitGame();
+    ActionListener placePortalPressed  = e -> placePortal();
+    ActionListener flipperPressed      = e -> flipFlipperTile(e);
+    ActionListener nextMapPressed      = e -> nextMap();
+    ActionListener restartGamePressed  = e -> restartGame();
+    ActionListener quitPressed         = e -> quitGame();
 
 
     private int tickRate = 30;
@@ -59,12 +59,12 @@ public class Controller {
     }
 
     private void buildWindow() {
-            SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
-                        menuPanel, flipperPanel, nextMapPressed,
-                        restartGamePressed);
-                window.showWindow();
-            });
+        SwingUtilities.invokeLater(()-> {
+            window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
+                    menuPanel, flipperPanel, nextMapPressed,
+                    restartGamePressed);
+            window.showWindow();
+        });
         startUp();
     }
 
@@ -74,9 +74,8 @@ public class Controller {
     }
 
     private void buildMenuPanel() {
-        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
-                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed);
+        menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed,
+                addCreature3Pressed, placePortalPressed);
     }
 
     private void buildFlipperPanel() {
@@ -133,14 +132,8 @@ public class Controller {
                 SwingUtilities.invokeLater(()-> {
                     if (manager.isMapWon()) {
                         if(manager.allLevelsWon()) {
-                            t.cancel();
+                            //TODO
                             //window.showVictoryPopUp();
-                            UserNameDialog userNameDialog =
-                                    new UserNameDialog();
-                            usernameToDB = userNameDialog.getUserNameInput();
-
-                            HighScoreInserter putter = new HighScoreInserter();
-                            putter.execute();
                         }
                         else if (!mapWonIsShown) {
                             mapWonIsShown = true;
@@ -195,10 +188,6 @@ public class Controller {
                 reader.getWidth());
     }
 
-
-    /**
-     * Fetches highscores from database via SwingWorker.
-     */
     public class HighScoreFetcher extends SwingWorker<ArrayList<String[]>,
             Integer>{
 
@@ -211,7 +200,6 @@ public class Controller {
                 highscores = new Highscores();
                 scoreList = highscores.getHighscores(
                         manager.getCurrentMapName());
-                highscores.closeCon();
                 return scoreList;
 
             } catch (SQLException e) {
@@ -232,31 +220,6 @@ public class Controller {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    /**
-     * Intserts a highscore in the database via SwingWorker.
-     */
-    public class HighScoreInserter extends SwingWorker<Integer, Integer>{
-
-        @Override
-        protected Integer doInBackground(){
-            try {
-                Highscores highscores = new Highscores();
-                highscores.insertScore(usernameToDB, manager.getCurrentMapName()
-                        ,123);
-                highscores.closeCon();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            return 1;
-        }
-
-        @Override
-        protected void done(){
-
         }
     }
 }
