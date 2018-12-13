@@ -64,7 +64,7 @@ public class Controller {
             SwingUtilities.invokeLater(()-> {
                 window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
                         menuPanel, flipperPanel, nextMapPressed,
-                        restartGamePressed);
+                        restartGamePressed, restartGamePressed, quitPressed);
                 window.showWindow();
             });
         startUp();
@@ -149,6 +149,10 @@ public class Controller {
                             window.showMapWon();
                         }
                     }
+                    if (manager.getGameOver()){
+                        t.cancel();
+                        window.showLoserDialog();
+                    }
                     //menuPanel.updateCredits(manager.getCredits());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
@@ -216,7 +220,8 @@ public class Controller {
             try {
                 highscores = new Highscores();
                 System.out.println(manager.getCurrentMapName());
-                scoreList = highscores.getHighscores("sdlgjn");
+                scoreList = highscores.getHighscores(
+                        manager.getCurrentMapName());
 
                 highscores.closeCon();
                 return scoreList;

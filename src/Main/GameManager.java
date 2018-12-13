@@ -75,6 +75,10 @@ public class GameManager {
         }
     }
 
+    public Boolean getGameOver(){
+        return currentGameInstance.gameOver();
+    }
+
     /**
      *
      * @return A list of GameObject objects to draw.

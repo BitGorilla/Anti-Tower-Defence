@@ -10,13 +10,18 @@ public class Window extends JFrame {
     MapWonPanel mapWonPanel;
     ActionListener nextLevel;
     ActionListener restartLevel;
+    ActionListener restartGame;
+    ActionListener quit;
 
     public Window(int gamePanelWidth, DropDownMenu dropDownMenu,
                   GamePanel gamePanel,
                   MenuPanel menuPanel, FlipperPanel flipperPanel,
-                  ActionListener nextLevel, ActionListener restartLevel) {
+                  ActionListener nextLevel, ActionListener restartLevel,
+                  ActionListener restartGamePressed, ActionListener quitPressed) {
         this.nextLevel = nextLevel;
         this.restartLevel = restartLevel;
+        this.restartGame = restartGamePressed;
+        this.quit =  quitPressed;
         add(menuPanel, BorderLayout.EAST);
         setJMenuBar(dropDownMenu);
         layeredPane.add(gamePanel,Integer.valueOf(1));
@@ -39,6 +44,11 @@ public class Window extends JFrame {
     public void showMapWon() {
         mapWonPanel = new MapWonPanel();
         mapWonPanel.show(nextLevel, restartLevel);
+    }
+
+    public void showLoserDialog() {
+        LoserDialog loserDialog = new LoserDialog();
+        loserDialog.show(restartGame, quit);
     }
 
     public void showVictoryPopUp(){
