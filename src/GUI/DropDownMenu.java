@@ -18,7 +18,8 @@ public class DropDownMenu extends JMenuBar{
 
     public DropDownMenu(ActionListener restartGame,
                         ActionListener pausPressed, ActionListener startPressed,
-                        ActionListener quitPressed){
+                        ActionListener quitPressed,
+                        ActionListener highcorePressed){
         Font f = new Font("sans-serif", Font.PLAIN, 15);
         UIManager.put("Menu.font", f);
         //Build the first menu.
@@ -58,6 +59,7 @@ public class DropDownMenu extends JMenuBar{
         menu2.add(menuItem2);
 
         menuItem2 = new JMenuItem("High Score List",KeyEvent.VK_T);
+        menuItem2.addActionListener(highcorePressed);
         menu2.add(menuItem2);
     }
 }
