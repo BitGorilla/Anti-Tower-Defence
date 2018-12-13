@@ -3,6 +3,7 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
@@ -57,6 +58,7 @@ public class DropDownMenu extends JMenuBar{
         menu2.add(menuItem2);
 
         menuItem2 = new JMenuItem("Help",KeyEvent.VK_T);
+        menuItem2.addActionListener(e -> new HelpDialog());
         menu2.add(menuItem2);
 
         menuItem2 = new JMenuItem("High Score List",KeyEvent.VK_T);
