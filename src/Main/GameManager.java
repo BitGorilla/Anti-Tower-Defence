@@ -40,7 +40,7 @@ public class GameManager {
     public void setNextMap(){
         mapWon = false;
         if(currentGameInstance !=null) {
-            score = +currentGameInstance.getScore();
+            score = score + currentGameInstance.getScore();
         }
         currentGameInstance = new GameInstance(maps.get(mapIndex));
         mapIndex++;

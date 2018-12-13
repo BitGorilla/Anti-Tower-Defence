@@ -17,7 +17,8 @@ public class DropDownMenu extends JMenuBar{
     private JMenuItem menuItem2;
 
     public DropDownMenu(ActionListener restartGame,
-                        ActionListener pausPressed, ActionListener startPressed,
+                        ActionListener pausPressed,
+                        ActionListener startPressed,
                         ActionListener quitPressed,
                         ActionListener highcorePressed){
         Font f = new Font("sans-serif", Font.PLAIN, 15);
