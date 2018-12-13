@@ -104,13 +104,14 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         sb.append(road);
         sb.append(type);
         ImageLoader loader = ImageLoader.getImageLoader();
-        //Filetype?
         try {
             if (road.equals("BLANK")) {
                 switch (type) {
                     case "TREE":
                         return loader.getImage("tree.png");
-                    case "SlowTIle":
+                    case "WATER":
+                        return loader.getImage("water.png");
+                    case "SlowTile":
                         return loader.getImage("slow.png");
                     default:
                         return loader.getImage("blank2.png");
@@ -125,6 +126,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("start.png");
                     case "SlowTile":
                         return loader.getImage("slowTile.png");
+                    case "SpeedTile":
+                        return loader.getImage("speedTile.png");
                     case "FlipperTile":
                         switch (road) {
                             case "EAST":

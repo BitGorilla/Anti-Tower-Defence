@@ -1,5 +1,5 @@
-template = open("Templates/levels/hell.txt", "r")
-f = open("Maps/hell.xml", "w+")
+template = open("Templates/templateFlipper.txt", "r")
+f = open("Maps/mapFlipperStyled.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
@@ -58,8 +58,14 @@ while i < len(template):
 		f.write("BlankTile")
 	elif template[i+1] == "t":
 		f.write("TowerTile")
+	elif template[i+1] == "T":
+		f.write("TREE")
 	elif template[i+1] == "s":
 		f.write("SlowTile")
+	elif template[i+1] == "w":
+		f.write("WATER")
+	elif template[i+1] == "r":
+		f.write("SpeedTile")
 	elif template[i+1] == "f":
 		f.write("FlipperTile")
 	else:

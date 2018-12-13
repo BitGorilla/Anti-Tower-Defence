@@ -3,8 +3,11 @@ package GUI;
 import Creatures.Grunt;
 import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
+import Towers.LazerToTheFazer;
+import Towers.SharpShooter;
 import formatters.ImageLoader;
-//import sun.tools.jstat.Alignment;
+import sun.misc.JavaLangAccess;
+import sun.tools.jstat.Alignment;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -18,7 +21,7 @@ public class MenuPanel extends JPanel {
 
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
                      ActionListener addCreature3, ActionListener placePortal) {
-        setLayout(new GridLayout(8,0));
+        setLayout(new GridLayout(9,0));
         GridBagConstraints c;
         setPreferredSize(new Dimension(200,700));
 

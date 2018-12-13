@@ -8,6 +8,7 @@ import java.awt.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.rmi.ServerError;
 
 public final class TileCreator {
 
@@ -20,8 +21,13 @@ public final class TileCreator {
             IllegalAccessException,
             InvocationTargetException,
             InstantiationException {
-
-        Class<?> tileClass = getTileClassFromString(type);
+        Class<?> tileClass = BlankTile.class;
+        try {
+             tileClass = getTileClassFromString(type);
+        } catch(ClassNotFoundException e) {
+            System.err.println("No tile with name " + type + " creating " +
+                    "blankTile");
+        }
         Constructor constructor = tileClass.getConstructors()[0];
         checkTileClassConstructor(constructor);
 
