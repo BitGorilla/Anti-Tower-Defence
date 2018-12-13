@@ -55,6 +55,7 @@ public class DropDownMenu extends JMenuBar{
 
         //Group of JMenuItems in menu 2
         menuItem2 = new JMenuItem("About",KeyEvent.VK_T);
+        menuItem2.addActionListener(e -> new AboutDialog());
         menu2.add(menuItem2);
 
         menuItem2 = new JMenuItem("Help",KeyEvent.VK_T);
