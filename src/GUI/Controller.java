@@ -251,9 +251,9 @@ public class Controller {
         protected Integer doInBackground(){
             try {
                 Highscores highscores = new Highscores();
-                /*highscores.insertScore(usernameToDB,
+                highscores.insertScore(usernameToDB,
                         manager.getCurrentMapName()
-                        ,123);*/
+                        ,manager.getScore());
                 highscores.closeCon();
             } catch (SQLException e) {
                 e.printStackTrace();
