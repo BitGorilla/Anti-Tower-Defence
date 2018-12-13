@@ -215,7 +215,8 @@ public class Controller {
             try {
                 highscores = new Highscores();
                 System.out.println(manager.getCurrentMapName());
-                scoreList = highscores.getHighscores("sdlgjn");
+                scoreList = highscores.getHighscores(
+                        manager.getCurrentMapName());
 
                 highscores.closeCon();
                 return scoreList;
