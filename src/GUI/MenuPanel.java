@@ -7,7 +7,7 @@ import Towers.LazerToTheFazer;
 import Towers.SharpShooter;
 import formatters.ImageLoader;
 import sun.misc.JavaLangAccess;
-import sun.tools.jstat.Alignment;
+//import sun.tools.jstat.Alignment;
 
 import javax.swing.*;
 import javax.swing.border.Border;
