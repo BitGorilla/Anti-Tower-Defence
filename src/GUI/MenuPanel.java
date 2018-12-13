@@ -4,7 +4,7 @@ import Creatures.Grunt;
 import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
 import formatters.ImageLoader;
-import sun.tools.jstat.Alignment;
+//import sun.tools.jstat.Alignment;
 
 import javax.swing.*;
 import javax.swing.border.Border;

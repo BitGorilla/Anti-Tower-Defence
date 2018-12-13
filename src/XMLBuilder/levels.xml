@@ -4,7 +4,7 @@
                   <name>Mania</name>
                   <height>20</height>
                   <width>20</width>
-                  <startcredit>10</startcredit>
+                  <startcredit>100</startcredit>
             </meta>
         <tiles>
             <tile road="BLANK" type="BlankTile"/>

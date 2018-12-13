@@ -36,6 +36,7 @@ public class Controller {
     ActionListener flipperPressed = e -> flipFlipperTile(e);
     ActionListener nextMapPressed = e -> nextMap();
     ActionListener restartGamePressed = e -> restartGame();
+    ActionListener restartGameLoserPressed = e -> restartGameLoser();
     ActionListener quitPressed = e -> quitGame();
     ActionListener highscorePressed = e -> showHighscore();
 
@@ -47,7 +48,8 @@ public class Controller {
     private int gamePanelWidth;
     private int tileDimension;
     private boolean mapWonIsShown = false;
-
+    private boolean loserDialogIsShown = false;
+    private boolean userNameDialogShown =  false;
     public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) {
         manager = new GameManager(maps, tickRate);
         this.gamePanelWidth = gamePanelWidth;
@@ -64,7 +66,8 @@ public class Controller {
             SwingUtilities.invokeLater(()-> {
                 window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
                         menuPanel, flipperPanel, nextMapPressed,
-                        restartGamePressed, restartGamePressed, quitPressed);
+                        restartGamePressed, restartGameLoserPressed,
+                        quitPressed);
                 window.showWindow();
             });
         startUp();
@@ -133,8 +136,8 @@ public class Controller {
             public void run() {
                 SwingUtilities.invokeLater(()-> {
                     if (manager.isMapWon()) {
-                        if(manager.allLevelsWon()) {
-                            t.cancel();
+                        if(manager.allLevelsWon() && !userNameDialogShown) {
+                            userNameDialogShown = true;
                             //window.showVictoryPopUp();
                             UserNameDialog userNameDialog =
                                     new UserNameDialog();
@@ -143,14 +146,14 @@ public class Controller {
                             HighScoreInserter putter = new HighScoreInserter();
                             putter.execute();
                         }
-                        else if (!mapWonIsShown) {
+                        else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
                             window.showMapWon();
                         }
                     }
 
-                    if (manager.getGameOver()){
-                        t.cancel();
+                    if (manager.getGameOver() && !loserDialogIsShown){
+                        loserDialogIsShown = true;
                         window.showLoserDialog();
                     }
                     //menuPanel.updateCredits(manager.getCredits());
@@ -175,7 +178,13 @@ public class Controller {
     }
 
     private void restartGame() {
+        userNameDialogShown = false;
         mapWonIsShown = false;
+        manager.restartGame();
+    }
+
+    private void restartGameLoser() {
+        loserDialogIsShown = false;
         manager.restartGame();
     }
 

@@ -17,10 +17,11 @@ public class Window extends JFrame {
                   GamePanel gamePanel,
                   MenuPanel menuPanel, FlipperPanel flipperPanel,
                   ActionListener nextLevel, ActionListener restartLevel,
-                  ActionListener restartGamePressed, ActionListener quitPressed) {
+                  ActionListener restartGameLoserPressed, ActionListener
+                          quitPressed) {
         this.nextLevel = nextLevel;
         this.restartLevel = restartLevel;
-        this.restartGame = restartGamePressed;
+        this.restartGame = restartGameLoserPressed;
         this.quit =  quitPressed;
         add(menuPanel, BorderLayout.EAST);
         setJMenuBar(dropDownMenu);

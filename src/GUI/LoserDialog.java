@@ -12,7 +12,7 @@ public class LoserDialog {
     public LoserDialog() {
     }
 
-    public String show(ActionListener restartGamePressed, ActionListener quitPressed) {
+    public String show(ActionListener restartGame, ActionListener quitPressed) {
         String option = new String();
 
         JLabel text = new JLabel();
@@ -29,7 +29,7 @@ public class LoserDialog {
         Object[] options = {btnString1, btnString2};
 
         int result = JOptionPane.showOptionDialog(null, array,
-                "Congratulations!",
+                "GAME OVER",
                 JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 new ImageIcon("./TestImages/cross-esw-slow.png"),
                 options,
@@ -37,7 +37,7 @@ public class LoserDialog {
         switch (result) {
             case 0:
                 option = "Restart game";
-                restartGamePressed.actionPerformed(new ActionEvent(this,
+                restartGame.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
             case 1:
