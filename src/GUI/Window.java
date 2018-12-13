@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Window extends JFrame {
     JLayeredPane layeredPane = new JLayeredPane();
@@ -42,6 +43,10 @@ public class Window extends JFrame {
 
     public void showVictoryPopUp(){
 
+    }
+
+    public void showHighscoreDialog(ArrayList<String[]> scores){
+        new HighscoreDialog(scores);
     }
 }
 
