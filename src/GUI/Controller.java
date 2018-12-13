@@ -41,8 +41,6 @@ public class Controller {
     ActionListener quitPressed = e -> quitGame();
     ActionListener highscorePressed = e -> showHighscore();
 
-
-
     private int tickRate = 30;
     private int fps = 60;
     private ArrayList<Position> flipperTilePositions;
@@ -65,10 +63,11 @@ public class Controller {
 
     private void buildWindow() {
             SwingUtilities.invokeLater(()-> {
-                window = new Window(gamePanelWidth,dropDownMenu, gamePanel,
+                window = new Window(gamePanelWidth, gamePanel,
                         menuPanel, flipperPanel, nextMapPressed,
                         restartGamePressed, restartGameLoserPressed,
                         quitPressed);
+                window.updateDropDown(dropDownMenu);
                 window.showWindow();
             });
         startUp();
@@ -108,10 +107,13 @@ public class Controller {
 
     private void startUp() {
         manager.startGame();
+        dropDownMenu.changePausStart();
     }
 
     private void pausGame() {
         manager.stopGame();
+        window.remove(dropDownMenu);
+        dropDownMenu.changePausStart();
     }
 
     private void quitGame() {
@@ -198,7 +200,7 @@ public class Controller {
         try {
             if (args.length == 0) {
                 reader.setSource(new FileInputStream(new File("src/XMLBuilder" +
-                        "/Maps/mapFlipperStyled.xml")));
+                        "/Maps/levels.xml")));
             } else if (args.length == 1 && args[0].endsWith(".xml")) {
                 reader.setSource(new FileInputStream(new File(args[0])));
             } else {

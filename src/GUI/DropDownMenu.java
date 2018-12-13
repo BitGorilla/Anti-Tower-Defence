@@ -16,12 +16,18 @@ public class DropDownMenu extends JMenuBar{
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
+    private ActionListener pausPressed;
+    private ActionListener startPressed;
+    private JMenuItem pausStart = new JMenuItem();
+    private boolean paus;
 
     public DropDownMenu(ActionListener restartGame,
                         ActionListener pausPressed,
                         ActionListener startPressed,
                         ActionListener quitPressed,
-                        ActionListener highcorePressed){
+                        ActionListener highcorePressed) {
+        this.pausPressed = pausPressed;
+        this.startPressed = startPressed;
         Font f = new Font("sans-serif", Font.PLAIN, 15);
         UIManager.put("Menu.font", f);
         //Build the first menu.
@@ -32,19 +38,16 @@ public class DropDownMenu extends JMenuBar{
         add(menu1);
 
         //Group of JMenuItems in menu 1
-        menuItem1 = new JMenuItem("New Game", KeyEvent.VK_T);
+        menuItem1 = new JMenuItem("Restart");
         menuItem1.addActionListener(restartGame);
         menu1.add(menuItem1);
 
-        menuItem1 = new JMenuItem("Pause", KeyEvent.VK_T);
-        menuItem1.addActionListener(pausPressed);
-        menu1.add(menuItem1);
+        pausStart = new JMenuItem("Start");
+        pausStart.addActionListener(startPressed);
+        menu1.add(pausStart);
+        paus = false;
 
-        menuItem1 = new JMenuItem("Start", KeyEvent.VK_T);
-        menuItem1.addActionListener(startPressed);
-        menu1.add(menuItem1);
-
-        menuItem1 = new JMenuItem("Quit", KeyEvent.VK_T);
+        menuItem1 = new JMenuItem("Quit");
         menuItem1.addActionListener(quitPressed);
         menu1.add(menuItem1);
 
@@ -65,5 +68,19 @@ public class DropDownMenu extends JMenuBar{
         menuItem2 = new JMenuItem("High Score List",KeyEvent.VK_T);
         menuItem2.addActionListener(highcorePressed);
         menu2.add(menuItem2);
+    }
+
+    public void changePausStart() {
+        if(paus) {
+            pausStart.removeActionListener(pausPressed);
+            pausStart.setText("Start");
+            pausStart.addActionListener(startPressed);
+            paus = false;
+        } else {
+            pausStart.removeActionListener(startPressed);
+            pausStart.setText("Pause");
+            pausStart.addActionListener(pausPressed);
+            paus = true;
+        }
     }
 }

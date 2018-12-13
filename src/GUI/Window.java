@@ -13,7 +13,7 @@ public class Window extends JFrame {
     ActionListener restartGame;
     ActionListener quit;
 
-    public Window(int gamePanelWidth, DropDownMenu dropDownMenu,
+    public Window(int gamePanelWidth,
                   GamePanel gamePanel,
                   MenuPanel menuPanel, FlipperPanel flipperPanel,
                   ActionListener nextLevel, ActionListener restartLevel,
@@ -24,7 +24,6 @@ public class Window extends JFrame {
         this.restartGame = restartGameLoserPressed;
         this.quit =  quitPressed;
         add(menuPanel, BorderLayout.EAST);
-        setJMenuBar(dropDownMenu);
         layeredPane.add(gamePanel,Integer.valueOf(1));
         layeredPane.add(flipperPanel,Integer.valueOf(2));
 
@@ -52,12 +51,12 @@ public class Window extends JFrame {
         loserDialog.show(restartGame, quit);
     }
 
-    public void showVictoryPopUp(){
-
-    }
-
     public void showHighscoreDialog(ArrayList<String[]> scores){
         new HighscoreDialog(scores);
+    }
+
+    public void updateDropDown(DropDownMenu dropDownMenu) {
+        setJMenuBar(dropDownMenu);
     }
 }
 
