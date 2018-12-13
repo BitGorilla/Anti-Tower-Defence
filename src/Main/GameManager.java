@@ -22,6 +22,7 @@ public class GameManager {
     boolean paused = true;
     int mapIndex;
     boolean mapWon;
+    boolean updatedScoreAtWin = false;
 
     /**
      * Constructor of the class.
@@ -40,7 +41,7 @@ public class GameManager {
     public void setNextMap(){
         mapWon = false;
         if(currentGameInstance !=null) {
-            score = score + currentGameInstance.getScore();
+            score += currentGameInstance.getScore();
         }
         currentGameInstance = new GameInstance(maps.get(mapIndex));
         mapIndex++;
@@ -161,6 +162,11 @@ public class GameManager {
     }
 
     public boolean allLevelsWon() {
+        boolean allWon = mapWon && mapIndex == maps.size();
+        if(allWon && !updatedScoreAtWin) {
+            score += currentGameInstance.getScore();
+            updatedScoreAtWin = true;
+        }
         return mapWon && mapIndex == maps.size();
     }
 

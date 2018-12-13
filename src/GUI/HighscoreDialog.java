@@ -29,6 +29,7 @@ public class HighscoreDialog {
         };
 
         JPanel jPanel = new JPanel();
+        jPanel.setPreferredSize(new Dimension(400,400));
         jPanel.setLayout(new GridLayout());
         JScrollPane sp = new JScrollPane(table);
         jPanel.add(sp);

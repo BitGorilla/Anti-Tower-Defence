@@ -46,6 +46,8 @@ public class GameInstance {
     }
 
     public int getScore(){
+        if (creaturesCreated == 0)
+            return 0;
         return 1000000/creaturesCreated;
     }
 
