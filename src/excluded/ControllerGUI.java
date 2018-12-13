@@ -8,7 +8,9 @@ import java.util.ArrayList;
 /**
  * Created by Linnea on 2018-12-09.
  */
+
 public class ControllerGUI {
+    /*
 
     //private Animator ani = new Animator(ArrayList);
     private GUI gui;
@@ -52,4 +54,6 @@ public class ControllerGUI {
     private void showWinnerDialog(){
         gui.winnerDialog();
     }
+    */
 }
+

@@ -12,10 +12,10 @@ public class Grunt extends Creature {
     public static final int SPEED = 3;
     public static final int COST = 100;
     public static final Image image = ImageLoader.getImageLoader().getImage(
-            "grunt.png");
+            "grunt2.png");
 
     public Grunt(Position pos, Direction dir) {
-        super(pos, image, dir, SPEED, MAXHEALTH);
+        super(pos, image, dir, SPEED, MAXHEALTH, COST);
         super.setCurrentHealth(MAXHEALTH);
         resetStats();
 

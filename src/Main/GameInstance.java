@@ -5,6 +5,7 @@ import Creatures.Grunt;
 import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
 import Tiles.*;
+import Towers.CleavesYouInPieces;
 import Towers.LazerToTheFazer;
 import Towers.SharpShooter;
 import Towers.Tower;
@@ -30,6 +31,8 @@ public class GameInstance {
     private int credits;
     private int goaledCreatures;
     private int winCondition = 10;
+    private int creaturesCreated = 0;
+
 
     public GameInstance(Map map) {
         this.tiles.addAll(map.getTiles());
@@ -42,6 +45,10 @@ public class GameInstance {
         update();
     }
 
+    public int getScore(){
+        return 1000000/creaturesCreated;
+    }
+
     private void findStart() {
         for (Tile tile: tiles) {
             if(tile.getClass() == StartTile.class) {
@@ -51,11 +58,15 @@ public class GameInstance {
         }
     }
 
+    private void earnCredits(int earnedCredits){
+        credits += earnedCredits;
+    }
+
     private void placeTowers() {
         int numberOfTowers = (int) ((double)towerTiles.size()/2);
 
         for (int i = 0; i < numberOfTowers; i++) {
-            addTower((int) (Math.random() * (2)) +1);
+            addTower((int) (Math.random() * (3)) +1);
         }
     }
 
@@ -126,6 +137,10 @@ public class GameInstance {
                     towers.add(new LazerToTheFazer(pos));
                     tt.setBuiltOn(true);
                     break;
+                case 3:
+                    towers.add(new CleavesYouInPieces(pos));
+                    tt.setBuiltOn(true);
+                    break;
                 default:
                     System.err.println("No tower type of that int (addTower)");
             }
@@ -151,9 +166,11 @@ public class GameInstance {
                 if(credits >= PortalusTotalus.COST && portalusTotalus == null){
                     portalusTotalus = (new PortalusTotalus(pos, startDirection));
                     creatures.add(portalusTotalus);
+                    credits -= PortalusTotalus.COST;
                 }
                 break;
         }
+        creaturesCreated++;
     }
 
     private void moveCreatures() {
@@ -265,8 +282,11 @@ public class GameInstance {
                 portalusTotalus = null;
             }
         }
-        if (creature.isDead())
+        if (creature.isDead()) {
+            earnCredits(creature.getCost()/2);
             creatures.remove(creature);
+
+        }
 
     }
 

@@ -15,8 +15,8 @@ import java.awt.*;
 public class PortalusTotalus extends Creature {
     public static final int MAXHEALTH = 200;
     public static final int SPEED = 2;
-    public static final int COST = 10;
-    public static final int teleportDistance = 100;
+    public static final int COST = 150;
+    public static final int teleportDistance = 250;
 
     public static final Image image = ImageLoader.getImageLoader().getImage(
             "portalusTotalus.png");
@@ -26,7 +26,7 @@ public class PortalusTotalus extends Creature {
     int teleportCountDown = teleportDistance;
 
     public PortalusTotalus(Position pos, Direction dir) {
-        super(pos, image, dir, 0, MAXHEALTH);
+        super(pos, image, dir, 0, MAXHEALTH, COST);
         setCurrentHealth(MAXHEALTH);
     }
 

@@ -76,8 +76,7 @@ public class Controller {
     }
 
     private void buildMenuPanel() {
-        menuPanel = new MenuPanel(startButtonPressed, pausPressed,
-                addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
+        menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
                 , placePortalPressed);
     }
 
@@ -149,11 +148,14 @@ public class Controller {
                             window.showMapWon();
                         }
                     }
+
                     if (manager.getGameOver()){
                         t.cancel();
                         window.showLoserDialog();
                     }
                     //menuPanel.updateCredits(manager.getCredits());
+
+                    menuPanel.updateStats(manager.getCredits(), manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                     gamePanel.updateHealthBars(manager.getHealthbarsToDraw());

@@ -19,6 +19,7 @@ public class Creature extends GameObject implements CreatureInterface {
     private boolean goaled;
     private int defaultSpeed;
     private Healthbar healthbar;
+    private int cost;
 
     /**
      * Constructor of class.
@@ -30,12 +31,13 @@ public class Creature extends GameObject implements CreatureInterface {
      * @param maxHealth The maximum health of the creature.
      */
     public Creature(Position position, Image image, Direction direction,
-                    int defaultSpeed, int maxHealth) {
+                    int defaultSpeed, int maxHealth, int cost) {
         super(position, image);
         this.defaultSpeed = defaultSpeed;
         this.direction = direction;
         setCurrentSpeed(defaultSpeed);
         healthbar = new Healthbar(maxHealth, maxHealth, position);
+        setCost(cost);
     }
 
     /**
@@ -45,6 +47,14 @@ public class Creature extends GameObject implements CreatureInterface {
     @Override
     public void setDirection(Direction direction){
         this.direction = direction;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     public Direction getDirection() {

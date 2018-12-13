@@ -17,14 +17,13 @@ public class UserNameDialog {
         String btnString2 = "Cancel";
 
         //Create an array of the text and components to be displayed.
-        String msgString1 = "Type your username:";
+        String msgString1 = "Enter your username:";
         Object[] array = {msgString1, textField};
         //Create an array specifying the number of dialog buttons
         //and their text.
         Object[] options = {btnString1, btnString2};
 
-        int result = JOptionPane.showOptionDialog(null, array, "Please choose" +
-                        " a username",
+        int result = JOptionPane.showOptionDialog(null, array, "VICTORY!",
                 JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 new ImageIcon("./TestImages/cross-esw-slow.png"),
                 options,
@@ -44,6 +43,4 @@ public class UserNameDialog {
     public String getUserNameInput(){
         return username;
     }
-
-
 }

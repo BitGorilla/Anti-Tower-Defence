@@ -12,7 +12,7 @@ public class SharpShooter extends Tower {
     public static final int RATEOFFIRE = 50;
     public static final Color COLOR = Color.magenta;
     public static final Image image = ImageLoader.getImageLoader().getImage(
-            "Tower.png");
+            "towerPink.png");
 
     public SharpShooter(Position pos) {
         super(pos, image, RANGE, DAMAGE, RATEOFFIRE, COLOR);
