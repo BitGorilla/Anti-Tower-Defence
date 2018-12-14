@@ -5,6 +5,8 @@ package Main;
  * game field tile. Also calculates the maximum and minimum x and y values
  * for the tile.
  *
+ * @author id15msd
+ *
  */
 public class CenterPositionCalculator {
     private double tileDimension;

@@ -5,6 +5,8 @@ import java.util.Comparator;
 /**
  * Custom comparator for sorting lists of Score abjects by score(highest to
  * lowest).
+ *
+ * @author id15msd
  */
 public class CustomComparator implements Comparator<Score> {
     /**

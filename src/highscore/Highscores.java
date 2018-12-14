@@ -7,6 +7,8 @@ import java.util.Collections;
 /**
  * Creates connection to Highscore database and has methods for adding rows
  * to database and fetching database data.
+ *
+ * @author id15msd
  */
 public class Highscores {
     private final String DBURL = "jdbc:mysql://mysql.cs.umu.se/v135h18g9";

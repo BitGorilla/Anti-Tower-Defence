@@ -3,8 +3,9 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-/*
- * Created by Linnea on 2018-12-12.
+/**
+ *
+ * @author id15lbn, id15msd
  */
 public class HighscoreDialog {
     private final int ROWS = 10;
