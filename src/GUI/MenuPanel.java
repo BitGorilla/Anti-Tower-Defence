@@ -3,21 +3,27 @@ package GUI;
 import Creatures.Grunt;
 import Creatures.PortalusTotalus;
 import Creatures.SpeedDemon;
-import Towers.LazerToTheFazer;
-import Towers.SharpShooter;
 import formatters.ImageLoader;
 import sun.misc.JavaLangAccess;
-//import sun.tools.jstat.Alignment;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * MenuPanel contains all the buttons in the qui window where the user can
+ * add creatures or place portals to the game field. The panel have three
+ * buttons for creatures Speed Demon, Grunt and Portalus Totalus and one for
+ * placing portals. It also shows the amount of current credits and score
+ * below the buttons.
+ * @author
+ * @since 2018-12-14
+ */
+
 public class MenuPanel extends JPanel {
 
-    JLabel creditLabel;
-    JLabel scoreLabel;
+    private JLabel creditLabel;
+    private JLabel scoreLabel;
 
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
                      ActionListener addCreature3, ActionListener placePortal) {
@@ -50,8 +56,8 @@ public class MenuPanel extends JPanel {
         button.setHorizontalAlignment(SwingConstants.LEFT);
         button.setFont(f);
         button.setText("<html><b>PortalusTotalus</b><br>Cost:  " +
-                PortalusTotalus.COST + "<br>Speed: "+PortalusTotalus.SPEED+"<br>HP: "+
-                PortalusTotalus.MAXHEALTH+"</html>");
+                PortalusTotalus.COST + "<br>Speed: "+ PortalusTotalus.SPEED +
+                "<br>HP: "+ PortalusTotalus.MAXHEALTH +"</html>");
         button.setIcon(new ImageIcon(PortalusTotalus.image));
         button.addActionListener(addCreature3);
         add(button);
@@ -72,12 +78,18 @@ public class MenuPanel extends JPanel {
         creditLabel.setFont(f);
     }
 
+    /**
+     * Update the credits and scores on the game window
+     * @param credit current credit
+     * @param score current score
+     */
     public void updateStats(int credit, int score) {
-        creditLabel.setText("<html><b> " + "$$$: </b>" +Integer.toString(credit)+"</html>");
+        creditLabel.setText("<html><b> " + "$$$: </b>" +Integer.toString(credit)
+                + "</html>");
         add(creditLabel);
 
-        scoreLabel.setText("<html><b> " + "Score: </b>" +Integer.toString(score)+
-                "</html>");
+        scoreLabel.setText("<html><b> " + "Score: </b>" +Integer.toString(score)
+                + "</html>");
         add(scoreLabel);
     }
 }

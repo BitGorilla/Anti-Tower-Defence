@@ -4,6 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class is the dialog that is shown when a user fail a level. It
+ * contains a text that says that it is Game Over and gives the user the
+ * options to restart the game from the first level or quit the game.
+ * @author id15lbn, oi16ohn
+ * @since 2018-12-10
+ */
+
 public class MapWonPanel {
     public MapWonPanel() {
 

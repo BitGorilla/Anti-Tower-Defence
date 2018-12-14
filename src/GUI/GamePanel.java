@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Game panel is the panel that is the game field and draws the game objects
+ * and the game map.
+ * @author
+ * @since 2018-12-10
+ */
+
 public class GamePanel extends JComponent {
 
     private ArrayList<GameObject> drawables = new ArrayList<>();
@@ -50,7 +57,6 @@ public class GamePanel extends JComponent {
      *
      * @param g Graphics object
      */
-
     public void paintComponent(Graphics g){
         Graphics2D g2d=(Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -85,6 +91,9 @@ public class GamePanel extends JComponent {
         }
     }
 
+    /**
+     * Starts a ticker that repaint the game panel 30 times per second.
+     */
     public void startTicker(){
         Timer t = new Timer();
         t.schedule(new TimerTask() {

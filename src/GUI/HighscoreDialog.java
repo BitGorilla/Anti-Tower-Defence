@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 /**
- *
+ * This class is the dialog that shows the high score list from the database
+ * in a JTable.
  * @author id15lbn, id15msd
+ * @since 2018-12-10
  */
 public class HighscoreDialog {
     private final int ROWS = 10;

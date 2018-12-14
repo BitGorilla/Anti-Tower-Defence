@@ -3,11 +3,15 @@ package GUI;
 import javax.swing.*;
 
 /**
+ * UserNameDialog is the pop up dialog that is shown when a user have
+ * finished all the levels and is ready to write in the username to save the
+ * score in the database and hopefully be in the top of the high score list.
  * @author id15lbn, id15msd
+ * @since 2018-12-10
  */
 public class UserNameDialog {
 
-    String username;
+    private String username;
 
     public UserNameDialog() {
 
@@ -16,11 +20,8 @@ public class UserNameDialog {
         String btnString1 = "Save";
         String btnString2 = "Cancel";
 
-        //Create an array of the text and components to be displayed.
         String msgString1 = "Enter your username:";
         Object[] array = {msgString1, textField};
-        //Create an array specifying the number of dialog buttons
-        //and their text.
         Object[] options = {btnString1, btnString2};
 
         int result = JOptionPane.showOptionDialog(null, array, "VICTORY!",
@@ -39,6 +40,10 @@ public class UserNameDialog {
 
     }
 
+    /**
+     * Returns the username that is written in the input field.
+     * @return username
+     */
     public String getUserNameInput(){
         return username;
     }

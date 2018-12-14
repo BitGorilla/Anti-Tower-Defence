@@ -5,7 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Linnea on 2018-12-13.
+ * This class is the dialog that is shown when a user fail a level. It
+ * contains a text that says that it is Game Over and gives the user the
+ * options to restart the game from the first level or quit the game.
+ * @author id15lbn
+ * @since 2018-12-13
  */
 public class LoserDialog {
 
@@ -20,12 +24,8 @@ public class LoserDialog {
         String btnString1 = "Restart game";
         String btnString2 = "Quit game";
 
-        //Create an array of the text and components to be displayed.
-        String msgString = "Game Over!\n" +
-                "Choose one option:";
+        String msgString = "Game Over!\n" + "Choose one option:";
         Object[] array = {msgString};
-        //Create an array specifying the number of dialog buttons
-        //and their text.
         Object[] options = {btnString1, btnString2};
 
         int result = JOptionPane.showOptionDialog(null, array,

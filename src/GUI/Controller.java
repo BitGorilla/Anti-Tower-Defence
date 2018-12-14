@@ -17,6 +17,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Controller is responsible for actionListeners in the gui, building the gui
+ * and handles the communication between the game model and the gui.
+ * @author id15lbn, id15mnd
+ * @since 2018-12-10
+ */
+
 public class Controller {
 
     private Window window;
@@ -27,9 +34,8 @@ public class Controller {
     private DropDownMenu dropDownMenu;
     private String usernameToDB;
 
-
     private ActionListener startButtonPressed    = e -> startUp();
-    private ActionListener pausPressed          = e -> pausGame();
+    private ActionListener pausePressed          = e -> pauseGame();
     private ActionListener addCreature1Pressed = e -> addCreature1();
     private ActionListener addCreature2Pressed = e -> addCreature2();
     private ActionListener addCreature3Pressed = e -> addCreature3();
@@ -49,7 +55,8 @@ public class Controller {
     private boolean mapWonIsShown = false;
     private boolean loserDialogIsShown = false;
     private boolean userNameDialogShown =  false;
-    public Controller(ArrayList<Map> maps, int gamePanelWidth, int tileDimension) {
+    public Controller(ArrayList<Map> maps, int gamePanelWidth,
+                      int tileDimension) {
         manager = new GameManager(maps, tickRate);
         this.gamePanelWidth = gamePanelWidth;
         this.tileDimension = tileDimension;
@@ -61,6 +68,9 @@ public class Controller {
         startDraw();
     }
 
+    /**
+     * Starting the EDT thread and build a gui with all the panels.
+     */
     private void buildWindow() {
             SwingUtilities.invokeLater(()-> {
                 window = new Window(gamePanelWidth, gamePanel,
@@ -73,65 +83,106 @@ public class Controller {
         startUp();
     }
 
+    /**
+     * Build the game panel, the game field.
+     */
     private void buildGamePanel() {
         gamePanel = new GamePanel(gamePanelWidth /tileDimension/2,fps,
                 gamePanelWidth);
     }
 
+    /**
+     * Build the menu panel that contains the buttons in the gui.
+     */
     private void buildMenuPanel() {
-        menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed);
+        menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed,
+                addCreature3Pressed, placePortalPressed);
     }
 
+    /**
+     * Build the game buttons panel for the game field, contains the buttons
+     * that makes it possible to change path in game.
+     */
     private void buildFlipperPanel() {
         flipperTilePositions = manager.getFlipperTilePositions();
         if (flipperPanel == null) {
-            flipperPanel = new FlipperPanel(flipperTilePositions, flipperPressed,
-                    gamePanelWidth, gamePanelWidth / tileDimension);
+            flipperPanel = new FlipperPanel(flipperTilePositions,
+                    flipperPressed, gamePanelWidth, gamePanelWidth /
+                    tileDimension);
         }
         else {
             flipperPanel.updateFlippers(flipperTilePositions);
         }
     }
 
+    /**
+     * Build the dropdown menu in the top of the gui.
+     */
     private void buildDropDown() {
-        dropDownMenu = new DropDownMenu(restartGamePressed, pausPressed, startButtonPressed,
-                quitPressed, highscorePressed);
+        dropDownMenu = new DropDownMenu(restartGamePressed, pausePressed,
+                startButtonPressed, quitPressed, highscorePressed);
     }
 
+    /**
+     * Sets a new game map to the gui.
+     */
     private void nextMap() {
         mapWonIsShown = false;
         manager.setNextMap();
         buildFlipperPanel();
     }
 
+    /**
+     * Start game and change the title in the dropdown menu to "pause".
+     */
     private void startUp() {
         manager.startGame();
         dropDownMenu.changePausStart();
     }
 
-    private void pausGame() {
+    /**
+     * Pause game and change the title in the dropdown menu to "start".
+     */
+    private void pauseGame() {
         manager.stopGame();
         window.remove(dropDownMenu);
         dropDownMenu.changePausStart();
     }
 
+    /**
+     *  Quit game and close the game window.
+     */
     private void quitGame() {
         System.exit(1);
     }
 
+    /**
+     * Starts a new thread when the a creature button is pressed by user.
+     */
     private void addCreature1() {
         new Thread (()-> manager.addCreature(1)).start();
     }
 
+    /**
+     * Starts a new thread when the a creature button is pressed by user.
+     */
     private void addCreature2() {
         manager.addCreature(2);
     }
 
+    /**
+     * Starts a new thread when the a creature button is pressed by user.
+     */
     private void addCreature3() {
         manager.addCreature(3);
     }
 
+    /**
+     * Draws the game field depending on situation.
+     * Shows popup dialogs (write user name when game is done to insert i
+     * high score list, show victory dialog when level is done or losing
+     * dialog if user lost the game)
+     */
     private void startDraw() {
         java.util.Timer t = new Timer();
         t.schedule(new TimerTask() {
@@ -141,7 +192,6 @@ public class Controller {
                     if (manager.isMapWon()) {
                         if(manager.allLevelsWon() && !userNameDialogShown) {
                             userNameDialogShown = true;
-                            //window.showVictoryPopUp();
                             UserNameDialog userNameDialog =
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
@@ -159,9 +209,9 @@ public class Controller {
                         loserDialogIsShown = true;
                         window.showLoserDialog();
                     }
-                    //menuPanel.updateCredits(manager.getCredits());
 
-                    menuPanel.updateStats(manager.getCredits(), manager.getScore());
+                    menuPanel.updateStats(manager.getCredits(),
+                            manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                     gamePanel.updateHealthBars(manager.getHealthbarsToDraw());
@@ -171,27 +221,44 @@ public class Controller {
         }, 10, 1000/fps);
     }
 
+    /**
+     * Flipping a tile when user push the flipp tile button.
+     */
     private void flipFlipperTile(ActionEvent actionEvent) {
         FlipperButton flipperButton = (FlipperButton) actionEvent.getSource();
         manager.flipTile(flipperButton.getPos());
     }
 
+    /**
+     * Place a portal on a tile when user push the place portal button.
+     */
     private void placePortal() {
         manager.placePortal();
     }
 
+    /**
+     * Restart the game to level 1 and sets dialog variable to false.
+     */
     private void restartGame() {
         userNameDialogShown = false;
         mapWonIsShown = false;
         manager.restartGame();
     }
 
+    /**
+     * Restart the game to level 1 and sets dialog variable to false.
+     */
     private void restartGameLoser() {
         loserDialogIsShown = false;
         manager.restartGame();
     }
 
-
+    /**
+     * The main method of the game takes in a xml-file with levels and starts
+     * a XML reader and starts a new controller.
+     * @param args xml-file with levels
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         int gameWidth = 700;
         XMLReader reader;
@@ -204,10 +271,9 @@ public class Controller {
             } else if (args.length == 1 && args[0].endsWith(".xml")) {
                 reader.setSource(new FileInputStream(new File(args[0])));
             } else {
-                System.err.println("The program only takes one argument, an .xml " +
-                        "file containing the maps.\nIf no arguments are given " +
-                        "the " +
-                        "default maps are run.");
+                System.err.println("The program only takes one argument, " +
+                        "an .xml file containing the maps.\n" +
+                        "If no arguments are given the default maps are run.");
                 System.exit(1);
             }
         }
@@ -219,7 +285,12 @@ public class Controller {
                 reader.getWidth());
     }
 
-    public void showHighscore(){
+    /**
+     * Execute the SQL query to get the high score list in SQL Database to
+     * show the user the high score list when high score button is pushed in
+     * the drop down menu.
+     */
+    private void showHighscore(){
         HighScoreFetcher fetcher = new HighScoreFetcher();
         fetcher.execute();
     }
