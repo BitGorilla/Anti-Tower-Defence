@@ -98,7 +98,7 @@ public class Controller {
      */
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed, manager.getCurrentMapName());
+                , placePortalPressed, manager.getCurrentMapName(), manager.getWinCondition());
 
     }
 
@@ -217,6 +217,7 @@ public class Controller {
                     }
 
                     menuPanel.updateStats(manager.getCredits(),
+                            manager.getWinProgress(),
                             manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
