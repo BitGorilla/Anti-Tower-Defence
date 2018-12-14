@@ -171,4 +171,12 @@ public class GameManager {
     public int getScore() {
         return score;
     }
+
+    public int getWinProgress() {
+        return currentGameInstance.getWinProgress();
+    }
+
+    public int getWinCondition() {
+        return currentGameInstance.getWinCondition();
+    }
 }

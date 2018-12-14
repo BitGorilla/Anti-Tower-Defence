@@ -18,7 +18,7 @@ import java.awt.*;
  */
 public class PortalusTotalus extends Creature {
     public static final int MAXHEALTH = 600;
-    public static final int SPEED = 2;
+    public static final int SPEED = 3;
     public static final int COST = 150;
     public static final int teleportDistance = 250;
 

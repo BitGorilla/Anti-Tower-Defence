@@ -37,8 +37,8 @@ public class GameInstance {
     private Direction startDirection;
     private String name;
     private int credits;
-    private int goaledCreatures;
-    private int winCondition = 10;
+    private int goaledHP;
+    private int winCondition;
     private int creaturesCreated = 0;
 
 
@@ -52,7 +52,8 @@ public class GameInstance {
         this.tiles.addAll(map.getTiles());
         this.name = map.getName();
         this.credits = map.getStartCredit();
-        goaledCreatures = 0;
+        this.winCondition = map.getWinCondition();
+        goaledHP = 0;
         findStart();
         findTowerTiles();
         placeTowers();
@@ -107,7 +108,7 @@ public class GameInstance {
      * @return boolean, true if map is won, false if not.
      */
     public boolean mapWon(){
-        return goaledCreatures >= winCondition;
+        return goaledHP >= winCondition;
     }
 
     /**
@@ -362,7 +363,7 @@ public class GameInstance {
     private void handleCreaturesInGoal() {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
-                goaledCreatures++;
+                goaledHP += creature.getCurrentHealth();
                 creatures.remove(creature);
             }
         }
@@ -449,5 +450,13 @@ public class GameInstance {
      */
     public String getMapName(){
         return name;
+    }
+
+    public int getWinProgress() {
+        return goaledHP;
+    }
+
+    public int getWinCondition() {
+        return winCondition;
     }
 }

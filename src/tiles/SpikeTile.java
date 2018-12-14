@@ -1,6 +1,7 @@
 package tiles;
 
 import creatures.Creature;
+import creatures.Grunt;
 import creatures.PortalusTotalus;
 import gameLogic.Direction;
 import gameLogic.Position;

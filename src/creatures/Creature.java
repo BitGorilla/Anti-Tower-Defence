@@ -177,6 +177,4 @@ public class Creature extends GameObject implements CreatureInterface {
     public Healthbar getHealthbar() {
         return healthbar;
     }
-
-
 }
