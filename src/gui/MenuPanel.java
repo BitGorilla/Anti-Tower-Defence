@@ -80,14 +80,20 @@ public class MenuPanel extends JPanel {
         button.addActionListener(placePortal);
         add(button);
 
-        creditLabel = new JLabel("",SwingConstants.CENTER);
-        creditLabel.setFont(f);
-
-        winProgressLabel = new JLabel("",SwingConstants.CENTER);
+        winProgressLabel = new JLabel("",SwingConstants.LEFT);
         winProgressLabel.setFont(f);
 
-        scoreLabel = new JLabel("",SwingConstants.CENTER);
+        creditLabel = new JLabel("",SwingConstants.LEFT);
         creditLabel.setFont(f);
+
+        scoreLabel = new JLabel("",SwingConstants.LEFT);
+        scoreLabel.setFont(f);
+
+        updateStats(0,0,0);
+        add(winProgressLabel);
+        add(creditLabel);
+        add(scoreLabel);
+
     }
 
     /**
@@ -98,14 +104,13 @@ public class MenuPanel extends JPanel {
     public void updateStats(int credit, int winProgress,int score) {
         creditLabel.setText("<html><b> " + "$$$: </b>" +Integer.toString(credit)
                 + "</html>");
-        add(creditLabel);
 
         winProgressLabel.setText("<html><b> " + "WinProgress: </b>" +
                 winProgress + "/" + winCondition);
-        add(winProgressLabel);
+        //add(winProgressLabel);
 
         scoreLabel.setText("<html><b> " + "Score: </b>" +Integer.toString(score)
                 + "</html>");
-        add(scoreLabel);
+        //add(scoreLabel);
     }
 }
