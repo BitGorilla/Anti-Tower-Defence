@@ -36,7 +36,7 @@ public class Highscores {
     public ArrayList<String[]> getHighscores(String mapName)
                                             throws SQLException {
 
-        PreparedStatement stmt = null;
+        PreparedStatement stmt;
         stmt = con.prepareStatement("SELECT * FROM Highscores " +
                 "WHERE MapName = ?");
         stmt.setString(1, mapName);
