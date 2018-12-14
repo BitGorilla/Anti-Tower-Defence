@@ -200,8 +200,10 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            HighScoreInserter putter = new HighScoreInserter();
-                            putter.execute();
+                            if (usernameToDB.equals("")) {
+                                HighScoreInserter inserter = new HighScoreInserter();
+                                inserter.execute();
+                            }
                         }
                         else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
@@ -316,12 +318,11 @@ public class Controller {
          */
         @Override
         protected ArrayList<String[]> doInBackground(){
-            ArrayList<String[]> scoreList = new ArrayList<>();
+            ArrayList<String[]> scoreList;
 
-            Highscores highscores = null;
+            Highscores highscores;
             try {
                 highscores = new Highscores();
-                System.out.println(manager.getCurrentMapName());
                 scoreList = highscores.getHighscores(
                         manager.getCurrentMapName());
 
