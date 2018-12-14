@@ -34,7 +34,7 @@ public class UserNameDialog {
                 username = textField.getText();
                 break;
             case 1:
-                System.out.println("cancel");
+                username = "";
                 break;
         }
 
