@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * Reads a XML file and translates it to playable levels.
  *
  * @author io16jsn, id15msd, id15lbn, io16ohl
+ * @since 2018-12-14
  */
 public class XMLReader implements LevelReader, LevelXMLConstants{
     private NodeList nodeList;

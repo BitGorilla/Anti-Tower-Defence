@@ -5,6 +5,9 @@ import java.awt.*;
 /**
  * The healthbar is located above a creature and represents the max and
  * current health of the creature.
+ *
+ * @author
+ * @since
  */
 public class Healthbar {
     private int maxHealth;
