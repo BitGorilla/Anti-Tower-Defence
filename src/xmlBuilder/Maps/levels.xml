@@ -5,7 +5,8 @@
 			<height>20</height>
 			<width>20</width>
 			<startcredit>1000</startcredit>
-		</meta>
+            <wincondition>1000</wincondition>
+            </meta>
             <tiles>
                   <tile road="BLANK" type="TREE"/>
                   <tile road="BLANK" type="TREE"/>
@@ -55,7 +56,7 @@
                   <tile road="BLANK" type="TREE"/>
                   <tile road="BLANK" type="TREE"/>
                   <tile road="BLANK" type="BlankTile"/>
-                  <tile road="SOUTH" type="BlankTile"/>
+                  <tile road="SOUTH" type="RegenerationTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
@@ -414,7 +415,8 @@
                   <name>A Wild Ride</name>
                   <height>20</height>
                   <width>20</width>
-                  <startcredit>1000</startcredit>
+                  <startcredit>1500</startcredit>
+                  <wincondition>1500</wincondition>
             </meta>
             <tiles>
                 <tile road="BLANK" type="BlankTile"/>
@@ -825,7 +827,8 @@
                         <height>20</height>
                         <width>20</width>
                         <startcredit>1000</startcredit>
-                  </meta>
+                        <wincondition>2000</wincondition>
+               </meta>
                <tiles>
                    <tile road="BLANK" type="BlankTile"/>
                    <tile road="BLANK" type="BlankTile"/>

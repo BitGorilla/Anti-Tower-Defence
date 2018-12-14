@@ -33,6 +33,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     private int width;
     private String name;
     private int startCredit;
+    private int winCondition;
     private ArrayList<Map> maps;
     private int gameWindowWidth;
 
@@ -78,6 +79,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         width = Integer.parseInt(getValue(getNodeByTag(WIDTH,metaNode)));
         name = getValue(getNodeByTag(NAME,metaNode));
         startCredit = Integer.parseInt(getValue(getNodeByTag(STARTCREDIT,
+                metaNode)));
+        winCondition = Integer.parseInt(getValue(getNodeByTag(WINCONDITION,
                 metaNode)));
         ImageLoader.getImageLoader().setScale(gameWindowWidth/width);
     }
@@ -170,6 +173,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("misdirection.png");
                     case "SpeedTile":
                         return loader.getImage("speedTile.png");
+                    case "RegenerationTile":
+                        return loader.getImage("regeneration.png");
                     case "FlipperTile":
                         switch (road) {
                             case "EAST":
@@ -239,7 +244,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             Node tilesNode = getNodeByTag(TILES, node);
             Map map;
             setMapAttributes(metaNode, tilesNode);
-            map = new Map(name, startCredit, buildTiles(tilesNode));
+            map = new Map(name, startCredit, winCondition, buildTiles(tilesNode));
             return map;
         }
         return null;

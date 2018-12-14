@@ -6,6 +6,7 @@ public interface LevelXMLConstants {
     String HEIGHT = "height";
     String WIDTH = "width";
     String STARTCREDIT = "startcredit";
+    String WINCONDITION = "wincondition";
     String NAME = "name";
     String TILES = "tiles";
     String META = "meta";
