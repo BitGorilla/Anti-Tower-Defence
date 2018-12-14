@@ -1,7 +1,10 @@
 package formatters;
 
-import Main.*;
-import Tiles.*;
+import tiles.*;
+import gameLogic.CenterPositionCalculator;
+import gameLogic.Direction;
+import gameLogic.Map;
+import gameLogic.Position;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

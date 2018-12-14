@@ -14,7 +14,7 @@ public class AntiTowerDefence {
         /*Controller2 controller = new Controller2();
         XMLReader reader = controller.createXMLReader();
         reader.setSource(new FileInputStream(new File(
-                "XMLBuilder/Maps/mapBig.xml")));
+                "xmlBuilder/Maps/mapBig.xml")));
 
         GameManager gm = controller.createGameManager(reader.getMaps());
         gm.startGame();
