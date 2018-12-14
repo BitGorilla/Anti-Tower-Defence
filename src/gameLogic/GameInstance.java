@@ -59,15 +59,19 @@ public class GameInstance {
     }
 
     /**
-     *
-     * @return
+     * Calculates and returns the current score for the gameinstance.
+     * @return int calculated by a million divided by the amount
+     * of creatures spawned.
      */
     public int getScore(){
         if (creaturesCreated == 0)
             return 0;
-        return 1000000000/creaturesCreated;
+        return 10000000/creaturesCreated;
     }
 
+    /**
+     * Loops through the tiles and sets the start tile.
+     */
     private void findStart() {
         for (Tile tile: tiles) {
             if(tile.getClass() == StartTile.class) {
@@ -77,10 +81,17 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Adds the given amount of credits to the gameinstance.
+     * @param earnedCredits, int representing the amount of credits to be added.
+     */
     private void earnCredits(int earnedCredits){
         credits += earnedCredits;
     }
 
+    /**
+     * Spawns a random towertype on half of the maps towertiles.
+     */
     private void placeTowers() {
         int numberOfTowers = (int) ((double)towerTiles.size()/2);
 
@@ -89,14 +100,30 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Checks if the map has been won.
+     * A map is won if the required amount of creatures has been goaled.
+     * @return boolean, true if map is won, false if not.
+     */
     public boolean mapWon(){
         return goaledCreatures >= winCondition;
     }
 
+    /**
+     * Checks if the game is over. Game is over if no creatures are alive and
+     * there are no credits to buy more creatures.
+     * @return boolean, true if gameOver, false otherwise.
+     */
     public boolean gameOver() {
         return creatures.isEmpty() && credits < SpeedDemon.COST;
     }
 
+    /**
+     * Loops through all tiles and extracts the centerpositions of
+     * those of flipperTile type.
+     * @return Arraylist<Position>, Arraylist of the flipperTiles
+     * centerpositions.
+     */
     public ArrayList<Position> getFlipperTilePositions() {
         ArrayList<Position> positions = new ArrayList<>();
         for (Tile tile: tiles) {
@@ -108,6 +135,10 @@ public class GameInstance {
         return positions;
     }
 
+    /**
+     * Loops through all tiles and sets those of towerTile type to the
+     * towerTiles list.
+     */
     private void findTowerTiles() {
         for (Tile tile: tiles) {
             if(tile.getClass() == TowerTile.class) {
@@ -117,6 +148,10 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Updates the gameinstance. Moves, damages, affects, kills and goals
+     * creatures and fires the towers.
+     */
     public void update() {
         resetCreatureStats();
         affectCreatureOnTile();
@@ -126,6 +161,9 @@ public class GameInstance {
         deleteCreatureIfDead();
     }
 
+    /**
+     * Resets all creatures to their base stats.
+     */
     private void resetCreatureStats() {
         for (Creature creature: creatures) {
             creature.setDefaultStats();
@@ -133,6 +171,10 @@ public class GameInstance {
     }
 
 
+    /**
+     * Adds a tower on a random towerTile that is not already built on.
+     * @param towerType, int representing the tower type.
+     */
     public void addTower(int towerType) {
         ArrayList<TowerTile> emptyTowerTiles = new ArrayList<>();
         int random;
@@ -166,6 +208,10 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Adds a creature to the creature list.
+     * @param creatureType, int representing the type of creature to be created.
+     */
     public void addCreature(int creatureType) {
         Position pos = new Position(startPosition.getX(), startPosition.getY());
         switch (creatureType) {
@@ -192,6 +238,9 @@ public class GameInstance {
         creaturesCreated++;
     }
 
+    /**
+     * Moves and directs all creatures one timestep forward.
+     */
     private void moveCreatures() {
         for (Creature creature: creatures) {
             for (int i = 0; i < creature.getCurrentSpeed(); i++) {
@@ -203,6 +252,9 @@ public class GameInstance {
 
     }
 
+    /**
+     * Moves and directs the portalusTotalus if he's alive.
+     */
     private void movePortalusTotalusers(){
         if(portalusTotalus != null){
             for (int i = 0; i < PortalusTotalus.SPEED; i++) {
@@ -220,12 +272,20 @@ public class GameInstance {
 
     }
 
+    /**
+     * Tries to place a entryTeleporterTile on the position of Totalusportalus.
+     */
     public void placePortal(){
         if(portalusTotalus != null) {
             tiles.add(portalusTotalus.createEntryTeleporterTile());
         }
     }
 
+    /**
+     * If a creature stands on a centerposition of a tile it changes its
+     * direction to the one of that tiles.
+     * @param creature, the creature to check.
+     */
     private void changeDirectionIfNeeded(Creature creature) {
         for (Tile tile: tiles) {
             if (creature.getPosition().equals(tile.getCenterPos())) {
@@ -234,6 +294,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Affects the creature depending on the tile it stands ons landOn method
+     */
     private void affectCreatureOnTile() {
         for (Creature creature : creatures) {
             for (Tile tile : tiles) {
@@ -254,6 +317,10 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Loops through all towers, checking if they are ready to shoot and if a
+     * creature is in its range and if so fires at the creature damaging it.
+     */
     private void damageCreaturesIfPossible() {
         reduceLaserLifeSpan();
         for (Tower tower: towers) {
@@ -271,6 +338,9 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Reduces the lifetimer of a laser.
+     */
     private void reduceLaserLifeSpan() {
         Laser laser;
         for (int i = 0; i < lasers.size(); i++) {
@@ -282,6 +352,11 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Loops through all creatures checking if they have been goaled.
+     * If goaled it is removed from the creatures list and goaledcreatures
+     * is incremented.
+     */
     private void handleCreaturesInGoal() {
         for (Creature creature: creatures){
             if(creature.inGoal()) {
@@ -291,6 +366,10 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Loops through all creatures checking if they are dead. If dead the
+     * creature is removed from creature list and credits are earned.
+     */
     private void deleteCreatureIfDead() {
         for (Creature creature: creatures) {
             if (portalusTotalus != null) {
@@ -309,6 +388,10 @@ public class GameInstance {
         }
     }
 
+    /**
+     * Flips a flipTile at a given position.
+     * @param tilePosition Position of the center of a fliptile.
+     */
     public void flipTile(Position tilePosition) {
         for (int i = 0; i < tiles.size(); i++) {
             if(tilePosition.equals(tiles.get(i).getCenterPos())) {
@@ -318,6 +401,10 @@ public class GameInstance {
         }
     }
 
+    /**
+     * creating and returning an arraylist of all gameobjects.
+     * @return
+     */
     public synchronized ArrayList<GameObject> getGameObjectsToDraw() {
         ArrayList<GameObject> objectsToDraw = new ArrayList<>();
         objectsToDraw.addAll(tiles);
@@ -326,10 +413,18 @@ public class GameInstance {
         return objectsToDraw;
     }
 
+    /**
+     * Getter of Arraylist of lasers to draw.
+     * @return Arraylist of lasers.
+     */
     public synchronized ArrayList<Laser> getLaserPositionsToDraw() {
         return lasers;
     }
 
+    /**
+     * Getter of Arraylist of all healthbars to draw.
+     * @return Arraylist of healthbars.
+     */
     public synchronized ArrayList<Healthbar> getHealthbarsToDraw() {
         ArrayList<Healthbar> healthbarsToDraw = new ArrayList<>();
         for (Creature creature: creatures) {
@@ -338,10 +433,18 @@ public class GameInstance {
         return healthbarsToDraw;
     }
 
+    /**
+     * Getter of the credits.
+     * @return int representing the number of credits available.
+     */
     public synchronized int getCredits() {
         return credits;
     }
 
+    /**
+     * Getter of the name of the current map.
+     * @return String of the name of the map.
+     */
     public String getMapName(){
         return name;
     }
