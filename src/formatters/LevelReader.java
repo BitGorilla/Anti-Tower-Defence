@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+/**
+ * Interface LevelReader
+ *
+ * @author io16jsn, id15msd
+ * @since 2018-12-14
+ */
 public interface LevelReader {
 
     boolean hasNext() throws IOException;

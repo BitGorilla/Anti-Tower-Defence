@@ -9,9 +9,9 @@ import gameLogic.Position;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-11-29.
- *
- * creatures are the objects which the player sends out to reach the goal.
+ * Creatures are the objects which the player sends out to reach the goal.
+ * @author io16jsn, io16ohl
+ * @since 2018-11-29
  */
 public class Creature extends GameObject implements CreatureInterface {
     private Direction direction;
@@ -178,14 +178,5 @@ public class Creature extends GameObject implements CreatureInterface {
         return healthbar;
     }
 
-    /**
-     * prints the stats of the creature to console.
-     */
-    public void printStats() {
-        System.out.println(this.getClass());
-        System.out.println("Position: (" + getPosition().getX() + "," + getPosition().getY());
-        System.out.println("HP: " + getCurrentHealth());
-        System.out.println("Speed: " + getCurrentSpeed());
-        System.out.println("Direction: " + direction);
-    }
+
 }

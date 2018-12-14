@@ -5,6 +5,7 @@ package gameLogic;
  * game.
  *
  * @author oi16jsn, oi16ohn
+ * @since 2018-12-14
  *
  */
 public enum Direction {
