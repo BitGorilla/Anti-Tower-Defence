@@ -69,7 +69,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
 
     private ArrayList<Tile> buildTiles(Node parentTileNode){
         ArrayList<Tile> tiles = new ArrayList<>();
-        CenterPositionCalculator CRC;
+        CenterPositionCalculator CPC;
         NodeList tileNodes = parentTileNode.getChildNodes();
         Node tileNode;
         String type;
@@ -85,20 +85,20 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                 type = tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
                 road = tileNode.getAttributes().getNamedItem(ROAD).getNodeValue();
                 direction = getDirection(road);
-                CRC = new CenterPositionCalculator(gameWindowWidth, width, counter);
+                CPC = new CenterPositionCalculator(gameWindowWidth, width, counter);
                 counter++;
-                upperLeft = new Position(CRC.getxMinValue(), CRC.getyMinValue());
-                lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
+                upperLeft = new Position(CPC.getxMinValue(), CPC.getyMinValue());
+                lowerRight = new Position(CPC.getxMaxValue(), CPC.getyMaxValue());
                 tileImage = getTileImage(road, type);
                 try {
-                    tiles.add(TileCreator.createTile(type, tileImage, direction, CRC.getCenterPosition(), upperLeft, lowerRight));
+                    tiles.add(TileCreator.createTile(type, tileImage, direction, CPC.getCenterPosition(), upperLeft, lowerRight));
                 } catch (ClassNotFoundException | InstantiationException |
                         InvocationTargetException | IllegalAccessException |
                         NoSuchMethodException e) {
                     e.printStackTrace();
                     System.err.println("No/bad tile type: " + type);
                     tiles.add(new BlankTile(tileImage, direction,
-                            CRC.getCenterPosition(),
+                            CPC.getCenterPosition(),
                             upperLeft
                             , lowerRight));
                 }
@@ -140,6 +140,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("misdirection.png");
                     case "SpeedTile":
                         return loader.getImage("speedTile.png");
+                    case "RegenerationTile":
+                        return loader.getImage("regeneration.png");
                     case "FlipperTile":
                         switch (road) {
                             case "EAST":

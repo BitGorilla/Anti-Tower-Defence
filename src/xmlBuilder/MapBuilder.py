@@ -1,5 +1,5 @@
-template = open("Templates/1.txt", "r")
-f = open("Maps/pretty1.xml", "w+")
+template = open("Templates/4.txt", "r")
+f = open("Maps/Pretty4.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
