@@ -98,8 +98,7 @@ public class Controller {
      */
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed, manager.getCurrentMapName(),
-                manager.getWinCondition());
+                , placePortalPressed, manager.getCurrentMapName(), manager.getWinCondition());
 
     }
 
@@ -200,11 +199,8 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            if (usernameToDB.equals("")) {
-                                HighScoreInserter inserter =
-                                        new HighScoreInserter();
-                                inserter.execute();
-                            }
+                            HighScoreInserter putter = new HighScoreInserter();
+                            putter.execute();
                         }
                         else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
@@ -319,9 +315,9 @@ public class Controller {
          */
         @Override
         protected ArrayList<String[]> doInBackground(){
-            ArrayList<String[]> scoreList;
+            ArrayList<String[]> scoreList = new ArrayList<>();
 
-            Highscores highscores;
+            Highscores highscores = null;
             try {
                 highscores = new Highscores();
                 System.out.println(manager.getCurrentMapName());
