@@ -6,7 +6,7 @@ package gameLogic;
  * for the tile.
  *
  * @author id15msd
- *
+ * @since 2018-12-13
  */
 public class CenterPositionCalculator {
     private double tileDimension;

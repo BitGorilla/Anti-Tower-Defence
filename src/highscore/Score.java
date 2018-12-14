@@ -4,6 +4,7 @@ package highscore;
  * Class for storing a row from the Highscore database.
  *
  * @author id15msd
+ * @since 2018-12-10
  */
 public class Score {
 

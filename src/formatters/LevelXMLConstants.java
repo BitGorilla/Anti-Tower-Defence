@@ -1,5 +1,6 @@
 package formatters;
 
+
 public interface LevelXMLConstants {
     String MAP = "map";
     String HEIGHT = "height";

@@ -6,6 +6,12 @@ import formatters.ImageLoader;
 
 import java.awt.*;
 
+/**
+ * Grunt is a type of creature that extends the class Creature.
+ * Creatures are the objects which the player sends out to reach the goal.
+ * @author io16jsn, io16ohl
+ * @since 2018-11-29
+ */
 public class Grunt extends Creature {
 
     public static final int MAXHEALTH = 800;
@@ -21,7 +27,10 @@ public class Grunt extends Creature {
 
     }
 
-    public void resetStats() {
+    /**
+     * Reset speed
+     */
+    private void resetStats() {
         super.setCurrentSpeed(SPEED);
     }
 }

@@ -7,6 +7,7 @@ import java.util.Comparator;
  * lowest).
  *
  * @author id15msd
+ * @since 2018-12-10
  */
 public class CustomComparator implements Comparator<Score> {
     /**

@@ -27,7 +27,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameInstance {
 
     private ArrayList<Tower> towers = new ArrayList<>();
-    private CopyOnWriteArrayList<Creature> creatures = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<Creature> creatures =
+            new CopyOnWriteArrayList<>();
     private PortalusTotalus portalusTotalus;
     private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Laser> lasers = new ArrayList<>();
@@ -261,7 +262,8 @@ public class GameInstance {
             if(tower.readyToShoot()) {
                 for (Creature creature : creatures) {
                     if(tower.positionInRange(creature.getPosition())) {
-                        creature.setCurrentHealth(creature.getCurrentHealth() - tower.shoot());
+                        creature.setCurrentHealth(creature.getCurrentHealth() -
+                                tower.shoot());
                         lasers.add(new Laser(tower.getPosition(),
                                 creature.getPosition(), tower.getLaserColor()));
                         break;

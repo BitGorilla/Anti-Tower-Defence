@@ -4,6 +4,9 @@ import java.util.Objects;
 
 /**
  * Class representing a position with a x and y value.
+ *
+ * @author
+ * @since
  */
 public class Position {
 

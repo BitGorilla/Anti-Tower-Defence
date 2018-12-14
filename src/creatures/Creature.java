@@ -9,13 +9,14 @@ import gameLogic.Position;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-11-29.
- *
- * creatures are the objects which the player sends out to reach the goal.
+ * Creatures are the objects which the player sends out to reach the goal.
+ * @author io16jsn, io16ohl
+ * @since 2018-11-29
  */
 public class Creature extends GameObject implements CreatureInterface {
     private Direction direction;
     private int currentHealth;
+    private int maxHealth;
     private int currentSpeed;
     private boolean goaled;
     private int defaultSpeed;
@@ -36,6 +37,7 @@ public class Creature extends GameObject implements CreatureInterface {
         super(position, image);
         this.defaultSpeed = defaultSpeed;
         this.direction = direction;
+        this.maxHealth = maxHealth;
         setCurrentSpeed(defaultSpeed);
         healthbar = new Healthbar(maxHealth, maxHealth, position);
         setCost(cost);
@@ -161,6 +163,14 @@ public class Creature extends GameObject implements CreatureInterface {
     }
 
     /**
+     * Gets max health of the creature.
+     * @return int representing the max health of the creature.
+     */
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
      *
      * @return The healthbar of the creature.
      */
@@ -168,14 +178,5 @@ public class Creature extends GameObject implements CreatureInterface {
         return healthbar;
     }
 
-    /**
-     * prints the stats of the creature to console.
-     */
-    public void printStats() {
-        System.out.println(this.getClass());
-        System.out.println("Position: (" + getPosition().getX() + "," + getPosition().getY());
-        System.out.println("HP: " + getCurrentHealth());
-        System.out.println("Speed: " + getCurrentSpeed());
-        System.out.println("Direction: " + direction);
-    }
+
 }

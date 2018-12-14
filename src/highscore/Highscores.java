@@ -9,6 +9,7 @@ import java.util.Collections;
  * to database and fetching database data.
  *
  * @author id15msd
+ * @since 2018-12-10
  */
 public class Highscores {
     private final String DBURL = "jdbc:mysql://mysql.cs.umu.se/v135h18g9";

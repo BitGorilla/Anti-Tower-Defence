@@ -23,12 +23,12 @@ import java.util.ArrayList;
 /**
  * Reads a XML file and translates it to playable levels.
  *
- * @author id15msd
+ * @author io16jsn, id15msd, id15lbn, io16ohl
+ * @since 2018-12-14
  */
 public class XMLReader implements LevelReader, LevelXMLConstants{
     private NodeList nodeList;
     private int i = 0;
-
     private int height;
     private int width;
     private String name;
@@ -49,16 +49,31 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         return nValue.getNodeValue();
     }
 
+    /**
+     * Get a nodes element by its tag
+     * @param tag that is requested
+     * @param node current node
+     * @return requested node
+     */
     private Node getNodeByTag(String tag, Node node){
         return ((Element) node).getElementsByTagName(tag).item(0);
     }
 
+    /**
+     * Get the value that the item contains
+     * @param node current node
+     * @return value as a String
+     */
     private String getValue(Node node){
         return node.getChildNodes().item(0).getNodeValue();
     }
 
+    /**
+     * Set the data in the node to the constants that builds up the map
+     * @param metaNode
+     * @param tilesNode
+     */
     private void setMapAttributes(Node metaNode, Node tilesNode){
-
         height = Integer.parseInt(getValue(getNodeByTag(HEIGHT,metaNode)));
         width = Integer.parseInt(getValue(getNodeByTag(WIDTH,metaNode)));
         name = getValue(getNodeByTag(NAME,metaNode));
@@ -67,9 +82,17 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         ImageLoader.getImageLoader().setScale(gameWindowWidth/width);
     }
 
+    /**
+     * This class use reflection for creating tile classes depending on XML data
+     * It also use CPC, center position calculator, to get the area that the
+     * tile represents.
+     * Finally a tile is given a image.
+     * @param parentTileNode
+     * @return a arraylist of Tiles
+     */
     private ArrayList<Tile> buildTiles(Node parentTileNode){
         ArrayList<Tile> tiles = new ArrayList<>();
-        CenterPositionCalculator CPC;
+        CenterPositionCalculator CRC;
         NodeList tileNodes = parentTileNode.getChildNodes();
         Node tileNode;
         String type;
@@ -85,20 +108,21 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                 type = tileNode.getAttributes().getNamedItem(TYPE).getNodeValue();
                 road = tileNode.getAttributes().getNamedItem(ROAD).getNodeValue();
                 direction = getDirection(road);
-                CPC = new CenterPositionCalculator(gameWindowWidth, width, counter);
+                CRC = new CenterPositionCalculator(gameWindowWidth, width, counter);
                 counter++;
-                upperLeft = new Position(CPC.getxMinValue(), CPC.getyMinValue());
-                lowerRight = new Position(CPC.getxMaxValue(), CPC.getyMaxValue());
+                upperLeft = new Position(CRC.getxMinValue(), CRC.getyMinValue());
+                lowerRight = new Position(CRC.getxMaxValue(), CRC.getyMaxValue());
                 tileImage = getTileImage(road, type);
                 try {
-                    tiles.add(TileCreator.createTile(type, tileImage, direction, CPC.getCenterPosition(), upperLeft, lowerRight));
+                    tiles.add(TileCreator.createTile(type, tileImage, direction,
+                            CRC.getCenterPosition(), upperLeft, lowerRight));
                 } catch (ClassNotFoundException | InstantiationException |
                         InvocationTargetException | IllegalAccessException |
                         NoSuchMethodException e) {
                     e.printStackTrace();
                     System.err.println("No/bad tile type: " + type);
                     tiles.add(new BlankTile(tileImage, direction,
-                            CPC.getCenterPosition(),
+                            CRC.getCenterPosition(),
                             upperLeft
                             , lowerRight));
                 }
@@ -107,6 +131,12 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         return tiles;
     }
 
+    /**
+     * Return the right image that is related to a specific tile name
+     * @param road
+     * @param type
+     * @return
+     */
     private Image getTileImage(String road, String type) {
         StringBuilder sb = new StringBuilder();
         sb.append(road);
@@ -140,8 +170,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("misdirection.png");
                     case "SpeedTile":
                         return loader.getImage("speedTile.png");
-                    case "RegenerationTile":
-                        return loader.getImage("regeneration.png");
                     case "FlipperTile":
                         switch (road) {
                             case "EAST":
@@ -162,6 +190,11 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
+    /**
+     * Get direction of that the tile contains, to get a path for the creatures.
+     * @param road
+     * @return
+     */
     private Direction getDirection(String road) {
         String[] strings = road.split("-");
         try {
@@ -171,11 +204,19 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
+    /**
+     * Check if the nodeList have more nodes to read or not
+     * @return true is it still has nodes left, else false.
+     */
     @Override
     public boolean hasNext() {
         return i<nodeList.getLength();
     }
 
+    /**
+     * Get the map and build it if the arraylist still have more left.
+     * @return maps as a arraylist.
+     */
     public ArrayList<Map> getMaps() {
         ArrayList<Map> maps = new ArrayList<>();
         while(hasNext()) {
@@ -184,12 +225,16 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         return maps;
     }
 
+    /**
+     * Build a map that have all parameters:
+     * name, start credits and tiles.
+     * @return map
+     */
     private Map buildMap() {
         Node node = nodeList.item(i);
         i++;
 
         if (node.getNodeType() == Node.ELEMENT_NODE){
-
             Node metaNode = getNodeByTag(META, node);
             Node tilesNode = getNodeByTag(TILES, node);
             Map map;
@@ -200,15 +245,21 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         return null;
     }
 
+
+    /**
+     * Tells the xml reader where it should read from
+     * @param inStream inputStream
+     * @throws IOException ParserConfigurationException and SAXException
+     */
     @Override
     public void setSource(InputStream inStream) throws IOException {
         //Sets the source and parses the XML data to a DOM tree.
         try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory dbFactory =
+                    DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inStream);
             Element data=doc.getDocumentElement();
-            //Fixa så att tex inte flera textnoder finns efter varandra
             data.normalize();
 
             nodeList = doc.getElementsByTagName(MAP);
@@ -219,7 +270,12 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         }
     }
 
+    /**
+     *
+     * @return width of map
+     */
     public int getWidth(){
         return width;
     }
 }
+

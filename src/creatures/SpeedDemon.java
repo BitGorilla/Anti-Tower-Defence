@@ -6,6 +6,13 @@ import formatters.ImageLoader;
 
 import java.awt.*;
 
+/**
+ * Speed demon is a type of creature that extends the class Creature.
+ * Creatures are the objects which the player sends out to reach the goal.
+ * Speed demon have more speed then the other creatures.
+ * @author io16jsn, io16ohl
+ * @since 2018-11-29
+ */
 public class SpeedDemon extends Creature {
 
     public static final int MAXHEALTH = 130;
