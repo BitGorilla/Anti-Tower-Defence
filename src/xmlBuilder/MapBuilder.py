@@ -1,5 +1,5 @@
-template = open("Templates/2.txt", "r")
-f = open("Maps/pretty2.xml", "w+")
+template = open("Templates/1.txt", "r")
+f = open("Maps/pretty1.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
@@ -70,6 +70,8 @@ while i < len(template):
 		f.write("SpeedTile")
 	elif template[i+1] == "f":
 		f.write("FlipperTile")
+	elif template[i+1] == "?":
+		f.write("MisdirectionTile")
 	else:
 		f.write("BlankTile")
 
