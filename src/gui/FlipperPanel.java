@@ -7,16 +7,24 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Flipper panel is a panel in the gui that contains all the flipper buttons
+ * above the game panel (game field).
+ * @author
+ * @since 2018-12-10
+ */
+
 public class FlipperPanel extends JPanel {
 
     private ArrayList<JButton> flipperButtons = new ArrayList<>();
     private ArrayList<Position> positions;
     private Image image = null;
     private int buttonWidth;
-    ActionListener flipperPressed;
+    private ActionListener flipperPressed;
 
     public FlipperPanel(ArrayList<Position> positions,
-                        ActionListener flipperPressed, int panelWidth, int buttonWidth) {
+                        ActionListener flipperPressed, int panelWidth,
+                        int buttonWidth) {
         this.flipperPressed = flipperPressed;
         this.buttonWidth = buttonWidth;
         this.positions = positions;
@@ -27,6 +35,9 @@ public class FlipperPanel extends JPanel {
         setButtons();
     }
 
+    /**
+     * Sets the flipper buttons to the right position of the flipptiles.
+     */
     private void setButtons() {
         FlipperButton flipperButton;
         Position pos;
@@ -44,6 +55,9 @@ public class FlipperPanel extends JPanel {
         }
     }
 
+    /**
+     * Updates the flipper panel when a new map is placed in the game panel.
+     */
     public void updateFlippers(ArrayList<Position> positions) {
         for (JButton flipper  : flipperButtons ) {
             this.remove(flipper);

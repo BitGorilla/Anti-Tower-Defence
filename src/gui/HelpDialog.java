@@ -7,9 +7,9 @@ import java.awt.*;
  * Creates a dialog window to display game instructions.
  *
  * @author id15msd
+ * @since 2018-12-13
  */
 public class HelpDialog {
-    private final int ROWS = 10;
 
     /**
      * Constructor of class.
@@ -40,9 +40,7 @@ public class HelpDialog {
                 "users!</p>";
 
         textArea.setText(s);
-
         jdialog.add(textArea);
-
         jdialog.pack();
         jdialog.setVisible(true);
 

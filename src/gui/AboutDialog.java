@@ -2,10 +2,16 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * A pop up dialog that is shown when the "About" button is pushed in the
+ * drop down menu in the menubar in the gui window. The dialog contains a
+ * short presentation about the game developers and the project.
+ * @author id15lbn
+ * @since 2018-12-13
+ */
 public class AboutDialog {
 
-            //this.getContentPane().setLayout(new FlowLayout());
+
     public AboutDialog()
     {
 

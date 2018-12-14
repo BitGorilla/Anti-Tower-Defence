@@ -134,6 +134,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("start.png");
                     case "SlowTile":
                         return loader.getImage("slowTile.png");
+                    case "SpikeTile":
+                        return loader.getImage("spike.png");
                     case "SpeedTile":
                         return loader.getImage("speedTile.png");
                     case "FlipperTile":

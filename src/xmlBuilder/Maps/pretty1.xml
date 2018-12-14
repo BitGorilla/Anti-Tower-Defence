@@ -115,7 +115,7 @@
             <tile road="BLANK" type="TREE"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
-            <tile road="SOUTH" type="BlankTile"/>
+            <tile road="SOUTH" type="SpikeTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
             <tile road="BLANK" type="BlankTile"/>
