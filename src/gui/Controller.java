@@ -98,7 +98,7 @@ public class Controller {
      */
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed, manager.getCurrentMapName(), manager.getWinCondition());
+                , placePortalPressed, manager.getCurrentMapName());
 
     }
 
@@ -199,8 +199,11 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            HighScoreInserter putter = new HighScoreInserter();
-                            putter.execute();
+                            if (usernameToDB.equals("")) {
+                                HighScoreInserter inserter =
+                                        new HighScoreInserter();
+                                inserter.execute();
+                            }
                         }
                         else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
@@ -214,7 +217,6 @@ public class Controller {
                     }
 
                     menuPanel.updateStats(manager.getCredits(),
-                            manager.getWinProgress(),
                             manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
@@ -315,12 +317,11 @@ public class Controller {
          */
         @Override
         protected ArrayList<String[]> doInBackground(){
-            ArrayList<String[]> scoreList = new ArrayList<>();
+            ArrayList<String[]> scoreList;
 
-            Highscores highscores = null;
+            Highscores highscores;
             try {
                 highscores = new Highscores();
-                System.out.println(manager.getCurrentMapName());
                 scoreList = highscores.getHighscores(
                         manager.getCurrentMapName());
 
