@@ -1,13 +1,17 @@
 package gui;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by Linnea on 2018-12-10.
+ * Drop down menu is the menu at the top of the gui window. It contains to
+ * menus, the first contains Restart, Start/Pause and Quit and the second
+ * contains About the game, Help instructions and High score list that shows
+ * the high score from the database.
+ * @author id15lbn, oi16ohn
+ * @since 2018-12-10
  */
 public class DropDownMenu extends JMenuBar{
 
@@ -15,20 +19,21 @@ public class DropDownMenu extends JMenuBar{
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
-    private ActionListener pausPressed;
+    private ActionListener pausePressed;
     private ActionListener startPressed;
-    private JMenuItem pausStart = new JMenuItem();
-    private boolean paus;
+    private JMenuItem pauseStart = new JMenuItem();
+    private boolean pause;
 
     public DropDownMenu(ActionListener restartGame,
-                        ActionListener pausPressed,
+                        ActionListener pausePressed,
                         ActionListener startPressed,
                         ActionListener quitPressed,
                         ActionListener highcorePressed) {
-        this.pausPressed = pausPressed;
+        this.pausePressed = pausePressed;
         this.startPressed = startPressed;
         Font f = new Font("sans-serif", Font.PLAIN, 15);
         UIManager.put("Menu.font", f);
+
         //Build the first menu.
         menu1 = new JMenu("Game Menu");
         menu1.setMnemonic(KeyEvent.VK_A);
@@ -41,15 +46,14 @@ public class DropDownMenu extends JMenuBar{
         menuItem1.addActionListener(restartGame);
         menu1.add(menuItem1);
 
-        pausStart = new JMenuItem("Start");
-        pausStart.addActionListener(startPressed);
-        menu1.add(pausStart);
-        paus = false;
+        pauseStart = new JMenuItem("Start");
+        pauseStart.addActionListener(startPressed);
+        menu1.add(pauseStart);
+        pause = false;
 
         menuItem1 = new JMenuItem("Quit");
         menuItem1.addActionListener(quitPressed);
         menu1.add(menuItem1);
-
 
         //Build the second menu.
         menu2 = new JMenu("Info");
@@ -69,17 +73,21 @@ public class DropDownMenu extends JMenuBar{
         menu2.add(menuItem2);
     }
 
+    /**
+     * Change the the text in the drop down when pushing the button.
+     * From Start to Pause or from Pause to Start.
+     */
     public void changePausStart() {
-        if(paus) {
-            pausStart.removeActionListener(pausPressed);
-            pausStart.setText("Start");
-            pausStart.addActionListener(startPressed);
-            paus = false;
+        if(pause) {
+            pauseStart.removeActionListener(pausePressed);
+            pauseStart.setText("Start");
+            pauseStart.addActionListener(startPressed);
+            pause = false;
         } else {
-            pausStart.removeActionListener(startPressed);
-            pausStart.setText("Pause");
-            pausStart.addActionListener(pausPressed);
-            paus = true;
+            pauseStart.removeActionListener(startPressed);
+            pauseStart.setText("Pause");
+            pauseStart.addActionListener(pausePressed);
+            pause = true;
         }
     }
 }
