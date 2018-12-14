@@ -104,7 +104,7 @@ public class GameInstance {
         moveCreatures();
         handleCreaturesInGoal();
         damageCreaturesIfPossible();
-
+        deleteCreatureIfDead();
     }
 
     private void resetCreatureStats() {
@@ -243,7 +243,6 @@ public class GameInstance {
                 for (Creature creature : creatures) {
                     if(tower.positionInRange(creature.getPosition())) {
                         creature.setCurrentHealth(creature.getCurrentHealth() - tower.shoot());
-                        deleteCreatureIfDead(creature);
                         lasers.add(new Laser(tower.getPosition(),
                                 creature.getPosition(), tower.getLaserColor()));
                         break;
@@ -273,21 +272,22 @@ public class GameInstance {
         }
     }
 
-    private void deleteCreatureIfDead(Creature creature) {
-        if (portalusTotalus != null) {
-            if (portalusTotalus.isDead()) {
-                if(portalusTotalus.getTeleportCountDown() > 0)
-                    tiles.remove(portalusTotalus.getEntryTeleporterTile());
+    private void deleteCreatureIfDead() {
+        for (Creature creature: creatures) {
+            if (portalusTotalus != null) {
+                if (portalusTotalus.isDead()) {
+                    if (portalusTotalus.getTeleportCountDown() > 0)
+                        tiles.remove(portalusTotalus.getEntryTeleporterTile());
 
-                portalusTotalus = null;
+                    portalusTotalus = null;
+                }
+            }
+            if (creature.isDead()) {
+                earnCredits(creature.getCost() / 2);
+                creatures.remove(creature);
+
             }
         }
-        if (creature.isDead()) {
-            earnCredits(creature.getCost()/2);
-            creatures.remove(creature);
-
-        }
-
     }
 
     public void flipTile(Position tilePosition) {

@@ -16,12 +16,18 @@ public class MenuPanel extends JPanel {
     JLabel scoreLabel;
 
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
-                     ActionListener addCreature3, ActionListener placePortal) {
-        setLayout(new GridLayout(9,0));
-        GridBagConstraints c;
-        setPreferredSize(new Dimension(200,700));
+                     ActionListener addCreature3, ActionListener placePortal,
+                     String name) {
 
+        setLayout(new GridLayout(9,0));
+        setPreferredSize(new Dimension(200,700));
         Font f = new Font("Courier New", Font.PLAIN, 15);
+        Font f2 = new Font("Courier New", Font.PLAIN, 25);
+
+        JLabel mapName = new JLabel(name,SwingConstants.CENTER);
+        mapName.setFont(f2);
+        add(mapName);
+
         JButton button = new JButton();
         button.setHorizontalAlignment(SwingConstants.LEFT);
         button.setFont(f);

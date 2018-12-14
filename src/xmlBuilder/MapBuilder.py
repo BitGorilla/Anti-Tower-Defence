@@ -1,5 +1,5 @@
-template = open("Templates/1.txt", "r")
-f = open("Maps/pretty1.xml", "w+")
+template = open("Templates/2.txt", "r")
+f = open("Maps/pretty2.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
@@ -58,6 +58,8 @@ while i < len(template):
 		f.write("BlankTile")
 	elif template[i+1] == "t":
 		f.write("TowerTile")
+	elif template[i+1] == "k":
+		f.write("SpikeTile")
 	elif template[i+1] == "T":
 		f.write("TREE")
 	elif template[i+1] == "s":

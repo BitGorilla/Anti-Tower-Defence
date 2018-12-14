@@ -82,7 +82,7 @@ public class Controller {
 
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed);
+                , placePortalPressed, manager.getCurrentMapName());
     }
 
     private void buildFlipperPanel() {
@@ -157,7 +157,7 @@ public class Controller {
                         }
                     }
 
-                    if (manager.getGameOver() && !loserDialogIsShown){
+                    if (manager.getGameOver() && !loserDialogIsShown && !mapWonIsShown){
                         loserDialogIsShown = true;
                         window.showLoserDialog();
                     }
@@ -195,14 +195,14 @@ public class Controller {
 
 
     public static void main(String[] args) throws IOException {
-        int gameWidth = 700;
+        int gameWidth = 800;
         XMLReader reader;
         reader = new XMLReader(gameWidth);
 
         try {
             if (args.length == 0) {
                 reader.setSource(new FileInputStream(new File("src/xmlBuilder" +
-                        "/Maps/pretty1.xml")));
+                        "/Maps/levels.xml")));
             } else if (args.length == 1 && args[0].endsWith(".xml")) {
                 reader.setSource(new FileInputStream(new File(args[0])));
             } else {
