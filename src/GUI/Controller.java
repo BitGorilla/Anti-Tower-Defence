@@ -28,18 +28,18 @@ public class Controller {
     private String usernameToDB;
 
 
-    ActionListener startButtonPressed    = e -> startUp();
-    ActionListener pausPressed          = e -> pausGame();
-    ActionListener addCreature1Pressed = e -> addCreature1();
-    ActionListener addCreature2Pressed = e -> addCreature2();
-    ActionListener addCreature3Pressed = e -> addCreature3();
-    ActionListener placePortalPressed = e -> placePortal();
-    ActionListener flipperPressed = e -> flipFlipperTile(e);
-    ActionListener nextMapPressed = e -> nextMap();
-    ActionListener restartGamePressed = e -> restartGame();
-    ActionListener restartGameLoserPressed = e -> restartGameLoser();
-    ActionListener quitPressed = e -> quitGame();
-    ActionListener highscorePressed = e -> showHighscore();
+    private ActionListener startButtonPressed    = e -> startUp();
+    private ActionListener pausPressed          = e -> pausGame();
+    private ActionListener addCreature1Pressed = e -> addCreature1();
+    private ActionListener addCreature2Pressed = e -> addCreature2();
+    private ActionListener addCreature3Pressed = e -> addCreature3();
+    private ActionListener placePortalPressed = e -> placePortal();
+    private ActionListener flipperPressed = e -> flipFlipperTile(e);
+    private ActionListener nextMapPressed = e -> nextMap();
+    private ActionListener restartGamePressed = e -> restartGame();
+    private ActionListener restartGameLoserPressed = e -> restartGameLoser();
+    private ActionListener quitPressed = e -> quitGame();
+    private ActionListener highscorePressed = e -> showHighscore();
 
     private int tickRate = 30;
     private int fps = 60;
