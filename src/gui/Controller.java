@@ -199,11 +199,8 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            if (usernameToDB.equals("")) {
-                                HighScoreInserter inserter =
-                                        new HighScoreInserter();
-                                inserter.execute();
-                            }
+                            HighScoreInserter putter = new HighScoreInserter();
+                            putter.execute();
                         }
                         else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
