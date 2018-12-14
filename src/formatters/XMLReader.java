@@ -1,7 +1,10 @@
 package formatters;
 
-import Main.*;
-import Tiles.*;
+import tiles.*;
+import gameLogic.CenterPositionCalculator;
+import gameLogic.Direction;
+import gameLogic.Map;
+import gameLogic.Position;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -131,6 +134,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                         return loader.getImage("start.png");
                     case "SlowTile":
                         return loader.getImage("slowTile.png");
+                    case "SpikeTile":
+                        return loader.getImage("spike.png");
                     case "SpeedTile":
                         return loader.getImage("speedTile.png");
                     case "FlipperTile":

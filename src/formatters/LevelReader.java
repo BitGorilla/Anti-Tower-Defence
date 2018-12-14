@@ -1,6 +1,6 @@
 package formatters;
 
-import Main.Map;
+import gameLogic.Map;
 
 import java.io.IOException;
 import java.io.InputStream;
