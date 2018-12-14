@@ -16,9 +16,9 @@ public class EntryTeleporterTile extends Tile implements TileInterface {
             "portal.png");
 
     public EntryTeleporterTile(Direction direction, Position centerPos) {
-        super(image, direction, centerPos, new Position(centerPos.getX() - 5,
-                centerPos.getY() -5), new Position(centerPos.getX() + 5,
-                centerPos.getY() + 5));
+        super(image, direction, centerPos, new Position(centerPos.getX() - 10,
+                centerPos.getY() -10), new Position(centerPos.getX() + 10,
+                centerPos.getY() + 10));
     }
 
     @Override

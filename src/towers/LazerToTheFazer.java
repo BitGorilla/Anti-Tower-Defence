@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class LazerToTheFazer extends Tower{
     public static final int RANGE = 150;
-    public static final int DAMAGE = 10;
+    public static final int DAMAGE = 20;
     public static final int RATEOFFIRE = 4;
     public static final Color COLOR = Color.green;
     public static final Image image = ImageLoader.getImageLoader().getImage(

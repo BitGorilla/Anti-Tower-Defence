@@ -15,6 +15,15 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Class with the purpose of holding and updating one mapinstance of the model.
+ * Contains and updates all tiles, towers, creatures that are active in the
+ * mapinstance. Given a map it can add towers and creatures to its tiles and
+ * then update their interactions with the world.
+ *
+ * @author oi16jsn, oi16ohn
+ * @since 14/12-19
+ */
 public class GameInstance {
 
     private ArrayList<Tower> towers = new ArrayList<>();
@@ -32,6 +41,12 @@ public class GameInstance {
     private int creaturesCreated = 0;
 
 
+    /**
+     * Constructor to the class and initiates a gameinstance. Extracts special
+     * tiles from the map, sets the startcredit and spawns towers at half of
+     * the given towertiles in the map.
+     * @param map, Map object to be brought to life.
+     */
     public GameInstance(Map map) {
         this.tiles.addAll(map.getTiles());
         this.name = map.getName();
@@ -43,10 +58,14 @@ public class GameInstance {
         update();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getScore(){
         if (creaturesCreated == 0)
             return 0;
-        return 1000000/creaturesCreated;
+        return 1000000000/creaturesCreated;
     }
 
     private void findStart() {
