@@ -16,6 +16,7 @@ import java.awt.*;
 public class Creature extends GameObject implements CreatureInterface {
     private Direction direction;
     private int currentHealth;
+    private int maxHealth;
     private int currentSpeed;
     private boolean goaled;
     private int defaultSpeed;
@@ -36,6 +37,7 @@ public class Creature extends GameObject implements CreatureInterface {
         super(position, image);
         this.defaultSpeed = defaultSpeed;
         this.direction = direction;
+        this.maxHealth = maxHealth;
         setCurrentSpeed(defaultSpeed);
         healthbar = new Healthbar(maxHealth, maxHealth, position);
         setCost(cost);
@@ -158,6 +160,14 @@ public class Creature extends GameObject implements CreatureInterface {
     @Override
     public boolean inGoal() {
         return goaled;
+    }
+
+    /**
+     * Gets max health of the creature.
+     * @return int representing the max health of the creature.
+     */
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
     /**
