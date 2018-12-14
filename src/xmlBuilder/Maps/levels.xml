@@ -296,10 +296,10 @@
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
-                  <tile road="NORTH" type="BlankTile"/>
-                  <tile road="WEST" type="BlankTile"/>
-                  <tile road="WEST" type="BlankTile"/>
-                  <tile road="WEST" type="BlankTile"/>
+                  <tile road="NORTH" type="MisdirectionTile"/>
+                  <tile road="WEST" type="MisdirectionTile"/>
+                  <tile road="WEST" type="MisdirectionTile"/>
+                  <tile road="WEST" type="MisdirectionTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="WATER"/>

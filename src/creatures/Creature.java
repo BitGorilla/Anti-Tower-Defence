@@ -1,5 +1,6 @@
 package creatures;
 
+import formatters.ImageLoader;
 import gameLogic.Direction;
 import gameLogic.GameObject;
 import gameLogic.Healthbar;
@@ -46,7 +47,24 @@ public class Creature extends GameObject implements CreatureInterface {
      */
     @Override
     public void setDirection(Direction direction){
-        this.direction = direction;
+        if(!direction.equals(Direction.BLANK)) {
+            this.direction = direction;
+        }else {
+            switch (this.direction) {
+                case EAST:
+                    setDirection(Direction.WEST);
+                    break;
+                case WEST:
+                    setDirection(Direction.EAST);
+                    break;
+                case NORTH:
+                    setDirection(Direction.SOUTH);
+                    break;
+                case SOUTH:
+                    setDirection(Direction.NORTH);
+                    break;
+            }
+        }
     }
 
     public int getCost() {

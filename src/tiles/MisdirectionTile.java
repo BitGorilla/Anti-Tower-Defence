@@ -1,15 +1,16 @@
 package tiles;
 
 import creatures.Creature;
-import creatures.PortalusTotalus;
 import gameLogic.Direction;
 import gameLogic.Position;
 
 import java.awt.*;
+import java.util.Random;
 
-public class SpikeTile extends Tile implements TileInterface{
-
-    private int damageMultiplier = 2;
+/**
+ * Created by jontor on 2018-12-14.
+ */
+public class MisdirectionTile extends Tile implements TileInterface {
     /**
      * Constructor of the class.
      *
@@ -21,14 +22,13 @@ public class SpikeTile extends Tile implements TileInterface{
      *                   game field.
      * @param lowerRight The lower right position of the object relative to the
      */
-    public SpikeTile(Image image, Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
+    public MisdirectionTile(Image image, Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
         super(image, direction, centerPos, upperLeft, lowerRight);
     }
 
     @Override
     public void landOn(Creature creature) {
-        if(creature.getClass() != PortalusTotalus.class)
-            creature.setCurrentHealth(creature.getCurrentHealth()-
-                    creature.getCurrentSpeed()*damageMultiplier);
+        int random = new Random().nextInt(Direction.values().length);
+        setDirection(Direction.values()[random]);
     }
 }
