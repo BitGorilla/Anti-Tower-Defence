@@ -27,7 +27,7 @@ public class SpeedTile extends Tile implements TileInterface {
 
     @Override
     public void landOn(Creature creature) {
-        int speed = creature.getCurrentSpeed()*2;
+        int speed = creature.getCurrentSpeed()*3;
         if (speed > 0)
             creature.setCurrentSpeed(speed);
         else
