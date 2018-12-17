@@ -1,5 +1,5 @@
 package gui;
-//HEJ MARTIN
+
 import formatters.XMLReader;
 import gameLogic.GameManager;
 import gameLogic.Map;
@@ -98,8 +98,7 @@ public class Controller {
      */
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed, manager.getCurrentMapName(),
-                manager.getWinCondition());
+                , placePortalPressed, manager.getCurrentMapName());
 
     }
 
@@ -200,10 +199,8 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            if (usernameToDB.equals("")) {
-                                HighScoreInserter inserter = new HighScoreInserter();
-                                inserter.execute();
-                            }
+                            HighScoreInserter putter = new HighScoreInserter();
+                            putter.execute();
                         }
                         else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
@@ -217,7 +214,6 @@ public class Controller {
                     }
 
                     menuPanel.updateStats(manager.getCredits(),
-                            manager.getWinProgress(),
                             manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
