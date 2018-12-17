@@ -60,12 +60,16 @@ public class Tile extends GameObject {
         return getPosition();
     }
 
-    //TODO remove?
+    /**
+     * @return Position of upper left corner.
+     */
     public Position getUpperLeft() {
         return upperLeft;
     }
 
-    //TODO remove?
+    /**
+     * @return Position of lower right corner.
+     */
     public Position getLowerRight() {
         return lowerRight;
     }

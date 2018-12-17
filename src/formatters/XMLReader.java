@@ -41,15 +41,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         this.gameWindowWidth = gameWindowWidth;
     }
 
-    //TODO remove method?
-    private String getTagValue(String tag, Element element){
-        NodeList nlList =
-                element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node nValue = nlList.item(0);
-
-        return nValue.getNodeValue();
-    }
-
     /**
      * Get a nodes element by its tag
      * @param tag that is requested

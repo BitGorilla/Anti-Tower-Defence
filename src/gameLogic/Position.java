@@ -40,7 +40,7 @@ public class Position {
     }
 
     /**
-     * TODO write purpose of mothod
+     * TODO write purpose of method
      * @param pos
      */
     public void addVector(Position pos){
