@@ -200,7 +200,7 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            if(usernameToDB.equals("")) {
+                            if(!usernameToDB.equals("")) {
                                 HighScoreInserter insert =
                                         new HighScoreInserter();
                                 insert.execute();
