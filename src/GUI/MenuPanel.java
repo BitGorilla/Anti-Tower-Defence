@@ -25,16 +25,18 @@ public class MenuPanel extends JPanel {
 
     private JLabel creditLabel;
     private JLabel scoreLabel;
+    private JLabel winProgressLabel;
+    private int winCondition;
 
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
                      ActionListener addCreature3, ActionListener placePortal,
-                     String name) {
+                     String name, int winCondition) {
 
         setLayout(new GridLayout(9,0));
         setPreferredSize(new Dimension(200,700));
         Font f = new Font("Courier New", Font.PLAIN, 15);
         Font f2 = new Font("Courier New", Font.PLAIN, 25);
-
+        this.winCondition = winCondition;
         JLabel mapName = new JLabel(name,SwingConstants.CENTER);
         mapName.setFont(f2);
         add(mapName);
@@ -78,11 +80,20 @@ public class MenuPanel extends JPanel {
         button.addActionListener(placePortal);
         add(button);
 
-        creditLabel = new JLabel("",SwingConstants.CENTER);
+        winProgressLabel = new JLabel("",SwingConstants.LEFT);
+        winProgressLabel.setFont(f);
+
+        creditLabel = new JLabel("",SwingConstants.LEFT);
         creditLabel.setFont(f);
 
-        scoreLabel = new JLabel("",SwingConstants.CENTER);
-        creditLabel.setFont(f);
+        scoreLabel = new JLabel("",SwingConstants.LEFT);
+        scoreLabel.setFont(f);
+
+        updateStats(0,0,0);
+        add(winProgressLabel);
+        add(creditLabel);
+        add(scoreLabel);
+
     }
 
     /**
@@ -90,13 +101,16 @@ public class MenuPanel extends JPanel {
      * @param credit current credit
      * @param score current score
      */
-    public void updateStats(int credit, int score) {
+    public void updateStats(int credit, int winProgress,int score) {
         creditLabel.setText("<html><b> " + "$$$: </b>" +Integer.toString(credit)
                 + "</html>");
-        add(creditLabel);
+
+        winProgressLabel.setText("<html><b> " + "WinProgress: </b>" +
+                winProgress + "/" + winCondition);
+        //add(winProgressLabel);
 
         scoreLabel.setText("<html><b> " + "Score: </b>" +Integer.toString(score)
                 + "</html>");
-        add(scoreLabel);
+        //add(scoreLabel);
     }
 }

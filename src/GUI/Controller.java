@@ -98,7 +98,8 @@ public class Controller {
      */
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(addCreature1Pressed, addCreature2Pressed, addCreature3Pressed
-                , placePortalPressed, manager.getCurrentMapName());
+                , placePortalPressed, manager.getCurrentMapName(),
+                manager.getWinCondition());
 
     }
 
@@ -199,8 +200,11 @@ public class Controller {
                                     new UserNameDialog();
                             usernameToDB = userNameDialog.getUserNameInput();
 
-                            HighScoreInserter putter = new HighScoreInserter();
-                            putter.execute();
+                            if(!usernameToDB.equals("")) {
+                                HighScoreInserter insert =
+                                        new HighScoreInserter();
+                                insert.execute();
+                            }
                         }
                         else if (!mapWonIsShown && !userNameDialogShown) {
                             mapWonIsShown = true;
@@ -214,7 +218,7 @@ public class Controller {
                     }
 
                     menuPanel.updateStats(manager.getCredits(),
-                            manager.getScore());
+                            manager.getWinProgress(), manager.getScore());
                     gamePanel.updateObjects(manager.getGameObjectsToDraw());
                     gamePanel.updateLasers(manager.getLaserPositionsToDraw());
                     gamePanel.updateHealthBars(manager.getHealthbarsToDraw());
@@ -314,12 +318,11 @@ public class Controller {
          */
         @Override
         protected ArrayList<String[]> doInBackground(){
-            ArrayList<String[]> scoreList = new ArrayList<>();
+            ArrayList<String[]> scoreList;
 
-            Highscores highscores = null;
+            Highscores highscores;
             try {
                 highscores = new Highscores();
-                System.out.println(manager.getCurrentMapName());
                 scoreList = highscores.getHighscores(
                         manager.getCurrentMapName());
 
