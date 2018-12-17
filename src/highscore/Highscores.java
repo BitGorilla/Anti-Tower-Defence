@@ -130,7 +130,6 @@ public class Highscores {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("nooo");
             e.printStackTrace();
         }
     }
