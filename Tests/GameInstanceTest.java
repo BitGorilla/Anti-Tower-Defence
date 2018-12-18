@@ -2,7 +2,6 @@ import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import Main.*;
 import java.util.ArrayList;
 
 public class GameInstanceTest {

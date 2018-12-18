@@ -1,3 +1,4 @@
+import gameLogic.Map;
 import tiles.TileCreator;
 import gameLogic.Direction;
 import gameLogic.Position;
@@ -8,11 +9,11 @@ import tiles.*;
 
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class MapTest{
     private Map map;
     private int credits = 100;
+    private int winCondition = 1000;
     private String name = "name";
     private ArrayList<Tile> tiles;
 
@@ -21,7 +22,7 @@ public class MapTest{
         tiles = new ArrayList<>();
         Tile tile;
         try {
-            tile = TileCreator.createTile("StartTile", Direction.SOUTH,
+            tile = TileCreator.createTile("StartTile",null, Direction.SOUTH,
                     new Position(1, 1)
                     , new Position(0, 0), new Position(2, 2));
             tiles.add(tile);
@@ -30,7 +31,7 @@ public class MapTest{
             e.printStackTrace();
         }
 
-        map = new Map(name, credits, tiles);
+        map = new Map(name, credits,winCondition, tiles);
     }
 
     @Test

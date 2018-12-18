@@ -1,4 +1,6 @@
+import creatures.Creature;
 import creatures.SpeedDemon;
+import gameLogic.Position;
 import tiles.SlowTile;
 import org.junit.After;
 import org.junit.Assert;
@@ -20,8 +22,8 @@ public class SlowTileTest {
 
     @Test
     public void landOnSlowsSpeedOfCreature() {
-        SpeedDemon umbridge = new SpeedDemon(null, null);
+        Creature umbridge = new Creature(new Position(0,0),null, null,4,1,1);
         slowTile.landOn(umbridge);
-        Assert.assertEquals(SpeedDemon.SPEED/2, umbridge.getCurrentSpeed());
+        Assert.assertEquals(4/2, umbridge.getCurrentSpeed());
     }
 }

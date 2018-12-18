@@ -5,6 +5,7 @@
 			<height>20</height>
 			<width>20</width>
 			<startcredit>1000</startcredit>
+            <wincondition>1000</wincondition>
 		</meta>
         <tiles>
             <tile road="BLANK" type="TREE"/>

@@ -94,6 +94,10 @@ public class Tower extends GameObject implements TowerInterface {
             cooldown--;
     }
 
+    public int getCooldown() {
+        return cooldown;
+    }
+
     /**
      * @return the color of the laser.
      */

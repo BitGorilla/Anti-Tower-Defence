@@ -15,12 +15,12 @@ public class TileTest {
 
     @Before
     public void setUp() {
-        tile = new Tile(null,null,null,null);
+        tile = new Tile(null,null,null,null,null);
     }
 
     @Test
     public void tileCanBeInitiated(){
-        tile = new Tile(Direction.NORTH, centerPosition, upperLeftPosition,lowerRightPosition);
+        tile = new Tile(null,Direction.NORTH, centerPosition, upperLeftPosition,lowerRightPosition);
     }
 
     @Test

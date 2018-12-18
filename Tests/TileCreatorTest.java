@@ -1,4 +1,7 @@
 import gameLogic.*;
+import org.junit.Assert;
+import tiles.BlankTile;
+import tiles.Tile;
 import tiles.TileCreator;
 import gameLogic.Position;
 import org.junit.Test;
@@ -16,20 +19,23 @@ public class TileCreatorTest {
 
     @Test
     public void correctTileCanBeCreated() throws Exception {
-        TileCreator.createTile("BlankTile", Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
-        TileCreator.createTile("SlowTile", Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
-        TileCreator.createTile("GoalTile", Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
-        TileCreator.createTile("StartTile", Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("BlankTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("SlowTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("GoalTile", null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("StartTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
     }
 
-    @Test (expected = ClassNotFoundException.class)
-    public void incorrectTileCanNotBeCreated() throws Exception {
-        TileCreator.createTile("BadTile", Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+    @Test
+    public void incorrectTileTypeCreatesBlankTile() throws Exception {
+        Tile tile = TileCreator.createTile("BadTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        Assert.assertEquals(tile.getClass(), BlankTile.class);
     }
 
-    @Test (expected = ClassNotFoundException.class)
-    public void tileWithBadConstructorThrowsException() throws Exception {
-        TileCreator.createTile("IncorrectTile1", Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+    @Test
+    public void tileWithBadConstructorCreatesBlankTile() throws Exception {
+       Tile tile = TileCreator.createTile("IncorrectTile1",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        Assert.assertEquals(tile.getClass(), BlankTile.class);
+
     }
 
 

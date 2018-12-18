@@ -1,10 +1,8 @@
-import Towers.Tower;
 import gameLogic.Position;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import Main.*;
 import towers.Tower;
 
 public class TowerTest {
@@ -16,7 +14,7 @@ public class TowerTest {
 
     @Before
     public void setUp() {
-        tower = new Tower(pos, range, damage, rateOfFire);
+        tower = new Tower(pos,null, range, damage, rateOfFire, null);
     }
 
     @After
@@ -24,13 +22,13 @@ public class TowerTest {
 
     @Test
     public void positionInRangeToBeTrue_PositionOnYEdge() {
-        Position testPosition = new Position(1,1+ tower.getRange());
+        Position testPosition = new Position(1,1+ range);
         Assert.assertTrue(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeTrue_PositionOnXEdge() {
-        Position testPosition = new Position(1+ tower.getRange(),1);
+        Position testPosition = new Position(1+ range,1);
         Assert.assertTrue(tower.positionInRange(testPosition));
     }
 
@@ -42,13 +40,13 @@ public class TowerTest {
 
     @Test
     public void positionInRangeToBeFalse_PositionOutsideYEdge() {
-        Position testPosition = new Position(1,2+ tower.getRange());
+        Position testPosition = new Position(1,2+ range);
         Assert.assertFalse(tower.positionInRange(testPosition));
     }
 
     @Test
     public void positionInRangeToBeFalse_PositionOutsideXEdge() {
-        Position testPosition = new Position(2+ tower.getRange(),1);
+        Position testPosition = new Position(2+ range,1);
         Assert.assertFalse(tower.positionInRange(testPosition));
     }
 
@@ -72,9 +70,9 @@ public class TowerTest {
     }
 
     @Test
-    public void shootToSetCooldownToRateOfFire() {
+    public void shootToSetsReadyToShootFalse() {
         tower.shoot();
-        Assert.assertEquals(rateOfFire, tower.getCooldown());
+        Assert.assertFalse(tower.readyToShoot());
     }
 
     @Test
