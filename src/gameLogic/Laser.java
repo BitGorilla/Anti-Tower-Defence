@@ -6,7 +6,7 @@ import java.awt.*;
  * The laser is the projectile of the towers. The laser is drawn as a line
  * between the tower and the creature it is shooting.
  *
- * @author
+ * @author oi16ohn
  * @since 2018-12-18
  */
 public class Laser {

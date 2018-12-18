@@ -7,7 +7,11 @@ import gameLogic.Position;
 import java.awt.*;
 
 /**
- * @author
+ * Superclass for all tiles. Contains all methods and attributes
+ * which are used in all kinds of tiles such as what direction it has,
+ * if a given position is on the tile and if a given position is its
+ * centerposition.
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-18
  */
 public class Tile extends GameObject {

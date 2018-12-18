@@ -3,10 +3,11 @@ package gameLogic;
 import java.awt.*;
 
 /**
- * Represents a object to draw on a game field.
+ * Represents an object to be drawn in the gameinstance.
+ * Contains a position and a image.
  *
- * @author
- * @since 2018-12-18
+ * @author oi16jsn, oi16ohn
+ * @since 18/12-19
  */
 public class GameObject {
     Image image;

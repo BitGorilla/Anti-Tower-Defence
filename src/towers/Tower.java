@@ -7,7 +7,7 @@ import java.awt.*;
 
 /**
  * towers are objects placed along the game field path to shoot creatures.
- * @author
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-18
  */
 public class Tower extends GameObject implements TowerInterface {
@@ -65,7 +65,8 @@ public class Tower extends GameObject implements TowerInterface {
      * /¯/___________________________ ________
      * | IMMA FIRIN' MAH﻿ LAZOR! BLAAAAGHH!
      * \_\¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ ¯ ¯¯¯¯¯¯¯
-     *
+     * The tower shoots, returning the damage it is to inflict and sets its
+     * cooldown to its rate of fire.
      * @return The damage the tower does.
      */
     @Override
@@ -91,16 +92,6 @@ public class Tower extends GameObject implements TowerInterface {
     public void reduceCooldown() {
         if (cooldown > 0)
             cooldown--;
-    }
-
-    //TODO remove?
-    public int getRange() {
-        return range;
-    }
-
-    //TODO remove?
-    public int getCooldown() {
-        return cooldown;
     }
 
     /**

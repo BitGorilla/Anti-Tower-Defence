@@ -8,7 +8,9 @@ import formatters.ImageLoader;
 import java.awt.*;
 
 /**
- * @author
+ * Tileclass for representing the exit to a entryTeleporterTile. Creatures
+ * teleported from the connected entryteleporterTile will land here.
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-18
  */
 public class ExitTeleporterTile extends Tile implements TileInterface{
@@ -29,6 +31,10 @@ public class ExitTeleporterTile extends Tile implements TileInterface{
                 centerPos.getY() + 5));
     }
 
+    /**
+     * Blank landOn, nothing to happen to creatures on this tile.
+     * @param creature, creature that is on Tile.
+     */
     @Override
     public void landOn(Creature creature) {
 

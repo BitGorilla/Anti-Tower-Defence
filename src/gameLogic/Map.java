@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Class responsible of storing the content of a level. A game field as tiles,
  * number of credits, and name of the map.
  *
- * @author
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-18
  */
 public class Map {

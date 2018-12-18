@@ -6,7 +6,8 @@ import formatters.ImageLoader;
 import java.awt.*;
 
 /**
- * @author
+ * Towertype class. Has a low rate of fire, high range and high damage.
+ * @author oi16ohn, oi16jsn
  * @since 2018-12-18
  */
 public class SharpShooter extends Tower {
@@ -17,6 +18,10 @@ public class SharpShooter extends Tower {
     public static final Image image = ImageLoader.getImageLoader().getImage(
             "towerPink.png");
 
+    /**
+     * Constructor of the towertype.
+     * @param pos, the position of the tower.
+     */
     public SharpShooter(Position pos) {
         super(pos, image, RANGE, DAMAGE, RATEOFFIRE, COLOR);
     }

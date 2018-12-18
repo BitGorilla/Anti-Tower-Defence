@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Class representing a position with a x and y value.
  *
- * @author
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-18
  */
 public class Position {

@@ -8,7 +8,8 @@ import gameLogic.Position;
 import java.awt.*;
 
 /**
- * @author
+ * Tile that regenerates the health of creatures that is on it.
+ * @author oi16jsn
  * @since 2018-12-18
  */
 public class RegenerationTile extends Tile implements TileInterface {
@@ -24,10 +25,15 @@ public class RegenerationTile extends Tile implements TileInterface {
      *                   game field.
      * @param lowerRight The lower right position of the object relative to the
      */
-    public RegenerationTile(Image image, Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {
+    public RegenerationTile(Image image, Direction direction, Position centerPos
+            , Position upperLeft, Position lowerRight) {
         super(image, direction, centerPos, upperLeft, lowerRight);
     }
 
+    /**
+     * Regenerates health on creatures on the tile.
+     * @param creature, creature on the tile.
+     */
     @Override
     public void landOn(Creature creature) {
         creature.setCurrentHealth(creature.getCurrentHealth() + regenerationRate);
