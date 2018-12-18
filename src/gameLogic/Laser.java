@@ -7,7 +7,7 @@ import java.awt.*;
  * between the tower and the creature it is shooting.
  *
  * @author
- * @since
+ * @since 2018-12-18
  */
 public class Laser {
 

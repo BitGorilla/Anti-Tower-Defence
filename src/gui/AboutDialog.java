@@ -12,6 +12,9 @@ import java.awt.*;
 public class AboutDialog {
 
 
+    /**
+     * Constructor of class.
+     */
     public AboutDialog()
     {
 

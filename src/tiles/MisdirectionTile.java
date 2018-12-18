@@ -8,7 +8,8 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * Created by jontor on 2018-12-14.
+ * @author
+ * @since 2018-12-18
  */
 public class MisdirectionTile extends Tile implements TileInterface {
     /**

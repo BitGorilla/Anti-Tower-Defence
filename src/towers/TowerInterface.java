@@ -3,7 +3,8 @@ package towers;
 import gameLogic.Position;
 
 /**
- * Created by jontor on 2018-11-29.
+ * @author
+ * @since 2018-12-18
  */
 public interface TowerInterface {
     boolean positionInRange(Position pos);

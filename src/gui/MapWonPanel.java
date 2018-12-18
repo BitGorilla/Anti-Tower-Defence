@@ -13,14 +13,22 @@ import java.awt.event.ActionListener;
  */
 
 public class MapWonPanel {
+
+    /**
+     * Constructor of class.
+     */
     public MapWonPanel() {
 
     }
 
-    public String show(ActionListener nextLevel, ActionListener restartLevel) {
-        String option = new String();
-
-        JLabel text = new JLabel();
+    /**
+     * Creates and shows panel for when a map is won.
+     *
+     * @param nextLevel ActionListener for the button "Continue to next level".
+     * @param restartLevel ActionListener for the button "PLay this level
+     *                     again".
+     */
+    public void show(ActionListener nextLevel, ActionListener restartLevel) {
 
         String btnString1 = "Play this level again";
         String btnString2 = "Continue to next level";
@@ -41,16 +49,13 @@ public class MapWonPanel {
                 options[0]);
         switch (result) {
             case 0:
-                option = "next level";
                 nextLevel.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
             case 1:
-                option = "play again";
                 restartLevel.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
         }
-        return option;
     }
 }

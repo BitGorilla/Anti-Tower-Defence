@@ -8,7 +8,8 @@ import formatters.ImageLoader;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-12-10.
+ * @author
+ * @since 2018-12-18
  */
 public class ExitTeleporterTile extends Tile implements TileInterface{
 

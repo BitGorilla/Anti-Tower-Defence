@@ -4,6 +4,11 @@ import gameLogic.Position;
 import formatters.ImageLoader;
 
 import java.awt.*;
+/**
+ * @author
+ * @since 2018-12-18
+ */
+
 //He'll break your heart.
 public class CleavesYouInPieces extends Tower {
     public static final int RANGE = 200;

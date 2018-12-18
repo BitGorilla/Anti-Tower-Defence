@@ -7,6 +7,8 @@ import java.awt.*;
 
 /**
  * towers are objects placed along the game field path to shoot creatures.
+ * @author
+ * @since 2018-12-18
  */
 public class Tower extends GameObject implements TowerInterface {
 

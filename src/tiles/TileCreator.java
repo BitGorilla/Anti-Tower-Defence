@@ -9,6 +9,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * @author
+ * @since 2018-12-18
+ */
 public final class TileCreator {
 
     public static Tile createTile(String type, Image image,

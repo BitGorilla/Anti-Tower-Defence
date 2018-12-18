@@ -8,7 +8,8 @@ import formatters.ImageLoader;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-12-09.
+ * @author
+ * @since 2018-12-18
  */
 public class EntryTeleporterTile extends Tile implements TileInterface {
     private Position portalLocation;

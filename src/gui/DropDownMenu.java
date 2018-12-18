@@ -24,6 +24,15 @@ public class DropDownMenu extends JMenuBar{
     private JMenuItem pauseStart = new JMenuItem();
     private boolean pause;
 
+    /**
+     * Constructor of class. Creates the dropdown menu.
+     *
+     * @param restartGame ActionListener for the button "Restart Game".
+     * @param pausePressed ActionListener for the button "Pause".
+     * @param startPressed ActionListener for the button "Start".
+     * @param quitPressed ActionListener for the button "Quit".
+     * @param highcorePressed ActionListener for the button "High Score List".
+     */
     public DropDownMenu(ActionListener restartGame,
                         ActionListener pausePressed,
                         ActionListener startPressed,

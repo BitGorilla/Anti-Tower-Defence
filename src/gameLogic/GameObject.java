@@ -6,7 +6,7 @@ import java.awt.*;
  * Represents a object to draw on a game field.
  *
  * @author
- * @since
+ * @since 2018-12-18
  */
 public class GameObject {
     Image image;

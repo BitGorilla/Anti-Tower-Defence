@@ -136,18 +136,32 @@ public class GameManager {
     }
 
 
+    /**
+     * Changes the direction of the flipper tile.
+     *
+     * @param flipTilePosition Position of the flipper tile.
+     */
     public void flipTile(Position flipTilePosition){
         currentGameInstance.flipTile(flipTilePosition);
     }
 
+    /**
+     * Places portal from portal creature.
+     */
     public void placePortal(){
         currentGameInstance.placePortal();
     }
 
+    /**
+     * @return The win state of the current game.
+     */
     public boolean isMapWon() {
         return mapWon;
     }
 
+    /**
+     * Restarts the game.
+     */
     public void restartGame() {
         mapIndex = 0;
         mapWon = false;
@@ -155,6 +169,10 @@ public class GameManager {
         score = 0;
     }
 
+    /**
+     * Checks if all levels are won.
+     * @return True if all levels are won.
+     */
     public boolean allLevelsWon() {
         boolean allWon = mapWon && mapIndex == maps.size();
         if(allWon && !updatedScoreAtWin) {
@@ -164,18 +182,30 @@ public class GameManager {
         return mapWon && mapIndex == maps.size();
     }
 
+    /**
+     * @return The current name of the map played.
+     */
     public String getCurrentMapName(){
         return currentGameInstance.getMapName();
     }
 
+    /**
+     * @return The score of the current game.
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * @return The win progress of the game played in score points.
+     */
     public int getWinProgress() {
         return currentGameInstance.getWinProgress();
     }
 
+    /**
+     * @return How many points it takes to win the game.
+     */
     public int getWinCondition() {
         return currentGameInstance.getWinCondition();
     }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * number of credits, and name of the map.
  *
  * @author
- * @since
+ * @since 2018-12-18
  */
 public class Map {
     private int startCredit;

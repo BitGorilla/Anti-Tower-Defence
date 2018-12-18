@@ -6,6 +6,10 @@ import gameLogic.Position;
 
 import java.awt.*;
 
+/**
+ * @author
+ * @since 2018-12-18
+ */
 public class StartTile extends Tile implements TileInterface {
 
     public StartTile(Image image, Direction direction, Position centerPos,

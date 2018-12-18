@@ -37,6 +37,10 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     private ArrayList<Map> maps;
     private int gameWindowWidth;
 
+    /**
+     * Constructor.
+     * @param gameWindowWidth Width of game window in pixels.
+     */
     public XMLReader(int gameWindowWidth) {
         this.gameWindowWidth = gameWindowWidth;
     }

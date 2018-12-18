@@ -72,7 +72,7 @@ public class Highscores {
                 if (stmt != null) { stmt.close(); }
             }
             catch (Exception e) {
-                // log this error
+                e.printStackTrace();
             }
         }
     }
@@ -144,20 +144,5 @@ public class Highscores {
         catch (SQLException e){
             System.out.println("Could not close connection");
         }
-    }
-
-    /**
-     * Creates Highscore database if it does not already exist.
-     *
-     * @throws SQLException If creation of database fails.
-     */
-    private void createDB() throws SQLException{
-        Statement s = con.createStatement();
-        s.execute("CREATE TABLE IF NOT EXISTS Highscores " +
-                "(HS_Id int NOT NULL AUTO_INCREMENT," +
-                "User varchar(255)," +
-                "MapName varchar(255), " +
-                "Score int, " +
-                "CONSTRAINT PK_Highscore PRIMARY KEY (HS_Id))");
     }
 }

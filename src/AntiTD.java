@@ -6,8 +6,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * @author oi16ohn, id15msd
+ * @since 2018-12-18
+ */
 public class AntiTD {
 
+    /**
+     * Reads file input from terminal window and creates a XMLReader for
+     * reading the file. Creates a Controller object based on the .xml file.
+     *
+     * @param args Console input.
+     * @throws IOException If reading of file fails.
+     */
     public static void main(String[] args) throws IOException {
         int gameWidth = 700;
         XMLReader reader;
@@ -31,8 +42,7 @@ public class AntiTD {
             System.err.println("Could not find that file!");
             System.exit(1);
         }
-        new Controller(reader.getMaps(), gameWidth,
-                reader.getWidth());
+        new Controller(reader.getMaps(), gameWidth, reader.getWidth());
     }
 
 }

@@ -25,8 +25,12 @@ public class GamePanel extends JComponent {
     private int offset;
     private int tickPerSecond;
 
-    /**Constructor of class.
+    /**
+     * Constructor of class.
      *
+     * @param offset Distance from center to edge of a game object.
+     * @param fps TODO remove parameter?
+     * @param gameWidth Width of the game panel in pixels.
      */
     public GamePanel(int offset, int fps, int gameWidth){
         this.offset = offset;
@@ -44,10 +48,18 @@ public class GamePanel extends JComponent {
         drawables = objects;
     }
 
+    /**
+     * Updates laser list in class.
+     * @param lasers Lasers to update.
+     */
     public void updateLasers(ArrayList<Laser> lasers){
         this.lasers = lasers;
     }
 
+    /**
+     * Updates healthbars in class.
+     * @param healthbars Healthbars to update.
+     */
     public void updateHealthBars(ArrayList<Healthbar> healthbars) {
         this.healthbars = healthbars;
     }
@@ -91,16 +103,4 @@ public class GamePanel extends JComponent {
         }
     }
 
-    /**
-     * Starts a ticker that repaint the game panel 30 times per second.
-     */
-    public void startTicker(){
-        Timer t = new Timer();
-        t.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                repaint();
-            }
-        }, 0, 1000/tickPerSecond);
-    }
 }

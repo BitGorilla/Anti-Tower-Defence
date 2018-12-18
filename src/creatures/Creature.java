@@ -69,14 +69,25 @@ public class Creature extends GameObject implements CreatureInterface {
         }
     }
 
+    /**
+     * @return The cost of the creature.
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     * Sets the cost of the creature.
+     *
+     * @param cost The cost of the creature.
+     */
     public void setCost(int cost) {
         this.cost = cost;
     }
 
+    /**
+     * @return The direction of the creature.
+     */
     public Direction getDirection() {
         return direction;
     }

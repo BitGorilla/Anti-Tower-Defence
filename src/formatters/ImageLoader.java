@@ -40,7 +40,7 @@ public class ImageLoader {
     }
 
     /**
-     *  Constructor of class.
+     *  Private constructor of class.
      */
     private ImageLoader(){
     }

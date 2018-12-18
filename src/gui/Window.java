@@ -19,6 +19,18 @@ public class Window extends JFrame {
     private ActionListener restartGame;
     private ActionListener quit;
 
+    /**
+     * Constructor of class.
+     *
+     * @param gamePanelWidth Width of game panel in pixels.
+     * @param gamePanel GamePanel object.
+     * @param menuPanel MenuPanel object.
+     * @param flipperPanel FlipperPanel object.
+     * @param nextLevel ActionListener for the button "Next Level".
+     * @param restartLevel ActionListener for the button "Restart Level".
+     * @param restartGameLoserPressed ActionListener for the button "Restart".
+     * @param quitPressed ActionListener for the button "Quit".
+     */
     public Window(int gamePanelWidth,
                   GamePanel gamePanel,
                   MenuPanel menuPanel, FlipperPanel flipperPanel,

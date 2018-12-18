@@ -267,7 +267,7 @@ public class Controller {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        int gameWidth = 800;
+        int gameWidth = 700;
         XMLReader reader;
         reader = new XMLReader(gameWidth);
 

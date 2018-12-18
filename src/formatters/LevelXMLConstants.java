@@ -1,6 +1,8 @@
 package formatters;
 
-
+/**
+ * Constants for use in XMLReader.
+ */
 public interface LevelXMLConstants {
     String MAP = "map";
     String HEIGHT = "height";

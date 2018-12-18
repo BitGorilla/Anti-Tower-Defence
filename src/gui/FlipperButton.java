@@ -14,6 +14,10 @@ import javax.swing.*;
 public class FlipperButton extends JButton {
     Position pos;
 
+    /**
+     * Constructor of class.
+     * @param pos The position of the button.
+     */
     public FlipperButton(Position pos) {
         this.pos = pos;
         this.setToolTipText("FLIP ME");

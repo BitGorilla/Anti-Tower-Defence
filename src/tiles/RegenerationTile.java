@@ -8,7 +8,8 @@ import gameLogic.Position;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-12-14.
+ * @author
+ * @since 2018-12-18
  */
 public class RegenerationTile extends Tile implements TileInterface {
     private int regenerationRate = 10;

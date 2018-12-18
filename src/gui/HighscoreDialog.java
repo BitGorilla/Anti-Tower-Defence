@@ -12,6 +12,10 @@ import java.util.ArrayList;
 public class HighscoreDialog {
     private final int ROWS = 10;
 
+    /**
+     * Cosntructor of class. Creates and shows the dialog window.
+     * @param highscore The highscores to display on the dialog window.
+     */
     public HighscoreDialog(ArrayList<String[]> highscore){
 
         String[][] scores = new String[highscore.size()][3];

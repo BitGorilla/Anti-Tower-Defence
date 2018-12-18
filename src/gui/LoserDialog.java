@@ -13,13 +13,19 @@ import java.awt.event.ActionListener;
  */
 public class LoserDialog {
 
+    /**
+     * Constructor of class.
+     */
     public LoserDialog() {
     }
 
-    public String show(ActionListener restartGame, ActionListener quitPressed) {
-        String option = new String();
-
-        JLabel text = new JLabel();
+    /**
+     * Creates and shows the loser dialog window.
+     *
+     * @param restartGame ActionListener for the button "Restart Game".
+     * @param quitPressed ActionListener for the button "Quit Game".
+     */
+    public void show(ActionListener restartGame, ActionListener quitPressed) {
 
         String btnString1 = "Restart game";
         String btnString2 = "Quit game";
@@ -36,17 +42,14 @@ public class LoserDialog {
                 options[0]);
         switch (result) {
             case 0:
-                option = "Restart game";
                 restartGame.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
             case 1:
-                option = "Quit game";
                 quitPressed.actionPerformed(new ActionEvent(this,
                         ActionEvent.ACTION_PERFORMED, null));
                 break;
         }
-        return option;
 
     }
 }

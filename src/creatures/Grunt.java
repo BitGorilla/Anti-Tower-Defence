@@ -28,7 +28,7 @@ public class Grunt extends Creature {
     }
 
     /**
-     * Reset speed
+     * Reset the stats of the creature.
      */
     private void resetStats() {
         super.setCurrentSpeed(SPEED);

@@ -28,6 +28,16 @@ public class MenuPanel extends JPanel {
     private JLabel winProgressLabel;
     private int winCondition;
 
+    /**
+     * Constructor of the class.
+     *
+     * @param addCreature1 ActionListener for one of the creature buttons.
+     * @param addCreature2 ActionListener for one of the creature buttons.
+     * @param addCreature3 ActionListener for one of the creature buttons.
+     * @param placePortal ActionListener for the "place portal" button..
+     * @param name Name of the current level.
+     * @param winCondition The number of points needed to win the level.
+     */
     public MenuPanel(ActionListener addCreature1, ActionListener addCreature2,
                      ActionListener addCreature3, ActionListener placePortal,
                      String name, int winCondition) {

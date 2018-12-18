@@ -7,7 +7,7 @@ import java.awt.*;
  * current health of the creature.
  *
  * @author
- * @since
+ * @since 2018-12-18
  */
 public class Healthbar {
     private int maxHealth;

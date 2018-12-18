@@ -6,6 +6,10 @@ import gameLogic.Position;
 
 import java.awt.*;
 
+/**
+ * @author
+ * @since 2018-12-18
+ */
 public class Tile extends GameObject {
     private Direction direction;
     private Position upperLeft;

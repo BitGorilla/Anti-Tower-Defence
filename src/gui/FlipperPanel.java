@@ -18,10 +18,17 @@ public class FlipperPanel extends JPanel {
 
     private ArrayList<JButton> flipperButtons = new ArrayList<>();
     private ArrayList<Position> positions;
-    private Image image = null;
     private int buttonWidth;
     private ActionListener flipperPressed;
 
+    /**
+     * Constructor of class.
+     *
+     * @param positions List of flipper tile positions.
+     * @param flipperPressed ActionListener for the flipper tiles.
+     * @param panelWidth Width for a JPanel.
+     * @param buttonWidth Width for the button.
+     */
     public FlipperPanel(ArrayList<Position> positions,
                         ActionListener flipperPressed, int panelWidth,
                         int buttonWidth) {

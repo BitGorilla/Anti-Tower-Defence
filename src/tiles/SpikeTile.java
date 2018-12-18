@@ -8,6 +8,10 @@ import gameLogic.Position;
 
 import java.awt.*;
 
+/**
+ * @author
+ * @since 2018-12-18
+ */
 public class SpikeTile extends Tile implements TileInterface{
 
     private int damageMultiplier = 2;

@@ -6,6 +6,11 @@ import gameLogic.Position;
 
 import java.awt.*;
 
+/**
+ * Tile with no purpose other than filling unused space on game field.
+ * @author
+ * @since 2018-12-18
+ */
 public class BlankTile extends Tile implements TileInterface {
 
     public BlankTile(Image image, Direction direction, Position centerPos,

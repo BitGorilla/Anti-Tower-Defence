@@ -6,7 +6,7 @@ import java.util.Objects;
  * Class representing a position with a x and y value.
  *
  * @author
- * @since
+ * @since 2018-12-18
  */
 public class Position {
 
@@ -72,10 +72,4 @@ public class Position {
         return Objects.hash(x, y);
     }
 
-    /**
-     * Prints x and y values to console.
-     */
-    public void print() {
-        System.out.println("(" + x +"," + y + ")");
-    }
 }

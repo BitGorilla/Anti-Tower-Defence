@@ -7,7 +7,8 @@ import gameLogic.Position;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-12-13.
+ * @author
+ * @since 2018-12-18
  */
 public class SpeedTile extends Tile implements TileInterface {
     /**

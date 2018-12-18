@@ -8,7 +8,8 @@ import formatters.ImageLoader;
 import java.awt.*;
 
 /**
- * Created by jontor on 2018-12-10.
+ * @author
+ * @since 2018-12-18
  */
 public class FlipperTile extends Tile implements TileInterface {
     public FlipperTile(Image image, Direction direction, Position centerPos, Position upperLeft, Position lowerRight) {

@@ -31,8 +31,8 @@ public class PortalusTotalus extends Creature {
 
     /**
      * Constructor
-     * @param pos
-     * @param dir
+     * @param pos Position of this object.
+     * @param dir Direction of this object.
      */
     public PortalusTotalus(Position pos, Direction dir) {
         super(pos, image, dir, 0, MAXHEALTH, COST);

@@ -13,6 +13,9 @@ public class UserNameDialog {
 
     private String username;
 
+    /**
+     * Constructor of class. Creates a dialog window for username input.
+     */
     public UserNameDialog() {
 
         JTextField textField = new JTextField(10);

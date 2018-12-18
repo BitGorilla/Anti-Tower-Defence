@@ -5,7 +5,10 @@ import formatters.ImageLoader;
 
 import java.awt.*;
 
-
+/**
+ * @author
+ * @since 2018-12-18
+ */
 public class SharpShooter extends Tower {
     public static final int RANGE = 300;
     public static final int DAMAGE = 100;

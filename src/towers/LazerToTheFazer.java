@@ -5,6 +5,10 @@ import formatters.ImageLoader;
 
 import java.awt.*;
 
+/**
+ * @author
+ * @since 2018-12-18
+ */
 public class LazerToTheFazer extends Tower{
     public static final int RANGE = 150;
     public static final int DAMAGE = 20;
