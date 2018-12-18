@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Grunt is a type of creature that extends the class Creature.
  * Creatures are the objects which the player sends out to reach the goal.
- * @author io16jsn, io16ohl
+ * @author oi16jsn, oi16ohn
  * @since 2018-11-29
  */
 public class Grunt extends Creature {

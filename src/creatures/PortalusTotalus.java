@@ -13,7 +13,7 @@ import java.awt.*;
  * Portalus Totalus is a type of creature that extends the class Creature.
  * This creature can place portals on the tiles in the game field so that
  * other creatures can move through the portals.
- * @author io16jsn, io16ohl
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-10
  */
 public class PortalusTotalus extends Creature {

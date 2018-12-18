@@ -10,7 +10,7 @@ import java.awt.*;
 
 /**
  * Creatures are the objects which the player sends out to reach the goal.
- * @author io16jsn, io16ohl
+ * @author oi16jsn, oi16ohl
  * @since 2018-11-29
  */
 public class Creature extends GameObject implements CreatureInterface {

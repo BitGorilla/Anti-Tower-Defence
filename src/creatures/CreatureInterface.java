@@ -6,7 +6,7 @@ import gameLogic.Direction;
  * Creature interface declare what a creature should contain and what methods
  * it have.
  * Creatures are the objects which the player sends out to reach the goal.
- * @author io16jsn,
+ * @author oi16jsn, oi16ohn
  * @since 2018-11-29
  */
 

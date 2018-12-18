@@ -3,7 +3,8 @@ package tiles;
 import creatures.Creature;
 
 /**
- * @author
+ * Interface to be implemented by all tiles.
+ * @author oi16jsn, oi16ohn
  * @since 2018-12-18
  */
 public interface TileInterface {

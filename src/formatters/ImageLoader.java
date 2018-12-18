@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Class responsible for storing and returning images.
  *
- * @author io16jsn, id15msd
+ * @author  id15msd
  * @since 2018-12-14
  */
 public class ImageLoader {
