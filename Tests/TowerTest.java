@@ -1,9 +1,11 @@
 import Towers.Tower;
+import gameLogic.Position;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import Main.*;
+import towers.Tower;
 
 public class TowerTest {
     private Tower tower;

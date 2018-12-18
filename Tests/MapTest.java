@@ -1,12 +1,14 @@
-import Tiles.TileCreator;
+import tiles.TileCreator;
+import gameLogic.Direction;
+import gameLogic.Position;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import Main.*;
-import Tiles.*;
+import tiles.*;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MapTest{
     private Map map;

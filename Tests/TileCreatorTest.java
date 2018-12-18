@@ -1,9 +1,7 @@
-import Main.Direction;
-import Main.Position;
-import Tiles.TileCreator;
+import gameLogic.*;
+import tiles.TileCreator;
+import gameLogic.Position;
 import org.junit.Test;
-import org.junit.Assert.*;
-import Creatures.*;
 
 import java.lang.reflect.InvocationTargetException;
 

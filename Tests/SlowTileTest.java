@@ -1,5 +1,5 @@
-import Creatures.SpeedDemon;
-import Tiles.SlowTile;
+import creatures.SpeedDemon;
+import tiles.SlowTile;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,4 +1,5 @@
-import Main.Map;
+import formatters.XMLReader;
+import gameLogic.Map;
 import formatters.XMLReader;
 import org.junit.After;
 import org.junit.Assert;

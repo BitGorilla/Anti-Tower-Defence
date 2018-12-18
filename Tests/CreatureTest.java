@@ -1,5 +1,5 @@
-import Creatures.Creature;
-import Main.*;
+import creatures.Creature;
+import gameLogic.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

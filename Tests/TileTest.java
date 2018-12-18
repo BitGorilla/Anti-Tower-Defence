@@ -1,9 +1,11 @@
-import Tiles.Tile;
+import gameLogic.Direction;
+import gameLogic.Position;
+import tiles.Tile;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import Main.*;
+
 
 public class TileTest {
     Tile tile;

@@ -7,8 +7,7 @@ import java.util.ArrayList;
 
 public class GameInstanceTest {
 
-    GameInstance gameInstance;
-    /*
+    /*GameInstance gameInstance;
 
     @Before
     public void setUp() {

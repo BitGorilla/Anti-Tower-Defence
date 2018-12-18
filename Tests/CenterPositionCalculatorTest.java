@@ -1,6 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
-import Main.*;
+import gameLogic.*;
 
 /**
  * Tests for the class CenterPositionCalculator.
