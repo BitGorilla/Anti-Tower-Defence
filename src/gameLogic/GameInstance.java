@@ -30,7 +30,7 @@ public class GameInstance {
     private CopyOnWriteArrayList<Creature> creatures =
             new CopyOnWriteArrayList<>();
     private PortalusTotalus portalusTotalus;
-    private ArrayList<Tile> tiles = new ArrayList<>();
+    private CopyOnWriteArrayList<Tile> tiles = new CopyOnWriteArrayList<>();
     private ArrayList<Laser> lasers = new ArrayList<>();
     private ArrayList<TowerTile> towerTiles = new ArrayList<>();
     private Position startPosition = null;
@@ -154,7 +154,7 @@ public class GameInstance {
      * Updates the gameinstance. Moves, damages, affects, kills and goals
      * creatures and fires the towers.
      */
-    public void update() {
+    public synchronized void update() {
         resetCreatureStats();
         affectCreatureOnTile();
         moveCreatures();

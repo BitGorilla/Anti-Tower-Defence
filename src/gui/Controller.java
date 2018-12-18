@@ -161,24 +161,26 @@ public class Controller {
     }
 
     /**
-     * Starts a new thread when the a creature button is pressed by user.
+     * EDT thread tells manager to add a new creature of type 1
      */
     private void addCreature1() {
-        new Thread (()-> manager.addCreature(1)).start();
+        SwingUtilities.invokeLater(()-> manager.addCreature(1));
+
     }
 
     /**
-     * Starts a new thread when the a creature button is pressed by user.
+     * EDT thread tells manager to add a new creature of type 2 when button is
+     * pressed.
      */
     private void addCreature2() {
-        manager.addCreature(2);
-    }
+        SwingUtilities.invokeLater(()-> manager.addCreature(2));    }
 
     /**
-     * Starts a new thread when the a creature button is pressed by user.
+     * EDT thread tells manager to add a new creature of type 3 when button is
+     * pressed
      */
     private void addCreature3() {
-        manager.addCreature(3);
+        SwingUtilities.invokeLater(()-> manager.addCreature(3));
     }
 
     /**
