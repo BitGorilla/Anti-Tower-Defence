@@ -261,38 +261,6 @@ public class Controller {
     }
 
     /**
-     * The main method of the game takes in a xml-file with levels and starts
-     * a XML reader and starts a new controller.
-     * @param args xml-file with levels
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        int gameWidth = 700;
-        XMLReader reader;
-        reader = new XMLReader(gameWidth);
-
-        try {
-            if (args.length == 0) {
-                reader.setSource(new FileInputStream(new File("src/xmlBuilder" +
-                        "/Maps/levels.xml")));
-            } else if (args.length == 1 && args[0].endsWith(".xml")) {
-                reader.setSource(new FileInputStream(new File(args[0])));
-            } else {
-                System.err.println("The program only takes one argument, " +
-                        "an .xml file containing the maps.\n" +
-                        "If no arguments are given the default maps are run.");
-                System.exit(1);
-            }
-        }
-        catch (FileNotFoundException e) {
-            System.err.println("Could not find that file!");
-            System.exit(1);
-        }
-        Controller controller = new Controller(reader.getMaps(), gameWidth,
-                reader.getWidth());
-    }
-
-    /**
      * Execute the SQL query to get the high score list in SQL Database to
      * show the user the high score list when high score button is pushed in
      * the drop down menu.

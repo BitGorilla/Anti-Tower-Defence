@@ -27,7 +27,7 @@ public class AntiTD {
         try {
             if (args.length == 0) {
                 reader.setSource(new FileInputStream(new File("src/xmlBuilder" +
-                        "/Maps/pretty1.xml")));
+                        "/Maps/levels.xml")));
             } else if (args.length == 1 && args[0].endsWith(".xml")) {
                 reader.setSource(new FileInputStream(new File(args[0])));
             } else {
