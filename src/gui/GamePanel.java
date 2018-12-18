@@ -29,7 +29,7 @@ public class GamePanel extends JComponent {
      * Constructor of class.
      *
      * @param offset Distance from center to edge of a game object.
-     * @param fps TODO remove parameter?
+     * @param fps, How many frames per second the gamepanel is to draw.
      * @param gameWidth Width of the game panel in pixels.
      */
     public GamePanel(int offset, int fps, int gameWidth){

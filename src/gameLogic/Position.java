@@ -40,8 +40,9 @@ public class Position {
     }
 
     /**
-     * TODO write purpose of method
-     * @param pos
+     * Adds a vector to the position, adding the x-values respectively y-values
+     * together resulting in a new Position.
+     * @param pos, Position with the x and y values to add to the position.
      */
     public void addVector(Position pos){
         this.x += pos.getX();
