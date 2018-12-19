@@ -47,7 +47,6 @@ public class FlipperTile extends Tile implements TileInterface {
      * so a tile with direction north for example can only be flipped to south.
      */
     public void flipDirection(){
-        System.out.println(getDirection());
         Direction dir = getDirection();
         switch (dir){
             case EAST: setDirection(Direction.WEST);
