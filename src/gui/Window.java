@@ -8,8 +8,8 @@ import java.util.ArrayList;
 /**
  * Window is the main gui of ths game. It contains all the panels and shows
  * the different dialog pop ups when buttons is pushed in the drop down menu.
- * @author
- * @since
+ * @author id15msd, id15lbn, oi16jsn, oi16ohn
+ * @since 2018-12-18
  */
 public class Window extends JFrame {
     private JLayeredPane layeredPane = new JLayeredPane();

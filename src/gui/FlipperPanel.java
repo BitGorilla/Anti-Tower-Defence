@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Flipper panel is a panel in the gui that contains all the flipper buttons
  * above the game panel (game field).
- * @author
+ * @author oi16ohn, oi16jsn
  * @since 2018-12-10
  */
 

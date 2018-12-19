@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
  * buttons for creatures Speed Demon, Grunt and Portalus Totalus and one for
  * placing portals. It also shows the amount of current credits and score
  * below the buttons.
- * @author
+ * @author oi16ohn, id15lbn, oi16jsn
  * @since 2018-12-14
  */
 

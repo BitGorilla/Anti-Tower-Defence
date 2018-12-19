@@ -13,7 +13,7 @@ import java.util.TimerTask;
 /**
  * Game panel is the panel that is the game field and draws the game objects
  * and the game map.
- * @author
+ * @author id15msd, id15lbn, oi16ohn, oi16jns
  * @since 2018-12-10
  */
 

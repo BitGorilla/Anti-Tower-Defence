@@ -21,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * mapinstance. Given a map it can add towers and creatures to its tiles and
  * then update their interactions with the world.
  *
- * @author oi16jsn, oi16ohn
+ * @author oi16jsn, oi16ohn, id15msd
  * @since 14/12-19
  */
 public class GameInstance {
@@ -452,10 +452,16 @@ public class GameInstance {
         return name;
     }
 
+    /**
+     * @return Number of points gathered on current level.
+     */
     public int getWinProgress() {
         return goaledHP;
     }
 
+    /**
+     * @return Number of points required for winning the level.
+     */
     public int getWinCondition() {
         return winCondition;
     }
