@@ -29,7 +29,6 @@ import java.util.ArrayList;
 public class XMLReader implements LevelReader, LevelXMLConstants{
     private NodeList nodeList;
     private int i = 0;
-    private int height;
     private int width;
     private String name;
     private int startCredit;
@@ -69,7 +68,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
      * @param tilesNode
      */
     private void setMapAttributes(Node metaNode, Node tilesNode){
-        height = Integer.parseInt(getValue(getNodeByTag(HEIGHT,metaNode)));
         width = Integer.parseInt(getValue(getNodeByTag(WIDTH,metaNode)));
         name = getValue(getNodeByTag(NAME,metaNode));
         startCredit = Integer.parseInt(getValue(getNodeByTag(STARTCREDIT,
