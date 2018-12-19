@@ -35,7 +35,7 @@ public class SpikeTile extends Tile implements TileInterface{
 
     /**
      * Damages the creatures that are on the tile proportional to their speed.
-     * @param creature, creature that is on the tile.
+     * @param creature creature that is on the tile.
      */
     @Override
     public void landOn(Creature creature) {
