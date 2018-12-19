@@ -34,7 +34,6 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
     private String name;
     private int startCredit;
     private int winCondition;
-    private ArrayList<Map> maps;
     private int gameWindowWidth;
 
     /**
