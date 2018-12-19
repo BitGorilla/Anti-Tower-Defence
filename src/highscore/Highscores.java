@@ -99,6 +99,7 @@ public class Highscores {
             int score = res.getInt("Score");
 
             scores.add(new Score(username, map, score));
+
         }
         res.close();
 

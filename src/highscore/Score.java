@@ -19,10 +19,14 @@ public class Score {
      * @param mapName Name of map.
      * @param score Score of the user on the map.
      */
-    public Score(String name, String mapName, int score){
+    public Score(String name, String mapName, int score) {
         this.name = name;
         this.mapName = mapName;
+        if (score < 0){
+            throw new IllegalArgumentException("Cant have a negative score");
+        }
         this.score = score;
+
     }
 
     /**
