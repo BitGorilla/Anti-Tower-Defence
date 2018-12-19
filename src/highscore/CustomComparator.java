@@ -11,13 +11,13 @@ import java.util.Comparator;
  */
 public class CustomComparator implements Comparator<Score> {
     /**
-     * Compares two arguments for order. Returns a negative integer, zero, or
-     * a positive integer as the first argument is less than, equal to,
+     * Compares two arguments for order. Returns a positive integer, zero, or
+     * a negative integer as the first argument is less than, equal to,
      * or greater than the second.
      *
      * @param score1 First object to be compared.
      * @param score2 Second object to be compared.
-     * @return A negative integer, zero, or a positive integer as the first
+     * @return A positive integer, zero, or a negative integer as the first
      * argument is less than, equal to, or greater than the second.
      */
     @Override
