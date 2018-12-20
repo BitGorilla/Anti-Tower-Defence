@@ -212,7 +212,7 @@ public class CenterPositionCalculatorTest {
         calculator = new CenterPositionCalculator(windowDimension,
                 twoTileDimension, 2);
         int correctValue = 74;
-        Assert.assertEquals(correctValue, calculator.getCenterPosition().getX());
+        Assert.assertEquals(correctValue,calculator.getCenterPosition().getX());
     }
 
     @Test

@@ -19,21 +19,28 @@ public class TileCreatorTest {
 
     @Test
     public void correctTileCanBeCreated() throws Exception {
-        TileCreator.createTile("BlankTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
-        TileCreator.createTile("SlowTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
-        TileCreator.createTile("GoalTile", null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
-        TileCreator.createTile("StartTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("BlankTile",null, Direction.NORTH,
+                centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("SlowTile",null, Direction.NORTH,
+                centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("GoalTile", null, Direction.NORTH,
+                centerPosition, upperLeftPosition, lowerRightPosition);
+        TileCreator.createTile("StartTile",null, Direction.NORTH,
+                centerPosition, upperLeftPosition, lowerRightPosition);
     }
 
     @Test
     public void incorrectTileTypeCreatesBlankTile() throws Exception {
-        Tile tile = TileCreator.createTile("BadTile",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+        Tile tile = TileCreator.createTile("BadTile",null, Direction.NORTH,
+                centerPosition, upperLeftPosition, lowerRightPosition);
         Assert.assertEquals(tile.getClass(), BlankTile.class);
     }
 
     @Test
     public void tileWithBadConstructorCreatesBlankTile() throws Exception {
-       Tile tile = TileCreator.createTile("IncorrectTile1",null, Direction.NORTH, centerPosition, upperLeftPosition, lowerRightPosition);
+       Tile tile = TileCreator.createTile("IncorrectTile1",null,
+               Direction.NORTH, centerPosition, upperLeftPosition,
+               lowerRightPosition);
         Assert.assertEquals(tile.getClass(), BlankTile.class);
 
     }

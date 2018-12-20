@@ -52,7 +52,8 @@ public class TowerTest {
 
     @Test
     public void positionInRangeToBeFalse_PositionOutsideDiagonalEdge() {
-        Position testPosition = new Position((int) (2+range/Math.sqrt(2)), (int) (2+range/Math.sqrt(2)));
+        Position testPosition = new Position((int) (2+range/Math.sqrt(2)),
+                (int) (2+range/Math.sqrt(2)));
         Assert.assertFalse(tower.positionInRange(testPosition));
     }
 
@@ -60,7 +61,8 @@ public class TowerTest {
     public void positionInRangeToBeTrue_PositionOnDiagonalEdge() {
         System.out.println(range/Math.sqrt(2));
         System.out.println((int) (range/Math.sqrt(2)));
-        Position testPosition = new Position((int) (1+range/Math.sqrt(2)), (int) (1+range/Math.sqrt(2)));
+        Position testPosition = new Position((int) (1+range/Math.sqrt(2)),
+                (int) (1+range/Math.sqrt(2)));
         Assert.assertTrue(tower.positionInRange(testPosition));
     }
 

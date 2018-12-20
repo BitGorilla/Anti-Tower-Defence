@@ -20,7 +20,8 @@ public class TileTest {
 
     @Test
     public void tileCanBeInitiated(){
-        tile = new Tile(null,Direction.NORTH, centerPosition, upperLeftPosition,lowerRightPosition);
+        tile = new Tile(null,Direction.NORTH, centerPosition,
+                upperLeftPosition,lowerRightPosition);
     }
 
     @Test
