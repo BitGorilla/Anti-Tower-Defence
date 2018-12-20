@@ -66,11 +66,13 @@ public final class TileCreator {
      * @throws ClassNotFoundException, if the classname in the type string is
      * not found to be a tileClass.
      */
-    private static Class<?> getTileClassFromString(String type) throws ClassNotFoundException {
+    private static Class<?> getTileClassFromString(String type)
+            throws ClassNotFoundException {
         Class<?> tileClass = Class.forName("tiles." + type);
         if (!TileInterface.class.isAssignableFrom(tileClass) ||
                 !Tile.class.isAssignableFrom(tileClass)) {
-            throw new ClassNotFoundException(type + "Not extending Tile or not implementing TileInterface");
+            throw new ClassNotFoundException(type + "Not extending Tile or" +
+                    " not implementing TileInterface");
         }
         if(tileClass.getConstructors().length != 1 ||
                 tileClass.getConstructors()[0].getParameterCount() != 5) {
@@ -87,7 +89,8 @@ public final class TileCreator {
      * @throws ClassNotFoundException, if the parameters in the constructor are
      * incorrect.
      */
-    private static void checkTileClassConstructor(Constructor constructor) throws ClassNotFoundException {
+    private static void checkTileClassConstructor(Constructor constructor)
+            throws ClassNotFoundException {
         boolean correctConstructor = false;
         Class<?>[] parameters =
                 constructor.getParameterTypes();
@@ -96,7 +99,8 @@ public final class TileCreator {
                 parameters[3] != Position.class ||
                 parameters[4] != Position.class) {
 
-            throw new ClassNotFoundException(constructor.getDeclaringClass().getName() +
+            throw new ClassNotFoundException(
+                    constructor.getDeclaringClass().getName() +
                     " Wrong parameters in Constructor ");
         }
     }
@@ -108,10 +112,12 @@ public final class TileCreator {
      * @throws ClassNotFoundException, if the landOn method of the class is
      * incorrect.
      */
-    private static void checkLandOnMethod(Method landOn) throws ClassNotFoundException {
+    private static void checkLandOnMethod(Method landOn) throws
+            ClassNotFoundException {
         if(landOn.getParameterCount() != 1 ||
                 landOn.getParameterTypes()[0] != Creature.class) {
-            throw new ClassNotFoundException(landOn.getDeclaringClass().getName() +
+            throw new ClassNotFoundException(
+                    landOn.getDeclaringClass().getName() +
                     " LandOn method not correct");
         }
     }
