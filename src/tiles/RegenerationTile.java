@@ -36,7 +36,8 @@ public class RegenerationTile extends Tile implements TileInterface {
      */
     @Override
     public void landOn(Creature creature) {
-        creature.setCurrentHealth(creature.getCurrentHealth() + regenerationRate);
+        creature.setCurrentHealth(creature.getCurrentHealth() +
+                regenerationRate);
         if(creature.getCurrentHealth() > creature.getMaxHealth()){
             creature.setCurrentHealth(creature.getMaxHealth());
         }

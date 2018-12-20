@@ -48,8 +48,10 @@ public class Tile extends GameObject {
      * @return True if position is inside tile. False if not.
      */
     public boolean positionOnTile(Position pos) {
-        return (pos.getX() >= upperLeft.getX() && pos.getX() <= lowerRight.getX())
-                && (pos.getY() >= upperLeft.getY() && pos.getY() <= lowerRight.getY());
+        return (pos.getX() >= upperLeft.getX()
+                && pos.getX() <= lowerRight.getX())
+                && (pos.getY() >= upperLeft.getY()
+                && pos.getY() <= lowerRight.getY());
     }
 
     /**
