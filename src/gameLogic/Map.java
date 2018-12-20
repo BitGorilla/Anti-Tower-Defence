@@ -23,7 +23,8 @@ public class Map {
      * @param startCredit The number of credits the user starts with.
      * @param tiles The tiles of which the game field consists of.
      */
-    public Map(String name, int startCredit, int winCondition, ArrayList<Tile> tiles) {
+    public Map(String name, int startCredit, int winCondition,
+                                                    ArrayList<Tile> tiles) {
         this.startCredit = startCredit;
         this.name = name;
         this.tiles = tiles;
