@@ -236,7 +236,8 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
             Node tilesNode = getNodeByTag(TILES, node);
             Map map;
             setMapAttributes(metaNode, tilesNode);
-            map = new Map(name, startCredit, winCondition, buildTiles(tilesNode));
+            map = new Map(name, startCredit, winCondition,
+                                                        buildTiles(tilesNode));
             return map;
         }
         return null;

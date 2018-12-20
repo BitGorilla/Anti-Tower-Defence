@@ -80,7 +80,8 @@ public class Healthbar {
      * @return The current width of the healthbar according to health.
      */
     public int getCurrentHealthWidth() {
-        return (int) ((double) currentHealth / (double) maxHealth * (double) maxHealthWidth);
+        return (int) ((double) currentHealth / (double) maxHealth *
+                                                    (double) maxHealthWidth);
     }
 
     /**

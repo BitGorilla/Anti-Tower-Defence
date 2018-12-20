@@ -231,7 +231,8 @@ public class GameInstance {
                 break;
             case 3:
                 if(credits >= PortalusTotalus.COST && portalusTotalus == null){
-                    portalusTotalus = (new PortalusTotalus(pos, startDirection));
+                    portalusTotalus = (new PortalusTotalus(pos,
+                                        startDirection));
                     creatures.add(portalusTotalus);
                     credits -= PortalusTotalus.COST;
                 }
