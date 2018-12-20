@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class Grunt extends Creature {
 
-    public static final int MAXHEALTH = 800;
+    public static final int MAXHEALTH = 500;
     public static final int SPEED = 3;
     public static final int COST = 100;
     public static final Image image = ImageLoader.getImageLoader().getImage(

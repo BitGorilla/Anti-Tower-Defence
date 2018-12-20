@@ -39,8 +39,9 @@ public class SpikeTile extends Tile implements TileInterface{
      */
     @Override
     public void landOn(Creature creature) {
-        if(creature.getClass() != PortalusTotalus.class)
-            creature.setCurrentHealth(creature.getCurrentHealth()-
-                    creature.getCurrentSpeed()*damageMultiplier);
+        if(creature.getClass() != PortalusTotalus.class) {
+            creature.setCurrentHealth(creature.getCurrentHealth() -
+                    creature.getCurrentSpeed() * damageMultiplier);
+        }
     }
 }

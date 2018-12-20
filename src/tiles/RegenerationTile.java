@@ -13,7 +13,7 @@ import java.awt.*;
  * @since 2018-12-18
  */
 public class RegenerationTile extends Tile implements TileInterface {
-    private int regenerationRate = 10;
+    private int regenerationRate = 15;
     /**
      * Constructor of the class.
      *

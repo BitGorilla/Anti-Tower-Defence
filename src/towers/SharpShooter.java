@@ -12,8 +12,8 @@ import java.awt.*;
  */
 public class SharpShooter extends Tower {
     public static final int RANGE = 300;
-    public static final int DAMAGE = 100;
-    public static final int RATEOFFIRE = 50;
+    public static final int DAMAGE = 150;
+    public static final int RATEOFFIRE = 60;
     public static final Color COLOR = Color.magenta;
     public static final Image image = ImageLoader.getImageLoader().getImage(
             "towerPink.png");

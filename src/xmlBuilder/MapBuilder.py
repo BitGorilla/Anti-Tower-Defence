@@ -1,5 +1,5 @@
-template = open("Templates/4.txt", "r")
-f = open("Maps/Pretty4.xml", "w+")
+template = open("4.txt", "r")
+f = open("pretty2.xml", "w+")
 
 f.write("<maps>\n    <map>\n        <meta>\n")
 f.write("			<name>")
@@ -15,6 +15,9 @@ f.write("</width>\n")
 f.write("			<startcredit>")
 f.write(template.readline().rstrip("\n"))
 f.write("</startcredit>\n")
+f.write("			<wincondition>")
+f.write(template.readline().rstrip("\n"))
+f.write("</wincondition>\n")
 f.write("		</meta>\n")
 f.write("        <tiles>\n")
 dim = int(dim)
@@ -70,6 +73,8 @@ while i < len(template):
 		f.write("SpeedTile")
 	elif template[i+1] == "f":
 		f.write("FlipperTile")
+	elif template[i+1] == "R":
+		f.write("RegenerationTile")
 	elif template[i+1] == "?":
 		f.write("MisdirectionTile")
 	else:
