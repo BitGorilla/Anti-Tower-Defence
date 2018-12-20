@@ -56,7 +56,7 @@
                   <tile road="BLANK" type="TREE"/>
                   <tile road="BLANK" type="TREE"/>
                   <tile road="BLANK" type="BlankTile"/>
-                  <tile road="SOUTH" type="RegenerationTile"/>
+                  <tile road="SOUTH" type="SpikeTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
                   <tile road="BLANK" type="BlankTile"/>
@@ -137,7 +137,7 @@
                   <tile road="WEST" type="BlankTile"/>
                   <tile road="WEST" type="BlankTile"/>
                   <tile road="WEST" type="FlipperTile"/>
-                  <tile road="EAST" type="BlankTile"/>
+                  <tile road="EAST" type="RegenerationTile"/>
                   <tile road="EAST" type="SlowTile"/>
                   <tile road="EAST" type="SlowTile"/>
                   <tile road="SOUTH" type="SlowTile"/>

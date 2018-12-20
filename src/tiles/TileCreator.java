@@ -48,8 +48,6 @@ public final class TileCreator {
         try {
              tileClass = getTileClassFromString(type);
         } catch(ClassNotFoundException e) {
-            System.out.println("No tile with name " + type + " creating " +
-                    "blankTile.");
         }
         Constructor constructor = tileClass.getConstructors()[0];
         checkTileClassConstructor(constructor);
