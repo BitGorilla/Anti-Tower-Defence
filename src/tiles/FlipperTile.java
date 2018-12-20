@@ -50,20 +50,20 @@ public class FlipperTile extends Tile implements TileInterface {
         Direction dir = getDirection();
         switch (dir){
             case EAST: setDirection(Direction.WEST);
-                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
-                        "-West.png"));
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile"
+                        + "-West.png"));
             break;
             case WEST: setDirection(Direction.EAST);
-                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
-                        "-East.png"));
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile"
+                        + "-East.png"));
             break;
             case NORTH: setDirection(Direction.SOUTH);
-                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
-                        "-South.png"));
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile"
+                        + "-South.png"));
             break;
             case SOUTH: setDirection(Direction.NORTH);
-                setImage(ImageLoader.getImageLoader().getImage("FlipperTile" +
-                        "-North.png"));
+                setImage(ImageLoader.getImageLoader().getImage("FlipperTile"
+                        + "-North.png"));
             break;
         }
     }
