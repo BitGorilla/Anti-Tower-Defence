@@ -11,14 +11,24 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+
+import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 
 /**
  * Reads a XML file and translates it to playable levels.
@@ -257,6 +267,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
                     DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inStream);
+            validateXML(doc);
             Element data=doc.getDocumentElement();
             data.normalize();
 
@@ -264,6 +275,7 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
         } catch (ParserConfigurationException e) {
             throw new IOException("Unable to configure parser");
         } catch (SAXException e) {
+            System.out.println(e.getMessage());
             throw new IOException("Not correct format");
         }
     }
@@ -274,6 +286,22 @@ public class XMLReader implements LevelReader, LevelXMLConstants{
      */
     public int getWidth(){
         return width;
+    }
+
+    /**
+     * Validates the maps xml by comparing it to the XLD schema. Exception
+     * thrown if map xml is incorrect.
+     * @param doc, the XML document
+     * @throws SAXException, thrown if xml is incorrectly formatted.
+     * @throws IOException, thrown if filepath bad.
+     */
+    private void validateXML(Document doc) throws SAXException, IOException {
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Source schemaFile = new StreamSource(this.getClass().getResourceAsStream("/xmlBuilder/schema.xsd"));
+        Schema schema = factory.newSchema(schemaFile);
+        Validator validator = schema.newValidator();
+
+        validator.validate(new DOMSource(doc));
     }
 }
 

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="maps">
+		<xsd:complexType>
+	  		<xsd:sequence>
+	  			<xsd:element name="map" type="mapType" minOccurs="1" maxOccurs="unbounded"/>
+	  		</xsd:sequence>
+	  	</xsd:complexType>
+	</xsd:element>
+
+		<xsd:complexType name="mapType">
+			<xsd:sequence>
+				<xsd:element name="meta" type="metaType" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="tiles" type="tilesType" minOccurs="1" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+
+		<xsd:complexType name="metaType">
+			<xsd:sequence>
+				<xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="height" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="width" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="startcredit" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="wincondition" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+
+		<xsd:complexType name="tilesType">
+			<xsd:sequence>
+				<xsd:element name="tile" type="tileType" minOccurs="1" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+
+		<xsd:complexType name="tileType">
+			<xsd:attribute name="road" type="roadType"/>
+			<xsd:attribute name="type" type="xsd:string"/>
+		</xsd:complexType>
+
+	<xsd:simpleType name="roadType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NORTH"/>
+			<xsd:enumeration value="EAST"/>
+			<xsd:enumeration value="SOUTH"/>
+			<xsd:enumeration value="WEST"/>
+			<xsd:enumeration value="BLANK"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
